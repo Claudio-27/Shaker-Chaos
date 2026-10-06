@@ -1,0 +1,128 @@
+[
+  {
+    "source": "Barman dandy in posa accattivante.png",
+    "id": "bartender.b01.idle",
+    "path": "art/bartenders/b01/idle.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "analysing.png",
+    "id": "bartender.b01.tasting",
+    "path": "art/bartenders/b01/tasting.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Barman disgustato dal cocktail.png",
+    "id": "bartender.b01.rough",
+    "path": "art/bartenders/b01/rough.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Barista con cocktail e pollice alzato.png",
+    "id": "bartender.b01.balanced",
+    "path": "art/bartenders/b01/balanced.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Barman esultante con cocktail e gesto OK.png",
+    "id": "bartender.b01.excellent",
+    "path": "art/bartenders/b01/excellent.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "1_ritratto.png",
+    "id": "bartender.b01.portrait",
+    "path": "art/bartenders/b01/portrait.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "immagini barista 2/base.png",
+    "id": "bartender.b02.idle",
+    "path": "art/bartenders/b02/idle.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "immagini barista 2/tasting.png",
+    "id": "bartender.b02.tasting",
+    "path": "art/bartenders/b02/tasting.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "immagini barista 2/bad.png",
+    "id": "bartender.b02.rough",
+    "path": "art/bartenders/b02/rough.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "immagini barista 2/balanced.png",
+    "id": "bartender.b02.balanced",
+    "path": "art/bartenders/b02/balanced.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "immagini barista 2/excellent.png",
+    "id": "bartender.b02.excellent",
+    "path": "art/bartenders/b02/excellent.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "immagini barista 2/2_ritratto.png",
+    "id": "bartender.b02.portrait",
+    "path": "art/bartenders/b02/portrait.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "immagini barista 2/iceeffect.png",
+    "id": "effect.ice-blue",
+    "path": "art/effects/ice-blue.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Scintille magiche dorate e turchesi.png",
+    "id": "effect.sparkles",
+    "path": "art/effects/sparkles.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Banco da Bar in Legno Intarsiato.png",
+    "id": "counter.c01.surface",
+    "path": "art/counters/c01/surface.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Bar tiki tropicale al tramonto.png",
+    "id": "environment.e01.background",
+    "path": "art/environments/e01/background.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "bottiglia1.png",
+    "id": "ingredient.bottle01",
+    "path": "art/ingredients/bottle01.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "bottiglia2.png",
+    "id": "ingredient.bottle02",
+    "path": "art/ingredients/bottle02.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "bottiglia3.png",
+    "id": "ingredient.bottle03",
+    "path": "art/ingredients/bottle03.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Shaker da Cocktail Cromato con Accenti Colorati.png",
+    "id": "gameplay.chrome-shaker",
+    "path": "art/gameplay/chrome-shaker.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  },
+  {
+    "source": "Calice Martini in Vetro Lucente.png",
+    "id": "gameplay.martini-glass",
+    "path": "art/gameplay/martini-glass.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified"
+  }
+]

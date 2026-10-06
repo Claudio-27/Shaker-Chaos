@@ -48,3 +48,26 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding-top: 
 @media (max-width: 599px) { .app-shell { padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }.topbar-meta { gap: 0; }.connection { display: none; }.brand { font-size: 16px; gap: 5px; }.brand-icon { font-size: 25px; }.phase-chip { font-size: 8px; }.intro > p { display: none; }h1 { font-size: 25px; }.intro .eyebrow { font-size: 9px; }.game-stage { --composition: "narrow"; grid-template-columns: minmax(0,1fr); grid-template-areas: "bartender" "reaction" "bottles" "counter" "hud"; padding: 16px; gap: 16px; border-radius: 17px; }.character-safe-area { height: 224px; }.bartender-area { justify-content: start; }.reaction-overlay { padding: 16px 19px; }.reaction-overlay::before { left: calc(50% - 8px); top: -9px; transform: rotate(135deg); }.reaction-overlay h2 { font-size: 27px; margin: 9px 0; }.reaction-instruction { margin-top: 10px; padding-top: 10px; }.bottle-list { gap: 6px; }.bottle-hitbox { flex-direction: column; justify-content: center; text-align: center; min-height: 150px; padding: 12px 5px 8px; gap: 7px; }.bottle-image { width: 34px; height: 68px; }.bottle-copy strong { font-size: 11px; }.bottle-copy b { font-size: 10px; }.counter-content { grid-template-columns: minmax(0,1fr); gap: 12px; padding: 16px; }.mixing-station { flex-direction: row; justify-content: center; gap: 12px; }.vessel-art { width: 100px; height: 140px; flex-shrink: 0; }.mix-meter { max-width: 120px; }.controls-area .zone-heading { display: none; }.hold-button { min-height: 68px; }.extras button { min-height: 48px; }.serve-button, .reset-button { min-height: 52px; }.score-hud { display: block; padding: 17px; }.score-number strong { font-size: 34px; }.scoring-notice { margin-top: 6px; }footer { flex-direction: column; gap: 5px; font-size: 9px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 @media (max-width: 359px) { .hold-button { grid-template-columns: 22px minmax(0,1fr); column-gap: 5px; padding-left: 8px; padding-right: 8px; }.hold-button > img { width: 22px; height: 22px; }.extras button { padding-left: 7px; padding-right: 7px; font-size: 11px; } }
+
+/* Original image canvases and independent interaction geometry. */
+.bottle-image { width: 42px; height: 64px; flex-shrink: 0; }
+.bartender-name > img { object-fit: contain; object-position: center; border-radius: 0; }
+.counter-area { background: #f4eedf; }
+.counter-surface { object-position: center bottom; }
+.controls-area { background: #fcfaf1ed; border-radius: 9px; padding: 8px; }
+.mix-meter { background: #fcfaf1ed; border-radius: 8px; padding: 4px; }
+.composition-meter { display: flex; height: 5px; overflow: hidden; border-radius: 3px; margin-bottom: 5px; }
+.composition-meter i { min-width: 0; }
+.asset-error { font-size: 10px; color: #a32e23; background: #fff2eb; }
+.asset-lab { margin: 0 0 14px; padding: 14px; border: 1px solid #afbdb1; border-radius: 12px; background: #f7f8f0; }
+.asset-lab h2 { font-size: 16px; margin-bottom: 10px; }
+.asset-lab-slots { display: flex; flex-wrap: wrap; gap: 10px; }
+.asset-lab label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; min-width: 0; max-width: 100%; }
+.asset-lab select { max-width: 100%; font: inherit; min-height: 44px; padding: 5px; }
+.asset-lab p { font-size: 12px; margin: 10px 0; }
+.asset-lab summary { cursor: pointer; padding: 8px 0; font-size: 12px; }
+.asset-lab pre { max-height: 240px; overflow: auto; font-size: 11px; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width: 599px) { .bottle-image { width: 44px; height: 68px; } }
+.bottle-shelf .zone-heading { background: #fcfaf1ed; border-radius: 8px; padding: 4px 8px; }
+.character-body { inset: 12px 6px 0; width: calc(100% - 12px); height: calc(100% - 12px); }.character-effect { z-index: 0; }
+.character-body, .character-accessory { z-index: 1; }.bottle-hitbox:disabled { opacity: 1; }

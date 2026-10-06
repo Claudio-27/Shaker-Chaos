@@ -1,3 +1,4 @@
+import { publicContentCatalog } from './publicContentCatalog.ts';
 import type { BartenderDefinition, GarnishDefinition, IngredientDefinition, ReactionDefinition, RecipeDefinition } from '../domain/model.ts';
 
 export interface PublicCatalog {
@@ -8,7 +9,7 @@ export interface PublicCatalog {
   readonly recipes: readonly RecipeDefinition[];
 }
 
-/** Original Phase 0 placeholders. Future protected content must arrive from a server. */
+/** Public demo text; supplied bartender display names come from canonical content metadata. */
 export const publicCatalog: PublicCatalog = {
   ingredients: [
     { id: 'orchard', name: 'Infuso del frutteto', shortLabel: 'FRUTTETO', description: 'La base morbida del tuo mix.', color: '#dfaa5b' },
@@ -16,15 +17,15 @@ export const publicCatalog: PublicCatalog = {
     { id: 'soda', name: 'Acqua frizzante', shortLabel: 'BOLLICINE', description: 'Un tocco leggero per completare.', color: '#88bfc5' },
   ],
   garnishes: [{ id: 'citrus-wheel', name: 'Ruota di agrume' }],
-  bartenders: [{
-    id: 'milo', name: 'Milo', role: 'Assistente geometrico · fase 0',
+  bartenders: publicContentCatalog.items.filter((item) => item.kind === 'bartender').map((item) => ({
+    id: item.id, name: item.displayName, role: 'Compagno del laboratorio',
     lines: {
       unrated: 'Il banco è tuo. Inizia da un ingrediente.',
       rough: 'C’è un’idea qui dentro. Prova a cambiare le proporzioni!',
       balanced: 'Un buon equilibrio. Un altro piccolo esperimento?',
       excellent: 'Questo mix trova il suo ritmo. Ben fatto!',
     },
-  }],
+  })),
   reactions: [
     { tier: 'unrated', title: 'Tutto da inventare', description: 'Versa, aggiungi ghiaccio, agita e assaggia.' },
     { tier: 'rough', title: 'Un po’ di caos', description: 'Il laboratorio invita a sperimentare ancora.' },

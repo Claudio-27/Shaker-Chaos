@@ -1,6 +1,6 @@
 # Architettura
 
-Aggiornamento 2026-10-06: fase **0.2**, composizione e asset dopo il rafforzamento di dominio 0.1. Nessuna ricerca o implementazione di fase 1.
+Aggiornamento 2026-10-06: fase **0.3**, artwork forniti e catalogo modulare dopo il rafforzamento di dominio 0.1 e la composizione 0.2. Nessuna ricerca o implementazione di fase 1.
 
 > **Preserve information until research proves it irrelevant.**
 
@@ -94,9 +94,13 @@ Per una web app distribuita serviranno autenticazione, sessioni e autorizzazione
 
 ## PWA minima
 
-Vite produce risorse con hash. Lo script di build genera una allowlist dei soli file pubblici e una cache con versione derivata dal contenuto. Il service worker intercetta esclusivamente GET same-origin per file presenti nella lista e le due navigazioni della shell (radice dello scope e index.html). Non intercetta route vault, API, altri percorsi o domini. Per questi soli asset statici pubblici, ignora Vary durante il lookup: gli header Origin aggiunti alle richieste di moduli non devono impedire il riuso offline della stessa risorsa precached. La pulizia rimuove solo vecchie cache con il prefisso del progetto. L'update attende la chiusura delle precedenti schede.
+La build genera una precache minima di 7 file della shell, senza artwork. Il registro pubblico validato genera una allowlist esatta di 42 immagini ammesse solo per runtime cache; non equivale a un download anticipato. La build fallisce per riferimenti mancanti, contenuti dichiarati privati o file pubblici non classificati.
 
-Manifest e URL relativi consentono hosting statico anche in sottocartella; nessun router o deep-link è implementato. La cache pubblica non sarà riutilizzata come meccanismo di protezione o di persistenza del profilo.
+planSceneAssets e CACHE_SCENE riscaldano soltanto la scena attiva, includendo il bicchiere necessario per Servi offline. Il worker risponde con un ACK dopo il caricamento riuscito prima che la UI dichiari disponibilità offline. Reazioni/effetti arrivano su richiesta; quando non disponibili il renderer usa idle/nessun effetto mantenendo score e testo.
+
+Cache artwork separata, massimo 32 elementi, conservazione delle immagini fissate per la scena attiva. Solo GET same-origin presenti nell'allowlist esatta vengono intercettate: nessuna API, route vault, URL esterno o richiesta con query. Per risorse statiche pubbliche si ignora Vary nel lookup, mantenendo l'offline dei moduli con header Origin. La pulizia rimuove solo vecchie versioni del progetto; aggiornamenti attendono la chiusura delle vecchie schede.
+
+Manifest/URL restano relativi allo scope e supportano sottocartelle. Nessun router o persistenza del profilo. Un futuro catalogo esteso richiederà quote in byte e gestione delle scene di più client; asset protetti avranno delivery e cache separate. Vedi VISUAL_ARCHITECTURE.md.
 
 ## Decisioni che potrebbero costare da cambiare
 
@@ -116,6 +120,12 @@ Le decisioni restano documentate e versionabili. React e CSS appartengono esclus
 
 
 
-## Presentazione e asset (fase 0.2)
+## Presentazione e catalogo (fase 0.3)
 
-Vedi [VISUAL_ARCHITECTURE.md](VISUAL_ARCHITECTURE.md) per gerarchia della scena, ID/registro degli asset, safe area, responsive, debug solo sviluppo e requisiti dell’artwork. ScoreResult seleziona un ReactionId tramite un mapping di presentazione; il player decorativo non emette MixEvent e non ritarda lo scoring. Personaggi/ambienti si associano nel composition root, senza implementare selezione o sblocchi. Il codice di dominio e tutti i 49 test precedenti restano invariati. Il preload client pianifica la scena attiva; la PWA precachea ancora l’intera piccola build pubblica dei placeholder.
+VisualCatalog associa ID stabili a immagini e definizioni indipendenti di bartender, environment, counter, effect e bottle-set. VisualLoadout seleziona slot di sola presentazione, con effetti sostituibili. Gli ID legacy restano validi; i due bartender forniti usano bartender.b01 e bartender.b02 e nomi modificabili dal catalogo canonico.
+
+ContentItem e BundleDefinition descrivono contenuti/prodotti senza transazioni o proprietà del giocatore. Un bundle riferisce elementi canonici riutilizzabili senza duplicare file e senza equipaggiare automaticamente un tema. UnlockMetadata e PriceMetadata sono solo descrizioni per sistemi futuri separati. ProtectedContentDelivery è un contratto non implementato; il catalogo pubblico non contiene URL privati.
+
+Asset Lab è solo sviluppo e tiene le selezioni in memoria React, fuori dal reducer di gioco. Nessun evento o score cambia per un cambio di slot. Animazioni, fitting e liquidMode appartengono solo alla UI. I PNG forniti sono copie identiche, con provenienza e limiti in ASSET_INGEST_REPORT.md. CONTENT_CATALOG.md documenta tutte le identità, i bundle e i confini.
+
+Decisioni nuove da rivedere prima di scalare: riferimenti stringa e default di equipaggiamento non persistenti; bundle di esempio senza grant; categorizzazione manuale pubblico/privato; fondale con banco incorporato; variante di liquido a indicatore esterno; cache per numero di elementi e pinning di una sola scena per worker. I confini del dominio restano quelli documentati sopra: non è iniziata la fase 1.

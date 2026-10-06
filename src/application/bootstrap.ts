@@ -1,3 +1,5 @@
+import { publicContentCatalog } from '../content/publicContentCatalog.ts';
+import { validatePublicContent } from '../content/contentValidation.ts';
 import { publicVisualCatalog } from '../content/publicVisualCatalog.ts';
 import { planSceneAssets, validateVisualCatalog } from '../content/visualPlan.ts';
 import { demoInput, demoMixingRules, demoScoringConfiguration } from '../content/demoConfiguration.ts';
@@ -17,7 +19,7 @@ export const gameDependencies: GameDependencies = {
 export const gamePresentation = {
   catalog: publicCatalog,
   visuals: publicVisualCatalog,
-  scene: { bartenderId: 'milo', environmentId: 'studio', ingredientIds: publicCatalog.ingredients.map((ingredient) => ingredient.id) },
+  scene: { bartenderId: 'bartender.b01', environmentId: 'environment.e01', counterId: 'counter.c01', bottleSetId: 'bottles.supplied', ingredientIds: publicCatalog.ingredients.map((ingredient) => ingredient.id) },
   input: demoInput,
   volumeDisplay: { symbol: 'u' }, // No physical mapping has been established.
   guide: {
@@ -35,3 +37,5 @@ export const gamePresentation = {
 
 validateVisualCatalog(gamePresentation.visuals);
 planSceneAssets(gamePresentation.visuals, gamePresentation.scene);
+
+validatePublicContent(publicContentCatalog, gamePresentation.visuals);

@@ -1,10 +1,13 @@
 # Roadmap
 
-Solo la fase 0 è oggetto di questa consegna. Le fasi 1–8 non sono implementate.
+Fasi 0, 0.1 e 0.2 completate; questa consegna riguarda esclusivamente 0.3. Le fasi 1–8 restano non implementate.
 
 | Fase | Obiettivo | Criterio di uscita |
 | --- | --- | --- |
 | 0 — Architettura e harness di ricerca | React/TS/Vite, dominio puro, catalogo originale, demo esplicitamente non verificata, schema delle evidenze, test e PWA minima | TypeScript, lint, test e build superati; dipendenze sostituibili; istruzioni di prova documentate |
+| 0.1 — Storia e unità canoniche | Eventi deterministici, replay, VolumeUnit intere, input scoring completo | Completata: storia preservata; nessuna conversione ml presunta |
+| 0.2 — Composizione e segnaposto | GameStage responsive, registro visuale, animazioni e visualDebug | Completata: safe area e hitbox distinte; 53 test alla chiusura |
+| 0.3 — Artwork e catalogo modulare | Entrambi i bartender forniti, environment/counter indipendenti, bundle dichiarativi, Asset Lab dev, cache selettiva | Inventario/hash/provenienza, slot indipendenti, controlli e rapporti; nessuna economia o consegna privata |
 | 1 — Meccaniche di miscelazione verificate | Osservare capacità, versamento, ghiaccio, agitazione, guarnizioni e ciclo della partita | Specifica con unità, procedure, evidenze e casi limite riproducibili; nessun coefficiente presunto |
 | 2 — Compatibilità comportamentale 1:1 dello scoring | Dataset ed equazione sostenuti da evidenza indipendente | Fixture di riferimento con punteggi numerici esatti, soglie e arrotondamenti; discrepanze spiegate; interfaccia invariata |
 | 3 — Bartender, arte, animazione e suoni originali | Sistema espressivo e identità propria | Asset originali e provenienza documentata; reazioni coerenti con gli eventi di dominio |
@@ -15,3 +18,5 @@ Solo la fase 0 è oggetto di questa consegna. Le fasi 1–8 non sono implementat
 | 8 — Account/cloud/backend opzionali | Salvataggi remoti e sincronizzazione, se richiesti | Contratti versionati, conflitti e migrazioni definiti; trattamento dei dati e disponibilità chiariti |
 
 La PWA minima e le icone geometriche della fase 0 sono infrastruttura della demo; non completano le rifiniture della fase 4 né il sistema artistico della fase 3. La promozione di una meccanica a compatibile richiede evidenza, non il solo superamento dei test del progetto.
+
+La fase 0.3 anticipa l'integrazione degli artwork forniti, senza completare la direzione artistica o il suono della fase 3, la validazione su tablet fisici della fase 4, l'economia della fase 5 o il vault della fase 7. Il rapporto ASSET_INGEST_REPORT.md documenta limiti e verifiche. Dopo la consegna fermarsi: la ricerca di fase 1 richiede un incarico esplicito.

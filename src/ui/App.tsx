@@ -1,8 +1,9 @@
+import type { VisualLoadout } from '../content/visualModel.ts';
 import { createSessionClock } from '../platform/sessionClock.ts';
 import type { VolumeUnit } from '../domain/quantity.ts';
 import type { OperationEndReason } from '../domain/session.ts';
 import { formatVolumeUnits } from './volumePresentation.ts';
-import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { gameDependencies, gamePresentation } from '../application/bootstrap.ts';
 import { newGame, transitionGame } from '../application/game.ts';
 import { totalVolumeUnits } from '../domain/mix.ts';
@@ -14,14 +15,19 @@ import { selectReactionId } from '../content/visualPlan.ts';
 import { primeSceneVisuals } from '../platform/visualPreload.ts';
 import { HoldButton } from './HoldButton.tsx';
 
-const { catalog: publicCatalog, input: inputConfiguration, volumeDisplay, guide, scoringNotice, visuals, scene } = gamePresentation;
+const { catalog: publicCatalog, input: inputConfiguration, volumeDisplay, guide, scoringNotice, visuals, scene: initialScene } = gamePresentation;
 const shellLabels: Record<ShellStatus, string> = {
   development: 'Sessione locale', unavailable: 'Offline non disponibile', ready: 'Pronto anche offline', error: 'Cache offline non disponibile',
 };
 const formatter = new Intl.NumberFormat('it-IT', { maximumFractionDigits: 1 });
 const visualDebug = import.meta.env.DEV && new URLSearchParams(window.location.search).get('visualDebug') === '1';
 
+const AssetLab = import.meta.env.DEV ? lazy(() => import('./AssetLab.tsx')) : null;
+const assetLab = import.meta.env.DEV && new URLSearchParams(window.location.search).get('assetLab') === '1';
+
 export function App() {
+  const [loadout, setLoadout] = useState<VisualLoadout>(initialScene);
+  const scene = useMemo(() => ({ ...loadout, ingredientIds: initialScene.ingredientIds }), [loadout]);
   const [state, dispatch] = useReducer(
     (current: ReturnType<typeof newGame>, action: Parameters<typeof transitionGame>[1]) => transitionGame(current, action, gameDependencies),
     undefined, () => newGame(gameDependencies.mixingRules),
@@ -74,29 +80,31 @@ export function App() {
   const formatVolume = (units: VolumeUnit) => formatVolumeUnits(units, volumeDisplay);
   useEffect(() => {
     let active = true;
-    void registerOfflineShell().then((status) => { if (active) setShellStatus(status); });
+    void registerOfflineShell(visuals, scene).then((status) => { if (active) setShellStatus(status); });
     return () => { active = false; };
-  }, []);
+  }, [scene]);
   useEffect(() => { if (served) resultTitle.current?.focus(); }, [served]);
 
-  useEffect(() => primeSceneVisuals(visuals, scene, import.meta.env.BASE_URL), []);
+  useEffect(() => primeSceneVisuals(visuals, scene, import.meta.env.BASE_URL), [scene]);
   const environment = visuals.environments[scene.environmentId];
+  const counter = visuals.counters[scene.counterId];
   const reactionId = selectReactionId(visuals, reactionTier);
-  if (!bartender || !environment || !reaction) throw new Error('Missing active scene content');
+  if (!bartender || !environment || !counter || !reaction) throw new Error('Missing active scene content');
   return (
     <VisualAssetsProvider catalog={visuals}>
       <div className="app-shell">
         <header className="topbar">
           <a className="brand" href="./" aria-label="Shaker-Chaos, pagina iniziale"><span className="brand-icon" aria-hidden="true">✳</span><span>SHAKER<span className="brand-dash">—</span>CHAOS</span></a>
-          <div className="topbar-meta"><span className="phase-chip">LAB / FASE 0.2</span><span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
+          <div className="topbar-meta"><span className="phase-chip">LAB / FASE 0.3</span><span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
         </header>
         <main>
           <div className="intro"><div><p className="eyebrow">IL TUO PICCOLO LABORATORIO AL BANCO</p><h1>Un po’ di ritmo. <em>Un po’ di caos.</em></h1></div><p>Tre ingredienti. Un nuovo esperimento.</p></div>
+          {assetLab && AssetLab && <Suspense fallback={null}><AssetLab loadout={loadout} visuals={visuals} ingredientIds={scene.ingredientIds} onChange={setLoadout} /></Suspense>}
           <GameStage environment={environment} debug={visualDebug}>
-            <BottleShelf ingredients={publicCatalog.ingredients} visuals={visuals} mix={state.view.mix} selectedId={selectedId} disabled={served} onSelect={setSelectedId} formatVolume={formatVolume} symbol={volumeDisplay.symbol} />
-            <BartenderArea bartender={bartender} visuals={visuals} reactionId={reactionId} served={served} attemptKey={state.view.currentAttemptStart} />
+            <BottleShelf loadout={loadout} ingredients={publicCatalog.ingredients} visuals={visuals} mix={state.view.mix} selectedId={selectedId} disabled={served} onSelect={setSelectedId} formatVolume={formatVolume} symbol={volumeDisplay.symbol} />
+            <BartenderArea loadout={loadout} bartender={bartender} visuals={visuals} reactionId={reactionId} served={served} attemptKey={state.view.currentAttemptStart} />
             <ReactionOverlay title={reaction.title} line={bartender.lines[reactionTier]} served={served} titleRef={resultTitle} />
-            <CounterArea assetId={environment.counterForeground}>
+            <CounterArea assetId={counter.surface} fit={counter.fit}>
               <MixingStation mix={state.view.mix} volume={volume} capacity={capacityUnits} visuals={visuals} formatVolume={formatVolume} symbol={volumeDisplay.symbol} shaking={shaking} served={served} />
               <ControlsArea>
                 <div className="mix-controls">

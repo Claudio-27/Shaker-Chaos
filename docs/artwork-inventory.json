@@ -1,0 +1,422 @@
+[
+  {
+    "source": "Barman dandy in posa accattivante.png",
+    "id": "bartender.b01.idle",
+    "path": "art/bartenders/b01/idle.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 985304,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 975344,
+    "partialAlphaPixels": 595821,
+    "alphaBoundsAbove8": [
+      99,
+      38,
+      1047,
+      1447
+    ],
+    "sha256": "039f2a81780ca9532e7e1471ee9f81ce04b0ccd28983c8e45e6c25722184dec0"
+  },
+  {
+    "source": "analysing.png",
+    "id": "bartender.b01.tasting",
+    "path": "art/bartenders/b01/tasting.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1074244,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 900856,
+    "partialAlphaPixels": 670084,
+    "alphaBoundsAbove8": [
+      186,
+      12,
+      1042,
+      1447
+    ],
+    "sha256": "6c01e11d0dca774f967a532c4ef6fd97b14d2e5cbcf934cc4cfc708bfbbaed05"
+  },
+  {
+    "source": "Barman disgustato dal cocktail.png",
+    "id": "bartender.b01.rough",
+    "path": "art/bartenders/b01/rough.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1117801,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 882495,
+    "partialAlphaPixels": 688308,
+    "alphaBoundsAbove8": [
+      158,
+      13,
+      1025,
+      1447
+    ],
+    "sha256": "9b04f8a887981eae4e8d9414d0ed3c636b26e8b6b8902c5ffb9c4101360c3207"
+  },
+  {
+    "source": "Barista con cocktail e pollice alzato.png",
+    "id": "bartender.b01.balanced",
+    "path": "art/bartenders/b01/balanced.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1001281,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 952234,
+    "partialAlphaPixels": 618671,
+    "alphaBoundsAbove8": [
+      92,
+      37,
+      1004,
+      1447
+    ],
+    "sha256": "bfa61ada7703853d4155d31757b2c5f36528ebc5e14d6a6eaf088c90327aa769"
+  },
+  {
+    "source": "Barman esultante con cocktail e gesto OK.png",
+    "id": "bartender.b01.excellent",
+    "path": "art/bartenders/b01/excellent.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1171621,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 865163,
+    "partialAlphaPixels": 705480,
+    "alphaBoundsAbove8": [
+      45,
+      29,
+      1063,
+      1447
+    ],
+    "sha256": "ae39e22d2e616e6f5ab87a0bfc4a667531ffd5057c2bcab22d08471a1c3378c2"
+  },
+  {
+    "source": "1_ritratto.png",
+    "id": "bartender.b01.portrait",
+    "path": "art/bartenders/b01/portrait.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1254,
+    "height": 1254,
+    "format": "png",
+    "encodedBytes": 1282817,
+    "decodedRgbaBytes": 6290064,
+    "transparentPixels": 754896,
+    "partialAlphaPixels": 817358,
+    "alphaBoundsAbove8": [
+      0,
+      0,
+      1253,
+      1253
+    ],
+    "sha256": "bfc27d2a9f1a535b59100a921399f11f275a4688bcb363723f756f0cb3e13a68"
+  },
+  {
+    "source": "immagini barista 2/base.png",
+    "id": "bartender.b02.idle",
+    "path": "art/bartenders/b02/idle.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1082706,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 853749,
+    "partialAlphaPixels": 716459,
+    "alphaBoundsAbove8": [
+      81,
+      12,
+      1063,
+      1447
+    ],
+    "sha256": "eb0094003e51911a51d158709d526a45ae57418b2dbb9ab69e101065b8aaef85"
+  },
+  {
+    "source": "immagini barista 2/tasting.png",
+    "id": "bartender.b02.tasting",
+    "path": "art/bartenders/b02/tasting.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1107981,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 833651,
+    "partialAlphaPixels": 737192,
+    "alphaBoundsAbove8": [
+      112,
+      9,
+      937,
+      1447
+    ],
+    "sha256": "860cf55bba6d5f91cc119152f9b0a674a12f8572cc978dce1903da0010e82668"
+  },
+  {
+    "source": "immagini barista 2/bad.png",
+    "id": "bartender.b02.rough",
+    "path": "art/bartenders/b02/rough.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1140886,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 833474,
+    "partialAlphaPixels": 736582,
+    "alphaBoundsAbove8": [
+      126,
+      7,
+      1029,
+      1447
+    ],
+    "sha256": "e6b600ca4a484f1fa54fc3c4504cce9069519b65cc204705bf36cf100905665c"
+  },
+  {
+    "source": "immagini barista 2/balanced.png",
+    "id": "bartender.b02.balanced",
+    "path": "art/bartenders/b02/balanced.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1126882,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 831112,
+    "partialAlphaPixels": 739239,
+    "alphaBoundsAbove8": [
+      167,
+      6,
+      932,
+      1447
+    ],
+    "sha256": "204d521eb12b7c64f7f0fd96d6bc5b5277fd8d4798d1f471d4116748de77f779"
+  },
+  {
+    "source": "immagini barista 2/excellent.png",
+    "id": "bartender.b02.excellent",
+    "path": "art/bartenders/b02/excellent.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1086,
+    "height": 1448,
+    "format": "png",
+    "encodedBytes": 1174245,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 806318,
+    "partialAlphaPixels": 764177,
+    "alphaBoundsAbove8": [
+      89,
+      8,
+      1036,
+      1447
+    ],
+    "sha256": "8159c9d510ba6efe4c948a84f8029b94e357c6567f1d68ab254ff8583e33518b"
+  },
+  {
+    "source": "immagini barista 2/2_ritratto.png",
+    "id": "bartender.b02.portrait",
+    "path": "art/bartenders/b02/portrait.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1254,
+    "height": 1254,
+    "format": "png",
+    "encodedBytes": 1278358,
+    "decodedRgbaBytes": 6290064,
+    "transparentPixels": 711568,
+    "partialAlphaPixels": 859096,
+    "alphaBoundsAbove8": [
+      121,
+      5,
+      1112,
+      1253
+    ],
+    "sha256": "edce11bb4c271d470585f960bdd0fdc7f4831f5d23d395114e28f5241c61899f"
+  },
+  {
+    "source": "immagini barista 2/iceeffect.png",
+    "id": "effect.ice-blue",
+    "path": "art/effects/ice-blue.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1254,
+    "height": 1254,
+    "format": "png",
+    "encodedBytes": 1025398,
+    "decodedRgbaBytes": 6290064,
+    "transparentPixels": 1086778,
+    "partialAlphaPixels": 483909,
+    "alphaBoundsAbove8": [
+      62,
+      58,
+      1190,
+      1169
+    ],
+    "sha256": "0b8a233222f662159ce2b4792749084ae9bdcd73ca03bbc440a9c82b7bf90d6d"
+  },
+  {
+    "source": "Scintille magiche dorate e turchesi.png",
+    "id": "effect.sparkles",
+    "path": "art/effects/sparkles.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1254,
+    "height": 1254,
+    "format": "png",
+    "encodedBytes": 1088773,
+    "decodedRgbaBytes": 6290064,
+    "transparentPixels": 999041,
+    "partialAlphaPixels": 573469,
+    "alphaBoundsAbove8": [
+      216,
+      134,
+      1103,
+      993
+    ],
+    "sha256": "d0cc2ebac2b92749222919084a9228029c9df36b50d9124c17fe369ef807ac1c"
+  },
+  {
+    "source": "Banco da Bar in Legno Intarsiato.png",
+    "id": "counter.c01.surface",
+    "path": "art/counters/c01/surface.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 2172,
+    "height": 724,
+    "format": "png",
+    "encodedBytes": 1547657,
+    "decodedRgbaBytes": 6290112,
+    "transparentPixels": 478784,
+    "partialAlphaPixels": 1090825,
+    "alphaBoundsAbove8": [
+      9,
+      97,
+      2162,
+      645
+    ],
+    "sha256": "93cd777d3f64c8e087cd75ee06e3f6e35f7ab1a8e0811678f8a50aece539a533"
+  },
+  {
+    "source": "Bar tiki tropicale al tramonto.png",
+    "id": "environment.e01.background",
+    "path": "art/environments/e01/background.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1586,
+    "height": 992,
+    "format": "png",
+    "encodedBytes": 2111373,
+    "decodedRgbaBytes": 6293248,
+    "transparentPixels": 0,
+    "partialAlphaPixels": 0,
+    "alphaBoundsAbove8": [
+      0,
+      0,
+      1585,
+      991
+    ],
+    "sha256": "83fd5f50914a82f2cb81414930bebb5021875a66e56e2a180d7999eb83ee9559"
+  },
+  {
+    "source": "bottiglia1.png",
+    "id": "ingredient.bottle01",
+    "path": "art/ingredients/bottle01.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1290049,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 1073968,
+    "partialAlphaPixels": 498896,
+    "alphaBoundsAbove8": [
+      300,
+      13,
+      726,
+      1522
+    ],
+    "sha256": "4172d5be9d8527ea10faca76df069f40fa15ae39a5334e25ddc22ec8b39436fd"
+  },
+  {
+    "source": "bottiglia2.png",
+    "id": "ingredient.bottle02",
+    "path": "art/ingredients/bottle02.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1456803,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 1001268,
+    "partialAlphaPixels": 571596,
+    "alphaBoundsAbove8": [
+      201,
+      59,
+      818,
+      1493
+    ],
+    "sha256": "e048c122054bda82b582ba89cdd99f766d144ee5d499dd67a92cd6393a6b38b5"
+  },
+  {
+    "source": "bottiglia3.png",
+    "id": "ingredient.bottle03",
+    "path": "art/ingredients/bottle03.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1575816,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 882288,
+    "partialAlphaPixels": 690576,
+    "alphaBoundsAbove8": [
+      219,
+      34,
+      803,
+      1502
+    ],
+    "sha256": "4f51a7ef5101205110b8c19cca1d24399e1b23eb6c37f2091a24eb583d2b1cce"
+  },
+  {
+    "source": "Shaker da Cocktail Cromato con Accenti Colorati.png",
+    "id": "gameplay.chrome-shaker",
+    "path": "art/gameplay/chrome-shaker.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1460724,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 836283,
+    "partialAlphaPixels": 736581,
+    "alphaBoundsAbove8": [
+      170,
+      30,
+      852,
+      1500
+    ],
+    "sha256": "77c550f8622137ef3ab7287a644049aa296a116c957c2c6c942967a5969ab7f7"
+  },
+  {
+    "source": "Calice Martini in Vetro Lucente.png",
+    "id": "gameplay.martini-glass",
+    "path": "art/gameplay/martini-glass.png",
+    "confidence": "high visual role; bottle ingredient identity unspecified",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1495117,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 1067073,
+    "partialAlphaPixels": 505791,
+    "alphaBoundsAbove8": [
+      45,
+      106,
+      980,
+      1456
+    ],
+    "sha256": "49b5f2fd749df2c5e331efbc194a6df3c8eff45c3f9c4df6186ae202e9f6e86d"
+  }
+]
