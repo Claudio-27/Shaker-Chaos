@@ -1,6 +1,6 @@
 # Specifica progressiva delle meccaniche
 
-Versione: 0.2 · aggiornamento: 2026-10-05 (fase 0.1) · stato: **nessuna meccanica originale verificata**.
+Versione: 0.3 · aggiornamento: 2026-10-06 (fase 1A) · stato: **nessuna meccanica originale verificata**.
 
 Questo documento separa ciò che osserviamo sul gioco di riferimento da ciò che abbiamo inventato nel prototipo. Nessun dato del prototipo deve essere copiato nella sezione compatibilità come se fosse evidenza.
 
@@ -91,4 +91,17 @@ I finding futuri devono includere la traccia canonica (schema, regole/proiezione
 
 I test di presentazione usano scale inventate esclusivamente per verificare che non cambino storia, quantità o scoring. Non costituiscono ipotesi sul riferimento. La cronologia conserva reset e azioni precedenti; la view corrente riparte pulita dopo Reset, mentre l'engine può scegliere la porzione di storia pertinente.
 
-Per nuove informazioni meccaniche: estendere/versionare gli eventi o l'input di compatibilità, documentare le evidenze e aggiungere fixture. Non cancellare dettagli dal log prima che la ricerca ne dimostri l'irrilevanza. La fase 1 non è iniziata.
+Per nuove informazioni meccaniche: estendere/versionare gli eventi o l'input di compatibilità, documentare le evidenze e aggiungere fixture. Non cancellare dettagli dal log prima che la ricerca ne dimostri l'irrilevanza. La fase 1A costruisce il laboratorio; nessun comportamento del riferimento è stato ancora osservato o promosso.
+
+## Quattro categorie separate in fase 1A
+
+| Categoria | Fonte e contenuto attuale | Uso |
+| --- | --- | --- |
+| Observed Reference Behavior | ZERO osservazioni reali; futuro observedReferenceResult con evidenze manuali | Descrive solo output effettivamente visibile per input validato |
+| Verified Compatibility Rule | ZERO regole promosse; ReferenceCompatibilityConfig è solo research-candidate | Richiede regola esplicita, casi VERIFIED sullo stesso build, controesempi/confini e adattatore indipendente |
+| Current Demo Behavior | phase-0-demo-v2, valori inventati elencati sopra | Gioco e proiezione del Lab, DEMO / NOT REFERENCE-VERIFIED |
+| Hypothesis / Unverified | expectedObservation facoltativa o test pianificati nella matrice | Non è un risultato osservato e non entra nello scoring |
+
+ResearchCase v1 registra inputSequence come MixEvent schema v1, inputValidation indipendente dallo stato di output, origine DEMO/REFERENCE, evidenze, confidenza e note. La [matrice](REFERENCE_TEST_MATRIX.md) copre A–I; [Compatibility Lab](COMPATIBILITY_LAB.md) documenta tempo virtuale, schema e promozione. Tempi/tick distribuiti dal builder sono sintetici fino a validazione; non dichiarare VERIFIED un input con quantum o timing ignoti.
+
+La demo non implementa tier del riferimento, esplosioni o classificazione originale delle azioni respinte: tali confronti restano UNKNOWN. MechanicalReactionTierId è distinto da ReactionId visuale, con mapping per bartender e fallback; nessun mapping reale fornito. IngredientId resta distinto da skin della bottiglia.

@@ -1,6 +1,6 @@
 # Architettura
 
-Aggiornamento 2026-10-06: fase **0.3**, artwork forniti e catalogo modulare dopo il rafforzamento di dominio 0.1 e la composizione 0.2. Nessuna ricerca o implementazione di fase 1.
+Aggiornamento 2026-10-06: fase **1A**, infrastruttura black-box di ricerca sopra le fasi 0–0.3. Zero osservazioni del riferimento, zero meccaniche promosse e scorer demo invariato.
 
 > **Preserve information until research proves it irrelevant.**
 
@@ -128,4 +128,18 @@ ContentItem e BundleDefinition descrivono contenuti/prodotti senza transazioni o
 
 Asset Lab è solo sviluppo e tiene le selezioni in memoria React, fuori dal reducer di gioco. Nessun evento o score cambia per un cambio di slot. Animazioni, fitting e liquidMode appartengono solo alla UI. I PNG forniti sono copie identiche, con provenienza e limiti in ASSET_INGEST_REPORT.md. CONTENT_CATALOG.md documenta tutte le identità, i bundle e i confini.
 
-Decisioni nuove da rivedere prima di scalare: riferimenti stringa e default di equipaggiamento non persistenti; bundle di esempio senza grant; categorizzazione manuale pubblico/privato; fondale con banco incorporato; variante di liquido a indicatore esterno; cache per numero di elementi e pinning di una sola scena per worker. I confini del dominio restano quelli documentati sopra: non è iniziata la fase 1.
+Decisioni nuove da rivedere prima di scalare: riferimenti stringa e default di equipaggiamento non persistenti; bundle di esempio senza grant; categorizzazione manuale pubblico/privato; fondale con banco incorporato; variante di liquido a indicatore esterno; cache per numero di elementi e pinning di una sola scena per worker. I confini del dominio restano quelli documentati sopra: la fase 1A aggiunge soltanto il laboratorio di ricerca descritto sotto.
+
+## Infrastruttura di ricerca (fase 1A)
+
+UI DEV CompatibilityLab → manualSequence → appendMixEvent → CocktailSession.history → replay/createCompatibilityInput → ScoringEngine demo. Il builder usa il modello canonico del gioco, ma bypassa le restrizioni applicative demo per preservare tentativi dopo Serve o ingredienti logici ignoti. Il clock virtuale non legge il clock browser. Nessuna sessione Lab è collegata al reducer normale.
+
+ResearchCase separa input controllato da predizione e osservazione manuale, con validazione input e evidence/status/confidence. fixtureCodec valida rigorosamente schema v1 e replay; i riferimenti di evidenza non sono valutazioni visive. research/demo-cases è distinto da research/reference-cases, inizialmente vuoto. Import/export esplicito senza storage/rete; nessun file di ricerca è spedito nel bundle di produzione.
+
+caseRunner valuta il demo e confronta solo campi observedReferenceResult effettivamente disponibili. Missing evidence non equivale a failure. Tier meccanici liberi sono separati dal precedente ReactionTier demo e dagli ID artwork; reactionPresentation consente mapping per bartender con fallback deterministico. Nessun nuovo artwork o mapping del riferimento inventato. Il futuro risultato compatibile dovrà evolvere componenti/score demo senza cambiare i dati osservati.
+
+ReferenceCompatibilityConfig è un research-candidate di sole meccaniche esplicitamente VERIFIED su casi e build coerenti. La copertura delle dieci aree è controllata; un config incompleto non può essere production-ready. Anche copertura completa resta bloccata in fase 1A: servirà validazione separata di adattatore e confini. Non esiste config reale o collegamento al composition root. La demo mantiene i propri guard contro una falsa etichetta VERIFIED.
+
+Compatibility Lab e CSS sono lazy DEV-only come Asset Lab/Visual Debug. scripts/production-boundaries.mjs controlla gli output JS/CSS/HTML prima della generazione worker. Shell/PWA e catalogo pubblico rimangono quelli di 0.3; la ricerca non è contenuto di catalogo e non viene precacheata.
+
+Limiti: ms interi, stato iniziale vuoto, eventi schema v1 e safe integers non ancora validati sul riferimento; modello frame/sub-ms o nuove azioni richiederanno migrazione. Builder/sweep hanno limiti di editor dichiarati, senza compattare eventi. Validatori di evidenza attestano struttura e provenienza dichiarata, non effettivo svolgimento della misura. Vedi COMPATIBILITY_LAB.md.

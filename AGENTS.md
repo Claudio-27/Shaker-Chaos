@@ -2,7 +2,7 @@
 
 ## Ambito
 
-La radice del repository è il workspace di progetto. Rispettare le autorizzazioni esplicite dell'utente: niente commit, push, PR, servizi esterni o pubblicazione senza una richiesta che li autorizzi. La fase attuale è 0.3 (artwork forniti e catalogo modulare); le fasi successive richiedono un nuovo incarico. Non aggiungere backend, database, account, XP, valuta, sblocchi o un vault funzionante in questa fase.
+La radice del repository è il workspace di progetto. Rispettare le autorizzazioni esplicite dell'utente: niente commit, push, PR, servizi esterni o pubblicazione senza una richiesta che li autorizzi. La fase attuale è 1A (Compatibility Lab e infrastruttura di ricerca, senza osservazioni o scoring del riferimento); le fasi successive richiedono un nuovo incarico. Non aggiungere backend, database, account, XP, valuta, sblocchi o un vault funzionante in questa fase.
 
 ## Implementazione indipendente
 

@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
+import { assertProductionBoundaries } from './production-boundaries.mjs';
 import { serviceWorkerSource } from './service-worker-source.mjs';
 import { publicVisualCatalog } from '../src/content/publicVisualCatalog.ts';
 import { validateVisualCatalog } from '../src/content/visualPlan.ts';
@@ -15,6 +16,7 @@ async function walk(folder, prefix = '') {
 validateVisualCatalog(publicVisualCatalog);
 validatePublicContent(publicContentCatalog, publicVisualCatalog);
 const files = (await walk(dist)).filter((file) => file !== 'sw.js');
+assertProductionBoundaries(await Promise.all(files.filter(file => /\.(js|css|html)$/.test(file)).map(async file => [file, await readFile(join(dist, file), 'utf8')])));
 const artwork = [...new Set(Object.values(publicVisualCatalog.assets).map((asset) => asset.path))].sort();
 const shell = files.filter((file) => ['index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png'].includes(file) ||
   /^assets\/[a-zA-Z0-9_-]+\.(js|css)$/.test(file));

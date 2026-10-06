@@ -25,6 +25,9 @@ const visualDebug = import.meta.env.DEV && new URLSearchParams(window.location.s
 const AssetLab = import.meta.env.DEV ? lazy(() => import('./AssetLab.tsx')) : null;
 const assetLab = import.meta.env.DEV && new URLSearchParams(window.location.search).get('assetLab') === '1';
 
+const CompatibilityLab = import.meta.env.DEV ? lazy(() => import('./CompatibilityLab.tsx')) : null;
+const compatLab = import.meta.env.DEV && new URLSearchParams(window.location.search).get('compatLab') === '1';
+
 export function App() {
   const [loadout, setLoadout] = useState<VisualLoadout>(initialScene);
   const scene = useMemo(() => ({ ...loadout, ingredientIds: initialScene.ingredientIds }), [loadout]);
@@ -95,10 +98,11 @@ export function App() {
       <div className="app-shell">
         <header className="topbar">
           <a className="brand" href="./" aria-label="Shaker-Chaos, pagina iniziale"><span className="brand-icon" aria-hidden="true">✳</span><span>SHAKER<span className="brand-dash">—</span>CHAOS</span></a>
-          <div className="topbar-meta"><span className="phase-chip">LAB / FASE 0.3</span><span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
+          <div className="topbar-meta"><span className="phase-chip">LAB / FASE 1A</span><span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
         </header>
         <main>
           <div className="intro"><div><p className="eyebrow">IL TUO PICCOLO LABORATORIO AL BANCO</p><h1>Un po’ di ritmo. <em>Un po’ di caos.</em></h1></div><p>Tre ingredienti. Un nuovo esperimento.</p></div>
+          {compatLab && CompatibilityLab && <Suspense fallback={null}><CompatibilityLab dependencies={gameDependencies} /></Suspense>}
           {assetLab && AssetLab && <Suspense fallback={null}><AssetLab loadout={loadout} visuals={visuals} ingredientIds={scene.ingredientIds} onChange={setLoadout} /></Suspense>}
           <GameStage environment={environment} debug={visualDebug}>
             <BottleShelf loadout={loadout} ingredients={publicCatalog.ingredients} visuals={visuals} mix={state.view.mix} selectedId={selectedId} disabled={served} onSelect={setSelectedId} formatVolume={formatVolume} symbol={volumeDisplay.symbol} />

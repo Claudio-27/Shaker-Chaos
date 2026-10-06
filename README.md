@@ -1,6 +1,6 @@
 # Shaker-Chaos
 
-Gioco browser indipendente, pensato prima di tutto per tablet. Questa versione completa le **fasi 0–0.3**: fondazione, storia canonica deterministica, composizione visiva e integrazione degli artwork forniti in una demo giocabile. La ricerca di compatibilità della fase 1 non è iniziata.
+Gioco browser indipendente, pensato prima di tutto per tablet. Questa versione completa le **fasi 0–0.3**: fondazione, storia canonica deterministica, composizione visiva e integrazione degli artwork forniti in una demo giocabile. La fase 1A aggiunge infrastruttura di ricerca; nessuna meccanica del riferimento è stata ancora osservata o verificata.
 
 **NOT YET COMPATIBILITY-VERIFIED.** Formula, ingredienti, capacità, tempi e soglie della demo sono inventati per verificare l'architettura. Non costituiscono risultati di ricerca sul gioco di riferimento.
 
@@ -92,3 +92,7 @@ Composizione prioritaria per 1024×768 e 1280×800 landscape, riordino in portra
 Entrambi i bartender forniti, ambiente tiki e banco indipendente, bottiglie/shaker/calice PNG integrati; originali preservati. [Rapporto completo e inventario](docs/ASSET_INGEST_REPORT.md), [catalogo e bundle](docs/CONTENT_CATALOG.md), [architettura visiva](docs/VISUAL_ARCHITECTURE.md).
 
 In sviluppo aprire /?assetLab=1 per cambiare bartender, ambiente, banco, bottiglie ed effetto; aggiungere &visualDebug=1 per le safe area. Nessuna persistenza o negozio. In produzione la PWA precachea solo la shell e riscalda la scena attiva: le reazioni non ancora scaricate possono usare idle offline. Controlli: npm run check, 68 test passati. Phase 1 non iniziata.
+
+## Fase 1A — Compatibility Lab
+
+Solo sviluppo: /?compatLab=1, combinabile con &assetLab=1&visualDebug=1. Sequenze esatte in VolumeUnit e ms virtuali, stessi eventi canonici del gioco, JSON import/export, osservazioni manuali separate e sweep. [Guida](docs/COMPATIBILITY_LAB.md), [matrice A–I e primi dieci esperimenti](docs/REFERENCE_TEST_MATRIX.md). Zero fixture VERIFIED reali e nessuna modifica allo scorer demo. La build controlla che i laboratori DEV non siano distribuiti. Nessun servizio esterno, account o sistema prodotto introdotto.

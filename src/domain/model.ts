@@ -4,6 +4,9 @@ import type { CompatibilityInput } from './session.ts';
 /** Evidence labels describe research, never a promise of compatibility. */
 export type VerificationStatus = 'VERIFIED' | 'STRONGLY_SUPPORTED' | 'UNVERIFIED';
 export type IngredientId = string;
+/** Reference labels have no fixed number/order and never identify artwork. */
+export type MechanicalReactionTierId = string;
+/** Existing demo-only presentation tiers; not reference tiers. */
 export type ReactionTier = 'unrated' | 'rough' | 'balanced' | 'excellent';
 
 /** Opaque keys allow a later access policy without putting progression in scoring. */
@@ -43,7 +46,10 @@ export interface ScoreBreakdown {
 export interface ScoreResult {
   readonly score: number;
   readonly maximum: number;
+  /** Legacy demo tier; never a reference mechanical label. */
   readonly reactionTier: ReactionTier;
+  /** An independent adapter may supply any validated mechanical tier, without choosing artwork. */
+  readonly mechanicalReactionTierId?: MechanicalReactionTierId;
   readonly breakdown: readonly ScoreBreakdown[];
   readonly configurationId: string;
   readonly verificationStatus: VerificationStatus;

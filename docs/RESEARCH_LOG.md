@@ -82,3 +82,15 @@ Non è iniziata la fase 1. Nessun nuovo finding sul gioco di riferimento, nessun
 A ogni finding aggiungere: schema della storia, sequenze e tempi relativi, origine/risoluzione del clock, start/end e ID delle operazioni, ingrediente e quantità di ciascun tick, credito shake distinto dalla durata trascorsa, punti di reset e ID della proiezione/dataset. Conservare la traccia completa, non soltanto i totali finali. Indicare esplicitamente l'assenza di una mappatura fisica o l'evidenza che la sostiene.
 
 Le variabili aggiunte alla storia non sono automaticamente meccaniche verificate. Un replay deterministico prova una proprietà del software, non che il riferimento usi la stessa proiezione o formula.
+
+## R-004 — Harness di fase 1A, 2026-10-06 (ambito: Shaker-Chaos)
+
+- Claim: sequenze manuali precise producono eventi canonici e proiezioni deterministiche; fixture e confronti parziali preservano le incognite; il laboratorio è isolato dal gioco normale e dalla produzione.
+- Verification status: VERIFIED solo per i controlli software eseguiti. Compatibilità con il riferimento: UNVERIFIED.
+- Evidence/source: src/research/cases.test.ts, src/content/reactionPresentation.test.ts, scripts/production-boundaries.test.mjs; audit su output effettivo di npm run build. Nessuna fonte o osservazione del riferimento.
+- Procedura: input sintetici, round-trip JSON, ordine inverso e totali uguali con storie diverse, quantità al limite sicuro, reset, schema/evidenza/promotion guards e confronti MATCH/MISMATCH/UNKNOWN. Smoke browser separato.
+- Risultato: laboratorio e serie funzionanti; scorer demo intatto. Le fixture mock VERIFIED dei test sono dichiarazioni sintetiche in memoria per verificare i guard, non evidenze reali.
+- Confidence: high per i casi software testati; nessuna evidenza del riferimento.
+- Decision: mantenere vuota research/reference-cases fino a osservazioni indipendenti; zero regole promosse, zero valori VERIFIED del riferimento. Non confondere R-000/R-002/R-003/R-004 (software) con finding compatibili.
+
+M-001…M-010 restano UNVERIFIED. La fase 1A avvia infrastruttura di ricerca e non cambia alcun loro valore. Ogni osservazione futura deve indicare input esatto, unità native/mapping, timeline misurata, build, source/procedure e ripetizioni. Il solo score coincidente non verifica input né formula generale. Vedi REFERENCE_TEST_MATRIX.md e COMPATIBILITY_LAB.md.

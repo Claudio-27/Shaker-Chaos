@@ -1,0 +1,133 @@
+{
+  "confidence": "low",
+  "evidence": [],
+  "id": "demo-sequence",
+  "inputSequence": [
+    {
+      "atMs": 0,
+      "ingredientId": "orchard",
+      "operationId": 0,
+      "sequence": 0,
+      "type": "PourStarted"
+    },
+    {
+      "atMs": 0,
+      "ingredientId": "orchard",
+      "operationId": 0,
+      "requestedUnits": 12,
+      "sequence": 1,
+      "type": "PourTick"
+    },
+    {
+      "atMs": 0,
+      "operationId": 0,
+      "reason": "completed",
+      "sequence": 2,
+      "type": "PourEnded"
+    },
+    {
+      "atMs": 0,
+      "ingredientId": "citrus",
+      "operationId": 1,
+      "sequence": 3,
+      "type": "PourStarted"
+    },
+    {
+      "atMs": 0,
+      "ingredientId": "citrus",
+      "operationId": 1,
+      "requestedUnits": 7,
+      "sequence": 4,
+      "type": "PourTick"
+    },
+    {
+      "atMs": 0,
+      "operationId": 1,
+      "reason": "completed",
+      "sequence": 5,
+      "type": "PourEnded"
+    },
+    {
+      "atMs": 0,
+      "requestedUnits": 1,
+      "sequence": 6,
+      "type": "IceAdded"
+    },
+    {
+      "atMs": 0,
+      "operationId": 2,
+      "sequence": 7,
+      "type": "ShakeStarted"
+    },
+    {
+      "atMs": 800,
+      "durationMs": 800,
+      "operationId": 2,
+      "sequence": 8,
+      "type": "ShakeTick"
+    },
+    {
+      "atMs": 800,
+      "operationId": 2,
+      "reason": "completed",
+      "sequence": 9,
+      "type": "ShakeEnded"
+    },
+    {
+      "atMs": 800,
+      "operationId": 3,
+      "sequence": 10,
+      "type": "ShakeStarted"
+    },
+    {
+      "atMs": 1600,
+      "durationMs": 800,
+      "operationId": 3,
+      "sequence": 11,
+      "type": "ShakeTick"
+    },
+    {
+      "atMs": 1600,
+      "operationId": 3,
+      "reason": "completed",
+      "sequence": 12,
+      "type": "ShakeEnded"
+    },
+    {
+      "atMs": 1600,
+      "operationId": 4,
+      "sequence": 13,
+      "type": "ShakeStarted"
+    },
+    {
+      "atMs": 2400,
+      "durationMs": 800,
+      "operationId": 4,
+      "sequence": 14,
+      "type": "ShakeTick"
+    },
+    {
+      "atMs": 2400,
+      "operationId": 4,
+      "reason": "completed",
+      "sequence": 15,
+      "type": "ShakeEnded"
+    },
+    {
+      "atMs": 2400,
+      "sequence": 16,
+      "type": "Served"
+    }
+  ],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "Timeline sintetica e unità canoniche non ancora mappate al riferimento.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Invented example. No original-game observation, no verified mechanic.",
+  "origin": "DEMO",
+  "purpose": "Exercise canonical tooling only; no reference observation",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "DEMO synthetic 12 + 7 / three shakes"
+}
