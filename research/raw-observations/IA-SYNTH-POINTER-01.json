@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-SYNTH-POINTER-01",
+  "experimentId": "asynchronous-pointer-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-canvas",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Fresh wrapper using asynchronous PointerEvents.",
+  "requestedActions": [
+    {
+      "kind": "cold-start"
+    },
+    {
+      "kind": "select",
+      "requestedDurationMs": 100,
+      "target": "blue bottle upper row position 8"
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 1000,
+      "target": "asynchronous synthetic PointerEvent pulse"
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 1000,
+      "target": "second pulse plus overlapping native click"
+    }
+  ],
+  "deliveredInputs": [
+    {
+      "type": "pointerdown",
+      "atMs": 26347,
+      "trusted": true,
+      "x": 300,
+      "y": 405,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 26477,
+      "trusted": true,
+      "x": 300,
+      "y": 405,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 26704,
+      "trusted": true,
+      "x": 344,
+      "y": 112,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 26840,
+      "trusted": true,
+      "x": 344,
+      "y": 112,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 27379,
+      "trusted": false,
+      "x": 74,
+      "y": 413,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 28382,
+      "trusted": false,
+      "x": 74,
+      "y": 413,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 47070,
+      "trusted": false,
+      "x": 74,
+      "y": 413,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 47249,
+      "trusted": true,
+      "x": 74,
+      "y": 413,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 47259,
+      "trusted": true,
+      "x": 74,
+      "y": 413,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 48071,
+      "trusted": false,
+      "x": 74,
+      "y": 413,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 56673,
+      "trusted": true,
+      "x": 85,
+      "y": 188,
+      "buttons": 2,
+      "button": 2
+    },
+    {
+      "type": "pointerup",
+      "atMs": 57367,
+      "trusted": true,
+      "x": 410,
+      "y": 54,
+      "buttons": 0,
+      "button": 0
+    }
+  ],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Preparation screen unchanged; later unplanned right-click opened Ruffle context menu.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "Overlapping synthetic/native press invalidates operation-count inference. The unplanned right-click was not requested by the script; attribution unknown. No mechanical claim from this trace."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

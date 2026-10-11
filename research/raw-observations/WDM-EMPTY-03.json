@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "WDM-EMPTY-03",
+  "experimentId": "E01-empty-serve",
+  "referenceBuild": "wdm-rightmix-2013-observable-20261011",
+  "date": "2026-10-11",
+  "environmentId": "wdm-iab",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 3,
+  "initialCondition": "Same empty session, preceding empty Serve had no visible effect.",
+  "requestedActions": [
+    {
+      "kind": "serve"
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Serve highlighted; preparation screen remained visible; no score or reaction displayed.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "Reset was not visible/available; repeats used the same empty session, not verified Reset."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://www.webdesignmuseum.org/flash-games/the-right-mix-in-2013"
+}

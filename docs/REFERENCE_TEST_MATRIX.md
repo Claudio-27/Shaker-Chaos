@@ -85,3 +85,7 @@ Per tutti i dieci: conservare score e tier/identità/failure osservati solo se v
 ## Criterio di promozione
 
 Un caso VERIFIED dimostra soltanto la propria traccia/output e ambito. Servono evidenza manuale, build/sessione, procedura, ripetizioni, input validato e confronto dei campi misurati. Un insieme di casi non promuove automaticamente una formula. Ricercare controesempi e confini, documentare la regola candidata e validare un adattatore indipendente prima della produzione. In fase 1A non esiste configurazione compatibile pronta.
+
+## Avanzamento fase 1B (2026-10-11)
+
+La tabella precedente è la pianificazione originaria. Sono avvenute 16 acquisizioni diagnostiche automatiche, senza baseline liquida/score: i confronti a quantità equivalenti, le curve e le soglie restano NOT TESTED. Vedi REFERENCE_FINDINGS.md per copertura per esperimento e case IDs; experiments.json prepara serie non eseguite. Nessuna riga meccanica promossa.

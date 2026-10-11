@@ -1,0 +1,30 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "id": "IA-POUR-DIAG-01",
+      "procedure": "research/raw-observations/IA-POUR-DIAG-01.json; Empty wrapper session after IA-EMPTY-01.; Bottle was selected and moved; no visible numerical amount or score after Serve.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "https://archive.org/details/flash_therightmix"
+    }
+  ],
+  "id": "case-IA-POUR-DIAG-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "No calibrated reference pour quantum; no ml mapping. DOM delivery or requested hold time is not Flash-effective duration or tick count. Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients. Captured interval 322 ms for requested 300 ms, 5021 ms for requested 5000 ms. Trace snapshot precedes final Serve; it is intentionally partial. Raw source: research/raw-observations/IA-POUR-DIAG-01.json",
+  "observedReferenceResult": {
+    "phase": "preparation-screen"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "E02-E03-short-and-long-pour / IA-POUR-DIAG-01"
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-CHROME-DIAG-02",
+  "experimentId": "pour-repeat-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-chrome-canvas",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Continuation of the preceding diagnostic attempt; not a controlled fresh cocktail.",
+  "requestedActions": [
+    {
+      "kind": "pour",
+      "requestedDurationMs": 5000
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "pour-control-stop-visible"
+  },
+  "visibleNotes": "STOP and tilted bottle visible immediately after the hold; a later snapshot showed upright bottle / Pour. No score.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "Same continued session, not a repeat with known equal quantity. No exact delivery trace was captured for this hold."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

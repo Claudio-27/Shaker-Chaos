@@ -1,0 +1,30 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "id": "IA-LABEL-DIAG-01",
+      "procedure": "research/raw-observations/IA-LABEL-DIAG-01.json; Continuation of the preceding diagnostic attempt; not a controlled fresh cocktail.; Nameplate attempt left preparation screen without score. No reliable alternate hitbox established.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "https://archive.org/details/flash_therightmix"
+    }
+  ],
+  "id": "case-IA-LABEL-DIAG-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "No calibrated reference pour quantum; no ml mapping. DOM delivery or requested hold time is not Flash-effective duration or tick count. Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients. Raw source: research/raw-observations/IA-LABEL-DIAG-01.json",
+  "observedReferenceResult": {
+    "phase": "preparation-screen"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "hitbox-diagnostic / IA-LABEL-DIAG-01"
+}

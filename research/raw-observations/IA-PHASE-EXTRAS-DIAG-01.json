@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-PHASE-EXTRAS-DIAG-01",
+  "experimentId": "E05-E08-E09-phase-and-extras-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-canvas",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Continuation after IA-SYNTH-POINTER-01; Ruffle menu dismissed with Escape. No known liquid quantity.",
+  "requestedActions": [
+    {
+      "kind": "shake",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 1000
+    },
+    {
+      "kind": "ice",
+      "target": "bucket selection",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 1200
+    },
+    {
+      "kind": "garnish",
+      "target": "lemon bowl selection",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 8000
+    }
+  ],
+  "deliveredInputs": [
+    {
+      "type": "pointerdown",
+      "atMs": 460277,
+      "trusted": true,
+      "x": 210,
+      "y": 413,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 461809,
+      "trusted": true,
+      "x": 210,
+      "y": 413,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 480758,
+      "trusted": true,
+      "x": 74,
+      "y": 413,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 481792,
+      "trusted": true,
+      "x": 74,
+      "y": 413,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 481983,
+      "trusted": true,
+      "x": 58,
+      "y": 242,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 482111,
+      "trusted": true,
+      "x": 58,
+      "y": 242,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 487311,
+      "trusted": true,
+      "x": 74,
+      "y": 413,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 488538,
+      "trusted": true,
+      "x": 74,
+      "y": 413,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 488725,
+      "trusted": true,
+      "x": 140,
+      "y": 271,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 488847,
+      "trusted": true,
+      "x": 140,
+      "y": 271,
+      "buttons": 0,
+      "button": 0
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 495278,
+      "trusted": true,
+      "x": 340,
+      "y": 413,
+      "buttons": 1,
+      "button": 0
+    },
+    {
+      "type": "pointerup",
+      "atMs": 495414,
+      "trusted": true,
+      "x": 340,
+      "y": 413,
+      "buttons": 0,
+      "button": 0
+    }
+  ],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Shake tooltip displayed; later Ice tooltip and lemon tooltip appeared. Bottle returned to shelf. Serve displayed tooltip but no score or reaction.",
+  "limitations": [
+    "DOM hold interval 1532 ms for requested Shake 1500 ms; effective Flash shake time unknown.",
+    "Bucket/lemons selection is not proof of an accepted IceAdded/GarnishChanged domain event.",
+    "No known baseline quantity, so phase locks or score bonuses cannot be inferred.",
+    "Prior input contamination retained in IA-SYNTH-POINTER-01; this is not a controlled equivalent-cocktail comparison."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

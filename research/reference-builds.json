@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "primaryBuild": "ia-therightmix-ede221ad99e03173",
+  "builds": [
+    {
+      "id": "ia-therightmix-ede221ad99e03173",
+      "source": "https://archive.org/details/flash_therightmix",
+      "binarySource": "https://archive.org/download/flash_therightmix/flash_therightmix.swf",
+      "fallbackSource": "https://flashga.me/download/bartender-the-right-mix",
+      "sha256": "ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "byteLength": 693558,
+      "visibleTitle": "The Right Mix",
+      "visibleAttribution": "LandSecurities; museum attributes author to Liquid Light",
+      "dateTested": "2026-10-11",
+      "player": "Ruffle 0.7.1, pinned npm CDN",
+      "binarySaved": false,
+      "limitation": "Emulated build only; no comparison with original Flash runtime. Frame/tick execution unmeasured."
+    },
+    {
+      "id": "wdm-rightmix-2013-observable-20261011",
+      "source": "https://www.webdesignmuseum.org/flash-games/the-right-mix-in-2013",
+      "sha256": null,
+      "visibleTitle": "The Right Mix",
+      "player": "Ruffle 0.7.1 observed in context menu; CDN latest",
+      "dateTested": "2026-10-11",
+      "limitation": "SWF resource not independently identified. Do not merge its behavioral observations with Archive merely because images look identical."
+    }
+  ],
+  "environments": [
+    {
+      "id": "wdm-iab",
+      "os": "Windows",
+      "browser": "Codex in-app browser",
+      "browserVersion": null,
+      "player": "Ruffle 0.7.1",
+      "renderer": "automatic, unmeasured",
+      "frameRate": null
+    },
+    {
+      "id": "ia-iab-auto",
+      "os": "Windows",
+      "browser": "Codex in-app browser",
+      "browserVersion": null,
+      "player": "Ruffle 0.7.1",
+      "renderer": "automatic, unmeasured",
+      "frameRate": null
+    },
+    {
+      "id": "ia-iab-canvas",
+      "os": "Windows",
+      "browser": "Codex in-app browser",
+      "browserVersion": null,
+      "player": "Ruffle 0.7.1",
+      "renderer": "canvas requested",
+      "backgroundExecutionMode": "mainThread requested",
+      "frameRate": null
+    },
+    {
+      "id": "ia-chrome-canvas",
+      "os": "Windows",
+      "browser": "Chrome extension",
+      "browserVersion": null,
+      "player": "Ruffle 0.7.1",
+      "renderer": "canvas requested",
+      "backgroundExecutionMode": "mainThread requested",
+      "frameRate": null
+    }
+  ],
+  "projectionRules": {
+    "capacityUnits": 9007199254740991,
+    "maximumIceUnits": 9007199254740991,
+    "maximumShakeDurationMs": 9007199254740991
+  },
+  "projectionNotes": "Schema/replay envelope only. These limits are NOT reference capacity/ice/shake parameters. No unit mapping exists."
+}

@@ -69,7 +69,7 @@ function validateEvidence(value: unknown): asserts value is ReferenceEvidence {
   const evidence = object(value);
   const fields = ['id', 'scope', 'date', 'source', 'referenceBuild', 'procedure', 'repetitions'];
   keys(evidence, fields, fields);
-  oneOf(evidence.scope, ['reference-manual']);
+  oneOf(evidence.scope, ['reference-manual', 'reference-automated']);
   for (const field of ['id', 'date', 'source', 'referenceBuild', 'procedure']) string(evidence[field]);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(evidence.date as string)) throw new TypeError('Evidence date must use YYYY-MM-DD');
   const [year, month, day] = (evidence.date as string).split('-').map(Number);

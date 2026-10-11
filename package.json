@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=24.0.0" },
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
@@ -11,9 +13,18 @@
     "test": "node --test \"src/**/*.test.ts\" \"scripts/*.test.mjs\"",
     "build": "npm run typecheck && vite build && node scripts/build-service-worker.mjs",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "npm run typecheck && npm run lint && npm test && npm run build"
+    "check": "npm run typecheck && npm run lint && npm test && npm run build",
+    "research:record": "node scripts/research.mjs record",
+    "research:fixtures": "node scripts/research.mjs fixtures",
+    "research:validate": "node scripts/research.mjs validate",
+    "research:summary": "node scripts/research.mjs summary",
+    "research:model": "node scripts/research.mjs model",
+    "research:reference": "node research/reference-runner/server.mjs"
   },
-  "dependencies": { "react": "19.3.0", "react-dom": "19.3.0" },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@types/node": "22.20.2",
@@ -26,4 +37,3 @@
     "vite": "8.3.0"
   }
 }
-

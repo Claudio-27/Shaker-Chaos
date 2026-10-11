@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-CHROME-DIAG-01",
+  "experimentId": "browser-renderer-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-chrome-canvas",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Fresh wrapper in Chrome; initial automatic renderer had been blank, then switched to Canvas.",
+  "requestedActions": [
+    {
+      "kind": "cold-start"
+    },
+    {
+      "kind": "select",
+      "requestedDurationMs": 100,
+      "target": "blue bottle upper row position 8"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 3000
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 10000
+    }
+  ],
+  "deliveredInputs": [
+    {
+      "type": "pointerdown",
+      "atMs": 16040,
+      "trusted": true,
+      "x": 300,
+      "y": 405
+    },
+    {
+      "type": "pointerup",
+      "atMs": 16156,
+      "trusted": true,
+      "x": 300,
+      "y": 405
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 18412,
+      "trusted": true,
+      "x": 344,
+      "y": 112
+    },
+    {
+      "type": "pointerup",
+      "atMs": 18522,
+      "trusted": true,
+      "x": 344,
+      "y": 112
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 20409,
+      "trusted": true,
+      "x": 74,
+      "y": 413
+    },
+    {
+      "type": "pointerup",
+      "atMs": 23423,
+      "trusted": true,
+      "x": 74,
+      "y": 413
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 25387,
+      "trusted": true,
+      "x": 340,
+      "y": 413
+    },
+    {
+      "type": "pointerup",
+      "atMs": 25504,
+      "trusted": true,
+      "x": 340,
+      "y": 413
+    }
+  ],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "After Pour the visible control read STOP and bottle was tilted. After Serve bottle upright, no score shown.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "3014 ms DOM interval for requested 3000 ms. Browser/frame scheduling was not measured."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

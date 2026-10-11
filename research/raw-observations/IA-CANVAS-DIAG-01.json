@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-CANVAS-DIAG-01",
+  "experimentId": "renderer-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-canvas",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Fresh wrapper after Canvas/mainThread configuration change.",
+  "requestedActions": [
+    {
+      "kind": "cold-start"
+    },
+    {
+      "kind": "select",
+      "requestedDurationMs": 100,
+      "target": "blue bottle upper row position 8"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 4000
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 10000
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Canvas renderer displayed original preparation, hand/bottle moved, no readable score.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

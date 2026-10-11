@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-EMPTY-01",
+  "experimentId": "E01-empty-serve",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-auto",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Fresh archive SWF loaded in local research wrapper; start button pressed, then 1200 ms requested wait.",
+  "requestedActions": [
+    {
+      "kind": "serve",
+      "requestedDurationMs": 100
+    }
+  ],
+  "deliveredInputs": [
+    {
+      "type": "pointerdown",
+      "atMs": 386,
+      "trusted": true,
+      "x": 340,
+      "y": 413
+    },
+    {
+      "type": "pointerup",
+      "atMs": 509,
+      "trusted": true,
+      "x": 340,
+      "y": 413
+    }
+  ],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Serve highlighted in empty preparation screen. No score/reaction visible.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "123 ms DOM interval; not a frame-accurate input."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

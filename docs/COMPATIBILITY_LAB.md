@@ -102,3 +102,7 @@ Il replay completo è lineare e gli append ripetuti rigiocano la storia; sequenz
 - Nessuna modifica ad artwork, regole demo, formula scoring, session replay, cache policy, manifest o lockfile. Nessuna dipendenza nuova. Solo tipo meccanico facoltativo aggiunto al risultato, senza modificare output del demo.
 
 Touch fisico e pointercancel hardware non riprovati in fase 1A; HoldButton è invariato. Zero valori/finding del riferimento VERIFIED; nessun candidato reale promosso. Fermarsi dopo 1A. Nessun commit/push/PR o modifica dei remote.
+
+## Dataset diagnostico di fase 1B
+
+Le nuove fixture hanno provenienza reference-automated e inputValidation UNVERIFIED. La storia vuota indica input NON MAPPATO: non usarne lo score demo come score del riferimento. CLI research:model blocca i candidati su input/build incerti e include gli UNKNOWN. Acquisizione/fixture generation non promuovono input/stato. 16 casi, nessuno score numerico; dettagli in REFERENCE_FINDINGS.md.

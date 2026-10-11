@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "WDM-PLAYER-DIAG-01",
+  "experimentId": "player-calibration",
+  "referenceBuild": "wdm-rightmix-2013-observable-20261011",
+  "date": "2026-10-11",
+  "environmentId": "wdm-iab",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Continuation of the preceding diagnostic attempt; not a controlled fresh cocktail.",
+  "requestedActions": [
+    {
+      "kind": "player-control",
+      "target": "context-menu Play"
+    },
+    {
+      "kind": "cold-start"
+    },
+    {
+      "kind": "select",
+      "requestedDurationMs": 200,
+      "target": "blue bottle upper row position 8"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 3000
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 250
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 10000
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Public Ruffle Play returned to the introduction; re-entered preparation. Pour and Serve did not yield score.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "Ruffle context-menu Play is a player control, not reference Reset; it must never become a Reset domain event."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://www.webdesignmuseum.org/flash-games/the-right-mix-in-2013"
+}

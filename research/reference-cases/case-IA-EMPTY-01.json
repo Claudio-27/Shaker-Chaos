@@ -1,0 +1,30 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "id": "IA-EMPTY-01",
+      "procedure": "research/raw-observations/IA-EMPTY-01.json; Fresh archive SWF loaded in local research wrapper; start button pressed, then 1200 ms requested wait.; Serve highlighted in empty preparation screen. No score/reaction visible.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "https://archive.org/details/flash_therightmix"
+    }
+  ],
+  "id": "case-IA-EMPTY-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "No calibrated reference pour quantum; no ml mapping. DOM delivery or requested hold time is not Flash-effective duration or tick count. Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients. 123 ms DOM interval; not a frame-accurate input. Raw source: research/raw-observations/IA-EMPTY-01.json",
+  "observedReferenceResult": {
+    "phase": "preparation-screen"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "E01-empty-serve / IA-EMPTY-01"
+}

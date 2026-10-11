@@ -143,3 +143,13 @@ ReferenceCompatibilityConfig è un research-candidate di sole meccaniche esplici
 Compatibility Lab e CSS sono lazy DEV-only come Asset Lab/Visual Debug. scripts/production-boundaries.mjs controlla gli output JS/CSS/HTML prima della generazione worker. Shell/PWA e catalogo pubblico rimangono quelli di 0.3; la ricerca non è contenuto di catalogo e non viene precacheata.
 
 Limiti: ms interi, stato iniziale vuoto, eventi schema v1 e safe integers non ancora validati sul riferimento; modello frame/sub-ms o nuove azioni richiederanno migrazione. Builder/sweep hanno limiti di editor dichiarati, senza compattare eventi. Validatori di evidenza attestano struttura e provenienza dichiarata, non effettivo svolgimento della misura. Vedi COMPATIBILITY_LAB.md.
+
+## Fase 1B — confine di acquisizione black-box
+
+RawReferenceObservation conserva richieste, consegna DOM, ambiente/build, note/esiti mancanti e ripetizioni in research/raw-observations, separati da MixEvent. Coordinate e fiducia dell'evento appartengono alla diagnostica di ricerca, mai al dominio. Nessun tick/quantità è dedotto dall'hold. Se input non mappato, il ResearchCase generato dichiara inputValidation UNVERIFIED: storia vuota significa incompleta, non cocktail vuoto. Nessuna verifica automatica neppure da inputMapping EXACT; adjudication distinta.
+
+reference-automated estende la provenienza mantenendo reference-manual. Raw append-only e rettifiche append-only permettono audit senza cancellare tentativi. Raw, proiezione, modello candidato e demo sono confini distinti. L'evaluator passa CompatibilityInput completo a un candidato soltanto con input verificato e build univoca corrispondente; gli UNKNOWN restano nel report/denominatore.
+
+Il player locale research/reference-runner usa SWF in RAM con hash bloccato e Ruffle pubblico fissato; non legge lo stato del filmato. Il build non importa server/manifest/raw; audit su output effettivo rifiuta marker ricerca e SWF. Demo/PWA e artwork invariati. Esiti in REFERENCE_FINDINGS.md: nessun modello numerico e nessuna regola compatibile promossa.
+
+Preserve information until research proves it irrelevant: anche gli input incerti e i tentativi falliti rimangono nella ricerca, senza essere convertiti in fatti canonici inventati. VolumeUnit intere restano quantità di dominio; ml appartiene alla presentazione e non ha mapping del riferimento.

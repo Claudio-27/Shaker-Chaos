@@ -1,0 +1,30 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "id": "IA-PHASE-EXTRAS-DIAG-01",
+      "procedure": "research/raw-observations/IA-PHASE-EXTRAS-DIAG-01.json; Continuation after IA-SYNTH-POINTER-01; Ruffle menu dismissed with Escape. No known liquid quantity.; Shake tooltip displayed; later Ice tooltip and lemon tooltip appeared. Bottle returned to shelf. Serve displayed tooltip but no score or reaction.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "https://archive.org/details/flash_therightmix"
+    }
+  ],
+  "id": "case-IA-PHASE-EXTRAS-DIAG-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "DOM hold interval 1532 ms for requested Shake 1500 ms; effective Flash shake time unknown. Bucket/lemons selection is not proof of an accepted IceAdded/GarnishChanged domain event. No known baseline quantity, so phase locks or score bonuses cannot be inferred. Prior input contamination retained in IA-SYNTH-POINTER-01; this is not a controlled equivalent-cocktail comparison. Raw source: research/raw-observations/IA-PHASE-EXTRAS-DIAG-01.json",
+  "observedReferenceResult": {
+    "phase": "preparation-screen"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "E05-E08-E09-phase-and-extras-diagnostic / IA-PHASE-EXTRAS-DIAG-01"
+}

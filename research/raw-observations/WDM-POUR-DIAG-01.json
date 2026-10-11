@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "id": "WDM-POUR-DIAG-01",
+  "experimentId": "E02-E03-short-pour-diagnostic",
+  "referenceBuild": "wdm-rightmix-2013-observable-20261011",
+  "date": "2026-10-11",
+  "environmentId": "wdm-iab",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Empty session after WDM-EMPTY-03.",
+  "requestedActions": [
+    {
+      "kind": "select",
+      "target": "blue bottle upper row position 8"
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "serve"
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 500
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 2000
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1800
+    },
+    {
+      "kind": "serve"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 8000
+    },
+    {
+      "kind": "serve"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 12000
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 5000
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 2000
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Bottle moved into hand / visible stream during a snapshot; no readable numerical quantity or score. No stable minimal pour established.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "100 ms timed click took 572 ms for the tool call; this is call overhead, not a measured 572 ms pour. Additional coordinate/player calibration is documented separately; not a controlled ingredient curve."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://www.webdesignmuseum.org/flash-games/the-right-mix-in-2013"
+}

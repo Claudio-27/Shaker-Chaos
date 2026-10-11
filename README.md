@@ -96,3 +96,7 @@ In sviluppo aprire /?assetLab=1 per cambiare bartender, ambiente, banco, bottigl
 ## Fase 1A — Compatibility Lab
 
 Solo sviluppo: /?compatLab=1, combinabile con &assetLab=1&visualDebug=1. Sequenze esatte in VolumeUnit e ms virtuali, stessi eventi canonici del gioco, JSON import/export, osservazioni manuali separate e sweep. [Guida](docs/COMPATIBILITY_LAB.md), [matrice A–I e primi dieci esperimenti](docs/REFERENCE_TEST_MATRIX.md). Zero fixture VERIFIED reali e nessuna modifica allo scorer demo. La build controlla che i laboratori DEV non siano distribuiti. Nessun servizio esterno, account o sistema prodotto introdotto.
+
+## Fase 1B — ricerca black-box
+
+[Findings e limiti](docs/REFERENCE_FINDINGS.md), [runner riproducibile](research/reference-runner/README.md). 16 acquisizioni diagnostiche / 16 fixture UNVERIFIED; nessuno score o modello numerico calibrato. Comandi: npm run research:reference, research:fixtures, research:validate, research:summary, research:model. Solo ricerca, assente dal bundle. Scoring demo invariato; nessuna compatibilità dichiarata.

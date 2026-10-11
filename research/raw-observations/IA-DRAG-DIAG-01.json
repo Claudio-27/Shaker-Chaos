@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-DRAG-DIAG-01",
+  "experimentId": "pour-delivery-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-auto",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Continuation of the preceding diagnostic attempt; not a controlled fresh cocktail.",
+  "requestedActions": [
+    {
+      "kind": "pour",
+      "target": "drag 2 pixels across Pour"
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Hand moved toward ice region after the drag; no numeric output.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "Drag duration was not measured; do not interpret it as an ingredient operation."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

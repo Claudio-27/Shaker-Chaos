@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "executionStatus": "NOT TESTED — planned only",
+  "units": "requested browser hold ms; NOT effective Flash ms, NOT VolumeUnit",
+  "prerequisite": "A visibly accepted pour with a readable score, then three repeatable baseline runs. Do not execute controlled-quantity analyses before calibration.",
+  "experiments": [
+    {
+      "id": "E01",
+      "name": "Empty Serve / Reset",
+      "holdsMs": [
+        100
+      ],
+      "repeats": 3
+    },
+    {
+      "id": "E02-E03",
+      "name": "Minimal pour and repeatability",
+      "holdsMs": [
+        0,
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600
+      ],
+      "repeats": 3
+    },
+    {
+      "id": "E04",
+      "name": "Capacity / last increment",
+      "requires": "Reliable observable quantity/quantum. Stop on first full-state observation."
+    },
+    {
+      "id": "E05",
+      "name": "Pour → Shake → Pour; Ice/Garnish before/after",
+      "requires": "Accepted nonempty baseline, independent resets"
+    },
+    {
+      "id": "E06",
+      "name": "One pour vs multiple at equal observed total",
+      "requires": "Measured total; equal requested duration is insufficient"
+    },
+    {
+      "id": "E07",
+      "name": "A→B vs B→A",
+      "requires": "Two identified ingredients and measured quantities"
+    },
+    {
+      "id": "E08",
+      "name": "Ice none/one/repeated/order",
+      "requires": "Stable baseline with actual liquid quantity"
+    },
+    {
+      "id": "E09",
+      "name": "Garnish none/repeated/order/phases",
+      "requires": "Stable baseline, distinguish selection from accepted addition"
+    },
+    {
+      "id": "E10",
+      "name": "Shake count 0..5",
+      "counts": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "requires": "Stable baseline and non-overlapping holds"
+    },
+    {
+      "id": "SHAKE-COARSE",
+      "name": "Safe/failure bracket",
+      "holdsMs": [
+        1000,
+        2000,
+        3000,
+        4000,
+        5000,
+        6000,
+        7000,
+        8000
+      ],
+      "repeats": 3
+    },
+    {
+      "id": "SHAKE-MATCHED",
+      "name": "Count vs total requested duration",
+      "holdsMs": [
+        [
+          4000
+        ],
+        [
+          2000,
+          2000
+        ],
+        [
+          1000,
+          1000,
+          1000,
+          1000
+        ]
+      ],
+      "requires": "Measure delivered and effective timing; these requested totals alone do not prove equality"
+    },
+    {
+      "id": "INGREDIENTS",
+      "name": "q,2q,3q,5q,10q, finite differences and pairs",
+      "requires": "Established ObservedQuantum; otherwise blocked"
+    },
+    {
+      "id": "REACTIONS-MAX",
+      "name": "Thresholds and 10245 hypothesis",
+      "requires": "Stable numeric scoring; reproduce before claiming any maximum"
+    }
+  ]
+}

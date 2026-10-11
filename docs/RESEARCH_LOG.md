@@ -1,6 +1,6 @@
 # Registro della ricerca
 
-Data iniziale: 2026-10-04. **Nessuna osservazione del gioco originale è stata svolta**. Le voci dimostrative verificano il nostro software; non dimostrano compatibilità. Non sono state consultate fonti esterne per coefficienti o soglie.
+Data iniziale: 2026-10-04. **Alla data iniziale nessuna osservazione del gioco originale era stata svolta**; le acquisizioni diagnostiche della fase 1B sono aggiunte in R-005. Le voci dimostrative verificano il nostro software; non dimostrano compatibilità. Non sono state consultate fonti esterne per coefficienti o soglie.
 
 ## Template di finding
 
@@ -94,3 +94,22 @@ Le variabili aggiunte alla storia non sono automaticamente meccaniche verificate
 - Decision: mantenere vuota research/reference-cases fino a osservazioni indipendenti; zero regole promosse, zero valori VERIFIED del riferimento. Non confondere R-000/R-002/R-003/R-004 (software) con finding compatibili.
 
 M-001…M-010 restano UNVERIFIED. La fase 1A avvia infrastruttura di ricerca e non cambia alcun loro valore. Ogni osservazione futura deve indicare input esatto, unità native/mapping, timeline misurata, build, source/procedure e ripetizioni. Il solo score coincidente non verifica input né formula generale. Vedi REFERENCE_TEST_MATRIX.md e COMPATIBILITY_LAB.md.
+
+## R-005 — Fase 1B, 2026-10-11
+
+- Ambito: ricerca black-box del riferimento / software di acquisizione; separare le due evidenze.
+- Build: ia-therightmix-ede221ad99e03173, SHA-256 ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7, 693558 byte; solo RAM. WDM osservabile separato, hash sconosciuto. Fonte/ambiente in REFERENCE_FINDINGS.md.
+- Procedura reale: tentativi Serve vuoto (tre nella stessa sessione museo, uno Archive), selezione bottiglia, hold brevi/lunghi, hitbox/drag, confronto browser/renderer, ice/limone e Shake→Pour diagnostico; input asincroni sintetici distinti dai fidati. Nessuno score numerico; fase/pose/tooltip osservati, quantità e accettazione meccanica sconosciute.
+- Dataset: 16 acquisizioni automatiche, 16 fixture UNVERIFIED. Zero esperimenti umani indipendenti. Una rettifica append-only del button su pointerup destro: buttons=0 non significa button=0. Originale preservato, nessun nuovo repeat.
+- Risultato meccanico: zero VERIFIED, zero STRONGLY_SUPPORTED. Nessun coefficiente/quantum/capacità/bonus/soglia/massimo. M-001…M-010 rimangono UNVERIFIED.
+- Controlli software: raw/schema/collegamenti, no promozione automatica, guard input/build, report MATCH/MISMATCH/UNKNOWN su tutte le fixture, confine produzione. Dataset model: 0 MATCH / 0 MISMATCH / 16 UNKNOWN; numeri non confrontabili, errore null e accuratezza numerica N/A.
+- Blocco: nessuna baseline liquida con output numerico affidabile; origine input/emulazione/scheduling non isolata. Renderer Chrome automatico vuoto, Canvas renderizza. Rete Archive HTTP 500 intermittente. Non confondere un tentativo fallito con una regola del gioco.
+- Decision: fermare la fase dopo il fallback massimo affidabile, preparare gate manuale di calibrazione e piani NOT TESTED. Nessuna sostituzione dello scoring demo né prosecuzione di fase. Dettaglio: REFERENCE_FINDINGS.md / research/reference-runner/README.md.
+
+### Chiusura R-005 — controlli effettivi
+
+107/107 test passati (91 precedenti + 16 nuovi), TypeScript/lint/build riusciti; research:fixtures/validate/summary/model riusciti su 16 raw/16 fixture e una correzione. Smoke dev: Versa da tastiera 15 u, un ghiaccio da mouse, Shake da tastiera 0,1 s, Serve 34/100, Reset a zero. Lab: pour/ice/tre shake/Serve, export 14 eventi UNVERIFIED, Reset conserva storia e azzera tentativo; gioco sottostante resta 0 u. Produzione: query compatLab ignorata; 14 immagini visibili caricate, stato Pronto anche offline; preview propria fermata, reload dalla cache riuscito, Versa/Serve a 15 u e 30/100 con tutte le immagini decodificate. Nessun test touch fisico nuovo; handler/UI invariati e regressioni di sessione/catologo/PWA passate.
+
+Bundle invariato: 38 moduli, JS index-Ds8N4XYh.js 264,41 kB, CSS index-C2Y8JjDS.css 16,84 kB; cache 791c56d7c58dd2b0, shell 7 / artwork allowlist 42. Audit: nessun SWF/WASM su public/dist/research né tracciato; nessun diff in dominio/application/UI/content/public. Git diff --check passato; ramo iniziale conservato.
+
+Controllo finale del tooling R005 (non una nuova osservazione del riferimento): rimosso il file temporaneo di verifica sintassi che interferiva con ESLint; npm run check rieseguito, 107/107 test e TypeScript/lint/build passati. Runner riavviato con download completo e fallback anche su trasferimento interrotto; /identity.json conferma hash atteso, 693558 byte e binarySaved=false, /package.json risponde 404. Wrapper definitivo caricato in browser e durata negativa rifiutata prima di inviare input al filmato. Dati di riferimento invariati: 16 raw + 16 fixture UNVERIFIED.

@@ -1,0 +1,9 @@
+{
+  "observationId": "IA-SYNTH-POINTER-01",
+  "date": "2026-10-11",
+  "kind": "DELIVERED_INPUT_BUTTON",
+  "inputIndex": 11,
+  "before": 0,
+  "after": 2,
+  "reason": "Transcription correction: original browser trace reported button 2 on the unplanned right-button pointerup. The initial helper incorrectly inferred button 0 from buttons=0. Raw record retained unchanged; no new experiment or mechanical finding."
+}

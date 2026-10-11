@@ -105,3 +105,11 @@ Per nuove informazioni meccaniche: estendere/versionare gli eventi o l'input di 
 ResearchCase v1 registra inputSequence come MixEvent schema v1, inputValidation indipendente dallo stato di output, origine DEMO/REFERENCE, evidenze, confidenza e note. La [matrice](REFERENCE_TEST_MATRIX.md) copre A–I; [Compatibility Lab](COMPATIBILITY_LAB.md) documenta tempo virtuale, schema e promozione. Tempi/tick distribuiti dal builder sono sintetici fino a validazione; non dichiarare VERIFIED un input con quantum o timing ignoti.
 
 La demo non implementa tier del riferimento, esplosioni o classificazione originale delle azioni respinte: tali confronti restano UNKNOWN. MechanicalReactionTierId è distinto da ReactionId visuale, con mapping per bartender e fallback; nessun mapping reale fornito. IngredientId resta distinto da skin della bottiglia.
+
+## Fase 1B — acquisizioni del 2026-10-11
+
+Vedi REFERENCE_FINDINGS.md e research/reference-builds.json. SWF Archive identificata da SHA-256 ed eseguita in Ruffle; diagnostica separata del museo con hash sconosciuto. 16 acquisizioni / 16 fixture UNVERIFIED, zero score e zero quantum/totali calibrati. M-001…M-010 restano UNVERIFIED; nessun valore del riferimento introdotto nella configurazione/demo.
+
+Durata richiesta, intervallo DOM e durata/tick effettivi Flash sono variabili distinte. Disuguaglianze DOM osservate non dimostrano una regola di versamento/scoring. Selezionare ice/lemon non attesta IceAdded/GarnishChanged; sintesi DOM consegnata non attesta accettazione. Score non visibile non è 0; limiti dello schema non sono capacità.
+
+ObservedQuantum ignoto, mapping a VolumeUnit non stabilito, ml esclusivamente presentazione. Preserve information until research proves it irrelevant. Conservare raw e correzioni senza promuovere input incompleti. Serie a quantità equivalenti, coefficienti, bonus ice/garnish/shake, esplosioni, soglie e 10245 restano NOT TESTED con gate espliciti; nessun massimo dichiarato.

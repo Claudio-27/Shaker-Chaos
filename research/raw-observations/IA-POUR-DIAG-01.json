@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-POUR-DIAG-01",
+  "experimentId": "E02-E03-short-and-long-pour",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-auto",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Empty wrapper session after IA-EMPTY-01.",
+  "requestedActions": [
+    {
+      "kind": "select",
+      "requestedDurationMs": 100,
+      "target": "blue bottle upper row position 8"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 300
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 9000
+    },
+    {
+      "kind": "pour",
+      "requestedDurationMs": 5000
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 150
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 10000
+    }
+  ],
+  "deliveredInputs": [
+    {
+      "type": "pointerdown",
+      "atMs": 215,
+      "trusted": true,
+      "x": 344,
+      "y": 112
+    },
+    {
+      "type": "pointerup",
+      "atMs": 338,
+      "trusted": true,
+      "x": 344,
+      "y": 112
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 2086,
+      "trusted": true,
+      "x": 74,
+      "y": 413
+    },
+    {
+      "type": "pointerup",
+      "atMs": 2408,
+      "trusted": true,
+      "x": 74,
+      "y": 413
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 4562,
+      "trusted": true,
+      "x": 340,
+      "y": 413
+    },
+    {
+      "type": "pointerup",
+      "atMs": 4684,
+      "trusted": true,
+      "x": 340,
+      "y": 413
+    },
+    {
+      "type": "pointerdown",
+      "atMs": 20533,
+      "trusted": true,
+      "x": 74,
+      "y": 413
+    },
+    {
+      "type": "pointerup",
+      "atMs": 25554,
+      "trusted": true,
+      "x": 74,
+      "y": 413
+    }
+  ],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Bottle was selected and moved; no visible numerical amount or score after Serve.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "Captured interval 322 ms for requested 300 ms, 5021 ms for requested 5000 ms. Trace snapshot precedes final Serve; it is intentionally partial."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

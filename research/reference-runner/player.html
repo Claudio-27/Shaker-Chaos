@@ -1,0 +1,26 @@
+<!doctype html><html lang="it"><meta charset="utf-8"><title>Reference runner — solo ricerca</title>
+<style>body{margin:16px;background:#eee;font:14px system-ui}#player{width:600px;height:440px}ruffle-player{width:600px;height:440px;display:block}textarea{width:590px;height:100px}h1{font-size:17px;margin:0 0 8px}p{margin:6px 0}</style>
+<h1>Reference runner — BLACK-BOX / solo ricerca</h1><p>Internet Archive flash_therightmix · Ruffle 0.7.1 · nessuna unità ml</p>
+<button id="cold">Nuova sessione fredda</button><button id="clear">Nuova traccia input</button><span id="status">Caricamento…</span>
+<p>Fallback DOM asincrono (eventi sintetici, tick ignoti): <input id="holdMs" type="number" min="0" max="15000" value="1000" aria-label="Durata richiesta"><button id="pulsePour">Pour asincrono</button><button id="pulseShake">Shake asincrono</button><button id="pulseServe">Serve asincrono</button></p><div id="player"></div><p>Eventi ricevuti dal DOM del wrapper; durate effettive del gioco e tick restano ignoti.</p><textarea id="trace" aria-label="Traccia input" readonly></textarea>
+<script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@0.7.1/ruffle.min.js"></script>
+<script>
+window.addEventListener('load',async()=>{
+const holder=document.getElementById('player');
+const player=window.RufflePlayer.newest().createPlayer();holder.appendChild(player);
+const status=document.getElementById('status');
+await player.ruffle().load({url:'/reference.swf',autoplay:'on',unmuteOverlay:'hidden',preferredRenderer:'canvas',backgroundExecutionMode:'mainThread',allowScriptAccess:false,allowNetworking:'none',openUrlMode:'deny'});status.textContent='Player caricato · RAW_REFERENCE_RESEARCH_ONLY';
+let busy=false;
+const pulse=(x,y,duration)=>{
+if(busy || !Number.isSafeInteger(duration) || duration<0 || duration>15000) {status.textContent='Pulse non valido o già attivo';return;} busy=true;
+const canvas=player.shadowRoot.querySelector('canvas');
+const r=canvas.getBoundingClientRect(); const clientX=r.x+x,clientY=r.y+y;
+setTimeout(()=>{canvas.dispatchEvent(new PointerEvent('pointermove',{bubbles:true,composed:true,pointerId:1,pointerType:'mouse',isPrimary:true,clientX,clientY,buttons:0}));canvas.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,composed:true,pointerId:1,pointerType:'mouse',isPrimary:true,clientX,clientY,button:0,buttons:1}));setTimeout(()=>{canvas.dispatchEvent(new PointerEvent('pointerup',{bubbles:true,composed:true,pointerId:1,pointerType:'mouse',isPrimary:true,clientX,clientY,button:0,buttons:0}));busy=false;status.textContent='Pulse terminato: verificare visivamente, quantità ignota';},duration);},300);
+};
+for(const [id,x] of [['pulsePour',74],['pulseShake',211],['pulseServe',340]]) document.getElementById(id).onclick=()=>pulse(x,413,id==='pulseServe'?100:Number(document.getElementById('holdMs').value));
+document.getElementById('cold').onclick=()=>location.reload();
+let trace=[], start=performance.now();
+document.getElementById('clear').onclick=()=>{trace=[];start=performance.now();document.getElementById('trace').value='[]';};
+for(const type of ['pointerdown','pointerup','pointercancel','mousedown','mouseup']) holder.addEventListener(type,e=>{trace.push({type,atMs:Math.round(performance.now()-start),trusted:e.isTrusted,buttons:e.buttons,button:e.button,x:Math.round(e.clientX-holder.getBoundingClientRect().x),y:Math.round(e.clientY-holder.getBoundingClientRect().y)});document.getElementById('trace').value=JSON.stringify(trace,null,2);},true);
+});
+</script></html>

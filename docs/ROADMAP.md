@@ -21,3 +21,5 @@ Fasi 0–0.3 completate. Fase 1A completata come infrastruttura di ricerca; osse
 La PWA minima e le icone geometriche della fase 0 sono infrastruttura della demo; non completano le rifiniture della fase 4 né il sistema artistico della fase 3. La promozione di una meccanica a compatibile richiede evidenza, non il solo superamento dei test del progetto.
 
 La fase 0.3 anticipa l'integrazione degli artwork forniti, senza completare la direzione artistica o il suono della fase 3, la validazione su tablet fisici della fase 4, l'economia della fase 5 o il vault della fase 7. Il rapporto ASSET_INGEST_REPORT.md documenta limiti e verifiche. La fase 1A successiva è stata autorizzata esplicitamente e documentata. Fermarsi dopo 1A: osservazioni black-box sul riferimento e implementazione compatibile richiedono un nuovo incarico.
+
+Fase 1B (2026-10-11): infrastruttura e diagnostica black-box eseguite; caratterizzazione numerica bloccata da input/emulazione non calibrati. Zero regole compatibili promosse, nessun passaggio alla fase seguente. Vedi REFERENCE_FINDINGS.md.

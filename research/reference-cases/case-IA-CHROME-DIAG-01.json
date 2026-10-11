@@ -1,0 +1,30 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "id": "IA-CHROME-DIAG-01",
+      "procedure": "research/raw-observations/IA-CHROME-DIAG-01.json; Fresh wrapper in Chrome; initial automatic renderer had been blank, then switched to Canvas.; After Pour the visible control read STOP and bottle was tilted. After Serve bottle upright, no score shown.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "https://archive.org/details/flash_therightmix"
+    }
+  ],
+  "id": "case-IA-CHROME-DIAG-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "No calibrated reference pour quantum; no ml mapping. DOM delivery or requested hold time is not Flash-effective duration or tick count. Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients. 3014 ms DOM interval for requested 3000 ms. Browser/frame scheduling was not measured. Raw source: research/raw-observations/IA-CHROME-DIAG-01.json",
+  "observedReferenceResult": {
+    "phase": "preparation-screen"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "browser-renderer-diagnostic / IA-CHROME-DIAG-01"
+}

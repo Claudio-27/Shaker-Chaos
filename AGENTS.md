@@ -2,11 +2,11 @@
 
 ## Ambito
 
-La radice del repository è il workspace di progetto. Rispettare le autorizzazioni esplicite dell'utente: niente commit, push, PR, servizi esterni o pubblicazione senza una richiesta che li autorizzi. La fase attuale è 1A (Compatibility Lab e infrastruttura di ricerca, senza osservazioni o scoring del riferimento); le fasi successive richiedono un nuovo incarico. Non aggiungere backend, database, account, XP, valuta, sblocchi o un vault funzionante in questa fase.
+La radice del repository è il workspace di progetto. Rispettare le autorizzazioni esplicite dell'utente: niente commit, push, PR, servizi esterni o pubblicazione senza una richiesta che li autorizzi. La fase autorizzata è 1B: ricerca black-box del riferimento con acquisizioni locali separate dalla produzione; fermarsi dopo questa fase. Le fasi successive richiedono un nuovo incarico. Non aggiungere backend, database, account, XP, valuta, sblocchi o un vault funzionante in questa fase.
 
 ## Implementazione indipendente
 
-- Non scaricare, copiare, estrarre, decompilare, incorporare, tracciare o riusare codice e file proprietari del gioco di riferimento.
+- Il prompt di fase 1B autorizza download pubblico della SWF solo per esecuzione black-box/hashing nel runner di ricerca, fuori da produzione/versionamento (qui in RAM). Non decompilare, disassemblare, ispezionare costanti/bytecode, estrarre o riusare codice/asset originali. Non contattare GitHub. La rete è limitata a sorgenti/player/documentazione del riferimento.
 - Non usare asset, personaggi, frame, audio, dialoghi, loghi, nomi o font del gioco di riferimento come contenuti del progetto.
 - Produrre codice e asset originali. Le forme segnaposto non devono imitare visivamente il gioco originale.
 - Ogni affermazione di compatibilità deve avere un ID nel registro di ricerca, una procedura riproducibile e uno stato di evidenza. Non trattare descrizioni di terzi come verità numeriche.

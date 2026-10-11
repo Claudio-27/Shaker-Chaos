@@ -16,7 +16,7 @@ async function walk(folder, prefix = '') {
 validateVisualCatalog(publicVisualCatalog);
 validatePublicContent(publicContentCatalog, publicVisualCatalog);
 const files = (await walk(dist)).filter((file) => file !== 'sw.js');
-assertProductionBoundaries(await Promise.all(files.filter(file => /\.(js|css|html)$/.test(file)).map(async file => [file, await readFile(join(dist, file), 'utf8')])));
+assertProductionBoundaries(await Promise.all(files.filter(file => /\.(js|css|html)$/.test(file)).map(async file => [file, await readFile(join(dist, file), 'utf8')])), files);
 const artwork = [...new Set(Object.values(publicVisualCatalog.assets).map((asset) => asset.path))].sort();
 const shell = files.filter((file) => ['index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png'].includes(file) ||
   /^assets\/[a-zA-Z0-9_-]+\.(js|css)$/.test(file));

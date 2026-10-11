@@ -556,7 +556,10 @@
             "pattern": "\\S"
           },
           "scope": {
-            "const": "reference-manual"
+            "enum": [
+              "reference-manual",
+              "reference-automated"
+            ]
           },
           "date": {
             "type": "string",

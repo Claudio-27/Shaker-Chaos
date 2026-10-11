@@ -16,7 +16,7 @@ export interface ObservableResult {
 }
 export interface ReferenceEvidence {
   readonly id: string;
-  readonly scope: 'reference-manual';
+  readonly scope: 'reference-manual' | 'reference-automated';
   readonly date: string;
   readonly source: string;
   readonly referenceBuild: string;

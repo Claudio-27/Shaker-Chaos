@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-LABEL-DIAG-01",
+  "experimentId": "hitbox-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-auto",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Continuation of the preceding diagnostic attempt; not a controlled fresh cocktail.",
+  "requestedActions": [
+    {
+      "kind": "pour",
+      "requestedDurationMs": 3000,
+      "target": "Pour nameplate"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1500
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 200,
+      "target": "Serve nameplate"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 8000
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Nameplate attempt left preparation screen without score. No reliable alternate hitbox established.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-ICE-DIAG-01",
+  "experimentId": "E08-ice-input-diagnostic",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-11",
+  "environmentId": "ia-iab-auto",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Continuation of the preceding diagnostic attempt; not a controlled fresh cocktail.",
+  "requestedActions": [
+    {
+      "kind": "ice",
+      "requestedDurationMs": 150,
+      "target": "ice bucket selection"
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 1800
+    },
+    {
+      "kind": "serve",
+      "requestedDurationMs": 150
+    },
+    {
+      "kind": "wait",
+      "requestedDurationMs": 10000
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "phase": "preparation-screen"
+  },
+  "visibleNotes": "Selection changed (blue bottle returned / hand at ice region). No score appeared.",
+  "limitations": [
+    "No calibrated reference pour quantum; no ml mapping.",
+    "DOM delivery or requested hold time is not Flash-effective duration or tick count.",
+    "Input reliability unresolved: no numerical score obtained. Empty canonical history means UNKNOWN input, not zero ingredients.",
+    "Bucket selection does not establish an IceAdded event or quantity. No controlled ice delta was measured."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "https://archive.org/details/flash_therightmix"
+}
