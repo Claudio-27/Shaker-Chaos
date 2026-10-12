@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "evidenceIds": [
+    "IA-1D-B-1-01",
+    "IA-1D-B-3-01"
+  ],
+  "scoreControl": 111,
+  "scoreTreatment": 65,
+  "delta": -46,
+  "requestedTotalMs": 5000,
+  "actualControlMs": 5001.8683,
+  "actualTreatmentMs": 5023.1969,
+  "limitation": "One pair only; operation count, startup/pause/tick effects not isolated; equal physical/canonical liquid not asserted. B guard passed from three A5000=111 and five full=270."
+}

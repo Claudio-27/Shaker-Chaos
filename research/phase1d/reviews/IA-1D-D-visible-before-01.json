@@ -1,0 +1,10 @@
+{
+  "id": "IA-1D-D-visible-before-01",
+  "score": 270,
+  "reactionId": "ref.react.r01",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T182615089-23892/result-182719248.png",
+  "date": "2026-10-12T18:28:42.596Z",
+  "method": "direct-visual"
+}

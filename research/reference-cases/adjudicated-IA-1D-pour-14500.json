@@ -1,0 +1,83 @@
+{
+  "confidence": "high",
+  "evidence": [
+    {
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1D-A-14500-01",
+      "procedure": "research/raw-observations/IA-1D-A-14500-01.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual score and neutral reaction identity; procedure 5513392ccf1d252e73758a476a2727cc4414587ea24153a8a62c25e0ce49d653",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    },
+    {
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1D-A-14500-02",
+      "procedure": "research/raw-observations/IA-1D-A-14500-02.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual score and neutral reaction identity; procedure 5513392ccf1d252e73758a476a2727cc4414587ea24153a8a62c25e0ce49d653",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    },
+    {
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1D-A-14500-03",
+      "procedure": "research/raw-observations/IA-1D-A-14500-03.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual score and neutral reaction identity; procedure 5513392ccf1d252e73758a476a2727cc4414587ea24153a8a62c25e0ce49d653",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    },
+    {
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1D-CONTROL-08",
+      "procedure": "research/raw-observations/IA-1D-CONTROL-08.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual score and neutral reaction identity; procedure 15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    },
+    {
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1D-CONTROL-10",
+      "procedure": "research/raw-observations/IA-1D-CONTROL-10.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual score and neutral reaction identity; procedure 15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    },
+    {
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1D-CONTROL-12",
+      "procedure": "research/raw-observations/IA-1D-CONTROL-12.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual score and neutral reaction identity; procedure 15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    }
+  ],
+  "id": "adjudicated-IA-1D-pour-14500",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Three independent cold control/treatment pairs each show270/270 and full indicator. Only Pour requested duration changes; measured times remain in raw/run ledgers. Score delta0. No duration-to-quantity conversion, quantum, capacity value, coefficient, or general formula inferred.",
+  "observedReferenceResult": {
+    "phase": "result-screen",
+    "reactionId": "ref.react.r01",
+    "score": 270
+  },
+  "origin": "REFERENCE",
+  "purpose": "Observed requested-duration plateau; not canonical quantity or internal capacity.",
+  "schemaVersion": 1,
+  "status": "STRONGLY_SUPPORTED",
+  "title": "Native Pour 14500 vs15000 / three cold pairs"
+}

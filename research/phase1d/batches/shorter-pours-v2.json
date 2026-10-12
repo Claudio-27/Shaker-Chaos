@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "shorter-pours-v2",
+  "supersedesUnexecutedPlan": "shorter-pours-v1; 8000ms planned but deferred to prioritize accepted garnish repeats, ice order and all shake settings within the agreed interval.",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "19",
+      "pairId": "1D-A-5000-pair-1"
+    },
+    {
+      "setting": "A-5000",
+      "repeat": "01",
+      "pairId": "1D-A-5000-pair-1"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "20",
+      "pairId": "1D-A-10000-pair-1"
+    },
+    {
+      "setting": "A-10000",
+      "repeat": "01",
+      "pairId": "1D-A-10000-pair-1"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "21",
+      "pairId": "1D-A-5000-pair-2"
+    },
+    {
+      "setting": "A-5000",
+      "repeat": "02",
+      "pairId": "1D-A-5000-pair-2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "22",
+      "pairId": "1D-A-10000-pair-2"
+    },
+    {
+      "setting": "A-10000",
+      "repeat": "02",
+      "pairId": "1D-A-10000-pair-2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "23",
+      "pairId": "1D-A-5000-pair-3"
+    },
+    {
+      "setting": "A-5000",
+      "repeat": "03",
+      "pairId": "1D-A-5000-pair-3"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "24",
+      "pairId": "1D-A-10000-pair-3"
+    },
+    {
+      "setting": "A-10000",
+      "repeat": "03",
+      "pairId": "1D-A-10000-pair-3"
+    }
+  ]
+}

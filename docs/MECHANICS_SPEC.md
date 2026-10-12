@@ -117,3 +117,11 @@ ObservedQuantum ignoto, mapping a VolumeUnit non stabilito, ml esclusivamente pr
 ## Stato dopo 1C
 
 Score originali letti: 114 diagnostico; 113/111/110 per Pour5000+Shake1000 richiesti; 270 in tre processi freddi con indicatore pieno (due script unificati, uno stepwise). Sono output circoscritti, non coefficients/bonus/capacità. Gate tre script identici parziale 2/3; nessuna regola meccanica VERIFIED, nessuna conversione ml, scoring demo invariato. Serie meccaniche ulteriori e soglie restano gated. Dettagli/case IDs in NATIVE_REFERENCE_FINDINGS.md.
+
+## Stato dopo 1D
+
+La relazione circoscritta baseline-270-v1 → score270 passa cinque nuove sessioni fredde identiche, con un tentativo precedente interrotto. Stato STRONGLY_SUPPORTED della procedura nativa; nessuna regola VERIFIED. Il plateau osservato per Pour richiesti14000/14500/15000 ms non è una capacità numerica, un coefficiente o un quantum. Le quantità canoniche restano UNMAPPED; ml è una presentazione futura con mapping da dimostrare. Tutti i delta misurati si riferiscono a procedure e ambiente fissati, non a bonus isolati. Vedi NATIVE_CHARACTERIZATION_FINDINGS.md per prove, fallimenti e gate non raggiunti. Scoring demo invariato.
+
+La relazione limone dopoShake sulla baseline piena mostra tre cold pair270→370 (delta100), con slice visibile sul calice: STRONGLY_SUPPORTED soltanto per quella procedura. PrimaShake una prova resta270; due click dopoShake restano370 in una prova. Ice primaPour mostra cubetti in movimento, ma accepted count/completion ignoti; due click possono lasciare senza risultato benché la sequenza OS sia completa. Questi esiti non verificano coefficienti globali e non modificano lo scoring.
+
+Shake: conteggi1..5 a1000ms mostrano270/270/275/285/300; totale richiesto4000ms con1/2/4 operazioni mostra275/285/285. Singole prove, tempi effettivi/pause diversi: UNVERIFIED. Esplosione visibile dopo agitazione continua10000/15000ms, auto failure0 primaServe;5000ms normale275. Nessuna soglia fine, regola di count, quantum o capacità canonica stabilita. Una coppia Pour continuo/segmentato a5000ms richiesti dà111/65; quantità uguali non dimostrate.

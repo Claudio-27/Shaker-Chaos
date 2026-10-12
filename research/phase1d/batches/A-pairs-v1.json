@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "id": "A-pairs-v1",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "01",
+      "pairId": "A-14000-01"
+    },
+    {
+      "setting": "A-14000",
+      "repeat": "01",
+      "pairId": "A-14000-01"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "02",
+      "pairId": "A-14500-01"
+    },
+    {
+      "setting": "A-14500",
+      "repeat": "01",
+      "pairId": "A-14500-01"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "03",
+      "pairId": "A-14000-02"
+    },
+    {
+      "setting": "A-14000",
+      "repeat": "02",
+      "pairId": "A-14000-02"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "04",
+      "pairId": "A-14500-02"
+    },
+    {
+      "setting": "A-14500",
+      "repeat": "02",
+      "pairId": "A-14500-02"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "05",
+      "pairId": "A-14000-03"
+    },
+    {
+      "setting": "A-14000",
+      "repeat": "03",
+      "pairId": "A-14000-03"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "06",
+      "pairId": "A-14500-03"
+    },
+    {
+      "setting": "A-14500",
+      "repeat": "03",
+      "pairId": "A-14500-03"
+    }
+  ]
+}

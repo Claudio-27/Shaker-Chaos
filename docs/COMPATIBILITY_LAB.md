@@ -110,3 +110,9 @@ Le nuove fixture hanno provenienza reference-automated e inputValidation UNVERIF
 ## Evidenze native
 
 Evidence.environmentId identifica anche Ruffle Desktop. Quantità native non mappate lasciano inputValidation UNVERIFIED; non interpretare la storia vuota dei case-IA-NATIVE come cocktail vuoto o confrontare lo score demo di tale proiezione come formula del riferimento. research:raw restituisce il view normalizzato con rettifiche append-only. Catture/runtime ignorati non sono fixture di produzione.
+
+## Import delle fixture native 1D
+
+Generare con npm run research:fixtures, verificare con research:validate, poi incollare il JSON di case-IA-1D-BASELINE-02 nel campo import e caricarlo. Lo score di riferimento270 resta REFERENCE. La sequenza canonica di un caso UNMAPPED è vuota per rappresentare informazione ignota; non descrive un cocktail vuoto. Per questi casi CURRENT DEMO e confronto sono UNKNOWN. Il Lab conserva score, evidenza, ambiente e stato UNVERIFIED senza inventare PourTick o promuovere risultati. Solo input canonici conosciuti consentono MATCH/MISMATCH numerici; la formula demo non è modificata.
+
+La summary 1D espone tutte le sessioni, frequenze, baseline, impostazioni, tempi, coppie e abort. Un delta osservato non è automaticamente un bonus. Procedura, ledger e risultati: research/phase1d/README.md e NATIVE_CHARACTERIZATION_FINDINGS.md.

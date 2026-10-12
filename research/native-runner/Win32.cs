@@ -57,7 +57,7 @@ public static class ReferenceNative {
       GetWindowThreadProcessId(h,out actual);GetWindowText(h,s,s.Capacity);
       if(actual!=(uint)pid||s.ToString()!=title)throw new InvalidOperationException("Target process/title identity changed");
       bool active=GetAncestor(GetForegroundWindow(),2)==h;
-      if(foreground&&!active)throw new InvalidOperationException("Target is not foreground: no input");
+      if(foreground&&!active)throw new InvalidOperationException("Target is not foreground: no input; foreground HWND="+GetForegroundWindow().ToInt64());
       Rect r;Point p=new Point();
       if(!GetClientRect(h,out r)||!ClientToScreen(h,ref p)||r.Right<=0||r.Bottom<=0)throw new InvalidOperationException("Invalid client geometry");
       uint dpi=GetDpiForWindow(h);if(dpi==0)throw new InvalidOperationException("DPI unavailable");

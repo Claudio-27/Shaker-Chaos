@@ -28,6 +28,9 @@ function Runtime {
  $exe=Local-Path $runtime.executable $localRoot
  if(!(Test-Path -LiteralPath $exe) -or $runtime.executableSha256 -notmatch '^[a-f0-9]{64}$' -or (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLowerInvariant() -ne $runtime.executableSha256){throw 'Pinned Ruffle executable hash required; no input'}
  if($runtime.version -notmatch '\S' -or $runtime.environmentId -notmatch '^ia-therightmix-ede221ad99e03173__ruffle-desktop-'){throw 'Pinned runtime version/environment required'}
+ $manifest=Get-Content -LiteralPath (Join-Path $repoRoot 'research/reference-builds.json') -Raw | ConvertFrom-Json -DateKind String
+ $registered=@($manifest.environments | Where-Object { $_.id -eq $runtime.environmentId })
+ if($registered.Count -ne 1 -or $registered[0].swfSha256 -ne $swfHash -or $registered[0].executableSha256 -ne $runtime.executableSha256 -or $registered[0].player -ne $runtime.version){throw 'Registered SWF/runtime identity mismatch; no input'}
  return @{Data=$runtime;Exe=$exe}
 }
 function Session {
@@ -97,14 +100,19 @@ function Gesture($session,$action,[string]$ordinal) {
  $y=[int][Math]::Round($m.Top+$p.y*$m.Scale)
  if($null -ne $p.PSObject.Properties['space'] -and $p.space -eq 'client'){$x=[int]$p.x;$y=[int]$p.y}
  $before=Capture $session ($ordinal+'-before')
+ $fresh=Geometry $session
+ if($fresh.X -ne $m.Geometry.X -or $fresh.Y -ne $m.Geometry.Y -or $fresh.Width -ne $m.Geometry.Width -or $fresh.Height -ne $m.Geometry.Height -or $fresh.Dpi -ne $m.Geometry.Dpi){throw 'Geometry changed between mapping and capture: no input'}
+ if(Get-Variable -Name runGeometry -Scope Script -ErrorAction SilentlyContinue){if($fresh.X -ne $script:runGeometry.X -or $fresh.Y -ne $script:runGeometry.Y -or $fresh.Width -ne $script:runGeometry.Width -or $fresh.Height -ne $script:runGeometry.Height -or $fresh.Dpi -ne $script:runGeometry.Dpi){throw 'Geometry changed between actions: run aborted'}}
  $script:duringPath=$null
  $duringCallback=$null
  if($null -ne $action.PSObject.Properties['captureDuring'] -and $action.captureDuring){$duringCallback=[Action]{ $script:duringPath=Capture $session ($ordinal+'-during') }}
  $script:activeGesture=@{target=$action.target;requestedHoldMs=$duration;geometry=$m.Geometry;stage=@{x=$p.x;y=$p.y};client=@{x=$x;y=$y};stageScale=$m.Scale;captures=@($before)}
  try { $timing=[ReferenceNative]::Hold($session.Data.windowHandle,$session.Data.processId,$session.Data.windowTitle,$x,$y,[int]$duration,$abortPath,$duringCallback) } catch {$script:activeGesture.timing=[ReferenceNative]::LastTiming;$script:activeGesture.captures=@($before,$script:duringPath) | Where-Object { $_ };throw}
  $script:activeGesture=$null
+ $script:deliveredPending=@{target=$action.target;requestedHoldMs=$duration;measuredHoldMs=$timing.MeasuredHoldMs;downMs=$timing.DownMs;upMs=$timing.UpMs;client=@{x=$x;y=$y};stage=@{x=$p.x;y=$p.y};geometry=$m.Geometry;stageScale=$m.Scale;captures=@($before,$script:duringPath) | Where-Object { $_ };released=$timing.Released;buttonDownObserved=$timing.ButtonDownObserved;buttonUpObserved=$timing.ButtonUpObserved}
  Start-Sleep -Milliseconds 500
  $after=Capture $session ($ordinal+'-after')
+ $script:deliveredPending=$null
  return @{target=$action.target;requestedHoldMs=$duration;measuredHoldMs=$timing.MeasuredHoldMs;downMs=$timing.DownMs;upMs=$timing.UpMs;client=@{x=$x;y=$y};stage=@{x=$p.x;y=$p.y};screen=@{x=$timing.ScreenX;y=$timing.ScreenY};geometry=$m.Geometry;stageScale=$m.Scale;captures=@($before,$script:duringPath,$after) | Where-Object { $_ };method='Win32 SendInput / SetCursorPos';released=$timing.Released;buttonDownObserved=$timing.ButtonDownObserved;buttonUpObserved=$timing.ButtonUpObserved;physicalCursor=@{x=$timing.PhysicalCursorX;y=$timing.PhysicalCursorY}}
 }
 try {
@@ -153,6 +161,8 @@ try {
    if($request.sessionId -ne $session.Data.sessionId -or $request.initialVisualConfirmed -ne $true){throw 'Current session and visual confirmation required'}
    if(!$request.actions -or $request.actions.Count -gt 30){throw '1..30 actions required'}
    Activate $session | Out-Null
+   $script:runGeometry=Geometry $session
+   if($null -ne $request.PSObject.Properties['expectedGeometry']){if($script:runGeometry.Width -ne $request.expectedGeometry.width -or $script:runGeometry.Height -ne $request.expectedGeometry.height -or $script:runGeometry.Dpi -ne $request.expectedGeometry.dpi){throw 'Frozen procedure geometry/DPI mismatch; no input'}}
    $trace=@();$n=0
    foreach($action in $request.actions){$n++;$trace+=Gesture $session $action ('action-'+[DateTime]::UtcNow.ToString('HHmmssfff')+'-'+$n)}
    $reactionCaptures=@();$captureGaps=@()
@@ -169,7 +179,8 @@ try {
  if((Get-Variable -Name session -ErrorAction SilentlyContinue) -and $null -ne $session -and $session.ContainsKey('Data')){
   $failure.session=$session.Data;$failure.runtime=$session.Runtime.Data
   $failure.actions=@();if(Get-Variable -Name trace -ErrorAction SilentlyContinue){$failure.actions=@($trace)}
-  if(Get-Variable -Name activeGesture -Scope Script -ErrorAction SilentlyContinue){$failure.abortedAction=$script:activeGesture}
+  if((Get-Variable -Name deliveredPending -Scope Script -ErrorAction SilentlyContinue) -and $null -ne $script:deliveredPending){$failure.actions+=@($script:deliveredPending);$failure.completedInputBeforeCaptureFailure=$true}
+  if((Get-Variable -Name activeGesture -Scope Script -ErrorAction SilentlyContinue) -and $null -ne $script:activeGesture){$failure.abortedAction=$script:activeGesture}
   $failure | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath (Join-Path $localRoot ($session.Data.sessionId+'-abort-'+[DateTime]::UtcNow.ToString('HHmmssfff')+'.json')) -Encoding utf8
  }
  $failure | ConvertTo-Json -Depth 20

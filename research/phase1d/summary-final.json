@@ -1,0 +1,4583 @@
+{
+  "date": "2026-10-12T19:32:48.317Z",
+  "raw1D": 69,
+  "fixtures1D": 74,
+  "rawCumulative": 98,
+  "fixturesCumulative": 104,
+  "statuses": {
+    "VERIFIED": 0,
+    "STRONGLY_SUPPORTED": 6,
+    "UNVERIFIED": 98
+  },
+  "totalRuns": 69,
+  "coldRuns": 69,
+  "inputCompleted": 67,
+  "scoredResults": 61,
+  "successfulServes": 59,
+  "automaticFailureIds": [
+    "IA-1D-X-10000-01",
+    "IA-1D-X-15000-01"
+  ],
+  "abortedRuns": [
+    {
+      "id": "IA-1D-BASELINE-01",
+      "reason": "Exception calling \"Hold\" with \"8\" argument(s): \"Cursor moved externally: expected=244,641 actual=232,614\"",
+      "sessionId": "NATIVE-20261012T125548503-2840"
+    },
+    {
+      "id": "IA-1D-CONTROL-01",
+      "reason": "Exception calling \"Hold\" with \"8\" argument(s): \"Cursor moved externally: expected=212,609 actual=218,609\"",
+      "sessionId": "NATIVE-20261012T131240147-19832"
+    }
+  ],
+  "pendingScoreReviews": [],
+  "scoreFrequencies": {
+    "0": 2,
+    "65": 1,
+    "111": 4,
+    "245": 1,
+    "246": 2,
+    "270": 40,
+    "275": 3,
+    "285": 3,
+    "300": 1,
+    "370": 4
+  },
+  "baseline": {
+    "scriptId": "baseline-270-v1",
+    "attempts": 6,
+    "successful": 5,
+    "scoreSequence": [
+      {
+        "id": "IA-1D-BASELINE-01",
+        "outcome": "ABORTED",
+        "score": null
+      },
+      {
+        "id": "IA-1D-BASELINE-02",
+        "outcome": "COMPLETED_INPUT",
+        "score": 270
+      },
+      {
+        "id": "IA-1D-BASELINE-03",
+        "outcome": "COMPLETED_INPUT",
+        "score": 270
+      },
+      {
+        "id": "IA-1D-BASELINE-04",
+        "outcome": "COMPLETED_INPUT",
+        "score": 270
+      },
+      {
+        "id": "IA-1D-BASELINE-05",
+        "outcome": "COMPLETED_INPUT",
+        "score": 270
+      },
+      {
+        "id": "IA-1D-BASELINE-06",
+        "outcome": "COMPLETED_INPUT",
+        "score": 270
+      }
+    ],
+    "gate3": true,
+    "gate5": true,
+    "evidenceStatus": "STRONGLY_SUPPORTED",
+    "canonicalQuantityMapping": "UNMAPPED"
+  },
+  "experiments": [
+    {
+      "variable": "baseline",
+      "settings": [
+        {
+          "setting": "BASELINE",
+          "attempts": 6,
+          "scored": 5,
+          "scoreFrequencies": {
+            "270": 5
+          },
+          "aborted": 1,
+          "repeatability": "REPEATED_NATIVE_OUTPUT"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-BASELINE-01",
+          "setting": "BASELINE",
+          "outcome": "ABORTED",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": null,
+          "reactionId": "not-confirmed"
+        },
+        {
+          "id": "IA-1D-BASELINE-02",
+          "setting": "BASELINE",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.73620000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.55570000000012
+            },
+            {
+              "target": "pour",
+              "ms": 15007.1312
+            },
+            {
+              "target": "shake",
+              "ms": 1013.8701999999976
+            },
+            {
+              "target": "serve",
+              "ms": 94.37770000000091
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.8701999999976,
+          "reactionId": "ref.sequence.pour-to-glass-result"
+        },
+        {
+          "id": "IA-1D-BASELINE-03",
+          "setting": "BASELINE",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.0446
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.45959999999991
+            },
+            {
+              "target": "pour",
+              "ms": 15006.883500000002
+            },
+            {
+              "target": "shake",
+              "ms": 1006.9798999999985
+            },
+            {
+              "target": "serve",
+              "ms": 92.46519999999873
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1006.9798999999985,
+          "reactionId": "ref.sequence.pour-to-glass-result"
+        },
+        {
+          "id": "IA-1D-BASELINE-04",
+          "setting": "BASELINE",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.8919
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.27780000000007
+            },
+            {
+              "target": "pour",
+              "ms": 15005.189899999998
+            },
+            {
+              "target": "shake",
+              "ms": 1012.751400000001
+            },
+            {
+              "target": "serve",
+              "ms": 90.94460000000254
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1012.751400000001,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-BASELINE-05",
+          "setting": "BASELINE",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 106.97919999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.48500000000013
+            },
+            {
+              "target": "pour",
+              "ms": 15005.1672
+            },
+            {
+              "target": "shake",
+              "ms": 1013.2976999999992
+            },
+            {
+              "target": "serve",
+              "ms": 93.85440000000017
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.2976999999992,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-BASELINE-06",
+          "setting": "BASELINE",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 110.4926
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.77019999999993
+            },
+            {
+              "target": "pour",
+              "ms": 15012.8245
+            },
+            {
+              "target": "shake",
+              "ms": 1010.7399000000005
+            },
+            {
+              "target": "serve",
+              "ms": 83.08510000000024
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1010.7399000000005,
+          "reactionId": "ref.react.r01"
+        }
+      ],
+      "scoreFrequencies": {
+        "270": 5
+      }
+    },
+    {
+      "variable": "control",
+      "settings": [
+        {
+          "setting": "CONTROL",
+          "attempts": 23,
+          "scored": 22,
+          "scoreFrequencies": {
+            "270": 22
+          },
+          "aborted": 1,
+          "repeatability": "REPEATED_NATIVE_OUTPUT"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-CONTROL-01",
+          "setting": "CONTROL",
+          "outcome": "ABORTED",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": null,
+          "reactionId": "not-confirmed"
+        },
+        {
+          "id": "IA-1D-CONTROL-07",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.22250000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.8400999999999
+            },
+            {
+              "target": "pour",
+              "ms": 15003.7634
+            },
+            {
+              "target": "shake",
+              "ms": 1008.3090999999986
+            },
+            {
+              "target": "serve",
+              "ms": 81.87839999999778
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1008.3090999999986,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-08",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.6646
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 91.55559999999991
+            },
+            {
+              "target": "pour",
+              "ms": 15006.1322
+            },
+            {
+              "target": "shake",
+              "ms": 1013.5985000000001
+            },
+            {
+              "target": "serve",
+              "ms": 81.35829999999987
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.5985000000001,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-09",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.15319999999998
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.36670000000004
+            },
+            {
+              "target": "pour",
+              "ms": 15013.549599999998
+            },
+            {
+              "target": "shake",
+              "ms": 1009.0789000000004
+            },
+            {
+              "target": "serve",
+              "ms": 80.65989999999874
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.0789000000004,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-10",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 106.1244
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.04559999999992
+            },
+            {
+              "target": "pour",
+              "ms": 15000.515800000001
+            },
+            {
+              "target": "shake",
+              "ms": 1002.7487000000001
+            },
+            {
+              "target": "serve",
+              "ms": 94.17840000000069
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1002.7487000000001,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-11",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.50559999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.5761
+            },
+            {
+              "target": "pour",
+              "ms": 15001.458499999999
+            },
+            {
+              "target": "shake",
+              "ms": 1010.7580999999991
+            },
+            {
+              "target": "serve",
+              "ms": 93.21410000000105
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1010.7580999999991,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-12",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.5235
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.5435
+            },
+            {
+              "target": "pour",
+              "ms": 15004.028799999998
+            },
+            {
+              "target": "shake",
+              "ms": 1001.6538
+            },
+            {
+              "target": "serve",
+              "ms": 81.6849000000002
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1001.6538,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-13",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.13319999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.38390000000004
+            },
+            {
+              "target": "pour",
+              "ms": 15006.3468
+            },
+            {
+              "target": "shake",
+              "ms": 1011.8264000000017
+            },
+            {
+              "target": "serve",
+              "ms": 80.3705000000009
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1011.8264000000017,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-14",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.70349999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.74170000000004
+            },
+            {
+              "target": "pour",
+              "ms": 15006.8536
+            },
+            {
+              "target": "shake",
+              "ms": 1011.9049999999988
+            },
+            {
+              "target": "serve",
+              "ms": 92.71590000000288
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1011.9049999999988,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-15",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.2458
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.22849999999994
+            },
+            {
+              "target": "pour",
+              "ms": 15008.743000000002
+            },
+            {
+              "target": "shake",
+              "ms": 1018.1340999999993
+            },
+            {
+              "target": "serve",
+              "ms": 93.8169999999991
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1018.1340999999993,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-16",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 111.25559999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 91.02240000000006
+            },
+            {
+              "target": "pour",
+              "ms": 15002.091
+            },
+            {
+              "target": "shake",
+              "ms": 1000.7854999999981
+            },
+            {
+              "target": "serve",
+              "ms": 93.56430000000182
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1000.7854999999981,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-17",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.04700000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.33320000000003
+            },
+            {
+              "target": "pour",
+              "ms": 15001.311999999998
+            },
+            {
+              "target": "shake",
+              "ms": 1012.0250999999989
+            },
+            {
+              "target": "serve",
+              "ms": 93.30219999999827
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1012.0250999999989,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-18",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.88929999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.79730000000018
+            },
+            {
+              "target": "pour",
+              "ms": 15016.232
+            },
+            {
+              "target": "shake",
+              "ms": 1008.9773999999998
+            },
+            {
+              "target": "serve",
+              "ms": 94.14939999999842
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1008.9773999999998,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-19",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.26759999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 91.09969999999998
+            },
+            {
+              "target": "pour",
+              "ms": 15000.503900000002
+            },
+            {
+              "target": "shake",
+              "ms": 1003.4503000000004
+            },
+            {
+              "target": "serve",
+              "ms": 93.91860000000088
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1003.4503000000004,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-20",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.2672
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.53870000000006
+            },
+            {
+              "target": "pour",
+              "ms": 15006.350999999999
+            },
+            {
+              "target": "shake",
+              "ms": 1003.2226999999984
+            },
+            {
+              "target": "serve",
+              "ms": 85.02649999999994
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1003.2226999999984,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-21",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.26089999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.80120000000011
+            },
+            {
+              "target": "pour",
+              "ms": 15003.055199999999
+            },
+            {
+              "target": "shake",
+              "ms": 1011.154599999998
+            },
+            {
+              "target": "serve",
+              "ms": 94.31390000000101
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1011.154599999998,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-22",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.28359999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.50819999999999
+            },
+            {
+              "target": "pour",
+              "ms": 15003.952
+            },
+            {
+              "target": "shake",
+              "ms": 1010.3603000000003
+            },
+            {
+              "target": "serve",
+              "ms": 81.83150000000023
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1010.3603000000003,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-23",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.34550000000002
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.11760000000004
+            },
+            {
+              "target": "pour",
+              "ms": 15005.4846
+            },
+            {
+              "target": "shake",
+              "ms": 1009.5673999999999
+            },
+            {
+              "target": "serve",
+              "ms": 92.37969999999768
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.5673999999999,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-24",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.546
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.51639999999998
+            },
+            {
+              "target": "pour",
+              "ms": 15013.0239
+            },
+            {
+              "target": "shake",
+              "ms": 1010.8342000000011
+            },
+            {
+              "target": "serve",
+              "ms": 92.35410000000047
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1010.8342000000011,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-28",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.96589999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.37749999999983
+            },
+            {
+              "target": "pour",
+              "ms": 15010.4666
+            },
+            {
+              "target": "shake",
+              "ms": 1007.4960000000028
+            },
+            {
+              "target": "serve",
+              "ms": 81.21410000000105
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1007.4960000000028,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-29",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 110.82079999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.68970000000013
+            },
+            {
+              "target": "pour",
+              "ms": 15007.2964
+            },
+            {
+              "target": "shake",
+              "ms": 1013.1985000000022
+            },
+            {
+              "target": "serve",
+              "ms": 81.69350000000122
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.1985000000022,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-30",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.54589999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.53580000000011
+            },
+            {
+              "target": "pour",
+              "ms": 15000.9895
+            },
+            {
+              "target": "shake",
+              "ms": 1000.7695000000022
+            },
+            {
+              "target": "serve",
+              "ms": 94.32340000000113
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1000.7695000000022,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-CONTROL-31",
+          "setting": "CONTROL",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.5118
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.43159999999989
+            },
+            {
+              "target": "pour",
+              "ms": 15012.1139
+            },
+            {
+              "target": "shake",
+              "ms": 1009.0904999999984
+            },
+            {
+              "target": "serve",
+              "ms": 80.40740000000005
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.0904999999984,
+          "reactionId": "ref.react.r01"
+        }
+      ],
+      "scoreFrequencies": {
+        "270": 22
+      }
+    },
+    {
+      "variable": "garnish",
+      "settings": [
+        {
+          "setting": "D-visible-after",
+          "attempts": 3,
+          "scored": 3,
+          "scoreFrequencies": {
+            "370": 3
+          },
+          "aborted": 0,
+          "repeatability": "REPEATED_NATIVE_OUTPUT"
+        },
+        {
+          "setting": "D-visible-before",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "270": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "D-visible-repeat",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "370": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-D-visible-after-01",
+          "setting": "D-visible-after",
+          "outcome": "COMPLETED_INPUT",
+          "score": 370,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.9695
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.21029999999996
+            },
+            {
+              "target": "pour",
+              "ms": 15006.1423
+            },
+            {
+              "target": "shake",
+              "ms": 1013.5377999999982
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 82.07790000000023
+            },
+            {
+              "target": "serve",
+              "ms": 93.95830000000205
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.5377999999982,
+          "reactionId": "ref.react.r01-garnished"
+        },
+        {
+          "id": "IA-1D-D-visible-after-02",
+          "setting": "D-visible-after",
+          "outcome": "COMPLETED_INPUT",
+          "score": 370,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.93920000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.21000000000004
+            },
+            {
+              "target": "pour",
+              "ms": 15014.943599999999
+            },
+            {
+              "target": "shake",
+              "ms": 1009.6510000000017
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80.63490000000093
+            },
+            {
+              "target": "serve",
+              "ms": 81.54790000000139
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.6510000000017,
+          "reactionId": "ref.react.r01-garnished"
+        },
+        {
+          "id": "IA-1D-D-visible-after-03",
+          "setting": "D-visible-after",
+          "outcome": "COMPLETED_INPUT",
+          "score": 370,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 106.66780000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.61030000000005
+            },
+            {
+              "target": "pour",
+              "ms": 15005.2481
+            },
+            {
+              "target": "shake",
+              "ms": 1012.7868999999992
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 92.89440000000104
+            },
+            {
+              "target": "serve",
+              "ms": 94.32220000000234
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1012.7868999999992,
+          "reactionId": "ref.react.r01-garnished"
+        },
+        {
+          "id": "IA-1D-D-visible-before-01",
+          "setting": "D-visible-before",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.45779999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.76949999999988
+            },
+            {
+              "target": "pour",
+              "ms": 15005.8517
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 93.48630000000048
+            },
+            {
+              "target": "shake",
+              "ms": 1006.3725999999988
+            },
+            {
+              "target": "serve",
+              "ms": 94.36870000000272
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1006.3725999999988,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-D-visible-repeat-01",
+          "setting": "D-visible-repeat",
+          "outcome": "COMPLETED_INPUT",
+          "score": 370,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.47699999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.38490000000002
+            },
+            {
+              "target": "pour",
+              "ms": 15004.6157
+            },
+            {
+              "target": "shake",
+              "ms": 1012.9359000000004
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 92.51510000000053
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 92.81850000000122
+            },
+            {
+              "target": "serve",
+              "ms": 93.89719999999943
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1012.9359000000004,
+          "reactionId": "ref.react.r01-garnished"
+        }
+      ],
+      "scoreFrequencies": {
+        "270": 1,
+        "370": 4
+      }
+    },
+    {
+      "variable": "ice",
+      "settings": [
+        {
+          "setting": "C-1",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "270": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "C-visible-1",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "270": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "C-visible-2",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "270": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "C-visible-early-1",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "270": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "C-visible-early-2",
+          "attempts": 1,
+          "scored": 0,
+          "scoreFrequencies": {},
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-C-1-01",
+          "setting": "C-1",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "ice",
+              "ms": 80
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.96170000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.48580000000015
+            },
+            {
+              "target": "pour",
+              "ms": 15005.6905
+            },
+            {
+              "target": "ice",
+              "ms": 81.00500000000102
+            },
+            {
+              "target": "shake",
+              "ms": 1013.588200000002
+            },
+            {
+              "target": "serve",
+              "ms": 93.19280000000072
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.588200000002,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-C-visible-1-01",
+          "setting": "C-visible-1",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.4043
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.41539999999986
+            },
+            {
+              "target": "pour",
+              "ms": 15000.7131
+            },
+            {
+              "target": "iceVisible",
+              "ms": 93.12450000000172
+            },
+            {
+              "target": "shake",
+              "ms": 1011.5262000000002
+            },
+            {
+              "target": "serve",
+              "ms": 92.77660000000105
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1011.5262000000002,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-C-visible-2-01",
+          "setting": "C-visible-2",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.0678
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.63249999999994
+            },
+            {
+              "target": "pour",
+              "ms": 15010.754100000002
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80.92659999999887
+            },
+            {
+              "target": "iceVisible",
+              "ms": 93.68510000000242
+            },
+            {
+              "target": "shake",
+              "ms": 1013.4231
+            },
+            {
+              "target": "serve",
+              "ms": 92.40910000000076
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.4231,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-C-visible-early-1-01",
+          "setting": "C-visible-early-1",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.70860000000002
+            },
+            {
+              "target": "iceVisible",
+              "ms": 91.37840000000006
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.45209999999997
+            },
+            {
+              "target": "pour",
+              "ms": 15008.481800000001
+            },
+            {
+              "target": "shake",
+              "ms": 1010.6922000000013
+            },
+            {
+              "target": "serve",
+              "ms": 81.52049999999872
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1010.6922000000013,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-C-visible-early-2-01",
+          "setting": "C-visible-early-2",
+          "outcome": "COMPLETED_INPUT",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.60319999999999
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80.44479999999999
+            },
+            {
+              "target": "iceVisible",
+              "ms": 92.70730000000003
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.51859999999988
+            },
+            {
+              "target": "pour",
+              "ms": 15012.2121
+            },
+            {
+              "target": "shake",
+              "ms": 1002.8317000000025
+            },
+            {
+              "target": "serve",
+              "ms": 93.42429999999877
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1002.8317000000025,
+          "reactionId": "ref.phase.preparation-no-result"
+        }
+      ],
+      "scoreFrequencies": {
+        "270": 4
+      }
+    },
+    {
+      "variable": "pour-count",
+      "settings": [
+        {
+          "setting": "B-1",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "111": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "B-3",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "65": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-B-1-01",
+          "setting": "B-1",
+          "outcome": "COMPLETED_INPUT",
+          "score": 111,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 5000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.99820000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.46399999999994
+            },
+            {
+              "target": "pour",
+              "ms": 5001.8683
+            },
+            {
+              "target": "shake",
+              "ms": 1009.3870000000006
+            },
+            {
+              "target": "serve",
+              "ms": 94.1268
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.3870000000006,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-B-3-01",
+          "setting": "B-3",
+          "outcome": "COMPLETED_INPUT",
+          "score": 65,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 1667
+            },
+            {
+              "target": "pour",
+              "ms": 1667
+            },
+            {
+              "target": "pour",
+              "ms": 1666
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 110.6527
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.99940000000015
+            },
+            {
+              "target": "pour",
+              "ms": 1677.1857
+            },
+            {
+              "target": "pour",
+              "ms": 1668.6940999999997
+            },
+            {
+              "target": "pour",
+              "ms": 1677.3171000000002
+            },
+            {
+              "target": "shake",
+              "ms": 1010.4097000000002
+            },
+            {
+              "target": "serve",
+              "ms": 95.03070000000116
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1010.4097000000002,
+          "reactionId": "ref.react.r01"
+        }
+      ],
+      "scoreFrequencies": {
+        "65": 1,
+        "111": 1
+      }
+    },
+    {
+      "variable": "pour-duration",
+      "settings": [
+        {
+          "setting": "A-10000",
+          "attempts": 3,
+          "scored": 3,
+          "scoreFrequencies": {
+            "245": 1,
+            "246": 2
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "A-14000",
+          "attempts": 3,
+          "scored": 3,
+          "scoreFrequencies": {
+            "270": 3
+          },
+          "aborted": 0,
+          "repeatability": "REPEATED_NATIVE_OUTPUT"
+        },
+        {
+          "setting": "A-14500",
+          "attempts": 3,
+          "scored": 3,
+          "scoreFrequencies": {
+            "270": 3
+          },
+          "aborted": 0,
+          "repeatability": "REPEATED_NATIVE_OUTPUT"
+        },
+        {
+          "setting": "A-5000",
+          "attempts": 3,
+          "scored": 3,
+          "scoreFrequencies": {
+            "111": 3
+          },
+          "aborted": 0,
+          "repeatability": "REPEATED_NATIVE_OUTPUT"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-A-10000-01",
+          "setting": "A-10000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 245,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 10000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.1063
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.58639999999991
+            },
+            {
+              "target": "pour",
+              "ms": 10003.393800000002
+            },
+            {
+              "target": "shake",
+              "ms": 1012.2615000000005
+            },
+            {
+              "target": "serve",
+              "ms": 94.07140000000072
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1012.2615000000005,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-10000-02",
+          "setting": "A-10000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 246,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 10000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.76460000000002
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.69809999999984
+            },
+            {
+              "target": "pour",
+              "ms": 10000.8068
+            },
+            {
+              "target": "shake",
+              "ms": 1009.8209999999999
+            },
+            {
+              "target": "serve",
+              "ms": 80.34369999999944
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.8209999999999,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-10000-03",
+          "setting": "A-10000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 246,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 10000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.63369999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.3551
+            },
+            {
+              "target": "pour",
+              "ms": 10000.4301
+            },
+            {
+              "target": "shake",
+              "ms": 1009.3471000000009
+            },
+            {
+              "target": "serve",
+              "ms": 95.56370000000061
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.3471000000009,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-14000-01",
+          "setting": "A-14000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 14000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.18289999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 94.0141000000001
+            },
+            {
+              "target": "pour",
+              "ms": 14008.3001
+            },
+            {
+              "target": "shake",
+              "ms": 1007.1981999999989
+            },
+            {
+              "target": "serve",
+              "ms": 92.09809999999925
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1007.1981999999989,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-14000-02",
+          "setting": "A-14000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 14000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.15050000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.38639999999987
+            },
+            {
+              "target": "pour",
+              "ms": 14007.040799999999
+            },
+            {
+              "target": "shake",
+              "ms": 1012.264900000002
+            },
+            {
+              "target": "serve",
+              "ms": 81.42900000000009
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1012.264900000002,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-14000-03",
+          "setting": "A-14000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 14000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 110.6043
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.36830000000009
+            },
+            {
+              "target": "pour",
+              "ms": 14001.299
+            },
+            {
+              "target": "shake",
+              "ms": 1009.8355999999985
+            },
+            {
+              "target": "serve",
+              "ms": 83.79910000000018
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.8355999999985,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-14500-01",
+          "setting": "A-14500",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 14500
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.27860000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.73970000000008
+            },
+            {
+              "target": "pour",
+              "ms": 14512.1641
+            },
+            {
+              "target": "shake",
+              "ms": 1010.6483000000007
+            },
+            {
+              "target": "serve",
+              "ms": 95.40220000000045
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1010.6483000000007,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-14500-02",
+          "setting": "A-14500",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 14500
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.0839
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.33699999999999
+            },
+            {
+              "target": "pour",
+              "ms": 14511.6335
+            },
+            {
+              "target": "shake",
+              "ms": 1011.3921000000009
+            },
+            {
+              "target": "serve",
+              "ms": 82.80199999999968
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1011.3921000000009,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-14500-03",
+          "setting": "A-14500",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 14500
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.08279999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.33379999999988
+            },
+            {
+              "target": "pour",
+              "ms": 14502.5263
+            },
+            {
+              "target": "shake",
+              "ms": 1013.5759999999973
+            },
+            {
+              "target": "serve",
+              "ms": 80.41909999999916
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1013.5759999999973,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-5000-01",
+          "setting": "A-5000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 111,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 5000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.36789999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.99260000000004
+            },
+            {
+              "target": "pour",
+              "ms": 5011.2625
+            },
+            {
+              "target": "shake",
+              "ms": 1012.9539999999997
+            },
+            {
+              "target": "serve",
+              "ms": 95.85829999999987
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1012.9539999999997,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-5000-02",
+          "setting": "A-5000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 111,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 5000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.7621
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.56970000000001
+            },
+            {
+              "target": "pour",
+              "ms": 5001.208199999999
+            },
+            {
+              "target": "shake",
+              "ms": 1009.9899999999998
+            },
+            {
+              "target": "serve",
+              "ms": 93.14609999999993
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.9899999999998,
+          "reactionId": "ref.react.r01"
+        },
+        {
+          "id": "IA-1D-A-5000-03",
+          "setting": "A-5000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 111,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 5000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.39240000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.41269999999986
+            },
+            {
+              "target": "pour",
+              "ms": 5005.1241
+            },
+            {
+              "target": "shake",
+              "ms": 1005.4156999999996
+            },
+            {
+              "target": "serve",
+              "ms": 82.8698000000004
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1005.4156999999996,
+          "reactionId": "ref.react.r01"
+        }
+      ],
+      "scoreFrequencies": {
+        "111": 3,
+        "245": 1,
+        "246": 2,
+        "270": 6
+      }
+    },
+    {
+      "variable": "shake-count",
+      "settings": [
+        {
+          "setting": "E-0",
+          "attempts": 1,
+          "scored": 0,
+          "scoreFrequencies": {},
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "E-1",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "270": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "E-2",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "270": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "E-3",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "275": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "E-4",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "285": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "E-5",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "300": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-E-0-01",
+          "setting": "E-0",
+          "outcome": "COMPLETED_INPUT",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.92179999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.279
+            },
+            {
+              "target": "pour",
+              "ms": 15003.0383
+            },
+            {
+              "target": "serve",
+              "ms": 80.78900000000067
+            }
+          ],
+          "requestedShakeCount": 0,
+          "cumulativeMeasuredNativeShakeMs": 0,
+          "reactionId": "ref.phase.awaiting-shake"
+        },
+        {
+          "id": "IA-1D-E-1-01",
+          "setting": "E-1",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.88310000000001
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.33899999999994
+            },
+            {
+              "target": "pour",
+              "ms": 15006.348399999999
+            },
+            {
+              "target": "shake",
+              "ms": 1009.5162999999993
+            },
+            {
+              "target": "serve",
+              "ms": 93.33009999999922
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 1009.5162999999993,
+          "reactionId": "ref.pose.idle-after-serve"
+        },
+        {
+          "id": "IA-1D-E-2-01",
+          "setting": "E-2",
+          "outcome": "COMPLETED_INPUT",
+          "score": 270,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.2083
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.64610000000016
+            },
+            {
+              "target": "pour",
+              "ms": 15013.287499999999
+            },
+            {
+              "target": "shake",
+              "ms": 1009.660899999999
+            },
+            {
+              "target": "shake",
+              "ms": 1009.6764000000003
+            },
+            {
+              "target": "serve",
+              "ms": 82.11280000000261
+            }
+          ],
+          "requestedShakeCount": 2,
+          "cumulativeMeasuredNativeShakeMs": 2019.3372999999992,
+          "reactionId": "ref.pose.idle-after-serve"
+        },
+        {
+          "id": "IA-1D-E-3-01",
+          "setting": "E-3",
+          "outcome": "COMPLETED_INPUT",
+          "score": 275,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.2311
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 93.22929999999997
+            },
+            {
+              "target": "pour",
+              "ms": 15003.043399999999
+            },
+            {
+              "target": "shake",
+              "ms": 1013.5799000000006
+            },
+            {
+              "target": "shake",
+              "ms": 1003.6316999999981
+            },
+            {
+              "target": "shake",
+              "ms": 1001.4494999999988
+            },
+            {
+              "target": "serve",
+              "ms": 94.34110000000146
+            }
+          ],
+          "requestedShakeCount": 3,
+          "cumulativeMeasuredNativeShakeMs": 3018.6610999999975,
+          "reactionId": "ref.pose.idle-after-serve"
+        },
+        {
+          "id": "IA-1D-E-4-01",
+          "setting": "E-4",
+          "outcome": "COMPLETED_INPUT",
+          "score": 285,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 113.3447
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 94.21949999999993
+            },
+            {
+              "target": "pour",
+              "ms": 15013.541799999999
+            },
+            {
+              "target": "shake",
+              "ms": 1004.3438999999998
+            },
+            {
+              "target": "shake",
+              "ms": 1009.8032999999996
+            },
+            {
+              "target": "shake",
+              "ms": 1011.2406999999985
+            },
+            {
+              "target": "shake",
+              "ms": 1010.7021999999997
+            },
+            {
+              "target": "serve",
+              "ms": 94.3125
+            }
+          ],
+          "requestedShakeCount": 4,
+          "cumulativeMeasuredNativeShakeMs": 4036.0900999999976,
+          "reactionId": "ref.pose.idle-after-serve"
+        },
+        {
+          "id": "IA-1D-E-5-01",
+          "setting": "E-5",
+          "outcome": "COMPLETED_INPUT",
+          "score": 300,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.6783
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.36590000000001
+            },
+            {
+              "target": "pour",
+              "ms": 15013.337999999998
+            },
+            {
+              "target": "shake",
+              "ms": 1009.5695000000014
+            },
+            {
+              "target": "shake",
+              "ms": 1011.3290000000015
+            },
+            {
+              "target": "shake",
+              "ms": 1015.179699999997
+            },
+            {
+              "target": "shake",
+              "ms": 1013.6957999999977
+            },
+            {
+              "target": "shake",
+              "ms": 1005.7813999999998
+            },
+            {
+              "target": "serve",
+              "ms": 92.60099999999875
+            }
+          ],
+          "requestedShakeCount": 5,
+          "cumulativeMeasuredNativeShakeMs": 5055.5553999999975,
+          "reactionId": "ref.pose.idle-after-serve"
+        }
+      ],
+      "scoreFrequencies": {
+        "270": 2,
+        "275": 1,
+        "285": 1,
+        "300": 1
+      }
+    },
+    {
+      "variable": "shake-exposure",
+      "settings": [
+        {
+          "setting": "X-10000",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "0": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "X-15000",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "0": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "X-5000",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "275": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-X-10000-01",
+          "setting": "X-10000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 0,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 10000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 110.55799999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.8737000000001
+            },
+            {
+              "target": "pour",
+              "ms": 15004.409700000002
+            },
+            {
+              "target": "shake",
+              "ms": 10000.939799999996
+            },
+            {
+              "target": "serve",
+              "ms": 93.86490000000049
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 10000.939799999996,
+          "reactionId": "ref.react.explosion"
+        },
+        {
+          "id": "IA-1D-X-15000-01",
+          "setting": "X-15000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 0,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 15000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.6007
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 92.28520000000003
+            },
+            {
+              "target": "pour",
+              "ms": 15004.450400000002
+            },
+            {
+              "target": "shake",
+              "ms": 15007.2749
+            },
+            {
+              "target": "serve",
+              "ms": 81.0648000000001
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 15007.2749,
+          "reactionId": "ref.react.explosion"
+        },
+        {
+          "id": "IA-1D-X-5000-01",
+          "setting": "X-5000",
+          "outcome": "COMPLETED_INPUT",
+          "score": 275,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 5000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.5632
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 91.18239999999992
+            },
+            {
+              "target": "pour",
+              "ms": 15006.235999999999
+            },
+            {
+              "target": "shake",
+              "ms": 5007.1957
+            },
+            {
+              "target": "serve",
+              "ms": 81.83429999999862
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 5007.1957,
+          "reactionId": "ref.pose.idle-after-serve"
+        }
+      ],
+      "scoreFrequencies": {
+        "0": 2,
+        "275": 1
+      }
+    },
+    {
+      "variable": "shake-total-duration",
+      "settings": [
+        {
+          "setting": "F-1",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "275": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "F-2",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "285": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "F-4",
+          "attempts": 1,
+          "scored": 1,
+          "scoreFrequencies": {
+            "285": 1
+          },
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-F-1-01",
+          "setting": "F-1",
+          "outcome": "COMPLETED_INPUT",
+          "score": 275,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 4000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.25350000000002
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 94.76890000000003
+            },
+            {
+              "target": "pour",
+              "ms": 15004.6405
+            },
+            {
+              "target": "shake",
+              "ms": 4011.095300000001
+            },
+            {
+              "target": "serve",
+              "ms": 92.96840000000157
+            }
+          ],
+          "requestedShakeCount": 1,
+          "cumulativeMeasuredNativeShakeMs": 4011.095300000001,
+          "reactionId": "ref.pose.idle-after-serve"
+        },
+        {
+          "id": "IA-1D-F-2-01",
+          "setting": "F-2",
+          "outcome": "COMPLETED_INPUT",
+          "score": 285,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 2000
+            },
+            {
+              "target": "shake",
+              "ms": 2000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 110.55369999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80.35360000000014
+            },
+            {
+              "target": "pour",
+              "ms": 15004.504399999998
+            },
+            {
+              "target": "shake",
+              "ms": 2000.6425999999992
+            },
+            {
+              "target": "shake",
+              "ms": 2005.854800000001
+            },
+            {
+              "target": "serve",
+              "ms": 93.58910000000105
+            }
+          ],
+          "requestedShakeCount": 2,
+          "cumulativeMeasuredNativeShakeMs": 4006.4974,
+          "reactionId": "ref.pose.idle-after-serve"
+        },
+        {
+          "id": "IA-1D-F-4-01",
+          "setting": "F-4",
+          "outcome": "COMPLETED_INPUT",
+          "score": 285,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 80
+            },
+            {
+              "target": "pour",
+              "ms": 15000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "shake",
+              "ms": 1000
+            },
+            {
+              "target": "serve",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.56779999999999
+            },
+            {
+              "target": "ingredientSlot08",
+              "ms": 85.90120000000002
+            },
+            {
+              "target": "pour",
+              "ms": 15008.070500000002
+            },
+            {
+              "target": "shake",
+              "ms": 1002.6316999999981
+            },
+            {
+              "target": "shake",
+              "ms": 1008.1144000000022
+            },
+            {
+              "target": "shake",
+              "ms": 1011.9143999999978
+            },
+            {
+              "target": "shake",
+              "ms": 1000.4913000000015
+            },
+            {
+              "target": "serve",
+              "ms": 80.4816000000028
+            }
+          ],
+          "requestedShakeCount": 4,
+          "cumulativeMeasuredNativeShakeMs": 4023.1517999999996,
+          "reactionId": "ref.pose.idle-after-serve"
+        }
+      ],
+      "scoreFrequencies": {
+        "275": 1,
+        "285": 2
+      }
+    },
+    {
+      "variable": "target-calibration",
+      "settings": [
+        {
+          "setting": "DIAG-GARNISH",
+          "attempts": 1,
+          "scored": 0,
+          "scoreFrequencies": {},
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "DIAG-GARNISH-V2",
+          "attempts": 1,
+          "scored": 0,
+          "scoreFrequencies": {},
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "DIAG-ICE",
+          "attempts": 1,
+          "scored": 0,
+          "scoreFrequencies": {},
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        },
+        {
+          "setting": "DIAG-ICE-V2",
+          "attempts": 1,
+          "scored": 0,
+          "scoreFrequencies": {},
+          "aborted": 0,
+          "repeatability": "UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS"
+        }
+      ],
+      "runs": [
+        {
+          "id": "IA-1D-DIAG-GARNISH-01",
+          "setting": "DIAG-GARNISH",
+          "outcome": "COMPLETED_INPUT",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "garnishLemons",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 109.42499999999998
+            },
+            {
+              "target": "garnishLemons",
+              "ms": 80.50389999999993
+            }
+          ],
+          "requestedShakeCount": 0,
+          "cumulativeMeasuredNativeShakeMs": 0,
+          "reactionId": "not-served"
+        },
+        {
+          "id": "IA-1D-DIAG-GARNISH-V2-01",
+          "setting": "DIAG-GARNISH-V2",
+          "outcome": "COMPLETED_INPUT",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.66480000000001
+            },
+            {
+              "target": "garnishVisible",
+              "ms": 93.81220000000008
+            }
+          ],
+          "requestedShakeCount": 0,
+          "cumulativeMeasuredNativeShakeMs": 0,
+          "reactionId": "not-served"
+        },
+        {
+          "id": "IA-1D-DIAG-ICE-01",
+          "setting": "DIAG-ICE",
+          "outcome": "COMPLETED_INPUT",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "iceChunks",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 108.92690000000002
+            },
+            {
+              "target": "iceChunks",
+              "ms": 80.41350000000011
+            }
+          ],
+          "requestedShakeCount": 0,
+          "cumulativeMeasuredNativeShakeMs": 0,
+          "reactionId": "not-served"
+        },
+        {
+          "id": "IA-1D-DIAG-ICE-V2-01",
+          "setting": "DIAG-ICE-V2",
+          "outcome": "COMPLETED_INPUT",
+          "score": null,
+          "requestedHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 100
+            },
+            {
+              "target": "iceVisible",
+              "ms": 80
+            }
+          ],
+          "measuredHolds": [
+            {
+              "target": "letsMixOrb",
+              "ms": 107.7602
+            },
+            {
+              "target": "iceVisible",
+              "ms": 92.92010000000005
+            }
+          ],
+          "requestedShakeCount": 0,
+          "cumulativeMeasuredNativeShakeMs": 0,
+          "reactionId": "not-served"
+        }
+      ],
+      "scoreFrequencies": {}
+    }
+  ],
+  "controlTreatmentDeltas": [
+    {
+      "id": "1D-A-10000-pair-1",
+      "controlIds": [
+        "IA-1D-CONTROL-20"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-10000-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 245,
+      "delta": -25,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-A-10000-pair-2",
+      "controlIds": [
+        "IA-1D-CONTROL-22"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-10000-02"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 246,
+      "delta": -24,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-A-10000-pair-3",
+      "controlIds": [
+        "IA-1D-CONTROL-24"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-10000-03"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 246,
+      "delta": -24,
+      "abortedIds": []
+    },
+    {
+      "id": "A-14000-01-retry2",
+      "controlIds": [
+        "IA-1D-CONTROL-07"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-14000-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "A-14000-02-retry2",
+      "controlIds": [
+        "IA-1D-CONTROL-09"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-14000-02"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "A-14000-03-retry2",
+      "controlIds": [
+        "IA-1D-CONTROL-11"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-14000-03"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "A-14500-01-retry2",
+      "controlIds": [
+        "IA-1D-CONTROL-08"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-14500-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "A-14500-02-retry2",
+      "controlIds": [
+        "IA-1D-CONTROL-10"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-14500-02"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "A-14500-03-retry2",
+      "controlIds": [
+        "IA-1D-CONTROL-12"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-14500-03"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-A-5000-pair-1",
+      "controlIds": [
+        "IA-1D-CONTROL-19"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-5000-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 111,
+      "delta": -159,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-A-5000-pair-2",
+      "controlIds": [
+        "IA-1D-CONTROL-21"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-5000-02"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 111,
+      "delta": -159,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-A-5000-pair-3",
+      "controlIds": [
+        "IA-1D-CONTROL-23"
+      ],
+      "treatmentIds": [
+        "IA-1D-A-5000-03"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 111,
+      "delta": -159,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-B-pair-01",
+      "controlIds": [
+        "IA-1D-B-1-01"
+      ],
+      "treatmentIds": [
+        "IA-1D-B-3-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 111,
+      "score_treatment": 65,
+      "delta": -46,
+      "abortedIds": []
+    },
+    {
+      "id": "C-one-01",
+      "controlIds": [
+        "IA-1D-CONTROL-13"
+      ],
+      "treatmentIds": [
+        "IA-1D-C-1-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-C-visible-1-pair-01",
+      "controlIds": [
+        "IA-1D-CONTROL-14"
+      ],
+      "treatmentIds": [
+        "IA-1D-C-visible-1-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-C-visible-2-pair-01",
+      "controlIds": [
+        "IA-1D-CONTROL-15"
+      ],
+      "treatmentIds": [
+        "IA-1D-C-visible-2-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-C-visible-early-1-pair-01",
+      "controlIds": [
+        "IA-1D-CONTROL-28"
+      ],
+      "treatmentIds": [
+        "IA-1D-C-visible-early-1-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-C-visible-early-2-pair-01",
+      "controlIds": [
+        "IA-1D-CONTROL-29"
+      ],
+      "treatmentIds": [
+        "IA-1D-C-visible-early-2-01"
+      ],
+      "status": "UNKNOWN / INCOMPLETE",
+      "abortedIds": []
+    },
+    {
+      "id": "A-14000-01",
+      "controlIds": [
+        "IA-1D-CONTROL-01"
+      ],
+      "treatmentIds": [],
+      "status": "UNKNOWN / INCOMPLETE",
+      "abortedIds": [
+        "IA-1D-CONTROL-01"
+      ]
+    },
+    {
+      "id": "1D-D-visible-before-pair-01",
+      "controlIds": [
+        "IA-1D-CONTROL-16"
+      ],
+      "treatmentIds": [
+        "IA-1D-D-visible-before-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 270,
+      "delta": 0,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-D-visible-after-pair-01",
+      "controlIds": [
+        "IA-1D-CONTROL-17"
+      ],
+      "treatmentIds": [
+        "IA-1D-D-visible-after-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 370,
+      "delta": 100,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-D-visible-repeat-pair-01",
+      "controlIds": [
+        "IA-1D-CONTROL-18"
+      ],
+      "treatmentIds": [
+        "IA-1D-D-visible-repeat-01"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 370,
+      "delta": 100,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-D-visible-after-pair-02",
+      "controlIds": [
+        "IA-1D-CONTROL-30"
+      ],
+      "treatmentIds": [
+        "IA-1D-D-visible-after-02"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 370,
+      "delta": 100,
+      "abortedIds": []
+    },
+    {
+      "id": "1D-D-visible-after-pair-03",
+      "controlIds": [
+        "IA-1D-CONTROL-31"
+      ],
+      "treatmentIds": [
+        "IA-1D-D-visible-after-03"
+      ],
+      "status": "OBSERVED DELTA — NOT A MECHANIC",
+      "score_control": 270,
+      "score_treatment": 370,
+      "delta": 100,
+      "abortedIds": []
+    }
+  ],
+  "environmentIds": [
+    "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui"
+  ],
+  "modelStatus": "NO_CANDIDATE / CANONICAL QUANTITY UNMAPPED"
+}

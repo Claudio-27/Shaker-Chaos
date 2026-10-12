@@ -157,3 +157,11 @@ Preserve information until research proves it irrelevant: anche gli input incert
 ## Ricerca nativa 1C
 
 Il runner Win32 in research/native-runner è separato dal prodotto. NativeCapture conserva storia di input, timing OS frazionari, identità runtime, geometria e riferimenti a catture ignorate; nessun PointerEvent/coordinate entra in MixEvent. Senza quantum le fixture hanno inputValidation UNVERIFIED: storia vuota significa unmapped, mai drink vuoto. Evidenza può includere environmentId e il candidato rifiuta runtime diversi anche con stesso SWF. Correzioni append-only applicate a view copiato preservano raw e cronologia. Vedi NATIVE_REFERENCE_FINDINGS.md.
+
+## Caratterizzazione nativa 1D
+
+Il ledger nativo conserva richieste, consegna OS, tempi effettivi, geometria, stato freddo, catture ed errori; la review visiva è append-only e distinta dal run. NativePourLevel e durata Stopwatch non sono VolumeUnit né tick Flash. Finché la mappatura resta UNMAPPED, la storia canonica vuota è sconosciuta: il Lab mostra REFERENCE con lo score letto e CURRENT DEMO UNKNOWN, evitando uno score demo da cocktail vuoto. Una storia canonica validata continua a usare il confronto normale. Nessuna modifica al dominio o allo scorer demo. Preserve information until research proves it irrelevant.
+
+Procedura congelata, gate, coppie e riepilogo vivono soltanto in research e scripts. Gli stati di evidenza meccanica non sono promossi da un test del tooling. Il ramo locale di 1D è un’eccezione autorizzata dall’utente; gli artefatti storici sono conservati. Vedi NATIVE_CHARACTERIZATION_FINDINGS.md.
+
+La serie1D mostra perché conservare la sequenza:5000ms continui e tre Pour che sommano5000ms hanno dato111 e65 in una coppia. Questo confronto non implica quantità uguali. Le misure OS sono telemetria di acquisizione; la storia canonica e le sue VolumeUnit restano separate finché una mappatura non è convalidata. Anche fallimento automatico con score0, mancato risultato e abort del helper restano tre esiti distinti.

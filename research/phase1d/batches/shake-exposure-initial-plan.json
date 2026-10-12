@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "shake-exposure-initial-plan",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "E-0",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-1",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-2",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-3",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-4",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-5",
+      "repeat": "01"
+    },
+    {
+      "setting": "F-1",
+      "repeat": "01"
+    },
+    {
+      "setting": "F-2",
+      "repeat": "01"
+    },
+    {
+      "setting": "F-4",
+      "repeat": "01"
+    },
+    {
+      "setting": "X-5000",
+      "repeat": "01"
+    },
+    {
+      "setting": "X-10000",
+      "repeat": "01"
+    },
+    {
+      "setting": "X-15000",
+      "repeat": "01"
+    }
+  ],
+  "status": "UNEXECUTED PLAN; superseded before input by the gated B pair insertion"
+}

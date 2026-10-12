@@ -102,3 +102,7 @@ Solo sviluppo: /?compatLab=1, combinabile con &assetLab=1&visualDebug=1. Sequenz
 [Findings e limiti](docs/REFERENCE_FINDINGS.md), [runner riproducibile](research/reference-runner/README.md). 16 acquisizioni diagnostiche / 16 fixture UNVERIFIED; nessuno score o modello numerico calibrato. Comandi: npm run research:reference, research:fixtures, research:validate, research:summary, research:model. Solo ricerca, assente dal bundle. Scoring demo invariato; nessuna compatibilità dichiarata.
 
 Ricerca locale 1C: npm run research:native:doctor / calibrate / smoke / run; read-only dataset npm run research:raw -- ID. Binaries/catture soltanto ignorati, nessuna distribuzione. Stato e limiti: docs/NATIVE_REFERENCE_FINDINGS.md. Il gioco/build normale non avvia il riferimento.
+
+## Fase 1D — caratterizzazione quantitativa nativa
+
+Baseline congelata e cinque cold run nuovi a270; prove control/treatment, ledger append-only e dashboard per frequenze, tempi e abort. [Rapporto e limiti](docs/NATIVE_CHARACTERIZATION_FINDINGS.md), [procedura e comandi](research/phase1d/README.md), [sicurezza](docs/NATIVE_AUTOMATION_SAFETY.md). Le fixture importano lo score originale nel Lab, mantenendo CURRENT DEMO UNKNOWN quando manca la mappatura canonica. Nessuna formula o meccanica dichiarata VERIFIED; scoring e contenuti del gioco invariati. Stop dopo1D, nessun commit/push/PR.

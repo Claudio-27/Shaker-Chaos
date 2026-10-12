@@ -1,0 +1,10 @@
+{
+  "id": "IA-1D-DIAG-ICE-V2-01",
+  "phase": "modifier-diagnostic",
+  "reactionId": "not-served",
+  "visibleFill": "not-confirmed",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T181852253-8196/result-181900994.png",
+  "date": "2026-10-12T18:20:19.791Z",
+  "method": "direct-visual"
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "shake-exposure-v1",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "E-0",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-1",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-2",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-3",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-4",
+      "repeat": "01"
+    },
+    {
+      "setting": "E-5",
+      "repeat": "01"
+    },
+    {
+      "setting": "F-1",
+      "repeat": "01"
+    },
+    {
+      "setting": "F-2",
+      "repeat": "01"
+    },
+    {
+      "setting": "F-4",
+      "repeat": "01"
+    },
+    {
+      "setting": "X-5000",
+      "repeat": "01"
+    },
+    {
+      "setting": "X-10000",
+      "repeat": "01"
+    },
+    {
+      "setting": "X-15000",
+      "repeat": "01"
+    }
+  ],
+  "rationale": "Original Shake batch had already loaded its jobs when the B gate passed; B will run separately afterward if the authorized interval still has sufficient time. Actual run ledgers are authoritative."
+}

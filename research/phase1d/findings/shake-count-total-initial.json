@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "evidenceIds": [
+    "IA-1D-E-0-01",
+    "IA-1D-E-1-01",
+    "IA-1D-E-2-01",
+    "IA-1D-E-3-01",
+    "IA-1D-E-4-01",
+    "IA-1D-E-5-01",
+    "IA-1D-F-1-01",
+    "IA-1D-F-2-01",
+    "IA-1D-F-4-01"
+  ],
+  "countSeries": {
+    "requestedPerShakeMs": 1000,
+    "scoreByCount": {
+      "0": null,
+      "1": 270,
+      "2": 270,
+      "3": 275,
+      "4": 285,
+      "5": 300
+    }
+  },
+  "totalSeries": {
+    "requestedTotalMs": 4000,
+    "scoreByCount": {
+      "1": 275,
+      "2": 285,
+      "4": 285
+    }
+  },
+  "acceptanceEvidence": "E-2 second during-capture visibly shows shaker and STOP control; repeated OS pressures are not assumed accepted from delivery alone.",
+  "limitations": [
+    "Single trial per setting; E-4 and F-4 provide two repeats of the same requested4x1000 sequence.",
+    "Actual totals differ by milliseconds; release gaps differ by count.",
+    "No Flash-duration/tick mapping or context-free count bonus.",
+    "E-0 no result; not score0."
+  ]
+}

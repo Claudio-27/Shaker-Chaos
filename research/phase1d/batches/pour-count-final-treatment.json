@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "pour-count-final-treatment",
+  "notAfterUtc": "2026-10-12T19:15:00.000Z",
+  "rationale": "Finish the already-started B pair within approximately one hour. The original batch retained its90s safety buffer and stopped before this last job. No input safety guard reduced; maximum remaining exposure is one cold run.",
+  "jobs": [
+    {
+      "setting": "B-3",
+      "repeat": "01",
+      "pairId": "1D-B-pair-01"
+    }
+  ]
+}

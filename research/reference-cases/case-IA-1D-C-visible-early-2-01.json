@@ -1,0 +1,31 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1D-C-visible-early-2-01",
+      "procedure": "research/raw-observations/IA-1D-C-visible-early-2-01.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 17008c9f177913180deb33c92dc98f6550ad94f77cf20a3d4cb3e2beef389a4d",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    }
+  ],
+  "id": "case-IA-1D-C-visible-early-2-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Canonical quantity, Flash ticks and capacity unmapped. Requested and measured OS timing differ. No formula or bonus inferred. Raw source: research/raw-observations/IA-1D-C-visible-early-2-01.json",
+  "observedReferenceResult": {
+    "phase": "preparation-no-result"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "ice/C-visible-early-2 / IA-1D-C-visible-early-2-01"
+}

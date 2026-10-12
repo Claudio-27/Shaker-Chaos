@@ -1,0 +1,10 @@
+{
+  "id": "IA-1D-BASELINE-03",
+  "score": 270,
+  "reactionId": "ref.sequence.pour-to-glass-result",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T125935176-23240/result-130038224.png",
+  "date": "2026-10-12T13:02:39.439Z",
+  "method": "direct-visual"
+}

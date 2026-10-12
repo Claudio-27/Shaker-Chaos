@@ -1,0 +1,23 @@
+// Pure research report; no input, no scorer, no automatic evidence promotion.
+function compactReason(reason){
+ if(typeof reason!=='string')return 'UNKNOWN';
+ const begin=reason.indexOf('Error: {'),end=reason.indexOf('\n    at ',begin);
+ if(begin>=0&&end>begin){try{return JSON.parse(reason.slice(begin+7,end).trim()).reason??reason;}catch{/* Preserve an explicit unknown if the diagnostic is malformed. */}}
+ return reason;
+}
+export function summarizeNativeRuns(runs){
+ const known=r=>r.outcome==='COMPLETED_INPUT'&&r.review?.visuallyVerified===true&&Number.isSafeInteger(r.review.score);
+ const frequency=values=>Object.fromEntries([...new Set(values)].sort((a,b)=>a-b).map(v=>[v,values.filter(x=>x===v).length]));
+ const variables=[...new Set(runs.map(r=>r.variable))].sort();
+ const pairs=[];
+ for(const id of [...new Set(runs.map(r=>r.pairId).filter(Boolean))]){
+  const rows=runs.filter(r=>r.pairId===id),controls=rows.filter(r=>r.role==='CONTROL'),treatments=rows.filter(r=>r.role==='TREATMENT');
+  const valid=controls.length===1&&treatments.length===1&&rows.every(known)&&controls[0].environmentId===treatments[0].environmentId&&controls[0].baselineProcedureSha256===treatments[0].baselineProcedureSha256;
+  pairs.push({id,controlIds:controls.map(r=>r.id),treatmentIds:treatments.map(r=>r.id),status:valid?'OBSERVED DELTA — NOT A MECHANIC':'UNKNOWN / INCOMPLETE',...(valid?{score_control:controls[0].review.score,score_treatment:treatments[0].review.score,delta:treatments[0].review.score-controls[0].review.score}:{}),abortedIds:rows.filter(r=>r.outcome==='ABORTED').map(r=>r.id)});
+ }
+ const base=runs.filter(r=>r.setting==='BASELINE'),successful=base.filter(r=>known(r)&&r.sameProcedure&&r.coldLaunch&&r.initialStateValidated);
+ const independent=new Set(successful.map(r=>r.sessionId)).size===successful.length;
+ const sameScope=new Set(successful.map(r=>r.procedureSha256+'|'+r.environmentId)).size===1;
+ const sameScore=new Set(successful.map(r=>r.review.score)).size===1;
+ return {totalRuns:runs.length,coldRuns:runs.filter(r=>r.coldLaunch).length,inputCompleted:runs.filter(r=>r.outcome==='COMPLETED_INPUT').length,scoredResults:runs.filter(known).length,successfulServes:runs.filter(r=>known(r)&&r.review.resultTiming!=='before-serve').length,automaticFailureIds:runs.filter(r=>known(r)&&r.review.resultTiming==='before-serve').map(r=>r.id),abortedRuns:runs.filter(r=>r.outcome==='ABORTED').map(r=>({id:r.id,reason:compactReason(r.reason),sessionId:r.sessionId})),pendingScoreReviews:runs.filter(r=>r.outcome==='COMPLETED_INPUT'&&!r.review).map(r=>r.id),scoreFrequencies:frequency(runs.filter(known).map(r=>r.review.score)),baseline:{scriptId:'baseline-270-v1',attempts:base.length,successful:successful.length,scoreSequence:base.map(r=>({id:r.id,outcome:r.outcome,score:r.review?.score??null})),gate3:successful.length>=3&&independent&&sameScope&&sameScore,gate5:successful.length>=5&&independent&&sameScope&&sameScore,evidenceStatus:successful.length>=3&&independent&&sameScope&&sameScore?'STRONGLY_SUPPORTED':'UNVERIFIED',canonicalQuantityMapping:'UNMAPPED'},experiments: variables.map(variable=>({variable,settings:[...new Set(runs.filter(r=>r.variable===variable).map(r=>r.setting))].map(setting=>{const rows=runs.filter(r=>r.variable===variable&&r.setting===setting),scored=rows.filter(known),scores=scored.map(r=>r.review.score);const independent=new Set(scored.map(r=>r.sessionId)).size===scored.length;const scope=new Set(scored.map(r=>r.procedureSha256+'|'+r.environmentId)).size===1;return {setting,attempts:rows.length,scored:scored.length,scoreFrequencies:frequency(scores),aborted:rows.filter(r=>r.outcome==='ABORTED').length,repeatability:scored.length>=3&&independent&&scope&&scored.every(r=>r.coldLaunch===true&&r.initialStateValidated===true)&&new Set(scores).size===1?'REPEATED_NATIVE_OUTPUT':'UNVERIFIED / INSUFFICIENT OR DISCORDANT REPEATS'};}),runs:runs.filter(r=>r.variable===variable).map(r=>({id:r.id,setting:r.setting,outcome:r.outcome,score:r.review?.score??null,requestedHolds:r.requestedProcedure?.actions.map(a=>({target:a.target,ms:a.holdMs})),measuredHolds:r.delivery?.map(a=>({target:a.target,ms:a.actualMs})),requestedShakeCount:r.requestedProcedure?.actions.filter(a=>a.target==='shake').length??null,cumulativeMeasuredNativeShakeMs:r.delivery?.filter(a=>a.target==='shake').reduce((n,a)=>n+a.actualMs,0)??null,reactionId:r.review?.reactionId??null})),scoreFrequencies:frequency(runs.filter(r=>r.variable===variable&&known(r)).map(r=>r.review.score))})),controlTreatmentDeltas:pairs,environmentIds:[...new Set(runs.map(r=>r.environmentId))],modelStatus:'NO_CANDIDATE / CANONICAL QUANTITY UNMAPPED'};
+}

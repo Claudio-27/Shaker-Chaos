@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "shorter-pours-v1",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "19",
+      "pairId": "1D-A-5000-pair-1"
+    },
+    {
+      "setting": "A-5000",
+      "repeat": "01",
+      "pairId": "1D-A-5000-pair-1"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "20",
+      "pairId": "1D-A-8000-pair-1"
+    },
+    {
+      "setting": "A-8000",
+      "repeat": "01",
+      "pairId": "1D-A-8000-pair-1"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "21",
+      "pairId": "1D-A-10000-pair-1"
+    },
+    {
+      "setting": "A-10000",
+      "repeat": "01",
+      "pairId": "1D-A-10000-pair-1"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "22",
+      "pairId": "1D-A-5000-pair-2"
+    },
+    {
+      "setting": "A-5000",
+      "repeat": "02",
+      "pairId": "1D-A-5000-pair-2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "23",
+      "pairId": "1D-A-8000-pair-2"
+    },
+    {
+      "setting": "A-8000",
+      "repeat": "02",
+      "pairId": "1D-A-8000-pair-2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "24",
+      "pairId": "1D-A-10000-pair-2"
+    },
+    {
+      "setting": "A-10000",
+      "repeat": "02",
+      "pairId": "1D-A-10000-pair-2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "25",
+      "pairId": "1D-A-5000-pair-3"
+    },
+    {
+      "setting": "A-5000",
+      "repeat": "03",
+      "pairId": "1D-A-5000-pair-3"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "26",
+      "pairId": "1D-A-8000-pair-3"
+    },
+    {
+      "setting": "A-8000",
+      "repeat": "03",
+      "pairId": "1D-A-8000-pair-3"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "27",
+      "pairId": "1D-A-10000-pair-3"
+    },
+    {
+      "setting": "A-10000",
+      "repeat": "03",
+      "pairId": "1D-A-10000-pair-3"
+    }
+  ]
+}

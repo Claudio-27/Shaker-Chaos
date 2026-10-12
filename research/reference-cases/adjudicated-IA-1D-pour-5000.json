@@ -1,0 +1,83 @@
+{
+  "confidence": "high",
+  "evidence": [
+    {
+      "id": "IA-1D-CONTROL-19",
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "repetitions": 1,
+      "procedure": "research/raw-observations/IA-1D-CONTROL-19.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0"
+    },
+    {
+      "id": "IA-1D-A-5000-01",
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "repetitions": 1,
+      "procedure": "research/raw-observations/IA-1D-A-5000-01.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 4066ae521ef77219b891fc9721eddacee5907de5a345e25a6317e94214e65e17"
+    },
+    {
+      "id": "IA-1D-CONTROL-21",
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "repetitions": 1,
+      "procedure": "research/raw-observations/IA-1D-CONTROL-21.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0"
+    },
+    {
+      "id": "IA-1D-A-5000-02",
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "repetitions": 1,
+      "procedure": "research/raw-observations/IA-1D-A-5000-02.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 4066ae521ef77219b891fc9721eddacee5907de5a345e25a6317e94214e65e17"
+    },
+    {
+      "id": "IA-1D-CONTROL-23",
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "repetitions": 1,
+      "procedure": "research/raw-observations/IA-1D-CONTROL-23.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0"
+    },
+    {
+      "id": "IA-1D-A-5000-03",
+      "date": "2026-10-12",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "repetitions": 1,
+      "procedure": "research/raw-observations/IA-1D-A-5000-03.json; Phase1D cold launch; frozen script baseline-270-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 4066ae521ef77219b891fc9721eddacee5907de5a345e25a6317e94214e65e17"
+    }
+  ],
+  "id": "adjudicated-IA-1D-pour-5000",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Three new cold A-5000 observations111,111,111 with paired controls270. Strong only for the documented Phase1D procedure/profile. Earlier Phase1C timed5000 scores113/111/110 remain intact and discordant; changed inter-action acquisition overhead and unknown Flash scheduling prevent a universal5000ms guarantee. No quantity/quantum/coefficient claimed. Canonical quantities UNMAPPED.",
+  "observedReferenceResult": {
+    "score": 111,
+    "phase": "result-screen",
+    "reactionId": "ref.react.r01"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Narrow native procedure/output repeatability in Phase1D acquisition profile only.",
+  "schemaVersion": 1,
+  "status": "STRONGLY_SUPPORTED",
+  "title": "Phase1D Pour5000 / three cold repeats111"
+}

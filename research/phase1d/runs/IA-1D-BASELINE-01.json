@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-1D-BASELINE-01",
+  "phase": "1D",
+  "scriptId": "baseline-270-v1",
+  "baselineProcedureSha256": "15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0",
+  "procedureSha256": "15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0",
+  "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+  "setting": "BASELINE",
+  "variable": "baseline",
+  "role": "BASELINE",
+  "repetition": 1,
+  "pairId": null,
+  "requestedProcedure": {
+    "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+    "swfSha256": "ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+    "executableSha256": "b0840c1db59ee428ab35015fdd155a09465d6649fb19de09ee34d352dd247656",
+    "geometry": {
+      "width": 600,
+      "height": 470,
+      "dpi": 120
+    },
+    "stage": {
+      "width": 600,
+      "height": 440,
+      "insetTop": 30,
+      "insetBottom": 0,
+      "insetBaseDpi": 120
+    },
+    "targets": {
+      "letsMixOrb": {
+        "x": 300,
+        "y": 410
+      },
+      "ingredientSlot08": {
+        "x": 343,
+        "y": 115
+      },
+      "pour": {
+        "x": 75,
+        "y": 413
+      },
+      "shake": {
+        "x": 207,
+        "y": 413
+      },
+      "serve": {
+        "x": 341,
+        "y": 413
+      }
+    },
+    "actions": [
+      {
+        "target": "letsMixOrb",
+        "holdMs": 100
+      },
+      {
+        "target": "ingredientSlot08",
+        "holdMs": 80
+      },
+      {
+        "target": "pour",
+        "holdMs": 15000,
+        "captureDuring": true
+      },
+      {
+        "target": "shake",
+        "holdMs": 1000,
+        "captureDuring": true
+      },
+      {
+        "target": "serve",
+        "holdMs": 80
+      }
+    ],
+    "afterServeWaitMs": 30000,
+    "waits": {
+      "coldLaunchAfterActivationMs": 1500,
+      "pointerMoveBeforeDownMs": 50,
+      "afterReleaseBeforeCaptureMs": 500,
+      "resultCaptureIntervalMs": 2000,
+      "captureGeometryStabilityMs": 250
+    },
+    "coldFingerprint": "96245237ee6b3eb89c99cca6e16e41c6d3fa72c178e8895ed67b50a8baadc60c",
+    "launch": {
+      "width": 600,
+      "height": 440,
+      "graphics": "dx12",
+      "storage": "memory",
+      "openUrlMode": "deny",
+      "tcpConnections": "deny",
+      "filesystemAccessMode": "deny"
+    }
+  },
+  "sameProcedure": true,
+  "startedAt": "2026-10-12T12:55:40.976Z",
+  "outcome": "ABORTED",
+  "traceFiles": [
+    "research/.local-reference/NATIVE-20261012T125548503-2840-abort-125558990.json"
+  ],
+  "sessionId": "NATIVE-20261012T125548503-2840",
+  "coldLaunch": true,
+  "initialCapture": "research/.captures/NATIVE-20261012T125548503-2840/cold-launch.png",
+  "coldFingerprint": "96245237ee6b3eb89c99cca6e16e41c6d3fa72c178e8895ed67b50a8baadc60c",
+  "initialStateValidated": true,
+  "reason": "file:///C:/Users/claud/Documents/GitHub/Shaker-Chaos/research/native-runner/cli.mjs:17\r\n if(result.status!==0)throw Error(result.stdout||result.stderr||'Native command failed');\r\n                            ^\r\n\r\nError: {\r\r\n  \"runtime\": {\r\r\n    \"schemaVersion\": 1,\r\r\n    \"executable\": \"research/.local-reference/ruffle-nightly-2026-10-11/ruffle.exe\",\r\r\n    \"build\": \"nightly-2026-10-11\",\r\r\n    \"source\": \"https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-11/ruffle-nightly-2026_10_11-windows-x86_64.zip\",\r\r\n    \"environmentId\": \"ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui\",\r\r\n    \"renderer\": \"dx12 requested explicitly; fidelity unverified\",\r\r\n    \"date\": \"2026-10-11\",\r\r\n    \"version\": \"Ruffle 0.8.0-nightly.2026.10.11-nightly (8c6f3e95203a765c39639ee9366abe8340830709 2026-10-11)\",\r\r\n    \"executableSha256\": \"b0840c1db59ee428ab35015fdd155a09465d6649fb19de09ee34d352dd247656\",\r\r\n    \"notes\": \"Default Ruffle menu visible to inspect public playback state; no VM inspection.\",\r\r\n    \"expectedColdCaptureSha256\": \"38fc71c0ca77c4a071cf782a8c41b1f71147239e39e933759e489916b2007b77\",\r\r\n    \"expectedColdFingerprint\": \"96245237ee6b3eb89c99cca6e16e41c6d3fa72c178e8895ed67b50a8baadc60c\"\r\r\n  },\r\r\n  \"actions\": [\r\r\n    {\r\r\n      \"stage\": {\r\r\n        \"y\": 410,\r\r\n        \"x\": 300\r\r\n      },\r\r\n      \"stageScale\": 1,\r\r\n      \"buttonUpObserved\": true,\r\r\n      \"released\": true,\r\r\n      \"buttonDownObserved\": true,\r\r\n      \"physicalCursor\": {\r\r\n        \"y\": 638,\r\r\n        \"x\": 469\r\r\n      },\r\r\n      \"captures\": [\r\r\n        \"research/.captures/NATIVE-20261012T125548503-2840/action-125554928-1-before.png\",\r\r\n        \"research/.captures/NATIVE-20261012T125548503-2840/action-125554928-1-after.png\"\r\r\n      ],\r\r\n      \"client\": {\r\r\n        \"y\": 440,\r\r\n        \"x\": 300\r\r\n      },\r\r\n      \"screen\": {\r\r\n        \"y\": 638,\r\r\n        \"x\": 469\r\r\n      },\r\r\n      \"upMs\": 178.773,\r\r\n      \"downMs\": 72.0296,\r\r\n      \"requestedHoldMs\": 100,\r\r\n      \"target\": \"letsMixOrb\",\r\r\n      \"geometry\": {\r\r\n        \"Handle\": 1574640,\r\r\n        \"ProcessId\": 2840,\r\r\n        \"X\": 169,\r\r\n        \"Y\": 198,\r\r\n        \"Width\": 600,\r\r\n        \"Height\": 470,\r\r\n        \"Dpi\": 120,\r\r\n        \"Title\": \"Ruffle - reference.swf\",\r\r\n        \"Foreground\": true\r\r\n      },\r\r\n      \"measuredHoldMs\": 106.7434,\r\r\n      \"method\": \"Win32 SendInput / SetCursorPos\"\r\r\n    },\r\r\n    {\r\r\n      \"stage\": {\r\r\n        \"y\": 115,\r\r\n        \"x\": 343\r\r\n      },\r\r\n      \"stageScale\": 1,\r\r\n      \"buttonUpObserved\": true,\r\r\n      \"released\": true,\r\r\n      \"buttonDownObserved\": true,\r\r\n      \"physicalCursor\": {\r\r\n        \"y\": 343,\r\r\n        \"x\": 512\r\r\n      },\r\r\n      \"captures\": [\r\r\n        \"research/.captures/NATIVE-20261012T125548503-2840/action-125556266-2-before.png\",\r\r\n        \"research/.captures/NATIVE-20261012T125548503-2840/action-125556266-2-after.png\"\r\r\n      ],\r\r\n      \"client\": {\r\r\n        \"y\": 145,\r\r\n        \"x\": 343\r\r\n      },\r\r\n      \"screen\": {\r\r\n        \"y\": 343,\r\r\n        \"x\": 512\r\r\n      },\r\r\n      \"upMs\": 1427.1571,\r\r\n      \"downMs\": 1334.0801,\r\r\n      \"requestedHoldMs\": 80,\r\r\n      \"target\": \"ingredientSlot08\",\r\r\n      \"geometry\": {\r\r\n        \"Handle\": 1574640,\r\r\n        \"ProcessId\": 2840,\r\r\n        \"X\": 169,\r\r\n        \"Y\": 198,\r\r\n        \"Width\": 600,\r\r\n        \"Height\": 470,\r\r\n        \"Dpi\": 120,\r\r\n        \"Title\": \"Ruffle - reference.swf\",\r\r\n        \"Foreground\": true\r\r\n      },\r\r\n      \"measuredHoldMs\": 93.077,\r\r\n      \"method\": \"Win32 SendInput / SetCursorPos\"\r\r\n    }\r\r\n  ],\r\r\n  \"abortedAction\": {\r\r\n    \"stage\": {\r\r\n      \"y\": 413,\r\r\n      \"x\": 75\r\r\n    },\r\r\n    \"stageScale\": 1,\r\r\n    \"timing\": {\r\r\n      \"DownMs\": 2578.7156,\r\r\n      \"UpMs\": 3688.0614,\r\r\n      \"MeasuredHoldMs\": 1109.3458,\r\r\n      \"RequestedHoldMs\": 15000,\r\r\n      \"ScreenX\": 244,\r\r\n      \"ScreenY\": 641,\r\r\n      \"Released\": true,\r\r\n      \"ButtonDownObserved\": true,\r\r\n      \"ButtonUpObserved\": true,\r\r\n      \"Started\": true,\r\r\n      \"Aborted\": true,\r\r\n      \"AbortReason\": \"Cursor moved externally: expected=244,641 actual=232,614\",\r\r\n      \"PhysicalCursorX\": 244,\r\r\n      \"PhysicalCursorY\": 641\r\r\n    },\r\r\n    \"captures\": \"research/.captures/NATIVE-20261012T125548503-2840/action-125557508-3-before.png\",\r\r\n    \"client\": {\r\r\n      \"y\": 443,\r\r\n      \"x\": 75\r\r\n    },\r\r\n    \"requestedHoldMs\": 15000,\r\r\n    \"target\": \"pour\",\r\r\n    \"geometry\": {\r\r\n      \"Handle\": 1574640,\r\r\n      \"ProcessId\": 2840,\r\r\n      \"X\": 169,\r\r\n      \"Y\": 198,\r\r\n      \"Width\": 600,\r\r\n      \"Height\": 470,\r\r\n      \"Dpi\": 120,\r\r\n      \"Title\": \"Ruffle - reference.swf\",\r\r\n      \"Foreground\": true\r\r\n    }\r\r\n  },\r\r\n  \"inputStopped\": true,\r\r\n  \"command\": \"run\",\r\r\n  \"reason\": \"Exception calling \\\"Hold\\\" with \\\"8\\\" argument(s): \\\"Cursor moved externally: expected=244,641 actual=232,614\\\"\",\r\r\n  \"session\": {\r\r\n    \"processId\": 2840,\r\r\n    \"environmentId\": \"ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui\",\r\r\n    \"processStartedAt\": \"2026-10-12T12:55:46.0016857Z\",\r\r\n    \"sessionId\": \"NATIVE-20261012T125548503-2840\",\r\r\n    \"coldLaunch\": true,\r\r\n    \"windowTitle\": \"Ruffle - reference.swf\",\r\r\n    \"swfSha256\": \"ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7\",\r\r\n    \"windowHandle\": 1574640\r\r\n  },\r\r\n  \"passed\": false\r\r\n}\r\r\n\r\n    at invoke (file:///C:/Users/claud/Documents/GitHub/Shaker-Chaos/research/native-runner/cli.mjs:17:29)\r\n    at file:///C:/Users/claud/Documents/GitHub/Shaker-Chaos/research/native-runner/cli.mjs:46:35\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\r\n    at async node:internal/modules/esm/loader:647:26\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\r\n\r\nNode.js v24.20.0\r\n",
+  "finishedAt": "2026-10-12T12:56:00.147Z"
+}

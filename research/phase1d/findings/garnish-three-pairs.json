@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "status": "STRONGLY_SUPPORTED",
+  "scope": "Pinned environment, baseline-full pour and afterShake lemon placement only",
+  "evidenceIds": [
+    "IA-1D-CONTROL-17",
+    "IA-1D-D-visible-after-01",
+    "IA-1D-CONTROL-30",
+    "IA-1D-D-visible-after-02",
+    "IA-1D-CONTROL-31",
+    "IA-1D-D-visible-after-03"
+  ],
+  "pairs": [
+    [
+      270,
+      370
+    ],
+    [
+      270,
+      370
+    ],
+    [
+      270,
+      370
+    ]
+  ],
+  "delta": 100,
+  "canonicalMapping": "UNMAPPED",
+  "limitations": [
+    "No global coefficient or physical quantity claim.",
+    "PreShake acceptance not established at full. Repeated-click result370 observed only once."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "evidenceIds": [
+    "IA-1D-CONTROL-29",
+    "IA-1D-C-visible-early-2-01"
+  ],
+  "observed": {
+    "controlScore": 270,
+    "treatmentScore": null,
+    "phase": "preparation-no-result",
+    "deliveredOSSequence": "complete",
+    "visibleFill": "not-confirmed"
+  },
+  "limitations": [
+    "Result capture after30s remains preparation, no numeric score.",
+    "Pour after-capture does not show established full indicator.",
+    "Repeated Ice, in-flight animation and subsequent actions/phase acceptance are not isolated. Not an OS safety abort, not score0."
+  ]
+}

@@ -93,3 +93,7 @@ La tabella precedente è la pianificazione originaria. Sono avvenute 16 acquisiz
 ## Chiusura 1C
 
 Native complete input→Serve→score ottenuto. 270 in FULL-DIAG/FULL-01/FULL-02; solo FULL-01/02 sono due script unificati identici. Terzo script interrotto da scope guard. Baseline temporizzata 113/111/110 non esatta. Nessun gate numerico/modifier/pair soddisfatto; matrice restante NOT TESTED. Raw, gap e aborti conservati; nessun valore esterno promosso. Vedi NATIVE_REFERENCE_FINDINGS.md e research/native-runner/protocols.json.
+
+## Esito della fase 1D
+
+Baseline nativa nuova5/5 a270; tre coppie per ciascun Pour14000/14500 ms mostrano delta0 contro15000. La matrice quantitativa ulteriore e le sue lacune sono riportate in NATIVE_CHARACTERIZATION_FINDINGS.md; non trasferire numeri della demo o di terzi nelle colonne q/C/t. Quantum, capacità numerica, coefficienti e mappatura canonica richiedono altre prove. Gli abort e i punti diagnostici errati restano nel dataset.

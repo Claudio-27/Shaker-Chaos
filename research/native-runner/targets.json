@@ -46,7 +46,23 @@
     "garnish": {
       "x": 135,
       "y": 290
+    },
+    "iceChunks": {
+      "x": 54,
+      "y": 208
+    },
+    "garnishLemons": {
+      "x": 125,
+      "y": 235
+    },
+    "iceVisible": {
+      "x": 54,
+      "y": 242
+    },
+    "garnishVisible": {
+      "x": 125,
+      "y": 268
     }
   },
-  "notes": "GUI observed: toolbar 30px; movie stage 600x440 below it. Public toolbar coordinates remain reference-only. Circular gold orb directly observed below title plate; label and orb are separate diagnostic targets. Circular intro orb starts preparation. Gameplay control orbs and bottle slot 08 visually located; bottle identity and pour acceptance still require observation."
+  "notes": "GUI observed: toolbar 30px; movie stage 600x440 below it. Public toolbar coordinates remain reference-only. Circular gold orb directly observed below title plate; label and orb are separate diagnostic targets. Circular intro orb starts preparation. Gameplay control orbs and bottle slot 08 visually located; bottle identity and pour acceptance still require observation. Phase1D: additional iceChunks/garnishLemons point candidates lie on visible items rather than bucket/bowl bodies; mechanical acceptance requires fresh diagnostic evidence. Historic ice/garnish points retained unchanged. Phase1D fresh diagnostics reject iceChunks/garnishLemons as modifier targets: they selected bottles. iceVisible (54,242) and garnishVisible (125,268) are new visually located candidates; lemon movement observed in diagnostic, capacity/phase acceptance require served comparisons. All prior coordinates retained."
 }

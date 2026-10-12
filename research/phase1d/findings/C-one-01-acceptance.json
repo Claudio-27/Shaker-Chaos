@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "C-one-01-acceptance",
+  "rawIds": [
+    "IA-1D-CONTROL-13",
+    "IA-1D-C-1-01"
+  ],
+  "score_control": 270,
+  "score_treatment": 270,
+  "delta": 0,
+  "status": "UNVERIFIED",
+  "mechanicalAcceptance": "NOT ESTABLISHED",
+  "reason": "The provisional Phase1C ice target atstage48,256 is on the bucket body; after the click the visible hand still holds the blue bottle and no change is confirmed. Full-phase locking is a competing explanation. This does not prove IceAdded or zero ice bonus. A fresh target diagnostic is needed."
+}

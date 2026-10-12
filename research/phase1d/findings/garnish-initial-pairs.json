@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "evidenceIds": [
+    "IA-1D-CONTROL-16",
+    "IA-1D-D-visible-before-01",
+    "IA-1D-CONTROL-17",
+    "IA-1D-D-visible-after-01"
+  ],
+  "observed": {
+    "beforeShake": {
+      "control": 270,
+      "treatment": 270,
+      "delta": 0,
+      "acceptance": "not established at full indicator"
+    },
+    "afterShake": {
+      "control": 270,
+      "treatment": 370,
+      "delta": 100,
+      "acceptance": "lemon slice visible on served glass"
+    }
+  },
+  "limitations": [
+    "One pair per placement so far. Repeated after-Shake pairs planned separately.",
+    "Same requested pours do not establish equal canonical volumes. No context-free modifier coefficient."
+  ]
+}

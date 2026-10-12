@@ -1,0 +1,10 @@
+{
+  "id": "IA-1D-E-2-01",
+  "score": 270,
+  "reactionId": "ref.pose.idle-after-serve",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T185755220-15580/result-185900371.png",
+  "date": "2026-10-12T19:01:12.949Z",
+  "method": "direct-visual"
+}

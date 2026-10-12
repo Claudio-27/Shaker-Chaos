@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "ice-order-v1",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "28",
+      "pairId": "1D-C-visible-early-1-pair-01"
+    },
+    {
+      "setting": "C-visible-early-1",
+      "repeat": "01",
+      "pairId": "1D-C-visible-early-1-pair-01"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "29",
+      "pairId": "1D-C-visible-early-2-pair-01"
+    },
+    {
+      "setting": "C-visible-early-2",
+      "repeat": "01",
+      "pairId": "1D-C-visible-early-2-pair-01"
+    }
+  ]
+}

@@ -25,3 +25,7 @@ La fase 0.3 anticipa l'integrazione degli artwork forniti, senza completare la d
 Fase 1B (2026-10-11): infrastruttura e diagnostica black-box eseguite; caratterizzazione numerica bloccata da input/emulazione non calibrati. Zero regole compatibili promosse, nessun passaggio alla fase seguente. Vedi REFERENCE_FINDINGS.md.
 
 Fase 1C chiusa con limiti: input desktop nativo e score originali disponibili; gate rigoroso tre run unificati parziale. Nessun passaggio automatico di fase o alla formula compatibile. Il prossimo incarico deve risolvere quel gate prima della matrice meccanica.
+
+## Chiusura di fase 1D
+
+Il gate di baseline è stato risolto con cinque nuove sessioni fredde a270. La caratterizzazione quantitativa nativa è documentata in NATIVE_CHARACTERIZATION_FINDINGS.md, comprese prove limitate e prerequisiti non raggiunti. Nessun candidato di scoring viene creato senza il gate completo. Arresto dopo1D: non iniziare la fase successiva senza un nuovo incarico.

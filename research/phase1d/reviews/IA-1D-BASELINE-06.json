@@ -1,0 +1,10 @@
+{
+  "id": "IA-1D-BASELINE-06",
+  "score": 270,
+  "reactionId": "ref.react.r01",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T130859184-35164/result-131002219.png",
+  "date": "2026-10-12T13:11:25.260Z",
+  "method": "direct-visual"
+}

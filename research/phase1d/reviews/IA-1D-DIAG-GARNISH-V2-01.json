@@ -1,0 +1,10 @@
+{
+  "id": "IA-1D-DIAG-GARNISH-V2-01",
+  "phase": "modifier-diagnostic",
+  "reactionId": "not-served",
+  "visibleFill": "not-confirmed",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T181906987-21608/result-181915612.png",
+  "date": "2026-10-12T18:20:19.984Z",
+  "method": "direct-visual"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "IA-1D-X-10000-01",
+  "resultTiming": "before-serve",
+  "phase": "failure-result",
+  "exploded": true,
+  "score": 0,
+  "reactionId": "ref.react.explosion",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T190748531-14112/result-190900375.png",
+  "date": "2026-10-12T19:14:04.111Z",
+  "method": "direct-visual"
+}

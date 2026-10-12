@@ -1,3 +1,4 @@
+import { summarizeNativeRuns } from './native-characterization.mjs';
 import { applyRawCorrections } from '../src/research/rawCorrections.ts';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { resolve, relative, isAbsolute } from 'node:path';
@@ -36,7 +37,7 @@ if(command==='raw') {
     const generated=observationToCase(item,rules), path=resolve(root,'research/reference-cases',generated.id+'.json');
     const content=encodeResearchCase(generated,rules);
     let prior; try{prior=await readFile(path,'utf8');}catch(e){if(e.code!=='ENOENT')throw e;}
-    if(prior!==undefined && prior!==content) throw Error('Existing fixture differs: '+generated.id+'; review it explicitly, do not overwrite evidence.');
+    if(prior!==undefined && encodeResearchCase(decodeResearchCase(prior,rules),rules)!==content) throw Error('Existing fixture differs: '+generated.id+'; review it explicitly, do not overwrite evidence.');
     if(prior===undefined) await writeFile(path,content,{flag:'wx'});
   }
   console.log('Generated/checked '+raw.length+' independent fixtures; no evidence promotion.');
@@ -52,6 +53,7 @@ if(command==='raw') {
     fixtures.push(item);
   }
   if(raw.some(r=>!fixtures.some(f=>f.id==='case-'+r.id))) throw Error('Raw/fixture coverage incomplete; run research:fixtures');
+  let phase1dRuns=[];try{phase1dRuns=await Promise.all((await jsonFiles('research/phase1d/runs')).map(async name=>{const run=JSON.parse(await readFile(resolve(root,'research/phase1d/runs',name),'utf8'));let review;try{review=JSON.parse(await readFile(resolve(root,'research/phase1d/reviews',run.id+'.json'),'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}return {...run,...(review?{review}:{})};}));}catch(e){if(e.code!=='ENOENT')throw e;}
   const summary={rawObservations:raw.length,appendOnlyCorrections:correctionNames.length,referenceFixtures:fixtures.length,
     statuses:Object.fromEntries(['VERIFIED','STRONGLY_SUPPORTED','UNVERIFIED'].map(status=>[status,fixtures.filter(f=>f.status===status).length])),
     methods:Object.fromEntries(['AUTOMATED OBSERVATION','MANUAL OBSERVATION'].map(method=>[method,raw.filter(r=>r.method===method).length])),
@@ -59,7 +61,7 @@ if(command==='raw') {
     buildCounts:Object.fromEntries(metadata.builds.map(b=>[b.id,raw.filter(r=>r.referenceBuild===b.id).length])),
     nativeObservations:raw.filter(r=>r.native).length,nativeNumericScores:raw.filter(r=>r.native?.scoreRead).length,nativeColdSessions:new Set(raw.filter(r=>r.native).map(r=>r.native.sessionId)).size,
     environmentCounts:Object.fromEntries(metadata.environments.map(e=>[e.id,raw.filter(r=>r.environmentId===e.id).length])),
-    experiments:[...new Set(raw.map(r=>r.experimentId))].sort(),referenceQuantum:null,referenceCapacity:null};
+    experiments:[...new Set(raw.map(r=>r.experimentId))].sort(),referenceQuantum:null,referenceCapacity:null,...(phase1dRuns.length?{phase1d:summarizeNativeRuns(phase1dRuns)}:{})};
   if(command==='validate') console.log('Validated raw + linked ResearchCase fixtures: '+raw.length+' / '+fixtures.length);
   else if(command==='summary') console.log(JSON.stringify(summary,null,2));
   else if(command==='model') console.log(JSON.stringify({modelStatus:'INSUFFICIENT_DATA / NO_SCORING_CANDIDATE',...evaluateResearchModel(fixtures,rules)},null,2));

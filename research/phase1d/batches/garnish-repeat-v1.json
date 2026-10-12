@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "garnish-repeat-v1",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "30",
+      "pairId": "1D-D-visible-after-pair-02"
+    },
+    {
+      "setting": "D-visible-after",
+      "repeat": "02",
+      "pairId": "1D-D-visible-after-pair-02"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "31",
+      "pairId": "1D-D-visible-after-pair-03"
+    },
+    {
+      "setting": "D-visible-after",
+      "repeat": "03",
+      "pairId": "1D-D-visible-after-pair-03"
+    }
+  ]
+}

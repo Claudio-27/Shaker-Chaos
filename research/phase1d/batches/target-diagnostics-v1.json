@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "target-diagnostics-v1",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "DIAG-ICE",
+      "repeat": "01"
+    },
+    {
+      "setting": "DIAG-GARNISH",
+      "repeat": "01"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-12T18:21:26.426Z",
+  "status": "UNVERIFIED",
+  "evidenceIds": [
+    "IA-1D-DIAG-ICE-01",
+    "IA-1D-DIAG-GARNISH-01",
+    "IA-1D-DIAG-ICE-V2-01",
+    "IA-1D-DIAG-GARNISH-V2-01"
+  ],
+  "observed": [
+    "iceChunks stage54,208 selects a front-row bottle rather than visible ice.",
+    "garnishLemons stage125,235 selects a front-row grape-symbol bottle rather than lemons.",
+    "iceVisible stage54,242 leaves bottle unselected; an IceAdded count is not yet confirmed.",
+    "garnishVisible stage125,268 shows a lemon airborne in the post-action capture; completion/addition amount is not yet confirmed."
+  ],
+  "limitation": "Coordinates name intended operations, not accepted mechanics. No served score in these diagnostics. Preserve original targets and run IDs."
+}

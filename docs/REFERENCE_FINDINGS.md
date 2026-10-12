@@ -84,3 +84,7 @@ Aggiunti raw/correzione/build manifest/fixture/runner, rawObservation/modelEvalu
 ## Aggiornamento 1C
 
 Il dataset e gli esiti descritti sopra sono quelli storici della fase 1B. La fase 1C aggiunge 13 raw native, 14 fixture e risultati numerici reali, senza riscrivere quei record. Totale 29 raw/30 fixture, 1 adjudication STRONGLY_SUPPORTED e 0 regole VERIFIED. Gate rigoroso di tre run unificati ancora parziale; vedi NATIVE_REFERENCE_FINDINGS.md.
+
+## Aggiornamento 1D
+
+Il gate nuovo baseline-270-v1 passa cinque cold run a270, dopo un abort conservato. La caratterizzazione prosegue in NATIVE_CHARACTERIZATION_FINDINGS.md, con ledger e coppie in research/phase1d. I risultati precedenti di questo documento restano storici e non vengono riscritti. Nessuna regola VERIFIED o formula di compatibilità introdotta; quantità ancora UNMAPPED.

@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-1D-DIAG-ICE-V2-01",
+  "phase": "1D",
+  "scriptId": "baseline-270-v1",
+  "baselineProcedureSha256": "15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0",
+  "procedureSha256": "fd0907a244f112d4db1a857edfdd4fed892c4867cddbbcf563942929046b9358",
+  "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+  "setting": "DIAG-ICE-V2",
+  "variable": "target-calibration",
+  "role": "DIAGNOSTIC",
+  "repetition": 1,
+  "pairId": null,
+  "requestedProcedure": {
+    "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+    "swfSha256": "ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+    "executableSha256": "b0840c1db59ee428ab35015fdd155a09465d6649fb19de09ee34d352dd247656",
+    "geometry": {
+      "width": 600,
+      "height": 470,
+      "dpi": 120
+    },
+    "stage": {
+      "width": 600,
+      "height": 440,
+      "insetTop": 30,
+      "insetBottom": 0,
+      "insetBaseDpi": 120
+    },
+    "targets": {
+      "letsMixOrb": {
+        "x": 300,
+        "y": 410
+      },
+      "ingredientSlot08": {
+        "x": 343,
+        "y": 115
+      },
+      "pour": {
+        "x": 75,
+        "y": 413
+      },
+      "shake": {
+        "x": 207,
+        "y": 413
+      },
+      "serve": {
+        "x": 341,
+        "y": 413
+      }
+    },
+    "actions": [
+      {
+        "target": "letsMixOrb",
+        "holdMs": 100
+      },
+      {
+        "target": "iceVisible",
+        "holdMs": 80
+      }
+    ],
+    "afterServeWaitMs": 0,
+    "waits": {
+      "coldLaunchAfterActivationMs": 1500,
+      "pointerMoveBeforeDownMs": 50,
+      "afterReleaseBeforeCaptureMs": 500,
+      "resultCaptureIntervalMs": 2000,
+      "captureGeometryStabilityMs": 250
+    },
+    "coldFingerprint": "96245237ee6b3eb89c99cca6e16e41c6d3fa72c178e8895ed67b50a8baadc60c",
+    "launch": {
+      "width": 600,
+      "height": 440,
+      "graphics": "dx12",
+      "storage": "memory",
+      "openUrlMode": "deny",
+      "tcpConnections": "deny",
+      "filesystemAccessMode": "deny"
+    }
+  },
+  "sameProcedure": false,
+  "startedAt": "2026-10-12T18:18:47.454Z",
+  "outcome": "COMPLETED_INPUT",
+  "traceFiles": [
+    "research/.local-reference/NATIVE-20261012T181852253-8196-trace-181901271.json"
+  ],
+  "sessionId": "NATIVE-20261012T181852253-8196",
+  "coldLaunch": true,
+  "initialCapture": "research/.captures/NATIVE-20261012T181852253-8196/cold-launch.png",
+  "coldFingerprint": "96245237ee6b3eb89c99cca6e16e41c6d3fa72c178e8895ed67b50a8baadc60c",
+  "initialStateValidated": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T181852253-8196/result-181900994.png",
+  "delivery": [
+    {
+      "target": "letsMixOrb",
+      "requestedMs": 100,
+      "actualMs": 107.7602,
+      "downMs": 64.7056,
+      "upMs": 172.4658,
+      "buttonDownObserved": true,
+      "buttonUpObserved": true,
+      "geometry": {
+        "Handle": 4392130,
+        "ProcessId": 8196,
+        "X": 233,
+        "Y": 262,
+        "Width": 600,
+        "Height": 470,
+        "Dpi": 120,
+        "Title": "Ruffle - reference.swf",
+        "Foreground": true
+      },
+      "stage": {
+        "x": 300,
+        "y": 410
+      },
+      "client": {
+        "x": 300,
+        "y": 440
+      },
+      "captures": [
+        "research/.captures/NATIVE-20261012T181852253-8196/action-181858397-1-before.png",
+        "research/.captures/NATIVE-20261012T181852253-8196/action-181858397-1-after.png"
+      ]
+    },
+    {
+      "target": "iceVisible",
+      "requestedMs": 80,
+      "actualMs": 92.92010000000005,
+      "downMs": 1329.2157,
+      "upMs": 1422.1358,
+      "buttonDownObserved": true,
+      "buttonUpObserved": true,
+      "geometry": {
+        "Handle": 4392130,
+        "ProcessId": 8196,
+        "X": 233,
+        "Y": 262,
+        "Width": 600,
+        "Height": 470,
+        "Dpi": 120,
+        "Title": "Ruffle - reference.swf",
+        "Foreground": true
+      },
+      "stage": {
+        "x": 54,
+        "y": 242
+      },
+      "client": {
+        "x": 54,
+        "y": 272
+      },
+      "captures": [
+        "research/.captures/NATIVE-20261012T181852253-8196/action-181859754-2-before.png",
+        "research/.captures/NATIVE-20261012T181852253-8196/action-181859754-2-after.png"
+      ]
+    }
+  ],
+  "releaseToNextDownMs": [
+    1156.7499
+  ],
+  "reactionCaptures": [],
+  "captureGaps": [],
+  "timingOverrunMs": [
+    7.7601999999999975,
+    12.920100000000048
+  ],
+  "finishedAt": "2026-10-12T18:19:02.497Z"
+}

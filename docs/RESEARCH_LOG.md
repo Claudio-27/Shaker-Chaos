@@ -129,3 +129,27 @@ Ruffle Desktop stable 0.7.1 e nightly 2026-10-11 identificati con hash; eccezion
 - Helper nativo fermato sul solo processo posseduto. Ultimo doctor PASS/READY_TO_LAUNCH senza input: prerequisiti, SWF/runtime hash, DPI e API GDI validi; targetScreenshotVerified=false perché il processo è chiuso. I doctor su target vivo erano passati durante i run riusciti; questa chiusura non pretende una finestra ancora attiva. Ultimi tentativi fermati per cursor movement, geometria o target assente: non conteggiati come terzo repeat.
 
 Fase 1C **CLOSED_WITH_LIMITS**. Gate rigoroso **PARTIAL (2/3)**: due script unificati riusciti e una diagnostica separata con lo stesso score270 in un altro cold process. Preservare questa distinzione. Il prossimo incarico può completare il terzo run con controllo stabile, poi calibrare quanta e aprire la matrice; nessuna fase successiva è iniziata.
+
+## R007 — Phase 1D (chiusa con limiti, 12 ottobre 2026)
+
+Procedura baseline-270-v1 congelata dai due log unificati 1C, stesso hash SWF e runtime. Sei tentativi nuovi: primo abort per cursore, poi cinque cold score270 identici; gate3/3 e5/5 superati. Relazione nativa STRONGLY_SUPPORTED, quantità/tick canonici UNMAPPED. Secondo abort durante il controllo della prima serie; nessun trattamento eseguito, retry con nuovi ID e guard rafforzati.
+
+69 nuove osservazioni /74 nuove fixture; totali98 raw/104 fixture/2 correzioni storiche.69 cold run,67 sequenze OS complete,61 risultati numerici,59 servizi riusciti,2 fallimenti automatici primaServe con score0,2 abort,4 diagnostici e2 procedure senza risultato. Status cumulativi0 VERIFIED /6 STRONGLY_SUPPORTED /98 UNVERIFIED; tutti i raw restano UNVERIFIED.61 file storici byte-identici.
+
+Pour14000/14500: tre coppie per livello,270 contro270. Pour5000:111/111/111; il contrasto con i vecchi1C113/111/110 resta documentato, acquisizione/intervalli diversi. Pour10000:245/246/246, non mediati. Una coppia B dopo gate:1x5000 →111,1667+1667+1666 →65, delta-46; stesso totale richiesto, nessuna equivalenza di liquido.
+
+Punti di ghiaccio/limone corretti con diagnostiche separate: i primi candidati selezionavano bottiglie. Ice dopo pieno270 senza accepted count dimostrato; early-one cubetti in movimento e270, early-two senza risultato. Limone dopoShake: tre pair270→370 con slice sul calice, relazione circoscritta Strong; primaShake270 una volta, doppio click dopoShake370 una volta. Pause/quantità/capacità non isolate come coefficienti globali.
+
+Shake0: Serve lascia Time to shake, nessuno score. Conteggi1..5 a1000ms:270/270/275/285/300. Totale richiesto4000ms con1/2/4 azioni:275/285/285; misure e pause diverse. Agitazione continua5000 →275;10000/15000 esplosione visiva dopo hold/release e auto failure0 primaServe. Bracket nativo grossolano5–10s; non una soglia Flash esatta. Nessun quantum, capacità numerica, coefficiente, ordine fra due ingredienti o modello. Ingredient slot08 selezionabile, label nominale non convalidata.
+
+### Controlli R007
+
+TypeScript/lint/134 su134 test/build passati; nessun test saltato. Fixture validation, summary, model evaluator e doctor passati; baseline gate5/5. Nessun candidato:0 MATCH /0 MISMATCH /104 UNKNOWN,246 campi sconosciuti, errore massimo null, accuratezza numerica N/A.
+
+Lab: fixture nativa reale270 importata con CURRENT DEMO UNKNOWN; niente confronto con un cocktail vuoto inventato. Demo:15u, Ice1, Shake da tastiera, Serve34/100, reset0; Asset Lab/Visual Debug funzionanti. Lab sintetico:14 eventi UNVERIFIED, reset conserva15 eventi e lascia il gioco0u. Produzione corrente su4188:14 immagini caricate, laboratori esclusi anche con query; preview fermata, reload da cache e Versa15u/Serve30/100 offline riusciti. Su4177 era presente una cache storica di fase0.2 non aggiornata dal reload durante questa prova; limite documentato nel report, service worker invariato.
+
+Bundle invariato:38 moduli,index-Ds8N4XYh.js264,41kB,index-C2Y8JjDS.css16,84kB,cache791c56d7c58dd2b0,shell7/artwork allowlist42. Audit sul dist e Git: nessun SWF/runtime/cattura/helper/mappa originale in produzione o tracciato; dominio/application/content/public/package-lock invariati. HEAD60e3252 invariato, ramo locale phase1/quantitative-native-characterization creato solo dopo autorizzazione esplicita. Nessun commit/push/PR/GitHub/download/servizio esterno/remoto.
+
+Su richiesta dell’utente lo schermo è rimasto attivo tramite richiesta temporanea Windows, rilasciata e verificata RELEASED alle19:15:13UTC; timer persistenti invariati. Ruffle posseduto chiuso, ultimo doctor READY_TO_LAUNCH senza input. La parte finale del pair B ha usato un piano esplicito nuovo per terminare entro circa un’ora, senza diminuire guard; ultimo run19:14:21UTC. Nessuna stima online è stata necessaria o introdotta come misura.
+
+Report completo dei38 punti: NATIVE_CHARACTERIZATION_FINDINGS.md. Fase1D CLOSED_WITH_LIMITS; stop, nessuna fase successiva iniziata.

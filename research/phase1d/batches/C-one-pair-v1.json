@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "C-one-pair-v1",
+  "notAfterUtc": "2026-10-12T17:51:20.529Z",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "13",
+      "pairId": "C-one-01"
+    },
+    {
+      "setting": "C-1",
+      "repeat": "01",
+      "pairId": "C-one-01"
+    }
+  ]
+}

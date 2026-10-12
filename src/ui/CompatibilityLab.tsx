@@ -130,6 +130,7 @@ export default function CompatibilityLab({ dependencies }: { readonly dependenci
     </fieldset>
     <div className="compat-state">
       <article><h3>Proiezione demo corrente</h3>
+        {!run.canonicalInputKnown ? <p>CURRENT DEMO: UNKNOWN. Il record conserva una procedura nativa e uno score osservato, ma quantità e tick canonici non sono ancora mappati. La storia vuota non rappresenta un cocktail vuoto.</p> : <>
         <dl><dt>Fase</dt><dd>{state.phase}</dd><dt>Volume applicato</dt><dd>{totalVolumeUnits(state.mix)} VolumeUnit</dd>
           <dt>Ghiaccio / guarnizione</dt><dd>{state.mix.iceUnits} / {state.mix.garnishId ?? 'nessuna'}</dd>
           <dt>Shake nel tentativo</dt><dd>{shakes.length}</dd>
@@ -139,12 +140,12 @@ export default function CompatibilityLab({ dependencies }: { readonly dependenci
           <dt>Score demo / reazione demo</dt><dd>{run.result.score} / {run.result.maximum} · {run.result.reactionTier}</dd>
           <dt>Tier meccanico del riferimento</dt><dd>{run.result.mechanicalReactionTierId ?? 'UNKNOWN — nessuna mappatura verificata'}</dd></dl>
         <pre aria-label="MixState derivato">{JSON.stringify(state.mix, null, 2)}</pre>
-        <pre aria-label="Breakdown demo">{JSON.stringify(run.result.breakdown, null, 2)}</pre>
+        <pre aria-label="Breakdown demo">{JSON.stringify(run.result.breakdown, null, 2)}</pre></>}
       </article>
       <article><h3>REFERENCE OBSERVATION vs CURRENT IMPLEMENTATION</h3>
         <p>Stato evidenza: <strong>{item.status}</strong> · confidenza: {item.confidence} · input: {item.inputValidation.status}</p>
         <strong className="compat-comparison" role="status">{run.comparison.status}</strong>
-        <table><thead><tr><th>Campo osservato</th><th>Riferimento</th><th>Implementazione</th><th>Esito</th></tr></thead><tbody>
+        <table><thead><tr><th>Campo osservato</th><th>REFERENCE</th><th>CURRENT DEMO</th><th>Esito</th></tr></thead><tbody>
           {run.comparison.fields.map(row => <tr key={row.field}><td>{row.field}</td><td>{JSON.stringify(row.observed)}</td><td>{row.current === undefined ? 'UNKNOWN' : JSON.stringify(row.current)}</td><td>{row.status}</td></tr>)}
         </tbody></table>
         <p>I campi non osservati non vengono confrontati. MATCH descrive solo i campi noti, non certifica compatibilità.</p>

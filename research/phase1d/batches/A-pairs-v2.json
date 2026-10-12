@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "A-pairs-v2",
+  "notAfterUtc": "2026-10-12T17:51:20.529Z",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "07",
+      "pairId": "A-14000-01-retry2"
+    },
+    {
+      "setting": "A-14000",
+      "repeat": "01",
+      "pairId": "A-14000-01-retry2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "08",
+      "pairId": "A-14500-01-retry2"
+    },
+    {
+      "setting": "A-14500",
+      "repeat": "01",
+      "pairId": "A-14500-01-retry2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "09",
+      "pairId": "A-14000-02-retry2"
+    },
+    {
+      "setting": "A-14000",
+      "repeat": "02",
+      "pairId": "A-14000-02-retry2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "10",
+      "pairId": "A-14500-02-retry2"
+    },
+    {
+      "setting": "A-14500",
+      "repeat": "02",
+      "pairId": "A-14500-02-retry2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "11",
+      "pairId": "A-14000-03-retry2"
+    },
+    {
+      "setting": "A-14000",
+      "repeat": "03",
+      "pairId": "A-14000-03-retry2"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "12",
+      "pairId": "A-14500-03-retry2"
+    },
+    {
+      "setting": "A-14500",
+      "repeat": "03",
+      "pairId": "A-14500-03-retry2"
+    }
+  ]
+}

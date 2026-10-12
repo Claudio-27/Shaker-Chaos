@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "pour-count-v1",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "prerequisite": "Three exact same-score A-5000 repeats distinct from full baseline, checked again before input. Planned only; execute if gate and time remain.",
+  "jobs": [
+    {
+      "setting": "B-1",
+      "repeat": "01",
+      "pairId": "1D-B-pair-01"
+    },
+    {
+      "setting": "B-3",
+      "repeat": "01",
+      "pairId": "1D-B-pair-01"
+    }
+  ]
+}

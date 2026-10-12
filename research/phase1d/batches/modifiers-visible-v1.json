@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "modifiers-visible-v1",
+  "notAfterUtc": "2026-10-12T19:13:41.004Z",
+  "jobs": [
+    {
+      "setting": "CONTROL",
+      "repeat": "14",
+      "pairId": "1D-C-visible-1-pair-01"
+    },
+    {
+      "setting": "C-visible-1",
+      "repeat": "01",
+      "pairId": "1D-C-visible-1-pair-01"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "15",
+      "pairId": "1D-C-visible-2-pair-01"
+    },
+    {
+      "setting": "C-visible-2",
+      "repeat": "01",
+      "pairId": "1D-C-visible-2-pair-01"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "16",
+      "pairId": "1D-D-visible-before-pair-01"
+    },
+    {
+      "setting": "D-visible-before",
+      "repeat": "01",
+      "pairId": "1D-D-visible-before-pair-01"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "17",
+      "pairId": "1D-D-visible-after-pair-01"
+    },
+    {
+      "setting": "D-visible-after",
+      "repeat": "01",
+      "pairId": "1D-D-visible-after-pair-01"
+    },
+    {
+      "setting": "CONTROL",
+      "repeat": "18",
+      "pairId": "1D-D-visible-repeat-pair-01"
+    },
+    {
+      "setting": "D-visible-repeat",
+      "repeat": "01",
+      "pairId": "1D-D-visible-repeat-pair-01"
+    }
+  ]
+}

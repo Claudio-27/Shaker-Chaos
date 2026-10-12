@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "evidenceIds": [
+    "IA-1D-CONTROL-28",
+    "IA-1D-C-visible-early-1-01"
+  ],
+  "observed": {
+    "controlScore": 270,
+    "treatmentScore": 270,
+    "delta": 0,
+    "visual": "Ice chunks airborne after the early click; full indicator visible after subsequent bottle Pour."
+  },
+  "limitations": [
+    "Animation completion/accepted Ice count not independently established.",
+    "Next bottle selection can interact with in-flight object/phase.",
+    "Full/capacity and quantity alternatives not isolated. A single pair does not establish a zero Ice modifier."
+  ]
+}

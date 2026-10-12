@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "phase": "1D",
+  "baselineId": "baseline-270-v1",
+  "gate": {
+    "minimumSuccessfulIdenticalColdRuns": 3,
+    "preferredSuccessfulColdRuns": 5,
+    "requireSameScore": true,
+    "includeAllAttempts": true
+  },
+  "modelGate": {
+    "minimumExactReproducibleScoredFixtures": 15,
+    "multiplePourLevels": true,
+    "minimumIngredients": 2,
+    "iceComparison": true,
+    "garnishComparison": true,
+    "multipleShakeCases": true
+  },
+  "experiments": {
+    "A": {
+      "variable": "pour-duration",
+      "status": "Completed paired x3 per duration;5000 scores111/111/111,10000 scores245/246/246,14000/14500/15000 plateau270. No averaging.",
+      "settingsMs": [
+        5000,
+        10000,
+        14000,
+        14500,
+        15000
+      ],
+      "repetitions": 3,
+      "reason": "500ms delta exceeds observed native hold overrun (historical max below15ms); positive settings above15000 are excluded by the unchanged safety limit."
+    },
+    "B": {
+      "variable": "pour-count",
+      "status": "Completed one cold pair after gate:1x5000 score111 versus1667+1667+1666 score65, delta-46. UNVERIFIED single pair; equal liquid not assumed.",
+      "prerequisite": "Two repeatable pour procedures with distinct outcomes"
+    },
+    "C": {
+      "variable": "ice",
+      "status": "One full pair per click count; early-one270/270 with airborne ice, early-two no served result. Mechanical accepted count remains UNVERIFIED.",
+      "settings": [
+        "one action",
+        "two actions if accepted"
+      ]
+    },
+    "D": {
+      "variable": "garnish",
+      "status": "AfterShake three cold pairs270/370 delta100; slice visible. BeforeShake270 once, repeated afterShake370 once. Narrow native relation STRONGLY_SUPPORTED.",
+      "settings": [
+        "before shake",
+        "after shake",
+        "repeat if accepted"
+      ]
+    },
+    "E": {
+      "variable": "shake-count",
+      "status": "Completed initial0..5 series: no result /270/270/275/285/300, single settings.",
+      "counts": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "perActionMs": 1000
+    },
+    "F": {
+      "variable": "shake-total-duration",
+      "status": "Completed initial1x4000/2x2000/4x1000:275/285/285; actual totals and pauses differ.",
+      "settings": [
+        [
+          4000
+        ],
+        [
+          2000,
+          2000
+        ],
+        [
+          1000,
+          1000,
+          1000,
+          1000
+        ]
+      ],
+      "timingReason": "The synchronous capture takes at least250ms; each hold is at least1000ms so the mid-hold capture can finish before release. Requested total4000ms; actual mismatch must still be reported."
+    },
+    "G": {
+      "variable": "ingredient-order",
+      "status": "GATED",
+      "prerequisite": "Two visibly identified ingredients and repeatable pours"
+    },
+    "H": {
+      "variable": "single-ingredient-curve",
+      "status": "Native duration curve observed, no canonical quantity or coefficient mapping.",
+      "xAxis": "NativePourLevel / measured OS hold, not VolumeUnit"
+    },
+    "quantum": {
+      "status": "GATED",
+      "prerequisite": "Multiple repeatable discrete score/fill boundaries"
+    },
+    "capacity": {
+      "status": "GATED",
+      "prerequisite": "Calibrated input/score response"
+    },
+    "explosion": {
+      "status": "Initial sweep5000 normal275;10000 and15000 visually explode after hold/release, auto failure0 beforeServe. No replicated fine boundary.",
+      "prerequisite": "Stable nonempty baseline"
+    }
+  },
+  "externalHypotheses": {
+    "maximum10245": "NOT YET TESTABLE",
+    "additiveCoefficients": "NOT YET TESTABLE",
+    "ice500or1000": "NOT YET TESTABLE",
+    "garnish100or200": "100 SUPPORTED BY OUR DATA and200 CONTRADICTED BY OUR DATA only for the tested afterShake baseline procedure, not global rules",
+    "discreteShakeBonuses": "NOT YET TESTABLE",
+    "reactionThresholds": "NOT YET TESTABLE"
+  },
+  "closure": "CLOSED_WITH_LIMITS; stop after1D; all raw UNMAPPED, no candidate."
+}

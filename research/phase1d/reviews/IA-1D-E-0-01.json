@@ -1,0 +1,10 @@
+{
+  "id": "IA-1D-E-0-01",
+  "phase": "preparation-awaiting-shake",
+  "reactionId": "ref.phase.awaiting-shake",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T185538393-22316/result-185639502.png",
+  "date": "2026-10-12T18:58:12.723Z",
+  "method": "direct-visual"
+}
