@@ -19,7 +19,17 @@
     "research:validate": "node scripts/research.mjs validate",
     "research:summary": "node scripts/research.mjs summary",
     "research:model": "node scripts/research.mjs model",
-    "research:reference": "node research/reference-runner/server.mjs"
+    "research:reference": "node research/reference-runner/server.mjs",
+    "research:native:doctor": "node research/native-runner/cli.mjs doctor",
+    "research:native:calibrate": "node research/native-runner/cli.mjs calibrate",
+    "research:native:smoke": "node research/native-runner/cli.mjs smoke",
+    "research:native:run": "node research/native-runner/cli.mjs run",
+    "research:native:launch": "node research/native-runner/cli.mjs launch",
+    "research:native:inspect": "node research/native-runner/cli.mjs inspect",
+    "research:native:input": "node research/native-runner/cli.mjs input",
+    "research:native:stop": "node research/native-runner/cli.mjs stop",
+    "research:native:record": "node research/native-runner/record.mjs",
+    "research:raw": "node scripts/research.mjs raw"
   },
   "dependencies": {
     "react": "19.3.0",

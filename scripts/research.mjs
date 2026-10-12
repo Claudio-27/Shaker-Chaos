@@ -1,3 +1,4 @@
+import { applyRawCorrections } from '../src/research/rawCorrections.ts';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { resolve, relative, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,17 +12,20 @@ const metadata=JSON.parse(await readFile(resolve(root,'research/reference-builds
 const rules={...metadata.projectionRules,capacityUnits:volumeUnits(metadata.projectionRules.capacityUnits)};
 function inside(path) { const absolute=resolve(root,path), rel=relative(root,absolute); if(!rel || rel.startsWith('..') || isAbsolute(rel)) throw Error('Path must be a file inside repository'); return absolute; }
 async function jsonFiles(dir) { return (await readdir(resolve(root,dir))).filter(f=>f.endsWith('.json')).sort(); }
-const raw=[];
+let raw=[];
 for(const name of await jsonFiles('research/raw-observations')) {
   const item=parseRawObservation(JSON.parse(await readFile(resolve(root,'research/raw-observations',name),'utf8')),rules);
   if(name!==item.id+'.json' || raw.some(r=>r.id===item.id)) throw Error('Raw ID/filename mismatch or duplicate');
   if(!metadata.builds.some(b=>b.id===item.referenceBuild) || !metadata.environments.some(e=>e.id===item.environmentId)) throw Error('Unknown build/environment');
+  if(item.native){const env=metadata.environments.find(e=>e.id===item.environmentId);if(env.swfSha256!==item.native.swfSha256||env.executableSha256!==item.native.executableSha256||env.player!==item.native.ruffleVersion)throw Error('Native environment identity mismatch');}
   raw.push(item);
 }
 const correctionNames=await jsonFiles('research/raw-corrections');
-for(const name of correctionNames){const fix=JSON.parse(await readFile(resolve(root,'research/raw-corrections',name),'utf8'));const item=raw.find(r=>r.id===fix.observationId);if(fix.kind!=='DELIVERED_INPUT_BUTTON' || !Number.isSafeInteger(fix.inputIndex) || fix.inputIndex<0 || !item || item.deliveredInputs[fix.inputIndex]?.button!==fix.before || !Number.isSafeInteger(fix.after) || fix.after<0 || !fix.reason) throw Error('Invalid append-only correction');item.deliveredInputs[fix.inputIndex].button=fix.after;parseRawObservation(item,rules);}
+raw=applyRawCorrections(raw,await Promise.all(correctionNames.map(async name=>JSON.parse(await readFile(resolve(root,'research/raw-corrections',name),'utf8')))),rules);
 const command=process.argv[2] ?? 'validate';
-if(command==='record') {
+if(command==='raw') {
+ const item=raw.find(r=>r.id===process.argv[3]);if(!item)throw Error('Unknown raw observation ID');console.log(JSON.stringify(item,null,2));
+} else if(command==='record') {
   const source=process.argv[3]; if(!source) throw Error('Usage: research:record repository-relative-file.json');
   const item=parseRawObservation(JSON.parse(await readFile(inside(source),'utf8')),rules);
   if(!metadata.builds.some(b=>b.id===item.referenceBuild) || !metadata.environments.some(e=>e.id===item.environmentId)) throw Error('Unknown build/environment');
@@ -41,7 +45,7 @@ if(command==='record') {
   for(const name of await jsonFiles('research/reference-cases')) {
     const item=decodeResearchCase(await readFile(resolve(root,'research/reference-cases',name),'utf8'),rules);
     if(name!==item.id+'.json' || fixtures.some(f=>f.id===item.id)) throw Error('Fixture ID/filename mismatch or duplicate');
-    for(const e of item.evidence) if(!raw.some(r=>r.id===e.id && r.referenceBuild===e.referenceBuild)) throw Error('Missing raw evidence for '+item.id);
+    for(const e of item.evidence) if(!raw.some(r=>r.id===e.id && r.referenceBuild===e.referenceBuild && (!e.environmentId||e.environmentId===r.environmentId))) throw Error('Missing raw evidence for '+item.id);
     // Generated fixture equality exposes stale output/input/status edits, not just schema validity.
     const source=raw.find(r=>'case-'+r.id===item.id);
     if(item.id.startsWith('case-') && (!source || encodeResearchCase(item,rules)!==encodeResearchCase(observationToCase(source,rules),rules))) throw Error('Fixture differs from immutable raw: '+item.id);
@@ -53,6 +57,8 @@ if(command==='record') {
     methods:Object.fromEntries(['AUTOMATED OBSERVATION','MANUAL OBSERVATION'].map(method=>[method,raw.filter(r=>r.method===method).length])),
     exactInputs:fixtures.filter(f=>f.inputValidation.status==='VERIFIED').length,numericScores:fixtures.filter(f=>f.observedReferenceResult?.score!==undefined).length,
     buildCounts:Object.fromEntries(metadata.builds.map(b=>[b.id,raw.filter(r=>r.referenceBuild===b.id).length])),
+    nativeObservations:raw.filter(r=>r.native).length,nativeNumericScores:raw.filter(r=>r.native?.scoreRead).length,nativeColdSessions:new Set(raw.filter(r=>r.native).map(r=>r.native.sessionId)).size,
+    environmentCounts:Object.fromEntries(metadata.environments.map(e=>[e.id,raw.filter(r=>r.environmentId===e.id).length])),
     experiments:[...new Set(raw.map(r=>r.experimentId))].sort(),referenceQuantum:null,referenceCapacity:null};
   if(command==='validate') console.log('Validated raw + linked ResearchCase fixtures: '+raw.length+' / '+fixtures.length);
   else if(command==='summary') console.log(JSON.stringify(summary,null,2));

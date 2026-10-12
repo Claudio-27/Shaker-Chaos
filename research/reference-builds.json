@@ -64,6 +64,48 @@
       "renderer": "canvas requested",
       "backgroundExecutionMode": "mainThread requested",
       "frameRate": null
+    },
+    {
+      "id": "ia-therightmix-ede221ad99e03173__ruffle-desktop-0-7-1-win64",
+      "os": "Windows",
+      "player": "Ruffle 0.7.1-stable (89a7049965f3090e706265670df309a5128233ac 2026-10-07)",
+      "executableSha256": "7b821bac7d8accd07407902eac9544b8d906df4d6c2a099eb091f3e04512b199",
+      "source": "https://github.com/ruffle-rs/ruffle/releases/download/v0.7.1/ruffle-0.7.1-windows-x86_64.zip",
+      "renderer": "dx12 explicitly requested",
+      "swfSha256": "ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "dpi": 120,
+      "displayScalePercent": 125,
+      "gui": false,
+      "storage": "memory",
+      "fps": null
+    },
+    {
+      "id": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64",
+      "os": "Windows",
+      "player": "Ruffle 0.8.0-nightly.2026.10.11-nightly (8c6f3e95203a765c39639ee9366abe8340830709 2026-10-11)",
+      "executableSha256": "b0840c1db59ee428ab35015fdd155a09465d6649fb19de09ee34d352dd247656",
+      "source": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-11/ruffle-nightly-2026_10_11-windows-x86_64.zip",
+      "renderer": "dx12 explicitly requested",
+      "swfSha256": "ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "dpi": 120,
+      "displayScalePercent": 125,
+      "gui": false,
+      "storage": "memory",
+      "fps": null
+    },
+    {
+      "id": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "os": "Windows",
+      "player": "Ruffle 0.8.0-nightly.2026.10.11-nightly (8c6f3e95203a765c39639ee9366abe8340830709 2026-10-11)",
+      "executableSha256": "b0840c1db59ee428ab35015fdd155a09465d6649fb19de09ee34d352dd247656",
+      "source": "https://github.com/ruffle-rs/ruffle/releases/download/nightly-2026-10-11/ruffle-nightly-2026_10_11-windows-x86_64.zip",
+      "renderer": "dx12 explicitly requested",
+      "swfSha256": "ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+      "dpi": 120,
+      "displayScalePercent": 125,
+      "gui": true,
+      "storage": "memory",
+      "fps": null
     }
   ],
   "projectionRules": {
@@ -71,5 +113,14 @@
     "maximumIceUnits": 9007199254740991,
     "maximumShakeDurationMs": 9007199254740991
   },
-  "projectionNotes": "Schema/replay envelope only. These limits are NOT reference capacity/ice/shake parameters. No unit mapping exists."
+  "projectionNotes": "Schema/replay envelope only. These limits are NOT reference capacity/ice/shake parameters. No unit mapping exists.",
+  "localResearchStorage": {
+    "phase": "1C",
+    "swf": "research/.local-reference/reference.swf",
+    "runtimeRoot": "research/.local-reference/",
+    "capturesRoot": "research/.captures/",
+    "ignored": true,
+    "distributed": false,
+    "notes": "Phase 1B binarySaved=false records remain historical facts. Phase 1C user permits an ignored local exact-hash copy; no file enters production. User explicitly authorized only official Ruffle release downloads through GitHub."
+  }
 }

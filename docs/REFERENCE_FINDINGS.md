@@ -80,3 +80,7 @@ Prossimo gate: eseguire lo stesso hash con puntatore umano nel wrapper, dimostra
 107 test passati (91 precedenti + 16 nuovi). TypeScript/lint/test/build e research:validate/summary/model eseguiti; smoke dev gioco/Lab e reload offline di produzione passati, documentati a chiusura in RESEARCH_LOG. Il bundle di produzione resta quello della demo; nessun asset originale o SWF salvato/distribuito.
 
 Aggiunti raw/correzione/build manifest/fixture/runner, rawObservation/modelEvaluation e test, CLI research. Evidence scope esteso a reference-automated mantenendo reference-manual. Guard del build esteso alla ricerca/SWF. Domini, scoring demo, artwork e sistemi di prodotto invariati. Nessun commit/push/PR, modifica remoti/storia o ramo. Ramo esistente phase1/reference-characterization conservato.
+
+## Aggiornamento 1C
+
+Il dataset e gli esiti descritti sopra sono quelli storici della fase 1B. La fase 1C aggiunge 13 raw native, 14 fixture e risultati numerici reali, senza riscrivere quei record. Totale 29 raw/30 fixture, 1 adjudication STRONGLY_SUPPORTED e 0 regole VERIFIED. Gate rigoroso di tre run unificati ancora parziale; vedi NATIVE_REFERENCE_FINDINGS.md.

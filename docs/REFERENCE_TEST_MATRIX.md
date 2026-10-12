@@ -89,3 +89,7 @@ Un caso VERIFIED dimostra soltanto la propria traccia/output e ambito. Servono e
 ## Avanzamento fase 1B (2026-10-11)
 
 La tabella precedente è la pianificazione originaria. Sono avvenute 16 acquisizioni diagnostiche automatiche, senza baseline liquida/score: i confronti a quantità equivalenti, le curve e le soglie restano NOT TESTED. Vedi REFERENCE_FINDINGS.md per copertura per esperimento e case IDs; experiments.json prepara serie non eseguite. Nessuna riga meccanica promossa.
+
+## Chiusura 1C
+
+Native complete input→Serve→score ottenuto. 270 in FULL-DIAG/FULL-01/FULL-02; solo FULL-01/02 sono due script unificati identici. Terzo script interrotto da scope guard. Baseline temporizzata 113/111/110 non esatta. Nessun gate numerico/modifier/pair soddisfatto; matrice restante NOT TESTED. Raw, gap e aborti conservati; nessun valore esterno promosso. Vedi NATIVE_REFERENCE_FINDINGS.md e research/native-runner/protocols.json.

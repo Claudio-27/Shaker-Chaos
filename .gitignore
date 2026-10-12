@@ -147,3 +147,7 @@ vite.config.ts.timestamp-*
 *.local
 
 work/
+
+# Phase 1C: local execution binaries, captures and native sessions only
+/research/.local-reference/
+/research/.captures/

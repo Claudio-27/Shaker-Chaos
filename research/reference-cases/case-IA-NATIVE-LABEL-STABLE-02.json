@@ -1,0 +1,31 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-0-7-1-win64",
+      "id": "IA-NATIVE-LABEL-STABLE-02",
+      "procedure": "research/raw-observations/IA-NATIVE-LABEL-STABLE-02.json; Stable Desktop 0.7.1, fresh process shared by three consecutive diagnostic label clicks; this is not three drink repetitions.; Click on the visible label at stage (300,356). Intro remained visible; no cocktail or score. Physical down/up OS states recorded; no acceptance inferred from those flags.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    }
+  ],
+  "id": "case-IA-NATIVE-LABEL-STABLE-02",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Label is not the circular button. No canonical quantity or Flash timing. Raw source: research/raw-observations/IA-NATIVE-LABEL-STABLE-02.json",
+  "observedReferenceResult": {
+    "phase": "intro-screen"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "native-intro-label-diagnostic / IA-NATIVE-LABEL-STABLE-02"
+}

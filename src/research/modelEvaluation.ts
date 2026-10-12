@@ -6,13 +6,14 @@ import { compareObservations } from './comparison.ts';
 export interface ResearchCandidateModel {
   readonly id: string;
   readonly referenceBuild: string;
+  readonly environmentId?: string;
   readonly productionReady: false;
   readonly evaluate: (input: CompatibilityInput) => ObservableResult;
 }
 /** Evaluate ALL fixtures. Unknowns stay in the denominator; no fitting or lookup of observed outputs. */
 export function evaluateResearchModel(cases: readonly ResearchCase[], rules: MixingRules, candidate?: ResearchCandidateModel) {
   const rows=cases.map(item=>{
-    const eligible=!!candidate && item.inputValidation.status==='VERIFIED' && !!item.evidence.length && item.evidence.every(e=>e.referenceBuild===candidate.referenceBuild);
+    const eligible=!!candidate && item.inputValidation.status==='VERIFIED' && !!item.evidence.length && item.evidence.every(e=>e.referenceBuild===candidate.referenceBuild && (!e.environmentId || e.environmentId===candidate.environmentId));
     const current=eligible?candidate.evaluate(createCompatibilityInput({schemaVersion:1,rules,history:item.inputSequence})):{};
     const comparison=compareObservations(item.observedReferenceResult,current);
     const errors=comparison.fields.flatMap(f=>typeof f.current==='number' && typeof f.observed==='number'?[Math.abs(f.current-f.observed)]:[]);

@@ -113,3 +113,7 @@ Vedi REFERENCE_FINDINGS.md e research/reference-builds.json. SWF Archive identif
 Durata richiesta, intervallo DOM e durata/tick effettivi Flash sono variabili distinte. Disuguaglianze DOM osservate non dimostrano una regola di versamento/scoring. Selezionare ice/lemon non attesta IceAdded/GarnishChanged; sintesi DOM consegnata non attesta accettazione. Score non visibile non è 0; limiti dello schema non sono capacità.
 
 ObservedQuantum ignoto, mapping a VolumeUnit non stabilito, ml esclusivamente presentazione. Preserve information until research proves it irrelevant. Conservare raw e correzioni senza promuovere input incompleti. Serie a quantità equivalenti, coefficienti, bonus ice/garnish/shake, esplosioni, soglie e 10245 restano NOT TESTED con gate espliciti; nessun massimo dichiarato.
+
+## Stato dopo 1C
+
+Score originali letti: 114 diagnostico; 113/111/110 per Pour5000+Shake1000 richiesti; 270 in tre processi freddi con indicatore pieno (due script unificati, uno stepwise). Sono output circoscritti, non coefficients/bonus/capacità. Gate tre script identici parziale 2/3; nessuna regola meccanica VERIFIED, nessuna conversione ml, scoring demo invariato. Serie meccaniche ulteriori e soglie restano gated. Dettagli/case IDs in NATIVE_REFERENCE_FINDINGS.md.

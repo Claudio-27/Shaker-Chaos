@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "notes": "Preflight/capture failures are not reference scoring observations. Original local records remain ignored; no extra fixture or score invented.",
+  "records": [
+    {
+      "sessionId": "NATIVE-20261012T074848017-29084",
+      "command": "doctor",
+      "reason": "Geometry changed during capture",
+      "inputSent": false,
+      "localRecord": "research/.local-reference/NATIVE-20261012T074848017-29084-abort-074855473.json"
+    },
+    {
+      "sessionId": "NATIVE-20261012T075411058-22092",
+      "command": "run",
+      "reason": "Exception calling \"Read\" with \"4\" argument(s): \"Target window absent/hidden/minimized\"",
+      "inputSent": false,
+      "localRecord": "research/.local-reference/NATIVE-20261012T075411058-22092-abort-075418064.json"
+    }
+  ]
+}

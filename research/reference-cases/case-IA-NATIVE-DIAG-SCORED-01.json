@@ -1,0 +1,32 @@
+{
+  "confidence": "medium",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-NATIVE-DIAG-SCORED-01",
+      "procedure": "research/raw-observations/IA-NATIVE-DIAG-SCORED-01.json; Cold nightly GUI process; diagnostic controls/label/orb actions precede bottle slot08, Pour 1000, Serve attempt, Pour 5000, Shake 1000, Serve.; Circular intro orb starts preparation; upper-row blue clear bottle selected; stream visible while Pour held; later Serve led to tasting and result screen displaying 114. Label and public menu diagnostics preserved in chronology.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    }
+  ],
+  "id": "case-IA-NATIVE-DIAG-SCORED-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Not a clean baseline; earlier Serve attempt and two pours. Exact quantities and Flash-frame timing unknown. Reaction sampled incompletely. Raw source: research/raw-observations/IA-NATIVE-DIAG-SCORED-01.json",
+  "observedReferenceResult": {
+    "phase": "result-screen",
+    "score": 114
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "native-first-numeric-diagnostic / IA-NATIVE-DIAG-SCORED-01"
+}

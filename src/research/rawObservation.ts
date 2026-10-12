@@ -1,3 +1,5 @@
+import type { NativeCapture } from './nativeCapture.ts';
+import { validateNativeCapture } from './nativeCapture.ts';
 import type { MixEvent } from '../domain/session.ts';
 import type { ObservableResult, ResearchCase } from './caseModel.ts';
 import type { MixingRules } from '../domain/model.ts';
@@ -32,6 +34,7 @@ export interface RawReferenceObservation {
   readonly deliveredInputs: readonly DeliveredReferenceInput[];
   readonly inputMapping: 'UNMAPPED' | 'EXACT';
   readonly canonicalInput?: readonly MixEvent[];
+  readonly native?: NativeCapture;
   readonly observed?: ObservableResult;
   readonly visibleNotes: string;
   readonly limitations: readonly string[];
@@ -53,7 +56,7 @@ function list(v: unknown): asserts v is unknown[] { if (!Array.isArray(v)) throw
 /** Raw observations have their own schema: unknown quantity is absent, never zero. */
 export function parseRawObservation(value: unknown, rules: MixingRules): RawReferenceObservation {
   const v = object(value);
-  fields(v,['schemaVersion','id','experimentId','referenceBuild','date','environmentId','method','repetition','initialCondition','requestedActions','deliveredInputs','inputMapping','visibleNotes','limitations','confidence','status','source'],['canonicalInput','observed']);
+  fields(v,['schemaVersion','id','experimentId','referenceBuild','date','environmentId','method','repetition','initialCondition','requestedActions','deliveredInputs','inputMapping','visibleNotes','limitations','confidence','status','source'],['canonicalInput','observed','native']);
   option(v.schemaVersion,[1]);
   for (const k of ['id','experimentId','referenceBuild','date','environmentId','initialCondition','visibleNotes','source']) text(v[k]);
   if (!/^[A-Za-z0-9][A-Za-z0-9_-]{0,95}$/.test(v.id as string)) throw TypeError('Unsafe observation ID');
@@ -78,6 +81,7 @@ export function parseRawObservation(value: unknown, rules: MixingRules): RawRefe
     if('buttons' in r) integer(r.buttons); if('button' in r) integer(r.button);
   }
   if ('observed' in v) validateObservable(v.observed);
+  if ('native' in v) {validateNativeCapture(v.native);const native=v.native as NativeCapture;if((v.deliveredInputs as unknown[]).length)throw TypeError('Native telemetry must not masquerade as DOM delivery');if(native.scoreRead && native.scoreRead.score!==(v.observed as {score?:number}|undefined)?.score)throw TypeError('Native displayed score mismatch');if(v.status==='STRONGLY_SUPPORTED' && native.scoreRead && !native.scoreRead.visuallyVerified)throw TypeError('Native score requires visual verification');}
   if (Object.hasOwn(v,'canonicalInput') && !Array.isArray(v.canonicalInput)) throw TypeError('Canonical input must be an array');
   if (v.inputMapping === 'EXACT' && !Array.isArray(v.canonicalInput)) throw TypeError('Exact mapping requires canonical history');
   if (v.status === 'VERIFIED') throw TypeError('Raw capture cannot promote evidence: adjudicate independent exact repetitions separately');
@@ -100,7 +104,7 @@ export function observationToCase(raw: RawReferenceObservation, rules: MixingRul
       notes:r.inputMapping==='EXACT'?'Complete input asserted by acquisition source; independent adjudication still required.':'INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.'},
     ...(r.observed?{observedReferenceResult:r.observed}:{}),status:r.status,confidence:r.confidence,
     evidence:[{id:r.id,scope:r.method==='AUTOMATED OBSERVATION'?'reference-automated':'reference-manual',date:r.date,source:r.source,
-      referenceBuild:r.referenceBuild,procedure:'research/raw-observations/'+r.id+'.json; '+r.initialCondition+'; '+r.visibleNotes,repetitions:1}],
+      referenceBuild:r.referenceBuild,...(r.native?{environmentId:r.environmentId}:{}),procedure:'research/raw-observations/'+r.id+'.json; '+r.initialCondition+'; '+r.visibleNotes,repetitions:1}],
     notes:r.limitations.join(' ')+' Raw source: research/raw-observations/'+r.id+'.json'};
   return parseResearchCase(item,rules);
 }

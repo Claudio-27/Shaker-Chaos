@@ -1,0 +1,32 @@
+{
+  "confidence": "medium",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-NATIVE-TIMED-02",
+      "procedure": "research/raw-observations/IA-NATIVE-TIMED-02.json; Independent cold nightly GUI run. Static intro region matched calibrated fingerprint; orb, bottle08, Pour5000, Shake1000, Serve80.; Visible pouring stream and liquid indicator; result screen directly read as 111. Same requested procedure varied across cold runs: 113,111,110.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    }
+  ],
+  "id": "case-IA-NATIVE-TIMED-02",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Fixed wall-clock hold is not exact reference quantity. This timed method FAILS exact reproducibility. No coefficient inferred. Raw source: research/raw-observations/IA-NATIVE-TIMED-02.json",
+  "observedReferenceResult": {
+    "phase": "result-screen",
+    "score": 111
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "NATIVE-GATE-SLOT08-P5-S1 / IA-NATIVE-TIMED-02"
+}

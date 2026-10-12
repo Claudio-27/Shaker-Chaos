@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "status": "VISUALLY_CALIBRATED",
+  "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+  "stage": {
+    "width": 600,
+    "height": 440,
+    "insetTop": 30,
+    "insetBottom": 0,
+    "insetBaseDpi": 120
+  },
+  "targets": {
+    "letsMix": {
+      "x": 300,
+      "y": 356
+    },
+    "playerControls": {
+      "x": 207,
+      "y": 15,
+      "space": "client"
+    },
+    "letsMixOrb": {
+      "x": 300,
+      "y": 410
+    },
+    "ingredientSlot08": {
+      "x": 343,
+      "y": 115
+    },
+    "pour": {
+      "x": 75,
+      "y": 413
+    },
+    "shake": {
+      "x": 207,
+      "y": 413
+    },
+    "serve": {
+      "x": 341,
+      "y": 413
+    },
+    "ice": {
+      "x": 48,
+      "y": 256
+    },
+    "garnish": {
+      "x": 135,
+      "y": 290
+    }
+  },
+  "notes": "GUI observed: toolbar 30px; movie stage 600x440 below it. Public toolbar coordinates remain reference-only. Circular gold orb directly observed below title plate; label and orb are separate diagnostic targets. Circular intro orb starts preparation. Gameplay control orbs and bottle slot 08 visually located; bottle identity and pour acceptance still require observation."
+}

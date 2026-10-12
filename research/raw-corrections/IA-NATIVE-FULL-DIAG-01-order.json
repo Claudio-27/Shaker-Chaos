@@ -1,0 +1,13 @@
+{
+  "kind": "NATIVE_COMMAND_ORDER",
+  "observationId": "IA-NATIVE-FULL-DIAG-01",
+  "beforeCommandOrder": [
+    "NATIVE-20261012T061233441-23080-abort-061625274",
+    "NATIVE-20261012T061233441-23080-trace-061257074"
+  ],
+  "commandOrder": [
+    "NATIVE-20261012T061233441-23080-trace-061257074",
+    "NATIVE-20261012T061233441-23080-abort-061625274"
+  ],
+  "reason": "Transcription sorted filenames by abort/trace prefix rather than capture chronology. First command (06:12) was intro→bottle→Pour; later command (06:16) was Shake→Serve. Original raw file remains untouched; this correction reorders only the owned read view, preserving every requested action, timestamp and capture."
+}

@@ -1,0 +1,31 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-11",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-NATIVE-ABORT-01",
+      "procedure": "research/raw-observations/IA-NATIVE-ABORT-01.json; Cold GUI nightly process NATIVE-20261011T215715172-34500. Start and bottle selection visibly completed before planned Pour15000.; Early helper raised Cursor moved externally during Pour and released its own held button; before captures retained. That revision did not persist partial timing on exceptions. No score.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    }
+  ],
+  "id": "case-IA-NATIVE-ABORT-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Actual partial duration unavailable: null, never zero. No exact quantity. This interrupted attempt is not a cold scored repetition. Raw source: research/raw-observations/IA-NATIVE-ABORT-01.json",
+  "observedReferenceResult": {
+    "phase": "input-aborted"
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "native-safety-aborted-fill-calibration / IA-NATIVE-ABORT-01"
+}

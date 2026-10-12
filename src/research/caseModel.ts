@@ -20,6 +20,7 @@ export interface ReferenceEvidence {
   readonly date: string;
   readonly source: string;
   readonly referenceBuild: string;
+  readonly environmentId?: string;
   readonly procedure: string;
   readonly repetitions: number;
 }

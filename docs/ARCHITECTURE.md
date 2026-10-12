@@ -153,3 +153,7 @@ reference-automated estende la provenienza mantenendo reference-manual. Raw appe
 Il player locale research/reference-runner usa SWF in RAM con hash bloccato e Ruffle pubblico fissato; non legge lo stato del filmato. Il build non importa server/manifest/raw; audit su output effettivo rifiuta marker ricerca e SWF. Demo/PWA e artwork invariati. Esiti in REFERENCE_FINDINGS.md: nessun modello numerico e nessuna regola compatibile promossa.
 
 Preserve information until research proves it irrelevant: anche gli input incerti e i tentativi falliti rimangono nella ricerca, senza essere convertiti in fatti canonici inventati. VolumeUnit intere restano quantità di dominio; ml appartiene alla presentazione e non ha mapping del riferimento.
+
+## Ricerca nativa 1C
+
+Il runner Win32 in research/native-runner è separato dal prodotto. NativeCapture conserva storia di input, timing OS frazionari, identità runtime, geometria e riferimenti a catture ignorate; nessun PointerEvent/coordinate entra in MixEvent. Senza quantum le fixture hanno inputValidation UNVERIFIED: storia vuota significa unmapped, mai drink vuoto. Evidenza può includere environmentId e il candidato rifiuta runtime diversi anche con stesso SWF. Correzioni append-only applicate a view copiato preservano raw e cronologia. Vedi NATIVE_REFERENCE_FINDINGS.md.

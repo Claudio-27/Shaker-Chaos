@@ -100,3 +100,5 @@ Solo sviluppo: /?compatLab=1, combinabile con &assetLab=1&visualDebug=1. Sequenz
 ## Fase 1B — ricerca black-box
 
 [Findings e limiti](docs/REFERENCE_FINDINGS.md), [runner riproducibile](research/reference-runner/README.md). 16 acquisizioni diagnostiche / 16 fixture UNVERIFIED; nessuno score o modello numerico calibrato. Comandi: npm run research:reference, research:fixtures, research:validate, research:summary, research:model. Solo ricerca, assente dal bundle. Scoring demo invariato; nessuna compatibilità dichiarata.
+
+Ricerca locale 1C: npm run research:native:doctor / calibrate / smoke / run; read-only dataset npm run research:raw -- ID. Binaries/catture soltanto ignorati, nessuna distribuzione. Stato e limiti: docs/NATIVE_REFERENCE_FINDINGS.md. Il gioco/build normale non avvia il riferimento.

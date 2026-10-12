@@ -106,3 +106,7 @@ Touch fisico e pointercancel hardware non riprovati in fase 1A; HoldButton è in
 ## Dataset diagnostico di fase 1B
 
 Le nuove fixture hanno provenienza reference-automated e inputValidation UNVERIFIED. La storia vuota indica input NON MAPPATO: non usarne lo score demo come score del riferimento. CLI research:model blocca i candidati su input/build incerti e include gli UNKNOWN. Acquisizione/fixture generation non promuovono input/stato. 16 casi, nessuno score numerico; dettagli in REFERENCE_FINDINGS.md.
+
+## Evidenze native
+
+Evidence.environmentId identifica anche Ruffle Desktop. Quantità native non mappate lasciano inputValidation UNVERIFIED; non interpretare la storia vuota dei case-IA-NATIVE come cocktail vuoto o confrontare lo score demo di tale proiezione come formula del riferimento. research:raw restituisce il view normalizzato con rettifiche append-only. Catture/runtime ignorati non sono fixture di produzione.

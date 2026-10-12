@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "firstGate": {
+    "id": "NATIVE-GATE-SLOT08-FULL-P15-S1",
+    "status": "PARTIAL_STRICT_GATE",
+    "quantityMapping": "UNMAPPED",
+    "actions": [
+      {
+        "target": "letsMixOrb",
+        "holdMs": 100
+      },
+      {
+        "target": "ingredientSlot08",
+        "holdMs": 80
+      },
+      {
+        "target": "pour",
+        "holdMs": 15000,
+        "captureDuring": true
+      },
+      {
+        "target": "shake",
+        "holdMs": 1000,
+        "captureDuring": true
+      },
+      {
+        "target": "serve",
+        "holdMs": 80
+      }
+    ],
+    "afterServeWaitMs": 30000,
+    "observedScore": 270,
+    "identicalUnifiedColdRuns": 2,
+    "stepwiseDiagnosticColdRuns": 1,
+    "strictThirdRun": "NOT COMPLETED: native scope guards stopped cursor movement / geometry change / unavailable target",
+    "supportingObservationIds": [
+      "IA-NATIVE-FULL-01",
+      "IA-NATIVE-FULL-02",
+      "IA-NATIVE-FULL-DIAG-01"
+    ],
+    "notes": "Three independent full-indicator sessions show 270, but only two have identical unified automation. No VERIFIED mechanics; broader matrix remains gated."
+  },
+  "broaderExperiments": {
+    "status": "NOT TESTED",
+    "gate": "Three independently cold non-empty serves with the same observed score",
+    "nativeHoldCandidatesMs": [
+      100,
+      250,
+      500,
+      750,
+      1000,
+      1500,
+      2000
+    ],
+    "baselines": [
+      "empty",
+      "single ingredient",
+      "one vs several pours",
+      "A then B / B then A",
+      "ice modifier",
+      "garnish modifier",
+      "shake 0..5 / matched total"
+    ],
+    "modelGate": {
+      "minimumScoredNonEmpty": 10,
+      "minimumRepeatCases": 3,
+      "modifierRequired": true,
+      "multiIngredientRequired": true
+    }
+  },
+  "calibrationHistory": [
+    {
+      "id": "NATIVE-GATE-SLOT08-P5-S1",
+      "status": "CALIBRATION_ONLY",
+      "quantityMapping": "UNMAPPED",
+      "actions": [
+        {
+          "target": "letsMixOrb",
+          "holdMs": 100
+        },
+        {
+          "target": "ingredientSlot08",
+          "holdMs": 80
+        },
+        {
+          "target": "pour",
+          "holdMs": 5000,
+          "captureDuring": true
+        },
+        {
+          "target": "shake",
+          "holdMs": 1000,
+          "captureDuring": true
+        },
+        {
+          "target": "serve",
+          "holdMs": 80
+        }
+      ],
+      "afterServeWaitMs": 30000
+    },
+    {
+      "id": "NATIVE-CALIBRATION-SLOT08-P15",
+      "status": "CALIBRATION_ONLY",
+      "quantityMapping": "UNMAPPED",
+      "actions": [
+        {
+          "target": "letsMixOrb",
+          "holdMs": 100
+        },
+        {
+          "target": "ingredientSlot08",
+          "holdMs": 80
+        },
+        {
+          "target": "pour",
+          "holdMs": 15000,
+          "captureDuring": true
+        }
+      ],
+      "afterServeWaitMs": 0
+    }
+  ]
+}
