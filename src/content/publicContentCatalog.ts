@@ -1,6 +1,9 @@
 import type { ContentCatalog, ContentItem, ContentKind } from './contentModel.ts';
+import { progressionTuning, starterContentIds } from './progressionTuning.ts';
 const item = (id: string, displayName: string, kind: ContentKind): ContentItem =>
-  ({ id, displayName, kind, visibility: 'public', visualDefinitionId: id, unlock: [{ kind: 'default' }] });
+  ({ id, displayName, kind, visibility: 'public', visualDefinitionId: id, unlock: starterContentIds.some(starter => starter === id) ? [{ kind: 'default' }] :
+    progressionTuning.unlocks.some(rule => rule.contentId === id) ? [{ kind: 'progression', requirementId: progressionTuning.unlocks.find(rule => rule.contentId === id)!.requirementId }] :
+    [{ kind: 'development', entitlementId: 'legacy-visual-preview' }] });
 /** One canonical item per ID; bundles contain references, never copies or visual configurations. */
 export const publicContentCatalog: ContentCatalog = {
   items: [

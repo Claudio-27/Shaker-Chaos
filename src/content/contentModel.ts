@@ -1,4 +1,4 @@
-/** Descriptions only: no ownership, balances, purchases or authorization implementations. */
+/** Canonical definitions; ownership and balances live in the separate player profile. */
 export type ContentVisibility = 'public' | 'private';
 export type ContentKind = 'bartender' | 'environment' | 'counter' | 'effect' | 'bottle-set' | 'reaction-set' | 'ingredient' | 'recipe';
 export type UnlockMetadata =

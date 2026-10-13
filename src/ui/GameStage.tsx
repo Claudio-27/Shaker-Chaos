@@ -60,10 +60,10 @@ export const BottleShelf = memo(function BottleShelf({ loadout, ingredients, vis
   a.selectedId === b.selectedId && a.disabled === b.disabled && a.pourFeedback === b.pourFeedback &&
   a.onSelect === b.onSelect && a.formatVolume === b.formatVolume && sameLiquid(a.mix, b.mix));
 
-export const BartenderArea = memo(function BartenderArea({ loadout, bartender, visuals, reactionId, pose, working, attemptKey, reducedMotion }: {
+export const BartenderArea = memo(function BartenderArea({ loadout, bartender, visuals, reactionId, pose, working, attemptKey, reducedMotion, lastResort }: {
   readonly loadout: VisualLoadout; readonly bartender: BartenderDefinition; readonly visuals: VisualCatalog; readonly reactionId: ReactionId;
   readonly pose: 'idle' | 'tasting' | 'reaction' | 'failure'; readonly working: 'idle' | 'pouring' | 'shaking';
-  readonly attemptKey: number; readonly reducedMotion: boolean;
+  readonly attemptKey: number; readonly reducedMotion: boolean; readonly lastResort: AssetId;
 }) {
   const visual = visuals.bartenders[bartender.id], reaction = visuals.reactions[reactionId];
   const effect = selectedEffect(visuals, loadout);
@@ -77,10 +77,10 @@ export const BartenderArea = memo(function BartenderArea({ loadout, bartender, v
     return final;
   }, [visual, reactionId, pose]);
   return <section className={`bartender-area working-${working}`} data-zone="bartender" data-pose={pose} aria-label={bartender.name + ', il tuo bartender'}>
-    <div className="bartender-name"><AssetImage assetId={visual.portrait ?? visual.idle} fallback={visual.idle} /><span><strong>{bartender.name}</strong><small>Il tuo compagno di esperimenti</small></span></div>
+    <div className="bartender-name"><AssetImage assetId={visual.portrait ?? visual.idle} fallback={visual.idle} lastResort={lastResort} /><span><strong>{bartender.name}</strong><small>Il tuo compagno di esperimenti</small></span></div>
     <div className="character-safe-area" data-safe-area="character">
       <SequenceArt key={bartender.id + ':' + reactionId + ':' + attemptKey + ':' + pose} sequence={sequence} fallback={visual.idle}
-        reducedMotion={reducedMotion} motion={pose === 'reaction' && !reducedMotion ? reaction.motion : 'none'} className="character-body" />
+        reducedMotion={reducedMotion} lastResort={lastResort} motion={pose === 'reaction' && !reducedMotion ? reaction.motion : 'none'} className="character-body" />
       {visual.accessories?.map(id => <AssetImage key={id} assetId={id} className="character-accessory" />)}
       {pose === 'reaction' && reactionId === 'lab.excellent' && effect && !reducedMotion && <AssetImage assetId={effect} optional className="character-effect" />}
     </div>
@@ -151,10 +151,10 @@ export function RoundProgress({ phase }: { readonly phase: PlayerPhase }) {
   </ol>;
 }
 const scoreLabels = { balance: 'Ingredienti', ice: 'Ghiaccio', shake: 'Agitazione', garnish: 'Guarnizione' } as const;
-export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink }: {
+export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink, reward }: {
   readonly result: ClassicScoreResult | null; readonly stage: ResultStage; readonly title: string; readonly ingredients: readonly IngredientDefinition[];
   readonly profile: ClassicInspiredTuningProfile; readonly titleRef: RefObject<HTMLHeadingElement | null>;
-  readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
+  readonly reward?: ReactNode; readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
 }) {
   const revealScore = result && scoreVisible(stage), revealReaction = result && reactionVisible(stage);
   return <section className={`score-hud result-${stage}`} data-zone="hud" data-result-stage={stage} aria-labelledby="score-title" aria-busy={!!result && stage !== 'breakdown'}>
@@ -170,6 +170,7 @@ export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredien
           <span>{scoreLabels[item.component]}</span><div className="mini-track"><i style={{ width: (item.maximum ? item.points / item.maximum * 100 : 0) + '%' }} /></div><b>{item.points}</b>
         </div>) : <p className="waiting-note" role="status">{playerCopy.tasting.status}<span className="tasting-dots" aria-hidden="true"> · · ·</span></p>}
       </div>
+      {reward}
       <div className="result-actions">
         {stage !== 'breakdown' && <button type="button" className="skip-result" ref={skipRef} onClick={onSkip}>{playerCopy.skip}</button>}
         <button type="button" className="new-drink-button" onClick={onNewDrink}>{playerCopy.newDrink}<span aria-hidden="true">↻</span></button>

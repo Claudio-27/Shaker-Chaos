@@ -1,4 +1,17 @@
-# Catalogo modulare — fase 0.3
+# Catalogo modulare
+
+## Stato attuale 2C — proprietà separate dalle definizioni
+
+ContentItem e BundleDefinition restano canonici; profilo persistente conserva soltanto ID/entitlements e loadout. Starter: bartender.b01, environment.e01, counter.c01, bottles.supplied, effect.sparkles. Progressione: bartender.b02 al livello2, effect.ice-blue al livello3, configurati in progressionTuning.ts. Metadati unlock aggiornati alle requirementId; segnaposto legacy development, ispezionabili in AssetLab e esclusi dalla Collection normale.
+
+Fonti di proprietà previste: starter/progression/currency-purchased/bundle-granted/promotional/private; soltanto le prime due sono attive. Bundle includedContentIds e price restano compatibili, senza acquistare o concedere bundle. Uno stesso ID rimane un solo articolo anche con più possibili provenienze.
+
+Collection consente equip owned, indica Equipped/Locked e requisiti di livello; niente pulsante di acquisto. Gli slot sono persistiti indipendentemente. Entitlements rimossi dal catalogo restano inattivi; equip invalido torna allo starter, displayName rinominato non modifica l’identità. Resolver visuale separato dagli ID salvati.
+
+Asset condivisi obbligatori del gameplay non vengono bloccati. Niente preload delle card locked. Nuovi artwork di uno sblocco possono mancare offline e ripiegare sull’idle dello starter mentre la scelta resta salvata. Proprietà locale di private ID non autorizza contenuti protetti o file in public.
+
+[Progression system](PROGRESSION_SYSTEM.md). Le note 0.3 sotto sono il progetto storico dei metadati.
+
 
 Aggiornamento 2026-10-06. Metadati e composizione visiva soltanto: nessun negozio, acquisto, saldo, progressione, inventario persistente o entitlement funzionante.
 

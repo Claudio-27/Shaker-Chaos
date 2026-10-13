@@ -174,3 +174,47 @@ footer { display: flex; justify-content: space-between; gap: 16px; padding-top: 
   .bottle-image { height: 50px; }
   .zone-heading { margin-bottom: 8px; }
 }
+
+/* Phase 2C: compact player layer, independent from the cocktail stage. */
+.topbar { flex-wrap: wrap; }
+.player-tools { display: flex; align-items: center; gap: 12px; }
+.player-hud { display: grid; grid-template-columns: auto minmax(110px,145px) auto; gap: 10px; align-items: center; font-size: 12px; }
+.player-hud > strong { font-size: 12px; white-space: nowrap; }
+.player-xp { font-size: 10px; text-align: center; font-variant-numeric: tabular-nums; }
+.xp-track { height: 5px; border-radius: 4px; margin-top: 4px; background: #d8dfcd; overflow: hidden; }
+.xp-track i { display: block; height: 100%; background: #204a40; }
+.player-coins { font-size: 11px; font-weight: 650; white-space: nowrap; }
+.collection-button { min-height: 44px; padding: 8px 12px; border: 1px solid #a4b499; border-radius: 8px; background: #fdfaf1; font-size: 12px; font-weight: 650; }
+.profile-warning { grid-column: 1 / -1; max-width: 300px; font-size: 10px; color: #75471e; line-height: 1.4; }
+.round-reward { border-top: 1px solid #cad5bd; margin-top: 8px; padding-top: 8px; font-size: 12px; }
+.reward-amounts { display: flex; gap: 12px; flex-wrap: wrap; color: #204a40; }
+.level-up { margin-top: 6px; font-weight: 750; color: #6d4519; }
+.round-reward.is-level-up { animation: level-glow .5s ease-out; }
+.unlock-card { display: flex; align-items: center; gap: 8px; padding: 7px 0; }
+.unlock-card img { width: 40px; height: 44px; }
+.unlock-card small, .unlock-card strong { display: block; }
+.unlock-card small { color: #50634b; font-size: 10px; }
+.unlock-card strong { font-size: 12px; overflow-wrap: anywhere; }
+@keyframes level-glow { from { background: #eddaaa; } to { background: transparent; } }
+.collection-dialog { width: min(780px,calc(100vw - 24px)); max-height: calc(100svh - 32px); padding: 22px; border: 1px solid #8d9e82; border-radius: 18px; color: #193e37; background: #faf8ef; overflow: auto; }
+.collection-dialog::backdrop { background: #102921b3; }
+.collection-heading { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.collection-heading button { width: 44px; min-height: 44px; flex-shrink: 0; border: 1px solid #a4b499; background: #fffdf2; border-radius: 8px; }
+.collection-heading h2 { font-size: 24px; }
+.collection-heading h2:focus { outline: 2px solid #a86e2e; outline-offset: 4px; }
+.collection-intro { margin: 12px 0 20px; font-size: 12px; line-height: 1.5; }
+.collection-dialog h3 { font-size: 15px; margin: 18px 0 10px; }
+.collection-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.collection-card { min-width: 0; padding: 14px; border: 1px solid #c9d4bd; border-radius: 12px; background: #fffdf5; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.collection-card.is-equipped { border: 2px solid #204a40; padding: 13px; }
+.collection-card > img, .collection-placeholder { width: 100%; height: 90px; object-fit: contain; }
+.collection-placeholder { display: grid; place-items: center; font-size: 34px; color: #65775a; background: #edf1e5; border-radius: 8px; }
+.collection-card h4 { margin: 10px 0 4px; font-size: 13px; overflow-wrap: anywhere; }
+.ownership-label { font-size: 11px; color: #50634b; margin-bottom: 10px; }
+.collection-card button { min-height: 44px; width: 100%; padding: 7px; border: 1px solid #a7b79c; border-radius: 8px; background: #204a40; color: #fffdf2; font-size: 12px; margin-top: auto; }
+.collection-card button:disabled { opacity: 1; background: #eef2e7; color: #465e3f; }
+.no-effect-button { min-height: 44px; margin-top: 10px; border: 1px solid #a7b79c; border-radius: 8px; padding: 8px 12px; background: #fffdf2; }
+@media (min-width: 600px) and (max-width: 959px), (min-width: 600px) and (orientation: portrait) { .score-hud .round-reward { grid-column: 2; grid-row: 1; }.score-hud:has(.round-reward) .result-actions { grid-row: 2 / 4; } }
+@media (max-width: 959px) { .player-tools .connection { display: none; } }
+@media (max-width: 599px) { .player-tools { display: contents; }.player-hud { order: 3; width: 100%; grid-template-columns: auto minmax(0,1fr) auto; gap: 8px; }.collection-button { margin-left: auto; font-size: 11px; }.collection-dialog { padding: 16px; }.collection-grid { gap: 8px; }.collection-card { padding: 10px; }.collection-card.is-equipped { padding: 9px; }.collection-card h4 { font-size: 12px; } }
+.collection-card:focus { outline: 3px solid #a86e2e; outline-offset: 3px; }

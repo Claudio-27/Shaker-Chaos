@@ -1,0 +1,4 @@
+.dev-progression-actions { display: flex; gap: 8px; align-items: end; flex-wrap: wrap; margin: 12px 0; }
+.dev-progression-actions input, .progression-lab button { min-height: 44px; padding: 7px; font: inherit; }
+.dev-progression-actions input { max-width: 130px; }
+.progression-lab button { border: 1px solid #a4b499; border-radius: 8px; background: #fffdf2; }

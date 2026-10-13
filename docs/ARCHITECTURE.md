@@ -1,6 +1,17 @@
 # Architettura
 
-## Architettura attiva 2B — DOMAIN STATE e PRESENTATION STATE
+## Architettura attiva 2C — progressione a valle del risultato
+
+Il dominio cocktail, classicGame/productionBootstrap e tuning2A restano invariati. Il dispatcher UI chiama la transizione pura, poi il PlayerController quando compare un nuovo frozen RoundResult: liquidazione sincrona prima del render, senza effetti React o timer. useSyncExternalStore legge uno snapshot stabile del profilo; il layer visivo della fase2B continua a rivelare un risultato già definitivo.
+
+Nuovi domini puri playerProfile/progression: interi, XP/curve/wallet, entitlements, identità emessa, stats e ledger bounded128 + watermark persistente. PlayerProfileRepository è l’interfaccia; localPlayerProfileRepository è l’unico adapter di storage, con migrazione/validazione, backup del raw corrotto, protezione delle versioni sconosciute, confronto del writer e fallback in memoria.
+
+PlayerContent riconcilia proprietà e ID, mantiene slot indipendenti e risolve ID canonici in visuali. ProgressionTuning centralizza formule, sblocchi e limiti. Collection/HUD/reward sono presentazione; nessun livello, moneta o cosmetico entra nelle dipendenze dello scorer. Il test livello1/livello20 con wallet/cosmetici diversi verifica esattamente lo stesso risultato.
+
+[Schema, formule, idempotenza e limiti](PROGRESSION_SYSTEM.md) · [Rapporto2C](PHASE_2C_REPORT.md). V1 è il primo save: future curve/schema richiedono migratori espliciti. L’uso simultaneo in più schede richiederà coordinamento transazionale; un conflitto già visibile conserva il save dell’altro writer. Entitlement privato locale non equivale ad autorizzazione server. Nessun backend, account o vault.
+
+
+## Checkpoint 2B — DOMAIN STATE e PRESENTATION STATE
 
 Il dominio, classicGame, productionBootstrap e il profilo 2A restano invariati. Storia e proiezione canoniche determinano quantità, fasi, rischio meccanico e risultato. **Serve congela immediatamente lo score**; il dominio non aspetta il bartender.
 

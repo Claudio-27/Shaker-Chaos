@@ -6,8 +6,8 @@ const VisualContext = createContext<VisualCatalog | null>(null);
 export function VisualAssetsProvider({ catalog, children }: { readonly catalog: VisualCatalog; readonly children: ReactNode }) {
   return <VisualContext.Provider value={catalog}>{children}</VisualContext.Provider>;
 }
-export function AssetImage({ assetId, fallback, optional = false, className = '', alt = '', style, priority = 'auto' }: {
-  readonly assetId: AssetId; readonly fallback?: AssetId; readonly optional?: boolean; readonly className?: string;
+export function AssetImage({ assetId, fallback, lastResort, optional = false, className = '', alt = '', style, priority = 'auto' }: {
+  readonly assetId: AssetId; readonly fallback?: AssetId; readonly lastResort?: AssetId; readonly optional?: boolean; readonly className?: string;
   readonly alt?: string; readonly style?: CSSProperties; readonly priority?: 'high' | 'low' | 'auto';
 }) {
   const catalog = useContext(VisualContext);
@@ -15,7 +15,8 @@ export function AssetImage({ assetId, fallback, optional = false, className = ''
   if (!catalog) throw new Error('Visual assets require an explicit catalog');
   const preferred = optional || fallback ? optionalAsset(catalog, assetId, fallback) : assetId;
   const current = preferred && !failed.includes(preferred) ? preferred :
-    fallback && !failed.includes(fallback) ? optionalAsset(catalog, fallback) : undefined;
+    fallback && !failed.includes(fallback) ? optionalAsset(catalog, fallback) :
+    lastResort && !failed.includes(lastResort) ? optionalAsset(catalog, lastResort) : undefined;
   if (!current) return optional ? <span hidden data-asset-error={assetId} /> : <span className="asset-error" data-asset-error={assetId} role="img" aria-label="Artwork non disponibile">Artwork non disponibile</span>;
   const asset = resolveAsset(catalog, current);
   return <img src={import.meta.env.BASE_URL + asset.path} width={asset.width} height={asset.height}
@@ -24,8 +25,8 @@ export function AssetImage({ assetId, fallback, optional = false, className = ''
     onError={() => { setFailed((previous) => [...previous, current]); }} />;
 }
 /** Decorative playback only: no game callbacks, events, score inputs, or completion gates. */
-export function SequenceArt({ sequence, intro, motion, fallback, reducedMotion = false, className = '' }: {
-  readonly sequence: VisualSequence; readonly intro?: VisualSequence; readonly fallback?: AssetId;
+export function SequenceArt({ sequence, intro, motion, fallback, lastResort, reducedMotion = false, className = '' }: {
+  readonly sequence: VisualSequence; readonly intro?: VisualSequence; readonly fallback?: AssetId; readonly lastResort?: AssetId;
   readonly reducedMotion?: boolean; readonly motion: NonNullable<VisualSequence['motion']>; readonly className?: string;
 }) {
   const [frame, setFrame] = useState(0);
@@ -48,6 +49,6 @@ export function SequenceArt({ sequence, intro, motion, fallback, reducedMotion =
   const current = frames[reduced ? frames.length - 1 : Math.min(frame, frames.length - 1)];
   if (!current) return null;
   return <div className={'sequence-art ' + className} data-motion={reduced ? 'none' : motion}>
-    <AssetImage assetId={current.assetId} {...(fallback ? { fallback } : {})} priority="high" />
+    <AssetImage assetId={current.assetId} {...(fallback ? { fallback } : {})} {...(lastResort ? { lastResort } : {})} priority="high" />
   </div>;
 }

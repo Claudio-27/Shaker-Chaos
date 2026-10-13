@@ -9,7 +9,7 @@ import type { PresentationSound } from '../platform/presentationAudio.ts';
 import type { VolumeUnit } from '../domain/quantity.ts';
 import type { OperationEndReason } from '../domain/session.ts';
 import { formatVolumeUnits } from './volumePresentation.ts';
-import { lazy, Suspense, useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { gameDependencies, gamePresentation } from '../application/productionBootstrap.ts';
 import { newClassicGame, transitionClassicGame } from '../application/classicGame.ts';
 import { totalVolumeUnits } from '../domain/mix.ts';
@@ -21,6 +21,9 @@ import { primeSceneVisuals } from '../platform/visualPreload.ts';
 import { HoldButton } from './HoldButton.tsx';
 import { createResetGuard, gameplayPresentation } from './gameplayPresentation.ts';
 import { reactionVisible } from './resultPresentation.ts';
+import { resolvePlayerLoadout } from '../application/playerContent.ts';
+import { createBrowserPlayer } from '../platform/playerBootstrap.ts';
+import { Collection, PlayerHUD, RewardPresentation } from './PlayerProgression.tsx';
 import { useReducedMotion, useResultReveal } from './usePlayerPresentation.ts';
 
 const { catalog, volumeDisplay, visuals, scene: initialScene } = gamePresentation;
@@ -33,6 +36,8 @@ const visualDebug = import.meta.env.DEV && query.get('visualDebug') === '1';
 const AssetLab = import.meta.env.DEV ? lazy(() => import('./AssetLab.tsx')) : null;
 const CompatibilityLab = import.meta.env.DEV ? lazy(() => import('./CompatibilityLab.tsx')) : null;
 const TuningInspector = import.meta.env.DEV ? lazy(() => import('./TuningInspector.tsx')) : null;
+const ProgressionLab = import.meta.env.DEV ? lazy(() => import('./ProgressionLab.tsx')) : null;
+const progressionLab = import.meta.env.DEV && query.get('progressionLab') === '1';
 const assetLab = import.meta.env.DEV && query.get('assetLab') === '1';
 const compatLab = import.meta.env.DEV && query.get('compatLab') === '1';
 const tuningLab = import.meta.env.DEV && (query.get('tuningLab') === '1' || visualDebug || compatLab);
@@ -41,12 +46,24 @@ const soundByEvent: Partial<Record<string, PresentationSound>> = {
 };
 
 export function App() {
-  const [loadout, setLoadout] = useState<VisualLoadout>(initialScene);
+  const [player, setPlayer] = useState(createBrowserPlayer);
+  const playerSnapshot = useSyncExternalStore(player.subscribe, player.snapshot);
+  const [previewLoadout, setPreviewLoadout] = useState<VisualLoadout | null>(null);
+  const ownedLoadout = useMemo(() => resolvePlayerLoadout(playerSnapshot.profile), [playerSnapshot.profile.equippedLoadout, playerSnapshot.profile.ownership]);
+  const loadout = previewLoadout ?? ownedLoadout;
   const scene = useMemo(() => ({ ...loadout, ingredientIds: initialScene.ingredientIds }), [loadout]);
-  const [state, dispatch] = useReducer(
-    (current: ReturnType<typeof newClassicGame>, action: Parameters<typeof transitionClassicGame>[1]) => transitionClassicGame(current, action, gameDependencies),
-    undefined, () => newClassicGame(gameDependencies),
-  );
+  const [collectionOpen, setCollectionOpen] = useState(false);
+  const [state, setState] = useState(() => newClassicGame(gameDependencies));
+  const stateRef = useRef(state);
+  const dispatch = useCallback((action: Parameters<typeof transitionClassicGame>[1]) => {
+    const previous = stateRef.current, next = transitionClassicGame(previous, action, gameDependencies);
+    if (next === previous) return;
+    stateRef.current = next;
+    if (next.session.history !== previous.session.history) player.bindAttempt(next.view.derived.currentAttemptStart);
+    if (!previous.result && next.result) player.settle(next.result, next.view.derived.currentAttemptStart);
+    setState(next);
+  }, [player]);
+  const equip = useCallback((id: string | null) => { player.equip(id); setPreviewLoadout(null); }, [player]);
   const [selectedId, setSelectedId] = useState(catalog.ingredients[0]?.id ?? '');
   const [sessionTime] = useState(() => createSessionClock());
   const [holdOwnership] = useState(createHoldOwnership);
@@ -59,7 +76,6 @@ export function App() {
   const reducedMotion = systemReduced || (import.meta.env.DEV && motionPreview);
   const resultTitle = useRef<HTMLHeadingElement>(null), skipButton = useRef<HTMLButtonElement>(null), pourButton = useRef<HTMLButtonElement>(null);
   const shakeButton = useRef<HTMLButtonElement>(null), serveButton = useRef<HTMLButtonElement>(null);
-  const stateRef = useRef(state); stateRef.current = state;
   const attemptKey = state.view.derived.currentAttemptStart;
   const reveal = useResultReveal(state.result, attemptKey, reducedMotion);
   const mix = state.view.derived.mix, volume = totalVolumeUnits(mix);
@@ -79,30 +95,30 @@ export function App() {
     setCue('');
     const operationId = nextOperation.current++; pourOperation.current = operationId;
     dispatch({ type: 'PourStarted', operationId, ingredientId: selectedId, atMs });
-  }, [selectedId]);
+  }, [selectedId, dispatch]);
   const pourAction = useCallback((atMs: number) => {
     if (pourOperation.current !== null) dispatch({ type: 'HoldAdvanced', operationId: pourOperation.current, atMs });
-  }, []);
+  }, [dispatch]);
   const endPour = useCallback((reason: OperationEndReason, atMs: number) => {
     const operationId = pourOperation.current; pourOperation.current = null;
     if (operationId !== null) dispatch({ type: 'PourEnded', operationId, reason, atMs });
-  }, []);
+  }, [dispatch]);
   const beginShake = useCallback((atMs: number) => {
     setCue('');
     const operationId = nextOperation.current++; shakeOperation.current = operationId;
     dispatch({ type: 'ShakeStarted', operationId, atMs });
-  }, []);
+  }, [dispatch]);
   const shakeAction = useCallback((atMs: number) => {
     if (shakeOperation.current !== null) dispatch({ type: 'HoldAdvanced', operationId: shakeOperation.current, atMs });
-  }, []);
+  }, [dispatch]);
   const endShake = useCallback((reason: OperationEndReason, atMs: number) => {
     const operationId = shakeOperation.current; shakeOperation.current = null;
     if (operationId !== null) dispatch({ type: 'ShakeEnded', operationId, reason, atMs });
-  }, []);
+  }, [dispatch]);
   const newDrink = useCallback(() => {
     if (!resetGuard.request(gameplayPresentation(stateRef.current, profile, true).controls.reset)) return;
     setCue(''); dispatch({ type: 'Reset', atMs: sessionTime() });
-  }, [resetGuard, sessionTime]);
+  }, [resetGuard, sessionTime, dispatch]);
   const formatVolume = useCallback((units: VolumeUnit) => formatVolumeUnits(units, volumeDisplay), []);
   useEffect(() => {
     resetGuard.settled();
@@ -155,19 +171,25 @@ export function App() {
     <div className="app-shell" data-reduced-motion={reducedMotion}>
       <header className="topbar">
         <a className="brand" href="./" aria-label="Shaker-Chaos, pagina iniziale"><span className="brand-icon" aria-hidden="true">✳</span><span>SHAKER<span className="brand-dash">—</span>CHAOS</span></a>
-        <div className="topbar-meta"><span className="phase-chip">IL BANCO È TUO</span><span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
+        <div className="player-tools"><PlayerHUD snapshot={playerSnapshot} />
+          <button type="button" className="collection-button" disabled={ui.pouring || ui.shaking} onClick={() => setCollectionOpen(true)}>Collezione</button>
+          <span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
       </header>
       <main>
         <div className="intro"><div><p className="eyebrow">IL TUO PICCOLO LABORATORIO AL BANCO</p><h1>Un po’ di ritmo. <em>Un po’ di caos.</em></h1></div><p>Tre ingredienti. Un nuovo esperimento.</p></div>
         {compatLab && CompatibilityLab && <Suspense fallback={null}><CompatibilityLab currentSession={state.session} /></Suspense>}
-        {assetLab && AssetLab && <Suspense fallback={null}><AssetLab loadout={loadout} visuals={visuals} ingredientIds={scene.ingredientIds} onChange={setLoadout} /></Suspense>}
+        {assetLab && AssetLab && <Suspense fallback={null}><AssetLab loadout={loadout} visuals={visuals} ingredientIds={scene.ingredientIds} onChange={setPreviewLoadout} /></Suspense>}
         {tuningLab && TuningInspector && <Suspense fallback={null}><TuningInspector profile={profile} presentation={diagnostics}
           motionPreview={motionPreview} onMotionPreview={setMotionPreview} /></Suspense>}
+        {progressionLab && ProgressionLab && <Suspense fallback={null}><ProgressionLab controller={player} snapshot={playerSnapshot} onReset={() => {
+          dispatch({ type: 'Reset', atMs: sessionTime() }); setPreviewLoadout(null); setPlayer(createBrowserPlayer());
+        }} /></Suspense>}
+        {collectionOpen && <Collection profile={playerSnapshot.profile} visuals={visuals} onEquip={equip} onClose={() => setCollectionOpen(false)} />}
         <GameStage environment={environment} debug={visualDebug} diagnostics={diagnostics} failed={state.view.failed}>
           <BottleShelf loadout={loadout} ingredients={catalog.ingredients} visuals={visuals} mix={mix} selectedId={selectedId}
             disabled={!ui.controls.ingredient} pourFeedback={ui.pourFeedback} onSelect={setSelectedId} formatVolume={formatVolume} />
           <BartenderArea loadout={loadout} bartender={bartender} visuals={visuals} reactionId={reactionId} pose={pose}
-            working={ui.pouring ? 'pouring' : ui.shaking ? 'shaking' : 'idle'} attemptKey={attemptKey} reducedMotion={reducedMotion} />
+            working={ui.pouring ? 'pouring' : ui.shaking ? 'shaking' : 'idle'} attemptKey={attemptKey} reducedMotion={reducedMotion} lastResort={visuals.bartenders[initialScene.bartenderId]!.idle} />
           <ReactionOverlay title={title} line={line} terminal={ui.terminal} anticipating={anticipating} />
           <CounterArea assetId={counter.surface} fit={counter.fit}>
             <MixingStation mix={mix} volume={volume} capacity={profile.capacityUnits} maximumIce={profile.ice.maximumActions} visuals={visuals}
@@ -220,7 +242,8 @@ export function App() {
             </ControlsArea>
           </CounterArea>
           <ScoreHUD result={state.result} stage={reveal.stage} title={finalCopy.title} ingredients={catalog.ingredients} profile={profile}
-            titleRef={resultTitle} skipRef={skipButton} onSkip={reveal.skip} onNewDrink={newDrink} />
+            titleRef={resultTitle} skipRef={skipButton} onSkip={reveal.skip} onNewDrink={newDrink}
+            reward={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RewardPresentation reward={playerSnapshot.reward} visuals={visuals} /> : null} />
         </GameStage>
       </main>
       <footer><span>Un progetto indipendente. Forme originali, un mix alla volta.</span><span>SHAKER-CHAOS</span></footer>

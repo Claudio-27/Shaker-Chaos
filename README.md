@@ -1,6 +1,17 @@
 # Shaker-Chaos
 
-## Fase corrente: 2B completata
+## Fase corrente: 2C — profilo e progressione locale
+
+Livello, XP e monete fittizie salvati nel browser; ricompense assegnate una volta quando il risultato diventa definitivo. Formula successo: 20+floor(score/100) XP e 5+floor(score/250) monete; fallimento:5 XP/2 monete. La progressione non modifica lo scoring del cocktail.
+
+Aprire **Collezione** per equipaggiare i cosmetici posseduti: Bartender02 al livello2, Scia azzurra al livello3. Ambiente e banco iniziali rimangono disponibili. I contenuti bloccati non vengono scaricati anticipatamente. Reload ripristina progressi e loadout; storage indisponibile produce una nota e un fallback in memoria, senza rompere il gioco.
+
+[Specifica della progressione](docs/PROGRESSION_SYSTEM.md) · [Rapporto2C](docs/PHASE_2C_REPORT.md). Solo sviluppo: ?progressionLab=1, combinabile con ?tuningLab=1; reset del profilo richiede conferma nel laboratorio. Tutti i tool precedenti restano DEV. Nessun negozio o backend/account introdotto.
+
+Le note 2B e precedenti sotto descrivono i checkpoint storici. La fase 2B è stata committata dall’utente in d2187b3; le modifiche 2C sono lasciate su main per la sua revisione/commit. Arresto dopo2C.
+
+
+## Checkpoint: 2B completata
 
 Miscela → Agita → Servi → Assaggio; selezione marcata, preparazione del versamento, gauge esterno e feedback di ghiaccio/agrume. L’avviso dello shaker cresce senza countdown tecnico. Nove dialoghi originali, tre fasce grafiche esistenti, risultato saltabile e movimento ridotto.
 

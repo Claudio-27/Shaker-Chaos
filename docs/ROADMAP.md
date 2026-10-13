@@ -1,6 +1,15 @@
 # Roadmap
 
-## Stato corrente — fase 2B completata (2026-10-13)
+## Stato corrente — 2C, profilo/XP/economia locale
+
+Profilo V1, repository locale, XP/monete originali, curve/level-up, reward settlement idempotente, stats, ownership, sblocchi2/3, equip persistente e Collection integrati a valle dello scoring. Nessuna modifica al tuning cocktail; ricerca1 chiusa.
+
+Fase successiva consigliata, solo con nuovo prompt: **SHOP / PURCHASES / BUNDLES**. Definire prezzi fittizi e concessioni, transazioni idempotenti e atomicità wallet/ownership, bundle canonici; nessun pagamento reale o contenuto privato protetto solo dal client. Prima dell’espansione verificare la necessità di coordinamento multi-tab e di migrazioni del save. Playtest tablet fisico/accessibilità/PWA installata resta consigliato.
+
+[Rapporto2C](PHASE_2C_REPORT.md), [specifica](PROGRESSION_SYSTEM.md). La proposta di playtest2C del checkpoint2B è stata sostituita dal nuovo incarico esplicito di progressione. Arresto dopo2C; nessuna fase shop iniziata.
+
+
+## Checkpoint — fase 2B completata (2026-10-13)
 
 Esperienza di un giro rifinita: feedback dei controlli, progression visiva, assaggio/reveal, nove dialoghi, risultato/reset, difesa input, movimento ridotto e responsive. Regole 2A, artwork e ricerca storica preservati. 210 test, controlli strict/lint/build/audit e smoke browser/offline superati. Cambiamenti locali su main, da revisionare e committare dall’utente.
 
