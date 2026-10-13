@@ -24,22 +24,16 @@ export function AssetImage({ assetId, fallback, optional = false, className = ''
     onError={() => { setFailed((previous) => [...previous, current]); }} />;
 }
 /** Decorative playback only: no game callbacks, events, score inputs, or completion gates. */
-export function SequenceArt({ sequence, intro, motion, fallback, className = '' }: {
+export function SequenceArt({ sequence, intro, motion, fallback, reducedMotion = false, className = '' }: {
   readonly sequence: VisualSequence; readonly intro?: VisualSequence; readonly fallback?: AssetId;
-  readonly motion: NonNullable<VisualSequence['motion']>; readonly className?: string;
+  readonly reducedMotion?: boolean; readonly motion: NonNullable<VisualSequence['motion']>; readonly className?: string;
 }) {
   const [frame, setFrame] = useState(0);
   const frames = useMemo(() => [
     ...(intro?.frames ?? []).map((assetId) => ({ assetId, duration: intro!.frameDurationMs })),
     ...sequence.frames.map((assetId) => ({ assetId, duration: sequence.frameDurationMs })),
   ], [sequence, intro]);
-  const [reduced, setReduced] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  useEffect(() => {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const changed = () => setReduced(preference.matches);
-    preference.addEventListener('change', changed);
-    return () => preference.removeEventListener('change', changed);
-  }, []);
+  const reduced = reducedMotion;
   useEffect(() => {
     if (reduced || frames.length < 2) return;
     let position = 0, timer: number;

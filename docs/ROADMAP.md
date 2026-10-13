@@ -1,7 +1,16 @@
 # Roadmap
 
+## Stato corrente — fase 2B completata (2026-10-13)
+
+Esperienza di un giro rifinita: feedback dei controlli, progression visiva, assaggio/reveal, nove dialoghi, risultato/reset, difesa input, movimento ridotto e responsive. Regole 2A, artwork e ricerca storica preservati. 210 test, controlli strict/lint/build/audit e smoke browser/offline superati. Cambiamenti locali su main, da revisionare e committare dall’utente.
+
+Phase 2C consigliata, soltanto con nuovo incarico: playtest su tablet fisici (touch, multitouch, penna, orientamento e sospensione/ripresa), verifica PWA installata e screen reader, eventuali piccoli aggiustamenti guidati dal playtest e suoni originali tramite la porta preparata. La copertura fisica non è sostituita dai test sintetici/browser. Nessun retuning automatico, XP, economia, nuovi contenuti, account/backend/vault o ricerca del riferimento avviati in 2B.
+
+[Rapporto completo 2B](PHASE_2B_REPORT.md). La roadmap originale sotto è storica e non autorizza lavoro ulteriore. Arresto dopo 2B.
+
+
 Aggiornamento fase2A: ricerca1B–1E chiusa per decisione di prodotto. Primo gameplay originale implementato con profilo classico, risultato0–10000 e tuning approvato. Si lavora direttamente su main; le modifiche2A restano locali per revisione. La roadmap storica seguente non richiede ulteriore compatibilità1:1.
-Fase2B consigliata (solo su nuovo incarico): playtest/bilanciamento originale, accessibilità e touch su tablet fisici, feedback audiovisivo con asset originali. Non riaprire esperimenti sul riferimento.
+Questa raccomandazione 2A è stata seguita dalla fase 2B descritta sopra. Non riaprire esperimenti sul riferimento.
 
 
 Fasi 0–0.3 completate. Fase 1A completata come infrastruttura di ricerca; osservazioni/meccaniche verificate e fasi successive restano da svolgere.

@@ -1,5 +1,26 @@
 # Specifica progressiva delle meccaniche
 
+## Presentazione 2B — nessun retuning
+
+Tutti i numeri, le equazioni e le policy 2A sotto restano identici. I seguenti valori sono esclusivamente di presentazione:
+
+| Feedback | Derivazione / comportamento |
+| --- | --- |
+| Pour in preparazione | Start accettato senza tick applicati; attivo anche durante gli 800ms di avvio e fino al primo tick a 925ms. Nessun liquido inventato. |
+| Gauge | Quantità applicata / capacità canonica; target CSS autorevole, transizione 100ms senza overshoot. Reset immediato a zero. |
+| Rischio tranquillo | Sotto entrambe le soglie successive. |
+| Energia | Count ≥ failureCount−3 oppure durata ≥ floor(warningDurationMs/2): oggi 3 / 3000ms. |
+| Rischioso | Count ≥ failureCount−2 oppure durata ≥ floor(warningDurationMs×2/3): oggi 4 / 4000ms. |
+| Pericolo | Count ≥ failureCount−1 oppure durata ≥ warningDurationMs: oggi 5 / 6000ms. Nessun countdown esatto nel gioco. |
+| Assaggio / reveal | Score già congelato a Serve; score a 650ms, reazione a 830ms, breakdown a 1050ms. Skip/failure/movimento ridotto mostrano subito tutto. |
+
+Disponibilità: Pour solo mixing con ingrediente e spazio; Shake solo tentativo attivo con liquido e senza Pour; Ice solo mixing e sotto max; Garnish e Serve solo ready dopo rilascio; Garnish una volta. Ingredienti non selezionabili durante Pour o dopo mixing. Dopo risultato/fallimento resta soltanto Nuovo drink.
+
+Eccezione di feedback: Ice a 2/2 in mixing è aria-disabled, ma riceve ancora un tentativo di attivazione per mostrare “Il ghiaccio basta così”. Il handler non invia alcuna azione di dominio. Fuori mixing il pulsante è nativamente disabled. Il garnish accettato resta disabled e segnato ✓.
+
+DOMAIN STATE: storia, quantità intere, count/durata, failure e frozen score. PRESENTATION STATE: copy, pose, colori, CSS, tappe del reveal e cue. Nessuna animazione aggiunge quantità, tempo, score o fatti. Porta audio silenziosa; nessuna nuova meccanica o economia.
+
+
 ## Active Phase 2A production specification — 2026-10-13
 
 This is **ORIGINAL SHAKER-CHAOS TUNING**, not verified reference reproduction. Research is closed; old evidence statuses below describe historical research only.

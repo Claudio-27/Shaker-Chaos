@@ -1,144 +1,186 @@
 import { ingredientVisuals, optionalAsset, selectedEffect } from '../content/visualPlan.ts';
-import { useMemo, useRef } from 'react';
+import { memo, useMemo, useRef } from 'react';
 import type { ReactNode, RefObject } from 'react';
 import type { BartenderDefinition, IngredientDefinition, MixState } from '../domain/model.ts';
 import type { ClassicInspiredTuningProfile } from '../domain/classicProfile.ts';
 import type { ClassicScoreResult } from '../domain/classicScoring.ts';
 import type { VolumeUnit } from '../domain/quantity.ts';
 import { volumeUnits } from '../domain/quantity.ts';
-import type { AssetId, EnvironmentVisualDefinition, ReactionId, VisualCatalog, VisualLoadout } from '../content/visualModel.ts';
+import type { AssetId, EnvironmentVisualDefinition, ReactionId, VisualCatalog, VisualLoadout, VisualSequence } from '../content/visualModel.ts';
+import { playerCopy } from '../content/playerExperience.ts';
 import { AssetImage, SequenceArt } from './AssetVisual.tsx';
 import { VisualDebug } from './VisualDebug.tsx';
+import type { PresentationDiagnostics } from './VisualDebug.tsx';
+import type { PlayerPhase, PourFeedback, ShakeRisk } from './gameplayPresentation.ts';
+import type { ResultStage } from './resultPresentation.ts';
+import { reactionVisible, scoreVisible } from './resultPresentation.ts';
 
-export function GameStage({ environment, debug, children }: {
-  readonly environment: EnvironmentVisualDefinition; readonly debug: boolean; readonly children: ReactNode;
+export function GameStage({ environment, debug, diagnostics, failed, children }: {
+  readonly environment: EnvironmentVisualDefinition; readonly debug: boolean; readonly diagnostics: PresentationDiagnostics;
+  readonly failed: boolean; readonly children: ReactNode;
 }) {
   const stageRef = useRef<HTMLElement | null>(null);
-  return <section className={`game-stage ${debug ? 'stage-debug' : ''}`} ref={stageRef} aria-label="Banco di miscelazione">
+  return <section className={`game-stage ${debug ? 'stage-debug' : ''}`} data-failed={failed} ref={stageRef} aria-label="Banco di miscelazione">
     <div className="environment-layers" aria-hidden="true">
       <AssetImage assetId={environment.background} className="environment-background" priority="high" />
       {environment.backBar && <AssetImage assetId={environment.backBar} className="environment-back-bar" />}
-      {environment.decorations?.map((layer, index) => <AssetImage key={`${layer.asset}:${index}`} assetId={layer.asset}
+      {environment.decorations?.map((layer, index) => <AssetImage key={layer.asset + ':' + index} assetId={layer.asset}
         className={`environment-decoration depth-${layer.depth}`} style={{ objectFit: layer.fit }} />)}
     </div>
     {children}
-    {import.meta.env.DEV && debug && <VisualDebug stageRef={stageRef} />}
+    {import.meta.env.DEV && debug && <VisualDebug stageRef={stageRef} presentation={diagnostics} />}
   </section>;
 }
-
-export function BottleShelf({ loadout, ingredients, visuals, mix, selectedId, disabled, onSelect, formatVolume, symbol }: {
+function sameLiquid(a: MixState, b: MixState) {
+  const ids = Object.keys(a.quantities);
+  return ids.length === Object.keys(b.quantities).length && ids.every(id => a.quantities[id] === b.quantities[id]);
+}
+export const BottleShelf = memo(function BottleShelf({ loadout, ingredients, visuals, mix, selectedId, disabled, pourFeedback, onSelect, formatVolume }: {
   readonly loadout: VisualLoadout; readonly ingredients: readonly IngredientDefinition[]; readonly visuals: VisualCatalog; readonly mix: MixState;
-  readonly selectedId: string; readonly disabled: boolean; readonly onSelect: (id: string) => void;
-  readonly formatVolume: (value: VolumeUnit) => string; readonly symbol: string;
+  readonly selectedId: string; readonly disabled: boolean; readonly pourFeedback: PourFeedback; readonly onSelect: (id: string) => void;
+  readonly formatVolume: (value: VolumeUnit) => string;
 }) {
   return <section className="bottle-shelf" data-zone="bottles" aria-labelledby="ingredients-title">
     <div className="zone-heading"><span>01 / LE NOTE</span><h2 id="ingredients-title">Scegli un ingrediente</h2></div>
-    <div className="bottle-list">
-      {ingredients.map((ingredient) => {
-        const visual = ingredientVisuals(visuals, loadout, ingredient.id);
-        if (!visual) throw new Error(`Missing ingredient visual: ${ingredient.id}`);
-        const selected = ingredient.id === selectedId;
-        return <button type="button" className={`bottle-hitbox ${selected ? 'is-selected' : ''}`} data-hitbox="bottle"
-          disabled={disabled} aria-pressed={selected} key={ingredient.id} onClick={() => onSelect(ingredient.id)}>
-          <AssetImage assetId={selected ? optionalAsset(visuals, visual.selectedBottle, visual.bottle)! : visual.bottle} fallback={visual.bottle} className="bottle-image" />
-          <span className="bottle-copy"><strong>{ingredient.name}</strong><span>{ingredient.description}</span>
-            <b>{formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0))} {symbol} nel mix</b></span>
-          <span className="bottle-selected" aria-hidden="true">{selected ? '●' : '○'}</span>
-        </button>;
-      })}
-    </div>
-    <p className="shelf-hint">Scegli la bottiglia, poi tieni premuto Versa.</p>
+    <div className="bottle-list">{ingredients.map(ingredient => {
+      const visual = ingredientVisuals(visuals, loadout, ingredient.id);
+      if (!visual) throw new Error('Missing ingredient visual: ' + ingredient.id);
+      const selected = ingredient.id === selectedId;
+      return <button type="button" className={`bottle-hitbox ${selected ? 'is-selected' : ''}`} data-hitbox="bottle"
+        data-pour={selected ? pourFeedback : 'idle'} disabled={disabled} aria-pressed={selected} key={ingredient.id} onClick={() => onSelect(ingredient.id)}>
+        <AssetImage assetId={selected ? optionalAsset(visuals, visual.selectedBottle, visual.bottle)! : visual.bottle} fallback={visual.bottle} className="bottle-image" />
+        <span className="bottle-copy"><strong>{ingredient.name}</strong><span>{ingredient.description}</span>
+          <b>{formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0))} nel mix</b></span>
+        <span className="bottle-selected" aria-hidden="true">{selected ? '✓' : ''}</span>
+      </button>;
+    })}</div>
+    <p className="shelf-hint">La bottiglia selezionata guida il prossimo versamento.</p>
   </section>;
-}
+}, (a, b) => a.loadout === b.loadout && a.ingredients === b.ingredients && a.visuals === b.visuals &&
+  a.selectedId === b.selectedId && a.disabled === b.disabled && a.pourFeedback === b.pourFeedback &&
+  a.onSelect === b.onSelect && a.formatVolume === b.formatVolume && sameLiquid(a.mix, b.mix));
 
-export function BartenderArea({ loadout, bartender, visuals, reactionId, served, attemptKey }: {
+export const BartenderArea = memo(function BartenderArea({ loadout, bartender, visuals, reactionId, pose, working, attemptKey, reducedMotion }: {
   readonly loadout: VisualLoadout; readonly bartender: BartenderDefinition; readonly visuals: VisualCatalog; readonly reactionId: ReactionId;
-  readonly served: boolean; readonly attemptKey: number;
+  readonly pose: 'idle' | 'tasting' | 'reaction' | 'failure'; readonly working: 'idle' | 'pouring' | 'shaking';
+  readonly attemptKey: number; readonly reducedMotion: boolean;
 }) {
-  const visual = visuals.bartenders[bartender.id];
-  const reaction = visuals.reactions[reactionId];
+  const visual = visuals.bartenders[bartender.id], reaction = visuals.reactions[reactionId];
   const effect = selectedEffect(visuals, loadout);
   if (!visual || !reaction) throw new Error('Missing active bartender presentation');
-  const sequence = useMemo(() => {
+  const sequence = useMemo<VisualSequence>(() => {
+    const idle = { frames: [visual.idle], frameDurationMs: 1000 };
+    if (pose === 'idle') return idle;
+    if (pose === 'tasting') return visual.tasting ?? idle;
     const final = visual.reactions[reactionId];
-    if (!final) throw new Error(`Missing reaction sequence: ${reactionId}`);
+    if (!final) throw new Error('Missing reaction sequence: ' + reactionId);
     return final;
-  }, [visual, reactionId, served]);
-  return <section className="bartender-area" data-zone="bartender" aria-label={`${bartender.name}, bartender del laboratorio`}>
+  }, [visual, reactionId, pose]);
+  return <section className={`bartender-area working-${working}`} data-zone="bartender" data-pose={pose} aria-label={bartender.name + ', il tuo bartender'}>
     <div className="bartender-name"><AssetImage assetId={visual.portrait ?? visual.idle} fallback={visual.idle} /><span><strong>{bartender.name}</strong><small>Il tuo compagno di esperimenti</small></span></div>
     <div className="character-safe-area" data-safe-area="character">
-      <SequenceArt key={`${bartender.id}:${reactionId}:${attemptKey}:${served}`} sequence={sequence} fallback={visual.idle} {...(served && visual.tasting ? { intro: visual.tasting } : {})} motion={served ? reaction.motion : 'none'} className="character-body" />
-      {visual.accessories?.map((id) => <AssetImage key={id} assetId={id} className="character-accessory" />)}
-      {served && reactionId === 'lab.excellent' && effect && <AssetImage assetId={effect} optional className="character-effect" />}
+      <SequenceArt key={bartender.id + ':' + reactionId + ':' + attemptKey + ':' + pose} sequence={sequence} fallback={visual.idle}
+        reducedMotion={reducedMotion} motion={pose === 'reaction' && !reducedMotion ? reaction.motion : 'none'} className="character-body" />
+      {visual.accessories?.map(id => <AssetImage key={id} assetId={id} className="character-accessory" />)}
+      {pose === 'reaction' && reactionId === 'lab.excellent' && effect && !reducedMotion && <AssetImage assetId={effect} optional className="character-effect" />}
     </div>
   </section>;
-}
-
-export function ReactionOverlay({ title, line, served, titleRef }: {
-  readonly title: string; readonly line: string; readonly served: boolean; readonly titleRef: RefObject<HTMLHeadingElement | null>;
+});
+export const ReactionOverlay = memo(function ReactionOverlay({ title, line, terminal, anticipating }: {
+  readonly title: string; readonly line: string; readonly terminal: boolean; readonly anticipating: boolean;
 }) {
   return <section className="reaction-overlay" data-zone="reaction" aria-live="polite" aria-atomic="true" aria-label="Reazione del bartender">
-    <p className="eyebrow">{served ? 'IL VERDETTO DEL BANCO' : 'DUE PAROLE DAL BARTENDER'}</p>
-    <h2 ref={titleRef} tabIndex={-1}>{title}</h2><p className="bartender-line">“{line}”</p>
-    <p className="reaction-instruction">{served ? 'Un altro giro? Svuota lo shaker e riprova.' : 'Versa, agita e servi. Il prossimo mix è tuo.'}</p>
+    <p className="eyebrow">{anticipating ? 'IL MOMENTO DELL’ASSAGGIO' : terminal ? 'IL VERDETTO DEL BANCO' : 'DUE PAROLE DAL BARTENDER'}</p>
+    <h2>{title}</h2><p className="bartender-line">“{line}”</p>
+    <p className="reaction-instruction">{terminal ? playerCopy.nextRound : 'Versa, agita e servi. Il prossimo mix è tuo.'}</p>
   </section>;
-}
-
+});
 export function CounterArea({ assetId, fit, children }: { readonly assetId: AssetId; readonly fit: 'cover' | 'contain'; readonly children: ReactNode }) {
   return <section className="counter-area" data-zone="counter" aria-label="Banco e preparazione">
     <AssetImage assetId={assetId} className="counter-surface" style={{ objectFit: fit }} /><div className="counter-content">{children}</div>
   </section>;
 }
-const icePositions = [[8, 15], [56, 34], [25, 56], [58, 8], [6, 52], [38, 20], [56, 61], [28, 2]] as const;
-export function MixingStation({ mix, volume, capacity, visuals, formatVolume, symbol, shaking, served, failed }: {
-  readonly mix: MixState; readonly volume: VolumeUnit; readonly capacity: VolumeUnit; readonly visuals: VisualCatalog;
-  readonly formatVolume: (value: VolumeUnit) => string; readonly symbol: string; readonly shaking: boolean; readonly served: boolean; readonly failed: boolean;
+
+export const MixingStation = memo(function MixingStation({ mix, volume, capacity, maximumIce, visuals, formatVolume, shaking, served, failed, pourFeedback, risk, attemptKey }: {
+  readonly mix: MixState; readonly volume: VolumeUnit; readonly capacity: VolumeUnit; readonly maximumIce: number; readonly visuals: VisualCatalog;
+  readonly formatVolume: (value: VolumeUnit) => string; readonly shaking: boolean; readonly served: boolean; readonly failed: boolean;
+  readonly pourFeedback: PourFeedback; readonly risk: ShakeRisk; readonly attemptKey: number;
 }) {
-  const region = visuals.gameplay.liquidWindows[served ? 'glass' : 'shaker'];
-  return <div className="mixing-station" data-zone="mixing" data-hitbox="station-preview">
-    <div className={`vessel-art ${shaking ? 'is-shaking' : ''} ${failed ? 'is-failed' : ''}`} role="img" aria-label={`Mix di ${formatVolume(volume)} ${symbol}, ${mix.iceUnits} cubetti di ghiaccio`}>
-      {visuals.gameplay.liquidMode !== 'meter' && <div className="liquid-window" style={{ left: `${region.leftPercent}%`, top: `${region.topPercent}%`, width: `${region.widthPercent}%`, height: `${region.heightPercent}%` }}>
-        <div className="liquid-stack" style={{ height: `${volume / capacity * 100}%` }}>
-          {Object.entries(visuals.ingredients).filter(([id]) => (mix.quantities[id] ?? 0) > 0).map(([id, ingredient]) =>
-            <div key={id} style={{ background: ingredient.liquid.color, flexGrow: mix.quantities[id] }}>
-              {ingredient.liquid.overlay && <AssetImage assetId={ingredient.liquid.overlay} className="liquid-overlay" />}
-            </div>)}
-        </div>
-        {icePositions.slice(0, mix.iceUnits).map(([left, top], index) => <AssetImage key={index} assetId={visuals.gameplay.ice} className="ice-image" style={{ left: `${left}%`, top: `${top}%` }} />)}
-      </div>}
+  return <div className="mixing-station" data-zone="mixing" data-hitbox="station-preview" data-pour={pourFeedback} data-risk={risk}>
+    <div className={`vessel-art ${shaking ? 'is-shaking' : ''} ${failed ? 'is-failed' : ''}`} role="img"
+      aria-label={failed ? 'Il mix ha fatto boom!' : (served ? 'Bicchiere' : 'Shaker') + ', ' + formatVolume(volume) + ' di ' + formatVolume(capacity) + ', ghiaccio ' + mix.iceUnits}>
+      {pourFeedback === 'pouring' && <span className="pour-stream" aria-hidden="true" />}
       <AssetImage assetId={served ? visuals.gameplay.glass : visuals.gameplay.shaker} className="vessel-shell" />
-      {mix.garnishId && <AssetImage assetId={visuals.gameplay.garnish} className="garnish-image" />}
+      {mix.garnishId && <AssetImage key={attemptKey + ':' + mix.garnishId} assetId={visuals.gameplay.garnish} className="garnish-image garnish-cue" />}
+      {failed && <span className="burst-ring" aria-hidden="true" />}
     </div>
-    <div className="mix-meter"><strong>{formatVolume(volume)} <small>/ {formatVolume(capacity)} {symbol}</small></strong>
-      <div className="capacity-track" role="progressbar" aria-label="Capacità dello shaker" aria-valuemin={0} aria-valuemax={capacity} aria-valuenow={volume}><span style={{ width: `${volume / capacity * 100}%` }} /></div>
-      {visuals.gameplay.liquidMode === 'meter' && <div className="composition-meter" aria-hidden="true">{Object.entries(visuals.ingredients).filter(([id]) => (mix.quantities[id] ?? 0) > 0).map(([id, ingredient]) => <i key={id} style={{ background: ingredient.liquid.color, flexGrow: mix.quantities[id] }} />)}</div>}
-      <span className="mix-status">{failed ? 'Il mix ha fatto boom!' : served ? 'Mix servito' : shaking ? 'Agitazione in corso' : volume ? 'Esperimento in corso' : 'Shaker pronto'}</span>
+    <div className="mix-meter">
+      <span className="fill-label">Livello del mix</span>
+      <strong>{formatVolume(volume)} <small>/ {formatVolume(capacity)}</small></strong>
+      <div className="capacity-track" role="progressbar" aria-label="Riempimento dello shaker" aria-valuemin={0} aria-valuemax={capacity} aria-valuenow={volume}
+        aria-valuetext={formatVolume(volume) + ' su ' + formatVolume(capacity)}>
+        <span key={attemptKey} className="canonical-fill" style={{ width: volume / capacity * 100 + '%' }} />
+      </div>
+      <div className="composition-meter" aria-hidden="true">{Object.entries(visuals.ingredients).filter(([id]) => (mix.quantities[id] ?? 0) > 0).map(([id, ingredient]) =>
+        <i key={id} style={{ background: ingredient.liquid.color, flexGrow: mix.quantities[id] }} />)}</div>
+      <span className="mix-status">{failed ? 'Un nuovo giro!' : served ? 'Mix servito' : shaking ? 'Si agita!' :
+        pourFeedback !== 'idle' ? playerCopy.pour[pourFeedback] : volume === capacity ? playerCopy.pour.full : volume ? 'Il mix prende forma' : 'Shaker pronto'}</span>
+      <div className="ice-dock" aria-label={mix.iceUnits + ' aggiunte di ghiaccio, massimo ' + maximumIce}>
+        {Array.from({ length: maximumIce }, (_, index) => <span key={attemptKey + ':' + index + ':' + (index < mix.iceUnits)}
+          className={`ice-pip ${index < mix.iceUnits ? 'is-filled' : ''}`} aria-hidden="true">
+          <AssetImage assetId={visuals.gameplay.ice} />
+        </span>)}
+      </div>
     </div>
   </div>;
-}
+}, (a, b) => a.volume === b.volume && a.capacity === b.capacity && a.maximumIce === b.maximumIce &&
+  a.visuals === b.visuals && a.formatVolume === b.formatVolume && a.shaking === b.shaking && a.served === b.served &&
+  a.failed === b.failed && a.pourFeedback === b.pourFeedback && a.risk === b.risk && a.attemptKey === b.attemptKey &&
+  a.mix.iceUnits === b.mix.iceUnits && a.mix.garnishId === b.mix.garnishId && sameLiquid(a.mix, b.mix));
+
 export function ControlsArea({ children }: { readonly children: ReactNode }) {
-  return <section className="controls-area" data-zone="controls" aria-label="Comandi di miscelazione">
-    <div className="zone-heading"><span>02 / IL MIX</span><h2>Trova il tuo equilibrio</h2></div>{children}
-  </section>;
+  return <section className="controls-area" data-zone="controls" aria-label="Comandi di miscelazione">{children}</section>;
+}
+export function RoundProgress({ phase }: { readonly phase: PlayerPhase }) {
+  const phases = Object.keys(playerCopy.phases) as PlayerPhase[];
+  const current = phases.indexOf(phase);
+  return <ol className="round-progress" aria-label="Il tuo giro al banco">
+    {phases.map((item, index) => <li key={item} className={index < current ? 'is-done' : ''} aria-current={phase === item ? 'step' : undefined}>
+      <span aria-hidden="true">{index < current ? '✓' : index + 1}</span>{playerCopy.phases[item]}
+    </li>)}
+  </ol>;
 }
 const scoreLabels = { balance: 'Ingredienti', ice: 'Ghiaccio', shake: 'Agitazione', garnish: 'Guarnizione' } as const;
-export function ScoreHUD({ result, ingredients, profile }: {
-  readonly result: ClassicScoreResult | null; readonly ingredients: readonly IngredientDefinition[];
-  readonly profile: ClassicInspiredTuningProfile;
+export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink }: {
+  readonly result: ClassicScoreResult | null; readonly stage: ResultStage; readonly title: string; readonly ingredients: readonly IngredientDefinition[];
+  readonly profile: ClassicInspiredTuningProfile; readonly titleRef: RefObject<HTMLHeadingElement | null>;
+  readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
 }) {
-  return <section className="score-hud" data-zone="hud" aria-labelledby="score-title">
-    <div className="score-top"><div><span className="eyebrow">03 / L'ASSAGGIO</span><h2 id="score-title">{result?.failed ? 'Un po’ troppo caos!' : 'Il tuo risultato'}</h2></div>
-      <div className="score-number" aria-live="polite"><strong>{result?.totalScore ?? '—'}</strong><span>{result ? '/ ' + result.maximum : 'da servire'}</span></div>
+  const revealScore = result && scoreVisible(stage), revealReaction = result && reactionVisible(stage);
+  return <section className={`score-hud result-${stage}`} data-zone="hud" data-result-stage={stage} aria-labelledby="score-title" aria-busy={!!result && stage !== 'breakdown'}>
+    <div className="score-top">
+      <div><span className="eyebrow">03 / L'ASSAGGIO</span>
+        <h2 id="score-title" ref={titleRef} tabIndex={-1}>{revealReaction ? title : result ? playerCopy.tasting.title : 'Il tuo prossimo assaggio'}</h2>
+      </div>
+      <div className="score-number" aria-live="polite" aria-atomic="true"><strong>{revealScore ? result.totalScore : '—'}</strong><span>{revealScore ? '/ ' + result.maximum : result ? 'si assaggia…' : 'da scoprire'}</span></div>
     </div>
-    <div className="breakdown">{result ? result.breakdown.map(item => <div className="breakdown-row" key={item.component}>
-      <span>{scoreLabels[item.component]}</span><div className="mini-track"><i style={{ width: (item.maximum ? item.points / item.maximum * 100 : 0) + '%' }} /></div><b>{item.points}</b>
-    </div>) : <p className="waiting-note">Miscela, aggiungi ghiaccio e agita. Servi per scoprire il risultato.</p>}</div>
-    <details className="demo-guide"><summary>Note del banco <span aria-hidden="true">+</span></summary>
+    {result ? <>
+      <div className="breakdown" data-revealed={stage === 'breakdown'}>
+        {stage === 'breakdown' ? result.breakdown.map(item => <div className="breakdown-row" key={item.component}>
+          <span>{scoreLabels[item.component]}</span><div className="mini-track"><i style={{ width: (item.maximum ? item.points / item.maximum * 100 : 0) + '%' }} /></div><b>{item.points}</b>
+        </div>) : <p className="waiting-note" role="status">{playerCopy.tasting.status}<span className="tasting-dots" aria-hidden="true"> · · ·</span></p>}
+      </div>
+      <div className="result-actions">
+        {stage !== 'breakdown' && <button type="button" className="skip-result" ref={skipRef} onClick={onSkip}>{playerCopy.skip}</button>}
+        <button type="button" className="new-drink-button" onClick={onNewDrink}>{playerCopy.newDrink}<span aria-hidden="true">↻</span></button>
+      </div>
+    </> : <div className="breakdown"><p className="waiting-note">Il risultato arriva dopo l’assaggio. Per ora, trova il tuo mix.</p></div>}
+    {!result && <details className="demo-guide"><summary>Note del banco <span aria-hidden="true">+</span></summary>
       <strong>Un equilibrio da provare</strong>
       <p>{Object.entries(profile.score.targetParts).map(([id, parts]) => parts + ' ' + (ingredients.find(item => item.id === id)?.shortLabel.toLowerCase() ?? id)).join(' · ')}</p>
       <p>Il ghiaccio rinfresca, l’agrume completa. Agita con ritmo, senza esagerare!</p>
       <small>Ogni nuova pressione di Versa ha un breve avvio. Tieni premuto per far crescere il mix.</small>
-    </details>
-    <p className="scoring-notice"><strong>Il tuo stile, un mix alla volta.</strong><span>Tre note originali per sperimentare al banco.</span></p>
+    </details>}
+    <p className="scoring-notice"><strong>{result ? playerCopy.nextRound : 'Il tuo stile, un mix alla volta.'}</strong></p>
   </section>;
-}
+});

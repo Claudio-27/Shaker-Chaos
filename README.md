@@ -1,7 +1,18 @@
 # Shaker-Chaos
 
-Gioco browser indipendente per tablet. La fase 2A introduce il primo gameplay di produzione: capacità240u, Pour temporizzato, due aggiunte di ghiaccio, agitazioni con rischio e risultato0–10000. Artwork e architettura delle fasi0–0.3 sono preservati.
-Il tuning è originale Shaker-Chaos. La ricerca di fase1 è chiusa per decisione di prodotto; non si dichiara riproduzione esatta. Vedere [tuning approvato](docs/APPROXIMATE_GAMEPLAY_TUNING.md) e [rapporto2A](docs/PHASE_2A_REPORT.md).
+## Fase corrente: 2B completata
+
+Miscela → Agita → Servi → Assaggio; selezione marcata, preparazione del versamento, gauge esterno e feedback di ghiaccio/agrume. L’avviso dello shaker cresce senza countdown tecnico. Nove dialoghi originali, tre fasce grafiche esistenti, risultato saltabile e movimento ridotto.
+
+Controlli completati: TypeScript strict, lint, 210 test (188 precedenti + 22 nuovi), build/audit produzione e smoke offline. Layout verificati a 1024×768, 1280×800, 768×1024, 390×844 e 320×640. Touch/multitouch fisico ancora da verificare; test sintetici dei puntatori superati. Nessuna nuova dipendenza o modifica al tuning/artwork.
+
+Solo DEV: aggiungere ?tuningLab=1 per diagnostica di presentazione e anteprima del movimento ridotto; ?assetLab=1, ?compatLab=1 e ?visualDebug=1 conservati. Il laboratorio storico non autorizza nuove ricerche. Il gioco resta silenzioso, con una piccola porta audio di presentazione pronta per suoni originali futuri.
+
+Lavoro locale su main; modifiche 2B non committate, da revisionare in GitHub Desktop. Arresto dopo 2B.
+
+
+Gioco browser indipendente per tablet. La fase 2B rifinisce il giro di produzione della fase 2A, preservandone le regole: capacità240u, Pour temporizzato, due aggiunte di ghiaccio, agitazioni con rischio e risultato0–10000. Artwork e architettura delle fasi0–0.3 sono preservati.
+Il tuning è originale Shaker-Chaos. La ricerca di fase1 è chiusa per decisione di prodotto; non si dichiara riproduzione esatta. Vedere [tuning approvato](docs/APPROXIMATE_GAMEPLAY_TUNING.md) e [rapporto2A](docs/PHASE_2A_REPORT.md). La fase corrente è documentata nel [rapporto 2B](docs/PHASE_2B_REPORT.md).
 
 ## Avvio locale
 
@@ -29,8 +40,8 @@ npm run preview
 1. Scegli uno dei tre ingredienti originali.
 2. Tieni premuto **Versa** per aggiungerlo, oppure usa Invio/Spazio sul pulsante.
 3. Aggiungi ghiaccio, tieni premuto **Agita** e scegli la guarnizione.
-4. Premi **Servi il mix** per vedere punteggio, reazione e contributi.
-5. Usa il pulsante di reset per ricominciare. Dopo il servizio il mix è bloccato.
+4. Premi **Servi il mix**: il risultato si congela subito; il bartender assaggia, poi arrivano punteggio, reazione e contributi in circa un secondo. **Mostra il risultato** salta l’attesa.
+5. Dopo il risultato premi **Nuovo drink**. Durante la preparazione il reset resta secondario. Il nuovo giro annulla anche i reveal ancora in attesa.
 
 Ogni nuova pressione di Versa ha800ms di avvio; uno shaker pieno continuo richiede10,8s. Dopo il primo Shake non si aggiungono liquidi o ghiaccio. Servire richiede prima un Shake completato. Alla sesta agitazione o a8s cumulativi il mix fallisce; Reset ricomincia. Non esistono ancora ricette da scoprire, premi, XP, valuta, profili o salvataggi.
 

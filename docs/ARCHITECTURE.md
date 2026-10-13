@@ -1,5 +1,23 @@
 # Architettura
 
+## Architettura attiva 2B — DOMAIN STATE e PRESENTATION STATE
+
+Il dominio, classicGame, productionBootstrap e il profilo 2A restano invariati. Storia e proiezione canoniche determinano quantità, fasi, rischio meccanico e risultato. **Serve congela immediatamente lo score**; il dominio non aspetta il bartender.
+
+- ui/gameplayPresentation.ts deriva disponibilità dei controlli, quattro tappe amichevoli, preparazione Pour e livelli visivi di rischio dal profilo e dai fatti accettati.
+- ui/resultPresentation.ts conserva il riferimento al risultato congelato: idle → tasting → score → reaction → breakdown. Timer a 650/830/1050ms, skip, failure e reduced-motion non chiamano lo scorer né emettono eventi. Reset e cleanup invalidano tutti i callback della precedente generazione.
+- platform/holdController.ts condivide un proprietario tra Pour e Shake. pointerHold.ts acquisisce focus/capture solo dopo il claim; secondo puntatore, sorgente diversa e callback tardivi non avviano operazioni concorrenti. Rilascio, cancel, lost capture, blur, pagina nascosta e cleanup chiudono la sorgente valida.
+- content/playerExperience.ts contiene dialoghi originali e copy, con override facoltativi per bartender. Il mapping tier→artwork è indipendente e conservato.
+- platform/reducedMotion.ts osserva la preferenza browser. Una sola preferenza alimenta CSS, SequenceArt e reveal; non entra in clock, storia o scoring. La checkbox DEV è soltanto un’anteprima locale.
+- platform/presentationAudio.ts è una porta minuscola con implementazione silenziosa. Nessun file sonoro, autorizzazione audio o dipendenza richiesta.
+
+Il gauge usa soltanto VolumeUnit applicate: width raggiunge il target canonico in 100ms, senza overshoot. La quantità cresce monotonicamente nello stesso tentativo; Reset rimonta il fill vuoto e non anima all’indietro da un valore vecchio. I numeri mostrano 123 / 240, senza inventare una conversione ml. Canonical volume units e presentation units such as ml restano distinti.
+
+Reset conserva gli eventi precedenti; un guard impedisce duplicati nello stesso burst e il reset del tentativo vuoto è disabilitato. Nessuna persistenza, premio o progressione. **Preserve information until research proves it irrelevant.** Ricerca fase 1 chiusa, evidenze storiche inalterate.
+
+[Rapporto completo 2B](PHASE_2B_REPORT.md). Le sezioni 2A e precedenti sotto sono il contesto storico.
+
+
 ## Active Phase 2A architecture — 2026-10-13
 
 Normal gameplay now uses `productionBootstrap.ts`, `ClassicInspiredTuningProfile` and `ClassicInspiredScoringEngine`. Phase 1 research is CLOSED BY PRODUCT DECISION; historical material remains unchanged.

@@ -1,8 +1,14 @@
 import type { ClassicInspiredTuningProfile } from '../domain/classicProfile.ts';
-export default function TuningInspector({ profile }: { readonly profile: ClassicInspiredTuningProfile }) {
+import type { PresentationDiagnostics } from './VisualDebug.tsx';
+export default function TuningInspector({ profile, presentation, motionPreview, onMotionPreview }: {
+  readonly profile: ClassicInspiredTuningProfile; readonly presentation: PresentationDiagnostics;
+  readonly motionPreview: boolean; readonly onMotionPreview: (value: boolean) => void;
+}) {
   return <details className="asset-lab" data-lab-marker="PRODUCTION_TUNING_DEV_ONLY">
     <summary>Production tuning inspector · solo sviluppo</summary>
     <p>ORIGINAL SHAKER-CHAOS TUNING · {profile.id} · nessuna mappatura ml.</p>
+    <p>Presentation · {presentation.phase} / {presentation.pour} / {presentation.risk} / {presentation.result} · reduced {String(presentation.reduced)}</p>
+    <label className="motion-preview"><input type="checkbox" checked={motionPreview} onChange={event => onMotionPreview(event.target.checked)} />Anteprima movimento ridotto</label>
     <dl><dt>Capacità</dt><dd>{profile.capacityUnits}u</dd>
       <dt>Pour: avvio / intervallo / quantità</dt><dd>{profile.pour.startupMs}ms / {profile.pour.intervalMs}ms / {profile.pour.unitsPerStep}u</dd>
       <dt>Ice: bonus / limite</dt><dd>{profile.ice.pointsPerAction} × {profile.ice.maximumActions}</dd>

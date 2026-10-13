@@ -9,14 +9,26 @@ export interface HoldScheduler {
   readonly start: (callback: () => void, intervalMs: number) => number;
   readonly stop: (id: number) => void;
 }
-export function createHoldController(clock: () => number, scheduler: HoldScheduler, callbacks: HoldCallbacks, intervalMs = 25) {
+export interface HoldOwnership {
+  readonly claim: (owner: symbol) => boolean;
+  readonly release: (owner: symbol) => void;
+}
+export function createHoldOwnership(): HoldOwnership {
+  let active: symbol | null = null;
+  return {
+    claim(owner) { if (active !== null) return false; active = owner; return true; },
+    release(owner) { if (active === owner) active = null; },
+  };
+}
+export function createHoldController(clock: () => number, scheduler: HoldScheduler, callbacks: HoldCallbacks, intervalMs = 25, ownership: HoldOwnership = createHoldOwnership()) {
+  const owner = Symbol('hold-owner');
   let source: HoldSource | null = null, timer: number | null = null, generation = 0;
   const matching = (other: HoldSource) => source?.kind === other.kind &&
     (source.kind !== 'pointer' || (other.kind === 'pointer' && source.id === other.id)) &&
     (source.kind !== 'keyboard' || (other.kind === 'keyboard' && source.key === other.key));
   const cancel = (reason: OperationEndReason = 'cancelled') => {
     if (!source) return;
-    source = null; generation++;
+    source = null; generation++; ownership.release(owner);
     if (timer !== null) scheduler.stop(timer);
     timer = null;
     const atMs = clock();
@@ -25,7 +37,7 @@ export function createHoldController(clock: () => number, scheduler: HoldSchedul
   };
   return {
     start(next: HoldSource) {
-      if (source) return false;
+      if (source || !ownership.claim(owner)) return false;
       source = next; const token = ++generation;
       callbacks.onStart(clock());
       timer = scheduler.start(() => { if (source && token === generation) callbacks.onAction(clock()); }, intervalMs);

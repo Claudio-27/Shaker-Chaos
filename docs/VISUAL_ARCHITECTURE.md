@@ -1,4 +1,23 @@
-# Architettura visiva — fase 0.3
+# Architettura visiva
+
+## Presentazione attiva: fase 2B
+
+GameStage e i suoi slot/grid rimangono quelli della fase 0.2/0.3. Tutti gli artwork sono intatti. Il bartender resta centrale, con idle durante la preparazione, tasting dopo Serve e rough/balanced/excellent al reveal; failure usa rough. Tasting facoltativo ripiega su idle; varianti non visitate possono ripiegare su idle offline.
+
+Selezione con bordo interno marcato e ✓, hover più leggero. Solo l’immagine della bottiglia ruota durante Pour: la hitbox resta ferma. Preparazione immediata, stream CSS dopo tick canonici, gauge esterno a target canonico, ice-dock 0/1/2 e pop dell’agrume. Shaker oscilla solo durante hold; ring/burst originale sul fallimento. Nessun masking del liquido nel PNG, nuova immagine o libreria animazioni.
+
+Result card: numero prominente /10000, titolo, contributi secondari e Nuovo drink. Il reveal dura 1050ms al massimo nominale: 650ms assaggio, 180ms score, 220ms reazione; breakdown finale. Mostra il risultato salta la sequenza. Le latenze browser possono ritardare la presentazione, mai lo score. Reset annulla i timer; focus su Agita al pieno, Servi dopo agrume, skip durante tasting, poi titolo finale, e su Versa al nuovo giro.
+
+Una preferenza condivisa prefers-reduced-motion disattiva oscillazioni/transizioni, salta il reveal e gli effetti decorativi; fallimento e informazioni restano visibili. Diagnostica DEV include fase, Pour, rischio, result-stage e reduced, con checkbox di anteprima. Non cambia la preferenza OS.
+
+Landscape 1024×768 /1280×800: distanze e altezza bottiglie rese più compatte conservando target minimi di 46px; portrait 768×1024 e mobile 390×844 /320×640 scorrono. Nessun overflow orizzontale osservato, target mobile minimi 48px. Numeri tabulari, wrapping dei titoli, etichette e indicatore corrente oltre al colore; focus ben visibile.
+
+Animazione CSS, tre timer di reveal e frame decorativi esistenti. BottleShelf e MixingStation confrontano soltanto cambiamenti visibili; bartender, overlay e HUD sono memoizzati. Il dominio mantiene i campioni necessari (25ms durante Shake), senza un nuovo loop RAF/React per animare. Nessuna dipendenza aggiunta.
+
+Cache selettiva invariata: 7 file shell, 42 path pubblici ammessi on demand, zero artwork precache; 14 path critici della scena attuale. Reaction/effect/tasting scaricati quando visitati. Smoke con preview spento: reload e giro funzionano. La UI non promette disponibilità offline di pose mai caricate.
+
+[Rapporto e prove 2B](PHASE_2B_REPORT.md). Le note seguenti descrivono l’integrazione originale 0.3, con i suoi conteggi storici.
+
 
 Aggiornamento 2026-10-06. Artwork forniti e catalogo modulare integrati dopo la composizione 0.2. Nessuna fase 1. Scoring demo UNVERIFIED / NOT YET COMPATIBILITY-VERIFIED.
 
@@ -44,7 +63,7 @@ Bottiglie a contain in canvas allargato per i margini alpha; selezione resta bor
 
 ## Shaker, vetro e liquidi
 
-Lo shaker cromato è chiuso e il calice ha vetro/riflessi dipinti. Le precedenti finestre rettangolari non rappresentano in modo affidabile il loro interno. gameplay.liquidMode: meter evita che barre rettangolari o cubetti emergano fuori dalla silhouette. Volume/capacità, barra e piccola composizione cromatica esterna restano aggiornati dal MixState; ghiaccio e guarnizione conservano i rispettivi comandi e conteggi. La modalità window legacy resta disponibile per artwork predisposti.
+Lo shaker cromato è chiuso e il calice ha vetro/riflessi dipinti. Le precedenti finestre rettangolari non rappresentano in modo affidabile il loro interno. gameplay.liquidMode: meter evita che barre rettangolari o cubetti emergano fuori dalla silhouette. Volume/capacità, barra e piccola composizione cromatica esterna restano aggiornati dal MixState; ghiaccio e guarnizione conservano i rispettivi comandi e conteggi. I metadati window legacy sono conservati nel catalogo; la stazione corrente usa sempre il gauge esterno.
 
 Per un riempimento nel calice servono una maschera della coppa e riflessi/bordi separati, registrati sul canvas 1024×1536. Per lo shaker chiuso usare il gauge esterno o richiedere una variante appositamente progettata; non aprire una falsa finestra nell'art originale. Nessuna scelta di fitting modifica capacità, quantità, tempi o score.
 
