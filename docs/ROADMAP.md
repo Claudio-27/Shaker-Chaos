@@ -1,5 +1,9 @@
 # Roadmap
 
+Aggiornamento fase2A: ricerca1B–1E chiusa per decisione di prodotto. Primo gameplay originale implementato con profilo classico, risultato0–10000 e tuning approvato. Si lavora direttamente su main; le modifiche2A restano locali per revisione. La roadmap storica seguente non richiede ulteriore compatibilità1:1.
+Fase2B consigliata (solo su nuovo incarico): playtest/bilanciamento originale, accessibilità e touch su tablet fisici, feedback audiovisivo con asset originali. Non riaprire esperimenti sul riferimento.
+
+
 Fasi 0–0.3 completate. Fase 1A completata come infrastruttura di ricerca; osservazioni/meccaniche verificate e fasi successive restano da svolgere.
 
 | Fase | Obiettivo | Criterio di uscita |

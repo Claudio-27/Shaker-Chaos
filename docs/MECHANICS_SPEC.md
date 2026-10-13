@@ -1,5 +1,21 @@
 # Specifica progressiva delle meccaniche
 
+## Active Phase 2A production specification — 2026-10-13
+
+This is **ORIGINAL SHAKER-CHAOS TUNING**, not verified reference reproduction. Research is closed; old evidence statuses below describe historical research only.
+
+Active source: `classicInspiredTuning.ts`. Capacity240u; each new Pour costs800ms startup, then3u every125ms. Integer formula and boundary cases:0/799/800/924ms→0u,925→3u,1050→6u. Full theoretical hold10800ms. Rendering FPS does not determine quantity.
+
+MIXING permits Pour/Ice; first accepted Shake requires liquid and closes mixing. After a positive elapsed completed Shake, READY_TO_SERVE allows one garnish and Serve. RESULT freezes success or failure; Reset starts a clean attempt and retains history.
+Two accepted Ice max (+500/+500), separate from liquid. Garnish +100 once after Shake. Shake bonuses by accepted count0..5:0,0,0,5,15,30. Sixth accepted start or cumulative accepted duration≥8000ms fails immediately, score0; warning at fifth action /6000ms.
+
+Ingredient coefficients:orchard8000,citrus7200,soda4800, equilibrium bonus1800 for2:1:1 using squared rational closeness and fill weighting. Ideal full liquid-only8800, complete modifiers9930. Total integer0..10000. Nine original mechanical tiers have inclusive thresholds0,1500,3000,4500,5500,6500,8000,9000,9700; artwork mapping stays independent. See [full equations and assumptions](APPROXIMATE_GAMEPLAY_TUNING.md).
+
+Canonical VolumeUnit and presentation units such as ml remain distinct; no physical conversion is defined. **Preserve information until research proves it irrelevant.** Start/tick/end, timing, count, requested/applied quantities and Reset remain available for original tuning/debugging. No UI coordinates or animation state enter history.
+
+All subsequent demo/reference procedures in this document are retained historical notes. They do not authorize reference experiments during normal development.
+
+
 Versione: 0.3 · aggiornamento: 2026-10-06 (fase 1A) · stato: **nessuna meccanica originale verificata**.
 
 Questo documento separa ciò che osserviamo sul gioco di riferimento da ciò che abbiamo inventato nel prototipo. Nessun dato del prototipo deve essere copiato nella sezione compatibilità come se fosse evidenza.

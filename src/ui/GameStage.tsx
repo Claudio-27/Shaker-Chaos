@@ -1,7 +1,9 @@
 import { ingredientVisuals, optionalAsset, selectedEffect } from '../content/visualPlan.ts';
 import { useMemo, useRef } from 'react';
 import type { ReactNode, RefObject } from 'react';
-import type { BartenderDefinition, IngredientDefinition, MixState, RecipeDefinition, ScoreComponent, ScoreResult } from '../domain/model.ts';
+import type { BartenderDefinition, IngredientDefinition, MixState } from '../domain/model.ts';
+import type { ClassicInspiredTuningProfile } from '../domain/classicProfile.ts';
+import type { ClassicScoreResult } from '../domain/classicScoring.ts';
 import type { VolumeUnit } from '../domain/quantity.ts';
 import { volumeUnits } from '../domain/quantity.ts';
 import type { AssetId, EnvironmentVisualDefinition, ReactionId, VisualCatalog, VisualLoadout } from '../content/visualModel.ts';
@@ -88,13 +90,13 @@ export function CounterArea({ assetId, fit, children }: { readonly assetId: Asse
   </section>;
 }
 const icePositions = [[8, 15], [56, 34], [25, 56], [58, 8], [6, 52], [38, 20], [56, 61], [28, 2]] as const;
-export function MixingStation({ mix, volume, capacity, visuals, formatVolume, symbol, shaking, served }: {
+export function MixingStation({ mix, volume, capacity, visuals, formatVolume, symbol, shaking, served, failed }: {
   readonly mix: MixState; readonly volume: VolumeUnit; readonly capacity: VolumeUnit; readonly visuals: VisualCatalog;
-  readonly formatVolume: (value: VolumeUnit) => string; readonly symbol: string; readonly shaking: boolean; readonly served: boolean;
+  readonly formatVolume: (value: VolumeUnit) => string; readonly symbol: string; readonly shaking: boolean; readonly served: boolean; readonly failed: boolean;
 }) {
   const region = visuals.gameplay.liquidWindows[served ? 'glass' : 'shaker'];
   return <div className="mixing-station" data-zone="mixing" data-hitbox="station-preview">
-    <div className={`vessel-art ${shaking ? 'is-shaking' : ''}`} role="img" aria-label={`Mix di ${formatVolume(volume)} ${symbol}, ${mix.iceUnits} cubetti di ghiaccio`}>
+    <div className={`vessel-art ${shaking ? 'is-shaking' : ''} ${failed ? 'is-failed' : ''}`} role="img" aria-label={`Mix di ${formatVolume(volume)} ${symbol}, ${mix.iceUnits} cubetti di ghiaccio`}>
       {visuals.gameplay.liquidMode !== 'meter' && <div className="liquid-window" style={{ left: `${region.leftPercent}%`, top: `${region.topPercent}%`, width: `${region.widthPercent}%`, height: `${region.heightPercent}%` }}>
         <div className="liquid-stack" style={{ height: `${volume / capacity * 100}%` }}>
           {Object.entries(visuals.ingredients).filter(([id]) => (mix.quantities[id] ?? 0) > 0).map(([id, ingredient]) =>
@@ -110,7 +112,7 @@ export function MixingStation({ mix, volume, capacity, visuals, formatVolume, sy
     <div className="mix-meter"><strong>{formatVolume(volume)} <small>/ {formatVolume(capacity)} {symbol}</small></strong>
       <div className="capacity-track" role="progressbar" aria-label="Capacità dello shaker" aria-valuemin={0} aria-valuemax={capacity} aria-valuenow={volume}><span style={{ width: `${volume / capacity * 100}%` }} /></div>
       {visuals.gameplay.liquidMode === 'meter' && <div className="composition-meter" aria-hidden="true">{Object.entries(visuals.ingredients).filter(([id]) => (mix.quantities[id] ?? 0) > 0).map(([id, ingredient]) => <i key={id} style={{ background: ingredient.liquid.color, flexGrow: mix.quantities[id] }} />)}</div>}
-      <span className="mix-status">{served ? 'Mix servito' : shaking ? 'Agitazione in corso' : volume ? 'Esperimento in corso' : 'Shaker pronto'}</span>
+      <span className="mix-status">{failed ? 'Il mix ha fatto boom!' : served ? 'Mix servito' : shaking ? 'Agitazione in corso' : volume ? 'Esperimento in corso' : 'Shaker pronto'}</span>
     </div>
   </div>;
 }
@@ -119,22 +121,24 @@ export function ControlsArea({ children }: { readonly children: ReactNode }) {
     <div className="zone-heading"><span>02 / IL MIX</span><h2>Trova il tuo equilibrio</h2></div>{children}
   </section>;
 }
-const scoreLabels: Record<ScoreComponent, string> = { balance: 'Proporzioni', ice: 'Ghiaccio', shake: 'Agitazione', garnish: 'Guarnizione' };
-export function ScoreHUD({ result, recipe, ingredients, guide, notice }: {
-  readonly result: ScoreResult | null; readonly recipe: RecipeDefinition | undefined; readonly ingredients: readonly IngredientDefinition[];
-  readonly guide: { readonly idealIceUnits: number; readonly idealShakeDurationMs: number; readonly garnishLabel: string; readonly note: string };
-  readonly notice: { readonly title: string; readonly description: string };
+const scoreLabels = { balance: 'Ingredienti', ice: 'Ghiaccio', shake: 'Agitazione', garnish: 'Guarnizione' } as const;
+export function ScoreHUD({ result, ingredients, profile }: {
+  readonly result: ClassicScoreResult | null; readonly ingredients: readonly IngredientDefinition[];
+  readonly profile: ClassicInspiredTuningProfile;
 }) {
   return <section className="score-hud" data-zone="hud" aria-labelledby="score-title">
-    <div className="score-top"><div><span className="eyebrow">03 / L'ASSAGGIO</span><h2 id="score-title">Il tuo risultato</h2></div>
-      <div className="score-number" aria-live="polite"><strong>{result?.score ?? '—'}</strong><span>{result ? `/ ${result.maximum}` : 'da servire'}</span></div></div>
-    <div className="breakdown">{result ? result.breakdown.map((item) => <div className="breakdown-row" key={item.component}>
-      <span>{scoreLabels[item.component]}</span><div className="mini-track"><i style={{ width: `${item.maximum ? item.points / item.maximum * 100 : 0}%` }} /></div><b>{item.points}<small>/{item.maximum}</small></b>
-    </div>) : <p className="waiting-note">Il tuo esperimento prende forma. Servi per scoprire il risultato.</p>}</div>
-    <details className="demo-guide"><summary>Obiettivo della demo <span aria-hidden="true">+</span></summary><strong>{recipe?.name}</strong>
-      <p>{Object.entries(recipe?.ingredientParts ?? {}).map(([id, parts]) => `${parts} ${ingredients.find((item) => item.id === id)?.shortLabel.toLowerCase() ?? id}`).join(' · ')}</p>
-      <p>{guide.idealIceUnits} cubetti · {guide.idealShakeDurationMs / 1000} s · {guide.garnishLabel}</p><small>{guide.note}</small>
+    <div className="score-top"><div><span className="eyebrow">03 / L'ASSAGGIO</span><h2 id="score-title">{result?.failed ? 'Un po’ troppo caos!' : 'Il tuo risultato'}</h2></div>
+      <div className="score-number" aria-live="polite"><strong>{result?.totalScore ?? '—'}</strong><span>{result ? '/ ' + result.maximum : 'da servire'}</span></div>
+    </div>
+    <div className="breakdown">{result ? result.breakdown.map(item => <div className="breakdown-row" key={item.component}>
+      <span>{scoreLabels[item.component]}</span><div className="mini-track"><i style={{ width: (item.maximum ? item.points / item.maximum * 100 : 0) + '%' }} /></div><b>{item.points}</b>
+    </div>) : <p className="waiting-note">Miscela, aggiungi ghiaccio e agita. Servi per scoprire il risultato.</p>}</div>
+    <details className="demo-guide"><summary>Note del banco <span aria-hidden="true">+</span></summary>
+      <strong>Un equilibrio da provare</strong>
+      <p>{Object.entries(profile.score.targetParts).map(([id, parts]) => parts + ' ' + (ingredients.find(item => item.id === id)?.shortLabel.toLowerCase() ?? id)).join(' · ')}</p>
+      <p>Il ghiaccio rinfresca, l’agrume completa. Agita con ritmo, senza esagerare!</p>
+      <small>Ogni nuova pressione di Versa ha un breve avvio. Tieni premuto per far crescere il mix.</small>
     </details>
-    <p className="scoring-notice"><strong>{notice.title}</strong><span>{notice.description}</span></p>
+    <p className="scoring-notice"><strong>Il tuo stile, un mix alla volta.</strong><span>Tre note originali per sperimentare al banco.</span></p>
   </section>;
 }

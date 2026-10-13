@@ -1,0 +1,29 @@
+import type { ClassicInspiredTuningProfile } from '../domain/classicProfile.ts';
+import { volumeUnits } from '../domain/quantity.ts';
+
+/** Approved product design, independent from the frozen Phase 1E hypothesis. */
+export const classicInspiredTuning: ClassicInspiredTuningProfile = {
+  id: 'shaker-chaos-classic-v1',
+  capacityUnits: volumeUnits(240),
+  pour: { startupMs: 800, intervalMs: 125, unitsPerStep: volumeUnits(3) },
+  ice: { maximumActions: 2, pointsPerAction: 500 },
+  garnish: { id: 'citrus-wheel', points: 100 },
+  shake: { bonuses: [0, 0, 0, 5, 15, 30], failureCount: 6, failureDurationMs: 8000, warningDurationMs: 6000 },
+  score: {
+    maximum: 10000,
+    ingredientWeights: { orchard: 8000, citrus: 7200, soda: 4800 },
+    targetParts: { orchard: 2, citrus: 1, soda: 1 },
+    balanceBonus: 1800,
+    tiers: [
+      { id: 'disaster', minimum: 0, title: 'Caos totale' },
+      { id: 'awful', minimum: 1500, title: 'Esperimento audace' },
+      { id: 'bad', minimum: 3000, title: 'Note in cerca di ritmo' },
+      { id: 'rough', minimum: 4500, title: 'Un’idea da rifinire' },
+      { id: 'okay', minimum: 5500, title: 'Il mix prende forma' },
+      { id: 'good', minimum: 6500, title: 'Un buon giro' },
+      { id: 'great', minimum: 8000, title: 'Bel carattere!' },
+      { id: 'excellent', minimum: 9000, title: 'Il banco applaude' },
+      { id: 'legendary', minimum: 9700, title: 'Il tuo colpo di scena' },
+    ],
+  },
+};

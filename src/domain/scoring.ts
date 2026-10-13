@@ -1,3 +1,4 @@
+// Legacy Phase 0 demo scorer, retained for historical research and synthetic tests.
 import { quantityOf, totalVolumeUnits } from './mix.ts';
 import type { ScoreComponent, ScoreResult, ScoringConfiguration, ScoringEngine } from './model.ts';
 import { assertNonNegativeInteger } from './quantity.ts';

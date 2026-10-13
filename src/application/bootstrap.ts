@@ -7,7 +7,8 @@ import { publicCatalog } from '../content/publicCatalog.ts';
 import { createDemoScoringEngine } from '../domain/scoring.ts';
 import type { GameDependencies } from './game.ts';
 
-/** Composition root. Substitute the engine/dataset and its public presentation here. */
+/** LEGACY / DEMO / RESEARCH ONLY. Production uses productionBootstrap.ts.
+ * Composition root. Substitute the engine/dataset and its public presentation here. */
 export const gameDependencies: GameDependencies = {
   mixingRules: demoMixingRules,
   scoringEngine: createDemoScoringEngine(demoScoringConfiguration),

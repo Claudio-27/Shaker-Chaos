@@ -1,8 +1,7 @@
 # Shaker-Chaos
 
-Gioco browser indipendente, pensato prima di tutto per tablet. Questa versione completa le **fasi 0–0.3**: fondazione, storia canonica deterministica, composizione visiva e integrazione degli artwork forniti in una demo giocabile. La fase 1A aggiunge infrastruttura di ricerca; nessuna meccanica del riferimento è stata ancora osservata o verificata.
-
-**NOT YET COMPATIBILITY-VERIFIED.** Formula, ingredienti, capacità, tempi e soglie della demo sono inventati per verificare l'architettura. Non costituiscono risultati di ricerca sul gioco di riferimento.
+Gioco browser indipendente per tablet. La fase 2A introduce il primo gameplay di produzione: capacità240u, Pour temporizzato, due aggiunte di ghiaccio, agitazioni con rischio e risultato0–10000. Artwork e architettura delle fasi0–0.3 sono preservati.
+Il tuning è originale Shaker-Chaos. La ricerca di fase1 è chiusa per decisione di prodotto; non si dichiara riproduzione esatta. Vedere [tuning approvato](docs/APPROXIMATE_GAMEPLAY_TUNING.md) e [rapporto2A](docs/PHASE_2A_REPORT.md).
 
 ## Avvio locale
 
@@ -25,7 +24,7 @@ npm run preview
 
 `npm run check` esegue tutti i controlli. Nessun comando crea commit, pubblica il progetto o contatta GitHub. `npm ci` senza `--offline` può accedere al registro npm; audit e notifiche automatiche sono disabilitati.
 
-## Come provare la demo
+## Come giocare
 
 1. Scegli uno dei tre ingredienti originali.
 2. Tieni premuto **Versa** per aggiungerlo, oppure usa Invio/Spazio sul pulsante.
@@ -33,15 +32,15 @@ npm run preview
 4. Premi **Servi il mix** per vedere punteggio, reazione e contributi.
 5. Usa il pulsante di reset per ricominciare. Dopo il servizio il mix è bloccato.
 
-Il riquadro "Obiettivo della demo" rende espliciti i parametri temporanei. Non esistono ancora ricette da scoprire, premi, XP, valuta, profili o salvataggi.
+Ogni nuova pressione di Versa ha800ms di avvio; uno shaker pieno continuo richiede10,8s. Dopo il primo Shake non si aggiungono liquidi o ghiaccio. Servire richiede prima un Shake completato. Alla sesta agitazione o a8s cumulativi il mix fallisce; Reset ricomincia. Non esistono ancora ricette da scoprire, premi, XP, valuta, profili o salvataggi.
 
 ## Struttura
 
 ```text
 src/
-  domain/        storia canonica, unità intere, replay puro e scoring dimostrativo
+  domain/        storia canonica, unità intere, replay e scoring originale
   application/   ciclo della partita e composizione delle dipendenze
-  content/       catalogo pubblico e configurazione temporanea
+  content/       catalogo pubblico e profilo di tuning tipizzato
   research/      esecuzione di casi di ricerca, senza promuovere le evidenze
   boundaries/    contratti e direzioni dei domini futuri, solo documentazione
   platform/      registrazione della PWA, separata dal dominio
@@ -73,7 +72,7 @@ Le icone PNG sono già versionate; `scripts/generate-icons.ps1` permette di rige
 
 Il progetto è una implementazione indipendente: nessun codice, asset, nome di prodotto, dialogo, file proprietario o fotogramma del gioco di riferimento è utilizzato. Nessuna meccanica originale è stata ancora verificata. La futura area privata richiederà autenticazione e consegna dei contenuti lato server; non viene implementata in questa fase.
 
-## Rafforzamento di fase 0.1
+## Note storiche delle fasi 0–1E
 
 **Preserve information until research proves it irrelevant.** La sessione registra eventi di dominio con ordine esplicito, tempi interi, start/tick/end delle operazioni, ghiaccio, guarnizione, servizio e reset. Reset svuota il mix corrente ma conserva i fatti precedenti per l'analisi. Gli eventi restano in memoria; non è stato aggiunto un sistema di salvataggio o un'interfaccia di ricerca.
 

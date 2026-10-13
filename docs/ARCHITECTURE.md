@@ -1,5 +1,31 @@
 # Architettura
 
+## Active Phase 2A architecture — 2026-10-13
+
+Normal gameplay now uses `productionBootstrap.ts`, `ClassicInspiredTuningProfile` and `ClassicInspiredScoringEngine`. Phase 1 research is CLOSED BY PRODUCT DECISION; historical material remains unchanged.
+
+```text
+pointer / keyboard → holdController + explicit session clock
+   → ClassicGameAction (start / elapsed sample / end)
+   → transitionClassicGame: timed interpretation and acceptance policy
+   → CocktailSession.history (canonical start/tick/end, Ice, garnish, Serve, Reset)
+   → replayClassicHistory → derived MixState + phases/count/failure
+   → ClassicInspiredScoringEngine: replays authoritative history with its profile
+   → result / mechanical tier → independent content artwork mapping → UI
+```
+
+React never calculates authoritative quantity. Pour emits each 3u tick at its exact logical deadline, including catch-up/release tails; before another action the application flushes active elapsed time to preserve chronology. Sampling frequency does not change Pour history. Shake ticks preserve actual elapsed duration independently of action count; failure is recorded at the threshold, before decorative animation. Concurrent holds are rejected/closed by product policy.
+
+The existing schema v1, general replay, `CompatibilityInput`, old scorer and `bootstrap.ts` remain legacy/demo/research-only for historical tools and tests. Their broader chronology support is retained. Production scoring ignores cached projection totals and validates history again through its own replay; a synthetic legacy history is not automatically a valid production session. No research observations or hypothesis predictor dependencies enter the normal bundle.
+
+`ClassicGameState` caches only replay-derived view and frozen result. A failed attempt is derived from accepted Shake facts (no render/animation event). Accepted Ice and garnish are canonical facts; rejected attempts only produce player feedback. Reset preserves the prefix and has no stale active operation. The input controller matches source/ID, flushes release/cancellation time, detaches focus/visibility listeners and rejects late ticks after stop/reset.
+
+All authoritative quantities and timings are safe integers; scorer rational products/divisions use BigInt. 240 VolumeUnit is a product capacity, with no ml mapping. Progression, rewards, player state, backend and vault remain separate unimplemented boundaries.
+Details: [approved tuning](APPROXIMATE_GAMEPLAY_TUNING.md).
+
+The sections below retain the architecture history from phases 0–1E. References to demo timing/projection are legacy behavior rather than current gameplay.
+
+
 Aggiornamento 2026-10-13: fase **1E chiusa con approssimazione**. 151 osservazioni, 160 fixture, nessuna regola di riferimento VERIFIED. Profilo originale approximateGameplayProfile.ts definito; scorer demo e storia canonica invariati.
 
 > **Preserve information until research proves it irrelevant.**

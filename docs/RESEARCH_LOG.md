@@ -181,3 +181,15 @@ TypeScript strict, lint, **155/155 test** (134 precedenti +21 nuovi), build e au
 Smoke conclusivi: preview propria4192,14/14immagini decodificate, lab/debug esclusi conquery; VersaSpace15u, Serve30/100, Reset0. Preview fermata, reload da cache e gioco offline30/100 riusciti; stato Pronto anche offline verificato dopo il completamento asincrono. DevLab:import fixture nuova case-IA-1E-G-AFTER-01 mostra REFERENCE370 eCURRENTDEMO UNKNOWN per tutti i campi, senza false comparazioni. Schede proprie14/15chiuse, schede utente conservate. Nessun nuovo test touch fisico.
 
 Bundle invariato:38moduli,index-Ds8N4XYh.js264.41kB,index-C2Y8JjDS.css16.84kB,cache791c56d7c58dd2b0,shell7/artallow42. Nessun diff dominio/application/UI/public/lock o artwork; solo nuovo profilo pubblico non attivo fra i contenuti. 204file storici byte-identici. Git diff --checkPASS; branchphase1/causal-mechanics-isolation eHEAD3e1f06a conservati; nessun binario/cattura tracciato o GitHub/commit/push/PR/modifica remoti/storia. Web autorizzata dall’ultima richiesta, con provenienza documentata. Fase1E CLOSED_WITH_APPROXIMATION; stop.
+
+
+## Phase 2A — produzione originale e freeze definitivo (2026-10-13)
+
+Phase1 reference research CLOSED BY PRODUCT DECISION. Nessun nuovo dato/esperimento/cattura/runtime o ricerca web sul riferimento. Raw/fixture/correzioni/run/report storici rimasti invariati; test sugli hash204 file PASS. I comandi nativi sono soltanto manuali storici, non agganciati a dev/test/build/UI.
+
+Pulizia Git esplicitamente autorizzata: snapshot di sicurezza, fast-forward del lavoro completato su main, checkpoint1E0dc7aed890e7465ec4da7691d50a724e18eb8bf8 e push normale. Origin/main sincronizzato0/0, worktree pulito prima della fase2A. Ripristinati143 file dopo conversione CRLF automatica del checkout contro gli hash preesistenti; attributi Git proteggono204 evidenze. Nessun valore osservato cambiato.
+
+Gameplay originale attivo: ClassicInspiredTuningProfile,240u, startup800ms ad ogni Pour,3u/125ms,80 tick/pieno10800ms. Due Ice500 ciascuno, garnish100 una volta dopoShake, bonus Shake0/0/0/5/15/30 per count0..5. Sesto start o durata cumulativa8000ms causano failure immediata0. Tutto deriva da eventi canonici con quantità/tempi interi; scoring BigInt0..10000, ingredientweights8000/7200/4800 +balance1800. Nove tier originali e mapping arte separato. Nessuna conversione ml e nessun coefficiente esterno.
+
+188/188 test, TypeScript strict, lint, build/audit e gitdiffcheck PASS. Smoke di produzione9925/10000 e offline1311/10000 con server fermo; startup, mouse/tastiera, release outside, Ice/garnish, Shakebonus/warning/failure, Serve/Reset verificati. Layout1024×768,1280×800,768×1024,390×844 e320×640 senza overflow; touch fisico non eseguito. AssetLab,VisualDebug,CompatLab e inspector DEV verificati, assenti in produzione anche conflagURL.
+Shell7,allowlistart42 ondemand, zero art precached; artwork/lock invariati. La fase2A rimane UNCOMMITTED e UNPUSHED su main; HEAD è ancora il checkpoint1E. Vedere PHASE_2A_REPORT.md. Stopdopo2A.

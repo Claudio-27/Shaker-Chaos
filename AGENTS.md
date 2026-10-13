@@ -2,39 +2,6 @@
 
 ## Ambito
 
-La radice del repository è il workspace di progetto. Rispettare le autorizzazioni esplicite dell'utente: niente commit, push, PR, servizi esterni o pubblicazione senza una richiesta che li autorizzi. La fase1E è chiusa con tuning approssimativo originale (CLOSED_WITH_APPROXIMATION). Il13ottobre2026 l’utente ha rinunciato a una riproduzione estremamente precisa, autorizzato ricerca pubblica web e richiesto stop alle prove native. Statistiche in src/content/approximateGameplayProfile.ts; demo invariata. Non iniziare una fase successiva o altri run nativi senza nuova richiesta. Non modificare rami, remote o storia Git. La fase 1C è chiusa con limiti (vedi docs/NATIVE_REFERENCE_FINDINGS.md). Il 12 ottobre 2026 l’utente ha autorizzato la creazione del solo ramo locale phase1/quantitative-native-characterization a partire da phase1/reference-characterization; nessun commit autorizzato. Le fasi successive richiedono un nuovo incarico. Non aggiungere backend, database, account, XP, valuta, sblocchi o un vault funzionante in questa fase.
-
-## Implementazione indipendente
-
-- Il prompt di fase 1C autorizza esecuzione black-box/hashing della SWF esatta e Ruffle Desktop; copie locali e catture sono permesse soltanto in research/.local-reference/ e research/.captures/, ignorate da Git e vietate in produzione. Input Win32 limitato al processo/finestra Ruffle identificato; interrompere su focus/geometria/identità non validi. Non decompilare, disassemblare, ispezionare costanti/bytecode, estrarre o riusare codice/asset originali. In fase1E usare soltanto SWF/runtime già approvati: nessun accesso a GitHub, API o download. Preservare gli hash e tutti i record precedenti; non ridurre i guard.
-- Non usare asset, personaggi, frame, audio, dialoghi, loghi, nomi o font del gioco di riferimento come contenuti del progetto.
-- Produrre codice e asset originali. Le forme segnaposto non devono imitare visivamente il gioco originale.
-- Ogni affermazione di compatibilità deve avere un ID nel registro di ricerca, una procedura riproducibile e uno stato di evidenza. Non trattare descrizioni di terzi come verità numeriche.
-
-## Architettura
-
-- **Preserve information until research proves it irrelevant.** Conservare la storia canonica e derivare il MixState tramite replay; non sostituire i fatti con i soli totali finali.
-- Usare VolumeUnit intere sicure. Ml e altre unità fisiche appartengono solo alla presentazione e richiedono una mappatura esplicita sostenuta da ricerca; non inventarla.
-- Lo ScoringEngine riceve CompatibilityInput con storia e proiezione; mantenere accessibili start/tick/end, ordine, timing e reset. Non aggregare o scartare tick limitati dalla demo.
-
-- `src/domain` contiene solo TypeScript puro: nessun React, DOM, clock, rete, storage, catalogo globale o dato del giocatore. Passare configurazione e input espliciti.
-- Tenere il ciclo applicativo in `src/application`; rendering e Pointer Events in `src/ui`; contenuti pubblici in `src/content`; integrazione browser in `src/platform`.
-- Definizioni e contenuti sono guidati dai dati. Usare ID stabili e unità esplicite.
-- Non inserire XP, profilo, economia o sblocchi nel calcolo dello score compatibile.
-- L'interfaccia di scoring deve restare sostituibile. Un dataset non può trasformare automaticamente una formula inventata in una formula verificata.
-- Lo scoring dimostrativo deve restare `UNVERIFIED` e dichiarare **NOT YET COMPATIBILITY-VERIFIED**.
-- Password JavaScript, route nascoste e localStorage non proteggono contenuti privati. Non includere segreti o asset del vault nel bundle pubblico o nella cache PWA.
-
-- File e formati visivi si associano soltanto nel registro degli asset; i componenti risolvono ID. Non introdurre path di immagini nel dominio o nei componenti di gioco.
-- Animazioni decorative, timer e callback di completamento non devono generare eventi canonici, determinare score o ritardare il servizio. Tenere hitbox e safe area separate dalla silhouette dell’artwork.
-
-## Ricerca
-
-Usare esattamente `VERIFIED`, `STRONGLY_SUPPORTED`, `UNVERIFIED`. Distinguere risultati del software del progetto da osservazioni del gioco originale. Un test automatico superato non promuove un'ipotesi. Aggiornare specifica, registro e fixture quando arriva un'evidenza nuova; annotare contraddizioni e versione del dataset.
-
-## Controlli
-
-Dopo modifiche al codice eseguire `npm run check` e correggere i fallimenti. Testare logica pura con fixture sintetiche dichiarate, casi limite e input non validi. Per cambiamenti di interazione verificare pressione/rilascio/cancellazione e tastiera; per layout provare landscape, portrait e schermi stretti. Non dichiarare controlli non eseguiti. Non scrivere test che attestino una compatibilità non osservata.
-
-Usare dipendenze minime. Mantenere TypeScript strict. Non lasciare artefatti temporanei nel versionamento; `node_modules`, `dist` e log locali sono ignorati.
-
+La radice del repository è il workspace. La fase 2A autorizza lavoro locale direttamente su main: niente nuovi rami. La sola eccezione di commit/push per il checkpoint della fase 1E è già esaurita (0dc7aed890e7465ec4da7691d50a724e18eb8bf8, main sincronizzato con origin prima della fase 2A). Non eseguire altri commit, push, PR, rebase o pubblicazioni; l’utente revisiona le Changes in GitHub Desktop e gestisce Git.
+La ricerca sul riferimento è CLOSED BY PRODUCT DECISION. Non avviare Ruffle/SWF, automazione nativa, code, catture, nuovi esperimenti o ricerca web sulle meccaniche originali. Conservare tutte le evidenze storiche. I comandi research nativi sono solo strumenti storici manuali, mai parte dello sviluppo normale.
+Il gioco usa il tuning originale ClassicInspiredTuningProfile; non promette compatibilità esatta. Fermarsi dopo la fase 2A; non implementare XP, economia, account, backend o vault.

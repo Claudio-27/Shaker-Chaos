@@ -1,5 +1,9 @@
 import { useMemo, useState } from 'react';
-import type { GameDependencies } from '../application/game.ts';
+import { gameDependencies as dependencies } from '../application/bootstrap.ts';
+import { gameDependencies as production } from '../application/productionBootstrap.ts';
+import type { CocktailSession } from '../domain/session.ts';
+import { createCompatibilityInput } from '../domain/session.ts';
+import { evaluateClassicHistory } from '../domain/classicScoring.ts';
 import { totalVolumeUnits } from '../domain/mix.ts';
 import { emptyResearchCase } from '../research/caseModel.ts';
 import type { ObservableResult, ResearchCase } from '../research/caseModel.ts';
@@ -16,7 +20,7 @@ const number = (text: string, label: string) => {
   if (!Number.isSafeInteger(value)) throw new Error(label + ': intero fuori intervallo');
   return value;
 };
-export default function CompatibilityLab({ dependencies }: { readonly dependencies: GameDependencies }) {
+export default function CompatibilityLab({ currentSession }: { readonly currentSession?: CocktailSession }) {
   const [item, setItem] = useState<ResearchCase>(emptyResearchCase);
   const [cursorMs, setCursorMs] = useState(0);
   const [meta, setMeta] = useState({ id: 'new-case', title: 'Nuovo caso', purpose: 'Da definire', notes: '' });
@@ -35,6 +39,11 @@ export default function CompatibilityLab({ dependencies }: { readonly dependenci
   const [validatedInput, setValidatedInput] = useState(false);
   const run = useMemo(() => runCase(item, dependencies.mixingRules, dependencies.scoringEngine), [item, dependencies]);
   const state = run.input.projection.state;
+  const productionResult = useMemo(() => {
+    if (!run.canonicalInputKnown) return { message: 'UNKNOWN: canonical reference quantities remain unmapped.' };
+    try { return { result: evaluateClassicHistory(run.input, production.profile), message: '' }; }
+    catch (error) { return { message: 'Not a production-valid history: ' + (error instanceof Error ? error.message : String(error)) }; }
+  }, [run]);
   const guard = (work: () => void) => { try { work(); } catch (error) { setMessage(error instanceof Error ? error.message : String(error)); } };
   const withMeta = () => parseResearchCase({ ...item, ...meta }, dependencies.mixingRules);
   const clearObservedForm = () => {
@@ -93,7 +102,12 @@ export default function CompatibilityLab({ dependencies }: { readonly dependenci
   const shakes = state.shakes;
   return <section className="compat-lab" aria-label="Compatibility Lab" data-lab-marker="COMPATIBILITY_LAB_DEV_ONLY">
     <h2>Compatibility Lab · solo sviluppo</h2>
-    <p><strong>DEMO / NOT REFERENCE-VERIFIED</strong> · tempo virtuale: {cursorMs} ms. Questa sessione è indipendente dal gioco sottostante.</p>
+    {currentSession && <details><summary>Shaker-Chaos · storia della partita corrente ({currentSession.history.length} eventi)</summary>
+      <p>Eventi accettati del gioco sottostante; separati dalla sequenza sintetica e dalle osservazioni storiche.</p>
+      <pre aria-label="Current production gameplay history">{JSON.stringify(currentSession.history, null, 2)}</pre>
+      <pre aria-label="Current production gameplay result">{JSON.stringify(production.scoringEngine.evaluate(createCompatibilityInput(currentSession)), null, 2)}</pre>
+    </details>}
+    <p><strong>Ricerca storica chiusa · scorer legacy/demo</strong> · tempo virtuale: {cursorMs} ms. Questa sessione è indipendente dal gioco sottostante.</p>
     <p>Preserve information until research proves it irrelevant. Quantità in VolumeUnit, senza conversione ml. Tick distribuiti sinteticamente; non sono osservazioni del riferimento.</p>
     <fieldset><legend>Identità del caso</legend><div className="compat-fields">
       {(['id', 'title', 'purpose', 'notes'] as const).map(key => <label key={key}>{key}<input value={meta[key]} onChange={e => setMeta({ ...meta, [key]: e.target.value })} /></label>)}
@@ -142,7 +156,10 @@ export default function CompatibilityLab({ dependencies }: { readonly dependenci
         <pre aria-label="MixState derivato">{JSON.stringify(state.mix, null, 2)}</pre>
         <pre aria-label="Breakdown demo">{JSON.stringify(run.result.breakdown, null, 2)}</pre></>}
       </article>
-      <article><h3>REFERENCE OBSERVATION vs CURRENT IMPLEMENTATION</h3>
+      <article><h3>Historical Reference Observation vs Shaker-Chaos Production Result</h3>
+        <p>Un mismatch non è un difetto: Shaker-Chaos usa tuning originale. Le osservazioni storiche non vengono aggiornate.</p>
+        <pre aria-label="Shaker-Chaos Production Result">{productionResult.result ? JSON.stringify(productionResult.result, null, 2) : productionResult.message}</pre>
+        <p>La tabella seguente conserva il confronto del vecchio scorer demo, esclusivamente storico.</p>
         <p>Stato evidenza: <strong>{item.status}</strong> · confidenza: {item.confidence} · input: {item.inputValidation.status}</p>
         <strong className="compat-comparison" role="status">{run.comparison.status}</strong>
         <table><thead><tr><th>Campo osservato</th><th>REFERENCE</th><th>CURRENT DEMO</th><th>Esito</th></tr></thead><tbody>
@@ -153,7 +170,7 @@ export default function CompatibilityLab({ dependencies }: { readonly dependenci
     </div>
     <details open><summary>Cronologia canonica completa · {item.inputSequence.length} eventi</summary><pre aria-label="Cronologia canonica">{JSON.stringify(item.inputSequence, null, 2)}</pre></details>
     <details><summary>Operazioni, tick richiesti/applicati e tentativo corrente</summary><pre>{JSON.stringify(run.input, null, 2)}</pre></details>
-    <fieldset><legend>Osservazione manuale del riferimento</legend><div className="compat-fields">
+    <fieldset><legend>Importazione di osservazioni storiche (nessun nuovo esperimento)</legend><div className="compat-fields">
       <label>Score osservato (facoltativo)<input value={observation.score} onChange={e => setObservation({ ...observation, score: e.target.value })} /></label>
       <label>Tier meccanico osservato<input value={observation.tier} onChange={e => setObservation({ ...observation, tier: e.target.value })} placeholder="label logica libera" /></label>
       <label>Identità reazione osservata<input value={observation.reactionId} onChange={e => setObservation({ ...observation, reactionId: e.target.value })} /></label>
