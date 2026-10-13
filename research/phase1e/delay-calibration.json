@@ -1,0 +1,26 @@
+[
+  {
+    "pairId": "1E-PMATCH-1",
+    "sourceTreatment": "IA-1E-P-3-01",
+    "sourceContinuous": "IA-1E-P-1-01",
+    "requestedIdleMs": 2395,
+    "sourceWallDifferenceMs": 2394.6155,
+    "meaning": "Calibration only; new cold control required; OS timing residual must remain <=100ms."
+  },
+  {
+    "pairId": "1E-PMATCH-2",
+    "sourceTreatment": "IA-1E-P-3-02",
+    "sourceContinuous": "IA-1E-P-1-02",
+    "requestedIdleMs": 2345,
+    "sourceWallDifferenceMs": 2345.022899999998,
+    "meaning": "Calibration only; new cold control required; OS timing residual must remain <=100ms."
+  },
+  {
+    "pairId": "1E-PMATCH-3",
+    "sourceTreatment": "IA-1E-P-3-03",
+    "sourceContinuous": "IA-1E-P-1-03",
+    "requestedIdleMs": 2332,
+    "sourceWallDifferenceMs": 2331.731100000001,
+    "meaning": "Calibration only; new cold control required; OS timing residual must remain <=100ms."
+  }
+]

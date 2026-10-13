@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "phase": "1E",
+  "status": "CLOSED_WITH_APPROXIMATION",
+  "pinnedEnvironment": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+  "prerequisite": "At least two fresh exact cold runs per control; stop causal inference on either drift",
+  "priority": [
+    "dual-control-confirmation",
+    "pour-segmentation",
+    "delay-matched-garnish",
+    "replicated-shake",
+    "explosion-bracket",
+    "ice-acceptance",
+    "second-ingredient"
+  ],
+  "stopConditions": [
+    "Control drift",
+    "Native guard abort",
+    "Availability interval ends",
+    "Finite research resource budget"
+  ],
+  "maxActions": 30,
+  "maxHoldMs": 15000,
+  "maxIdleMs": 30000,
+  "delayMatching": {
+    "nominalInterOperationGapMs": 1200,
+    "garnishIdleMs": 1280,
+    "toleranceMs": 100,
+    "anchor": "first relevant Pour/Shake down to Serve down",
+    "residual": "OS scheduling, cursor hover and internal Flash timing unmeasured"
+  },
+  "quantityMapping": "UNMAPPED",
+  "model": "NO_CANDIDATE",
+  "firstInterval": {
+    "coldRuns": 22,
+    "nativeAborts": 0,
+    "stopReason": "Usage99%, final save blocked by approval-review usage exhaustion"
+  },
+  "closedAt": "2026-10-13T08:01:29.355Z",
+  "closeReason": "User13Oct explicitly replaces exact reproduction with approximate original-game tuning, permits public-web research, stops precision experiments.",
+  "statisticsProfile": "src/content/approximateGameplayProfile.ts",
+  "precisionExperimentsStopped": true
+}

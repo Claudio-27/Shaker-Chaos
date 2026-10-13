@@ -1,0 +1,12 @@
+{
+  "id": "IA-1E-CONTROL-5000-02",
+  "resultTiming": "after-serve",
+  "exploded": false,
+  "score": 111,
+  "reactionId": "ref.react.r01",
+  "visibleFill": "not-confirmed",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T204750424-660/result-204843346.png",
+  "date": "2026-10-12T20:49:47.410Z",
+  "method": "direct-visual"
+}

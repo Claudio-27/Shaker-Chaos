@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "pour-isolation-20261013-v1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "notAfterUtc": "2026-10-13T08:11:44.016Z",
+  "jobs": [
+    {
+      "setting": "P-FAST-3",
+      "repeat": "01"
+    },
+    {
+      "setting": "P-GAP-3",
+      "repeat": "01"
+    },
+    {
+      "setting": "P-FAST-3",
+      "repeat": "02"
+    },
+    {
+      "setting": "P-GAP-3",
+      "repeat": "02"
+    },
+    {
+      "setting": "P-FAST-3",
+      "repeat": "03"
+    },
+    {
+      "setting": "P-GAP-3",
+      "repeat": "03"
+    },
+    {
+      "setting": "P-SHORT-500",
+      "repeat": "01"
+    },
+    {
+      "setting": "P-SHORT-750",
+      "repeat": "01"
+    },
+    {
+      "setting": "P-SHORT-1000",
+      "repeat": "01"
+    },
+    {
+      "setting": "P-SHORT-1500",
+      "repeat": "01"
+    },
+    {
+      "setting": "P-SHORT-500",
+      "repeat": "02"
+    },
+    {
+      "setting": "P-SHORT-750",
+      "repeat": "02"
+    },
+    {
+      "setting": "P-SHORT-1000",
+      "repeat": "02"
+    },
+    {
+      "setting": "P-SHORT-1500",
+      "repeat": "02"
+    }
+  ]
+}

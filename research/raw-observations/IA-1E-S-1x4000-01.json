@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-1E-S-1x4000-01",
+  "experimentId": "shake-grid/S-1x4000",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-13",
+  "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 1,
+  "initialCondition": "Cold launch validated; target absent at inspect before run input",
+  "requestedActions": [
+    {
+      "kind": "cold-start",
+      "target": "exact pinned SWF"
+    },
+    {
+      "kind": "player-control",
+      "target": "letsMixOrb",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "select",
+      "target": "ingredientSlot08",
+      "requestedDurationMs": 80
+    },
+    {
+      "kind": "pour",
+      "target": "pour",
+      "requestedDurationMs": 15000
+    },
+    {
+      "kind": "shake",
+      "target": "shake",
+      "requestedDurationMs": 4000
+    },
+    {
+      "kind": "serve",
+      "target": "serve",
+      "requestedDurationMs": 80
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "visibleNotes": "Native preflight aborted: owned PID14452 absent. No delivered action trace, result capture or numeric score. See phase1e run ledger. User interrupted the preceding tool call; causal attribution to that interruption is not established.",
+  "limitations": [
+    "No native delivery confirmed; durations remain unknown, not zero.",
+    "Tooling failure, not an observed reference cocktail or explosion."
+  ],
+  "confidence": "low",
+  "status": "UNVERIFIED",
+  "source": "research/phase1e/runs/IA-1E-S-1x4000-01.json"
+}

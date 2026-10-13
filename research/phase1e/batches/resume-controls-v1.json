@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "resume-controls-v1",
+  "status": "AUTHORIZED_EXECUTION_WINDOW",
+  "notAfterUtc": "2026-10-13T08:11:44.016Z",
+  "jobs": [
+    {
+      "setting": "CONTROL-FULL",
+      "repeat": "03"
+    },
+    {
+      "setting": "CONTROL-5000",
+      "repeat": "03"
+    },
+    {
+      "setting": "CONTROL-FULL",
+      "repeat": "04"
+    },
+    {
+      "setting": "CONTROL-5000",
+      "repeat": "04"
+    }
+  ]
+}

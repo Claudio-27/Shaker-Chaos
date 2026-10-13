@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "segmentation-live-v1",
+  "status": "AUTHORIZED_EXECUTION_WINDOW",
+  "jobs": [
+    {
+      "setting": "P-1",
+      "repeat": "01",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-2",
+      "repeat": "01",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-3",
+      "repeat": "01",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-4",
+      "repeat": "01",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-5",
+      "repeat": "01",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-10",
+      "repeat": "01",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-1",
+      "repeat": "02",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-2",
+      "repeat": "02",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-3",
+      "repeat": "02",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-4",
+      "repeat": "02",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-5",
+      "repeat": "02",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-10",
+      "repeat": "02",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-1",
+      "repeat": "03",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-2",
+      "repeat": "03",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-3",
+      "repeat": "03",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-4",
+      "repeat": "03",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-5",
+      "repeat": "03",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    },
+    {
+      "setting": "P-10",
+      "repeat": "03",
+      "meaning": "Not executed; dual fresh control gate mandatory"
+    }
+  ],
+  "notAfterUtc": "2026-10-12T21:44:21.281Z"
+}

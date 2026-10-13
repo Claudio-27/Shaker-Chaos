@@ -1,4 +1,4 @@
-const forbidden = ['COMPATIBILITY_LAB_DEV_ONLY', 'Compatibility Lab · solo sviluppo', 'DEMO / NOT REFERENCE-VERIFIED',
+const forbidden = ['RESEARCH ONLY — NOT GAME MECHANICS — NOT PRODUCTION READY', 'visible-gauge-height-v1', 'COMPATIBILITY_LAB_DEV_ONLY', 'Compatibility Lab · solo sviluppo', 'DEMO / NOT REFERENCE-VERIFIED',
   'Asset Lab · solo sviluppo', 'Diagnostica ID, dimensioni e fallback', 'compat-lab', 'REFERENCE_NATIVE_RESEARCH_ONLY', 'ReferenceNative', 'research/.local-reference', 'research/.captures', 'research/native-runner', 'RAW_REFERENCE_RESEARCH_ONLY', 'Reference runner —', 'flash_therightmix', 'ia-therightmix-', 'ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7'];
 /** Applied to actual emitted JS/CSS/HTML by the production build, before SW generation. */
 export function assertProductionBoundaries(files, emittedPaths = files.map(([path]) => path)) {

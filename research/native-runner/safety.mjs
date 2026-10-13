@@ -22,7 +22,7 @@ export function clientPoint(map,geometry,targetName){
 export function validateNativeRequest(request,map){
  object(request);if(typeof request.sessionId!=='string'||!request.sessionId||request.initialVisualConfirmed!==true)throw Error('Session and visual confirmation required');
  if(!Array.isArray(request.actions)||!request.actions.length||request.actions.length>30)throw Error('1..30 native actions required');
- for(const a of request.actions){object(a);if(Object.keys(a).some(k=>!['target','holdMs','captureDuring'].includes(k))||typeof a.target!=='string'||!Object.hasOwn(map.targets,a.target)||!Number.isSafeInteger(a.holdMs)||a.holdMs<0||a.holdMs>15000||('captureDuring'in a&&typeof a.captureDuring!=='boolean'))throw Error('Invalid native sequence; no input');}
+ for(const a of request.actions){object(a);if(a.kind==='idle'){if(Object.keys(a).some(k=>!['kind','waitMs'].includes(k))||!Number.isSafeInteger(a.waitMs)||a.waitMs<0||a.waitMs>30000)throw Error('Invalid idle wait; no input');continue;}if(Object.keys(a).some(k=>!['target','holdMs','captureDuring'].includes(k))||typeof a.target!=='string'||!Object.hasOwn(map.targets,a.target)||!Number.isSafeInteger(a.holdMs)||a.holdMs<0||a.holdMs>15000||('captureDuring'in a&&typeof a.captureDuring!=='boolean'))throw Error('Invalid native sequence; no input');}
  if('expectedGeometry'in request){const g=object(request.expectedGeometry);if(Object.keys(g).some(k=>!['width','height','dpi'].includes(k))||['width','height','dpi'].some(k=>!Number.isSafeInteger(g[k])||g[k]<=0))throw Error('Invalid frozen geometry');}
  if('afterServeWaitMs'in request&&(!Number.isSafeInteger(request.afterServeWaitMs)||request.afterServeWaitMs<0||request.afterServeWaitMs>30000))throw Error('Invalid result wait');
 }

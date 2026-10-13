@@ -1,0 +1,23 @@
+[
+  {
+    "sourcePair": "1E-PMATCH-1",
+    "oldWaitMs": 2395,
+    "measuredResidualMs": -164.89819999999963,
+    "newRequestedIdleMs": 2230,
+    "unchangedToleranceMs": 100
+  },
+  {
+    "sourcePair": "1E-PMATCH-2",
+    "oldWaitMs": 2345,
+    "measuredResidualMs": -249.57780000000093,
+    "newRequestedIdleMs": 2095,
+    "unchangedToleranceMs": 100
+  },
+  {
+    "sourcePair": "1E-PMATCH-3",
+    "oldWaitMs": 2332,
+    "measuredResidualMs": -178.35399999999936,
+    "newRequestedIdleMs": 2154,
+    "unchangedToleranceMs": 100
+  }
+]

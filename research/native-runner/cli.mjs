@@ -28,7 +28,7 @@ if(['input','run'].includes(command)){
  validateNativeRequest(request,map);
  invoke('inspect'); // Activates only the hash/process/title-validated owned target, without pointer input.
  const ready=invoke('doctor');if(ready.targetScreenshotVerified!==true)throw Error('Doctor requires a foreground target screenshot before input');
- for(const action of request.actions)clientPoint(map,{width:ready.geometry.Width,height:ready.geometry.Height,dpi:ready.geometry.Dpi},action.target);
+ for(const action of request.actions.filter(a=>a.kind!=='idle'))clientPoint(map,{width:ready.geometry.Width,height:ready.geometry.Height,dpi:ready.geometry.Dpi},action.target);
 }
 if(command==='smoke'){
  invoke('doctor');

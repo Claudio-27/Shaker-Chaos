@@ -1,0 +1,34 @@
+{
+  "confidence": "medium",
+  "evidence": [
+    {
+      "date": "2026-10-13",
+      "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+      "id": "IA-1E-P-GAP-3-03",
+      "procedure": "research/raw-observations/IA-1E-P-GAP-3-03.json; Phase1E cold launch; frozen script control-full-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui; Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure 9683159e5f12c22d9e6a09abd59527e7b95cd080f03d23943985adc0602b58a7",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7"
+    }
+  ],
+  "id": "case-IA-1E-P-GAP-3-03",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "Canonical quantity, Flash ticks and capacity unmapped. Requested and measured OS timing differ. No formula or bonus inferred. Raw source: research/raw-observations/IA-1E-P-GAP-3-03.json",
+  "observedReferenceResult": {
+    "exploded": false,
+    "phase": "result-screen",
+    "reactionId": "ref.react.r01",
+    "score": 63
+  },
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "pour-pauses/P-GAP-3 / IA-1E-P-GAP-3-03"
+}

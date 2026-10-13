@@ -1,0 +1,12 @@
+{
+  "id": "IA-1E-P-10-01",
+  "resultTiming": "unknown",
+  "exploded": false,
+  "phase": "preparation-awaiting-serve",
+  "reactionId": "ref.phase.no-served-result",
+  "visibleFill": "not-confirmed",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T205501581-17164/result-205605210.png",
+  "date": "2026-10-12T20:57:10.241Z",
+  "method": "direct-visual"
+}

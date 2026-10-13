@@ -1,0 +1,12 @@
+{
+  "id": "IA-1E-P-1-03",
+  "resultTiming": "after-serve",
+  "exploded": false,
+  "score": 111,
+  "reactionId": "ref.react.r01",
+  "visibleFill": "not-confirmed",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261012T210229419-20092/result-210322379.png",
+  "date": "2026-10-13T07:11:40.636Z",
+  "method": "direct-visual"
+}

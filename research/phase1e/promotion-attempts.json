@@ -1,0 +1,29 @@
+[
+  {
+    "id": "adjudicated-IA-1E-control-full",
+    "requested": "VERIFIED",
+    "outcome": "REJECTED_BY_EXISTING_SCHEMA",
+    "reason": "VERIFIED requires independently validated input evidence",
+    "promotedInstead": "STRONGLY_SUPPORTED",
+    "procedureSha256": "15f8b7d409d79921c62f93cbcde8f12e77f91e6f42ff2637b2608be3507a08c0",
+    "canonicalInputMapping": "UNMAPPED"
+  },
+  {
+    "id": "adjudicated-IA-1E-control-5000",
+    "requested": "VERIFIED",
+    "outcome": "REJECTED_BY_EXISTING_SCHEMA",
+    "reason": "VERIFIED requires independently validated input evidence",
+    "promotedInstead": "STRONGLY_SUPPORTED",
+    "procedureSha256": "4066ae521ef77219b891fc9721eddacee5907de5a345e25a6317e94214e65e17",
+    "canonicalInputMapping": "UNMAPPED"
+  },
+  {
+    "id": "adjudicated-IA-1E-garnish-after",
+    "requested": "VERIFIED",
+    "outcome": "REJECTED_BY_EXISTING_SCHEMA",
+    "reason": "VERIFIED requires independently validated input evidence",
+    "promotedInstead": "STRONGLY_SUPPORTED",
+    "procedureSha256": "90e50c164de34da3a93a289953eac270c8560d3758284a2707df67fbf9092542",
+    "canonicalInputMapping": "UNMAPPED"
+  }
+]

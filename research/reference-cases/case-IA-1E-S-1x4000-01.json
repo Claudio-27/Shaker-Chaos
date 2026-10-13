@@ -1,0 +1,27 @@
+{
+  "confidence": "low",
+  "evidence": [
+    {
+      "date": "2026-10-13",
+      "id": "IA-1E-S-1x4000-01",
+      "procedure": "research/raw-observations/IA-1E-S-1x4000-01.json; Cold launch validated; target absent at inspect before run input; Native preflight aborted: owned PID14452 absent. No delivered action trace, result capture or numeric score. See phase1e run ledger. User interrupted the preceding tool call; causal attribution to that interruption is not established.",
+      "referenceBuild": "ia-therightmix-ede221ad99e03173",
+      "repetitions": 1,
+      "scope": "reference-automated",
+      "source": "research/phase1e/runs/IA-1E-S-1x4000-01.json"
+    }
+  ],
+  "id": "case-IA-1E-S-1x4000-01",
+  "inputSequence": [],
+  "inputValidation": {
+    "evidenceIds": [],
+    "notes": "INCOMPLETE INPUT: empty history means unmapped/unknown, not an empty reference cocktail. Never score this projection.",
+    "status": "UNVERIFIED"
+  },
+  "notes": "No native delivery confirmed; durations remain unknown, not zero. Tooling failure, not an observed reference cocktail or explosion. Raw source: research/raw-observations/IA-1E-S-1x4000-01.json",
+  "origin": "REFERENCE",
+  "purpose": "Black-box observation; original raw data remain authoritative.",
+  "schemaVersion": 1,
+  "status": "UNVERIFIED",
+  "title": "shake-grid/S-1x4000 / IA-1E-S-1x4000-01"
+}

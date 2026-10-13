@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1E-PMATCH-1",
+    "controlId": "IA-1E-P-MATCH-2395-01",
+    "treatmentId": "IA-1E-P-3-01"
+  },
+  {
+    "id": "1E-PMATCH-2",
+    "controlId": "IA-1E-P-MATCH-2345-02",
+    "treatmentId": "IA-1E-P-3-02"
+  },
+  {
+    "id": "1E-PMATCH-3",
+    "controlId": "IA-1E-P-MATCH-2332-03",
+    "treatmentId": "IA-1E-P-3-03"
+  }
+]

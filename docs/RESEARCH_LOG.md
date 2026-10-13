@@ -153,3 +153,31 @@ Bundle invariato:38 moduli,index-Ds8N4XYh.js264,41kB,index-C2Y8JjDS.css16,84kB,c
 Su richiesta dell’utente lo schermo è rimasto attivo tramite richiesta temporanea Windows, rilasciata e verificata RELEASED alle19:15:13UTC; timer persistenti invariati. Ruffle posseduto chiuso, ultimo doctor READY_TO_LAUNCH senza input. La parte finale del pair B ha usato un piano esplicito nuovo per terminare entro circa un’ora, senza diminuire guard; ultimo run19:14:21UTC. Nessuna stima online è stata necessaria o introdotta come misura.
 
 Report completo dei38 punti: NATIVE_CHARACTERIZATION_FINDINGS.md. Fase1D CLOSED_WITH_LIMITS; stop, nessuna fase successiva iniziata.
+
+## R008 — Phase1E aperta: preparazione del12ottobre2026
+
+Repository iniziale pulito, HEAD3e1f06a e ramo phase1/causal-mechanics-isolation già selezionato dall’utente. Nessun cambio Git. Snapshot204 raw/fixture/corrections storici; hash tutti identici. Congelati CONTROL-FULL eCONTROL-5000 dai record1D. Runner1E distinto con doppio gate fresco, idle senza click monitorati, prevalidazione, code finite non eseguite, logginggap/wall-time e validatorpair che conserva i residui. Nessun run1E avviato: in attesa della disponibilità per il nuovo intervallo nativo.
+
+Tentativo promozione baseline reale: il validatore esistente rifiuta VERIFIED perché input canonicoUNVERIFIED. Nessun indebolimento. Misura preliminare2capture storiche:ROI38righe pieno38,intermedio5000ms6; non equivalenti a quantità finali. Nessuna nuova fixture/raw; totali98/104/2 e status0VERIFIED/6Strong/98Unverified. Report e44stati in CAUSAL_MECHANICS_FINDINGS.md; fase non chiusa.
+
+### Controlli della preparazione R008
+
+TypeScript strict, lint, **149/149 test** (134 precedenti + 15 nuovi) e build passati, nessuno saltato. Fixture validation98/104, summary e model evaluator passati:0 MATCH/0 MISMATCH/104 UNKNOWN,246 campi sconosciuti, massimo errore null, NO_CANDIDATE. Native doctor PASS/READY_TO_LAUNCH senza input. Demo34/100 e reset0, import storico270→CURRENTDEMO UNKNOWN, produzione offline30/100 riusciti. Bundle e cache identici,14 immagini caricate. Git diff --check e audit isolamento passati;204 file storici byte-identici. Fase1E resta aperta, nessun nuovo run né abort. Nessun commit/push/PR/GitHub/cambio ramo/remoto/storia.
+
+## Chiusura1E —13ottobre2026
+
+L’utente ha sostituito il requisito di riproduzione esatta con un tuning originale approssimativo e autorizzato ricerca pubblica online, interrompendo le prove native. Stato CLOSED_WITH_APPROXIMATION.53nuovi raw/56fixture;totali151/160/2,0VERIFIED/9Strong/151Unverified.52sequenze OS complete,45score,7senza score,1abort al preflight (targetPID14452 assente, nessun input confermato).204file storici intatti.
+
+Controlli4repeat ciascuno:270 e111. Pour1/2/3/4/5press a5000ms:111/111/111;89/87/87;63/63/65;39/38/41;17/17/20.10×500:3volte senza score. Due nuovi pairPour matched≤100ms conservano delta−48/−46; altri4unmatched restano espliciti. Niente capture durantehold:63/63/63;gap+2s:65/65/63. Short500/750 senza score2volte,1000→5/3,1500→15/17. Garnish3pairmatched270→370.
+
+Nessun quantum, capacità canonica, coefficienteingrediente, bonusIce o formula di riferimento verificati. Nuovo profilo originale:240u, startupPour800ms,3u/125ms, garnish100, Ice500×2 cap1000, Shakebonus0/5/15/30, rischio8s/6azioni, scorebudget10.000. Sono scelte UNVERIFIED pronte per la prossima implementazione; demoPhase0/artwork invariati. Ml resta solo presentazione futura, mapping=null. Preserve information until research proves it irrelevant.
+
+Fonti pubbliche e44punti:CAUSAL_MECHANICS_FINDINGS.md e APPROXIMATE_GAMEPLAY_TUNING.md. Nessuna Phase1F iniziata; niente commit/push/PR/GitHub/remoti/storia Git. SchermoRELEASED07:51:47UTC, Ruffle posseduto assente, ABORT conservato.
+
+### Verifica finale della chiusura1E
+
+TypeScript strict, lint, **155/155 test** (134 precedenti +21 nuovi), build e audit output PASS; nessun test saltato. Validation151raw/160fixture/2correzioni, summary e model evaluator riusciti:0MATCH/0MISMATCH/160UNKNOWN,452campi sconosciuti, errore massimo null, NO_CANDIDATE. Tre nuovi tentativi di VERIFIED rifiutati dal validatore esistente; adjudication restano Strong. Native doctorPASS senza input, processo posseduto assente.
+
+Smoke conclusivi: preview propria4192,14/14immagini decodificate, lab/debug esclusi conquery; VersaSpace15u, Serve30/100, Reset0. Preview fermata, reload da cache e gioco offline30/100 riusciti; stato Pronto anche offline verificato dopo il completamento asincrono. DevLab:import fixture nuova case-IA-1E-G-AFTER-01 mostra REFERENCE370 eCURRENTDEMO UNKNOWN per tutti i campi, senza false comparazioni. Schede proprie14/15chiuse, schede utente conservate. Nessun nuovo test touch fisico.
+
+Bundle invariato:38moduli,index-Ds8N4XYh.js264.41kB,index-C2Y8JjDS.css16.84kB,cache791c56d7c58dd2b0,shell7/artallow42. Nessun diff dominio/application/UI/public/lock o artwork; solo nuovo profilo pubblico non attivo fra i contenuti. 204file storici byte-identici. Git diff --checkPASS; branchphase1/causal-mechanics-isolation eHEAD3e1f06a conservati; nessun binario/cattura tracciato o GitHub/commit/push/PR/modifica remoti/storia. Web autorizzata dall’ultima richiesta, con provenienza documentata. Fase1E CLOSED_WITH_APPROXIMATION; stop.

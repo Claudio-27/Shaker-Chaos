@@ -1,6 +1,6 @@
 # Architettura
 
-Aggiornamento 2026-10-06: fase **1A**, infrastruttura black-box di ricerca sopra le fasi 0–0.3. Zero osservazioni del riferimento, zero meccaniche promosse e scorer demo invariato.
+Aggiornamento 2026-10-13: fase **1E chiusa con approssimazione**. 151 osservazioni, 160 fixture, nessuna regola di riferimento VERIFIED. Profilo originale approximateGameplayProfile.ts definito; scorer demo e storia canonica invariati.
 
 > **Preserve information until research proves it irrelevant.**
 
@@ -165,3 +165,7 @@ Il ledger nativo conserva richieste, consegna OS, tempi effettivi, geometria, st
 Procedura congelata, gate, coppie e riepilogo vivono soltanto in research e scripts. Gli stati di evidenza meccanica non sono promossi da un test del tooling. Il ramo locale di 1D è un’eccezione autorizzata dall’utente; gli artefatti storici sono conservati. Vedi NATIVE_CHARACTERIZATION_FINDINGS.md.
 
 La serie1D mostra perché conservare la sequenza:5000ms continui e tre Pour che sommano5000ms hanno dato111 e65 in una coppia. Questo confronto non implica quantità uguali. Le misure OS sono telemetria di acquisizione; la storia canonica e le sue VolumeUnit restano separate finché una mappatura non è convalidata. Anche fallimento automatico con score0, mancato risultato e abort del helper restano tre esiti distinti.
+
+## Decisione di prodotto dopo1E
+
+Il13ottobre2026 l’utente sceglie un gioco originale con tuning approssimativo. Il profilo pubblico approximateGameplayProfile.ts contiene solo parametri originali e interi, senza runtime, screenshot, mappe, dati empirici o link esterni. È versionato e non ancora attivato nella demo. Le scelte non costituiscono compatibilità VERIFIED. Uno scorer futuro riceverà la storia e userà durate/conteggi distinti, senza perdere gli eventi o mescolare UI/reward con il dominio. Ricerca, proiezione, scoring e progressione restano separate; nessuna mappatura VolumeUnit/ml o ingredienti-reference inventata.

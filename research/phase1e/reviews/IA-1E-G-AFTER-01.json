@@ -1,0 +1,12 @@
+{
+  "id": "IA-1E-G-AFTER-01",
+  "resultTiming": "after-serve",
+  "exploded": false,
+  "score": 370,
+  "reactionId": "ref.react.r01-garnished",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261013T072253313-2268/result-072400578.png",
+  "date": "2026-10-13T07:26:52.531Z",
+  "method": "direct-visual"
+}

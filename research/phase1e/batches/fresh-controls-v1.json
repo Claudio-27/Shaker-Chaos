@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "fresh-controls-v1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "jobs": [
+    {
+      "setting": "CONTROL-FULL",
+      "repeat": "01"
+    },
+    {
+      "setting": "CONTROL-5000",
+      "repeat": "01"
+    },
+    {
+      "setting": "CONTROL-FULL",
+      "repeat": "02"
+    },
+    {
+      "setting": "CONTROL-5000",
+      "repeat": "02"
+    }
+  ]
+}

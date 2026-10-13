@@ -125,3 +125,17 @@ La relazione circoscritta baseline-270-v1 → score270 passa cinque nuove sessio
 La relazione limone dopoShake sulla baseline piena mostra tre cold pair270→370 (delta100), con slice visibile sul calice: STRONGLY_SUPPORTED soltanto per quella procedura. PrimaShake una prova resta270; due click dopoShake restano370 in una prova. Ice primaPour mostra cubetti in movimento, ma accepted count/completion ignoti; due click possono lasciare senza risultato benché la sequenza OS sia completa. Questi esiti non verificano coefficienti globali e non modificano lo scoring.
 
 Shake: conteggi1..5 a1000ms mostrano270/270/275/285/300; totale richiesto4000ms con1/2/4 operazioni mostra275/285/285. Singole prove, tempi effettivi/pause diversi: UNVERIFIED. Esplosione visibile dopo agitazione continua10000/15000ms, auto failure0 primaServe;5000ms normale275. Nessuna soglia fine, regola di count, quantum o capacità canonica stabilita. Una coppia Pour continuo/segmentato a5000ms richiesti dà111/65; quantità uguali non dimostrate.
+
+## Protocollo1E predisposto
+
+Separare **OBSERVED PROCEDURE EFFECT** da **INFERRED REFERENCE MECHANIC**. PourCount e durata totale richiesta restano variabili distinte; confronti causali richiedono controllo di pause, catture e hold effettivi. Il nuovo rapporto visivo di righe occupate nella ROI è solo metadata di ricerca UNVERIFIED, non VolumeUnit, non ml e non quantum. **Preserve information until research proves it irrelevant.** Nessuna nuova formula, capacità, bonus o mappatura della demo. I nuovi run devono superare entrambi i gate freschi; quelli1D non li sostituiscono.
+
+## Chiusura1E —13ottobre2026
+
+L’utente ha sostituito il requisito di riproduzione esatta con un tuning originale approssimativo e autorizzato ricerca pubblica online, interrompendo le prove native. Stato CLOSED_WITH_APPROXIMATION.53nuovi raw/56fixture;totali151/160/2,0VERIFIED/9Strong/151Unverified.52sequenze OS complete,45score,7senza score,1abort al preflight (targetPID14452 assente, nessun input confermato).204file storici intatti.
+
+Controlli4repeat ciascuno:270 e111. Pour1/2/3/4/5press a5000ms:111/111/111;89/87/87;63/63/65;39/38/41;17/17/20.10×500:3volte senza score. Due nuovi pairPour matched≤100ms conservano delta−48/−46; altri4unmatched restano espliciti. Niente capture durantehold:63/63/63;gap+2s:65/65/63. Short500/750 senza score2volte,1000→5/3,1500→15/17. Garnish3pairmatched270→370.
+
+Nessun quantum, capacità canonica, coefficienteingrediente, bonusIce o formula di riferimento verificati. Nuovo profilo originale:240u, startupPour800ms,3u/125ms, garnish100, Ice500×2 cap1000, Shakebonus0/5/15/30, rischio8s/6azioni, scorebudget10.000. Sono scelte UNVERIFIED pronte per la prossima implementazione; demoPhase0/artwork invariati. Ml resta solo presentazione futura, mapping=null. Preserve information until research proves it irrelevant.
+
+Fonti pubbliche e44punti:CAUSAL_MECHANICS_FINDINGS.md e APPROXIMATE_GAMEPLAY_TUNING.md. Nessuna Phase1F iniziata; niente commit/push/PR/GitHub/remoti/storia Git. SchermoRELEASED07:51:47UTC, Ruffle posseduto assente, ABORT conservato.

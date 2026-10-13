@@ -233,3 +233,17 @@ Finestra finale: diagnostiche dalle18:13:43UTC e ultimo run finito19:14:21UTC, c
 Ramo locale phase1/quantitative-native-characterization creato dal ramo1C dopo autorizzazione esplicita; HEAD non avanzato. Nessun commit/push/PR, accesso GitHub, modifica remoti o bytecode. I61 file storici della snapshot restano byte-identici. Schermo: RELEASED verificato2026-10-12T19:15:13.5725526Z; settingsChanged=false; timer Windows invariati.
 
 Fixture/catture sono ricerca. Origine binari approvata in1C; in1D nessun download. Score/stati demo, dominio, application, artwork/public/package-lock restano invariati. Le quantità canoniche sono interi deterministici indipendenti dai ms OS e da ml, che restano unità di presentazione. Nessun account/economia/progressione/backend/vault implementato. **Stop dopo1D.**
+
+## Avvio1E — preparazione, non riconferma
+
+I risultati1D di questo documento restano immutati e storici. La fase1E ha congelato CONTROL-FULL eCONTROL-5000, aggiunto idle monitorati e un report dei residui temporali, ma non ha ancora eseguito nuove sessioni fredde. Nessun gate1E superato e nessuna nuova regola/promozione. Dettagli e limiti in [CAUSAL_MECHANICS_FINDINGS.md](CAUSAL_MECHANICS_FINDINGS.md).
+
+## Chiusura1E —13ottobre2026
+
+L’utente ha sostituito il requisito di riproduzione esatta con un tuning originale approssimativo e autorizzato ricerca pubblica online, interrompendo le prove native. Stato CLOSED_WITH_APPROXIMATION.53nuovi raw/56fixture;totali151/160/2,0VERIFIED/9Strong/151Unverified.52sequenze OS complete,45score,7senza score,1abort al preflight (targetPID14452 assente, nessun input confermato).204file storici intatti.
+
+Controlli4repeat ciascuno:270 e111. Pour1/2/3/4/5press a5000ms:111/111/111;89/87/87;63/63/65;39/38/41;17/17/20.10×500:3volte senza score. Due nuovi pairPour matched≤100ms conservano delta−48/−46; altri4unmatched restano espliciti. Niente capture durantehold:63/63/63;gap+2s:65/65/63. Short500/750 senza score2volte,1000→5/3,1500→15/17. Garnish3pairmatched270→370.
+
+Nessun quantum, capacità canonica, coefficienteingrediente, bonusIce o formula di riferimento verificati. Nuovo profilo originale:240u, startupPour800ms,3u/125ms, garnish100, Ice500×2 cap1000, Shakebonus0/5/15/30, rischio8s/6azioni, scorebudget10.000. Sono scelte UNVERIFIED pronte per la prossima implementazione; demoPhase0/artwork invariati. Ml resta solo presentazione futura, mapping=null. Preserve information until research proves it irrelevant.
+
+Fonti pubbliche e44punti:CAUSAL_MECHANICS_FINDINGS.md e APPROXIMATE_GAMEPLAY_TUNING.md. Nessuna Phase1F iniziata; niente commit/push/PR/GitHub/remoti/storia Git. SchermoRELEASED07:51:47UTC, Ruffle posseduto assente, ABORT conservato.

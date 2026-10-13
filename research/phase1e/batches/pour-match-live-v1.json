@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "pour-match-live-v1",
+  "status": "AUTHORIZED_EXECUTION_WINDOW",
+  "notAfterUtc": "2026-10-12T21:44:21.281Z",
+  "jobs": [
+    {
+      "setting": "P-MATCH-2395",
+      "repeat": "01"
+    },
+    {
+      "setting": "P-MATCH-2345",
+      "repeat": "02"
+    },
+    {
+      "setting": "P-MATCH-2332",
+      "repeat": "03"
+    }
+  ]
+}

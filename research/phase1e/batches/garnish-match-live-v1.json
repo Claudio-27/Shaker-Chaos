@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "garnish-match-live-v1",
+  "status": "AUTHORIZED_EXECUTION_WINDOW",
+  "notAfterUtc": "2026-10-12T21:44:21.281Z",
+  "jobs": [
+    {
+      "setting": "G-CONTROL",
+      "repeat": "01",
+      "pairId": "1E-GARNISH-1"
+    },
+    {
+      "setting": "G-AFTER",
+      "repeat": "01",
+      "pairId": "1E-GARNISH-1"
+    },
+    {
+      "setting": "G-CONTROL",
+      "repeat": "02",
+      "pairId": "1E-GARNISH-2"
+    },
+    {
+      "setting": "G-AFTER",
+      "repeat": "02",
+      "pairId": "1E-GARNISH-2"
+    },
+    {
+      "setting": "G-CONTROL",
+      "repeat": "03",
+      "pairId": "1E-GARNISH-3"
+    },
+    {
+      "setting": "G-AFTER",
+      "repeat": "03",
+      "pairId": "1E-GARNISH-3"
+    }
+  ]
+}

@@ -1,0 +1,761 @@
+{
+  "label": "RESEARCH ONLY — NOT GAME MECHANICS — NOT PRODUCTION READY",
+  "samples": [
+    {
+      "id": "IA-1D-BASELINE-02",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1013.8701999999976
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-BASELINE-03",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1006.9798999999985
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-BASELINE-04",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1012.751400000001
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-BASELINE-05",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1013.2976999999992
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-BASELINE-06",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1010.7399000000005
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-07",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1008.3090999999986
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-08",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1013.5985000000001
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-09",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1009.0789000000004
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-10",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1002.7487000000001
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-11",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1010.7580999999991
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-12",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1001.6538
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-13",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1011.8264000000017
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-14",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1011.9049999999988
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-15",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1018.1340999999993
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-16",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1000.7854999999981
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-17",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1012.0250999999989
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-18",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1008.9773999999998
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-19",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1003.4503000000004
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-20",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1003.2226999999984
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-21",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1011.154599999998
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-22",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1010.3603000000003
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-23",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1009.5673999999999
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-24",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1010.8342000000011
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-28",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1007.4960000000028
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-29",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1013.1985000000022
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-30",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1000.7695000000022
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-CONTROL-31",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1009.0904999999984
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-E-1-01",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1009.5162999999993
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-E-2-01",
+      "count": 2,
+      "requestedTotalMs": 2000,
+      "score": 270,
+      "exploded": null,
+      "requestedHolds": [
+        1000,
+        1000
+      ],
+      "actualHolds": [
+        1009.660899999999,
+        1009.6764000000003
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-E-3-01",
+      "count": 3,
+      "requestedTotalMs": 3000,
+      "score": 275,
+      "exploded": null,
+      "requestedHolds": [
+        1000,
+        1000,
+        1000
+      ],
+      "actualHolds": [
+        1013.5799000000006,
+        1003.6316999999981,
+        1001.4494999999988
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-E-4-01",
+      "count": 4,
+      "requestedTotalMs": 4000,
+      "score": 285,
+      "exploded": null,
+      "requestedHolds": [
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "actualHolds": [
+        1004.3438999999998,
+        1009.8032999999996,
+        1011.2406999999985,
+        1010.7021999999997
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-E-5-01",
+      "count": 5,
+      "requestedTotalMs": 5000,
+      "score": 300,
+      "exploded": null,
+      "requestedHolds": [
+        1000,
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "actualHolds": [
+        1009.5695000000014,
+        1011.3290000000015,
+        1015.179699999997,
+        1013.6957999999977,
+        1005.7813999999998
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-F-1-01",
+      "count": 1,
+      "requestedTotalMs": 4000,
+      "score": 275,
+      "exploded": null,
+      "requestedHolds": [
+        4000
+      ],
+      "actualHolds": [
+        4011.095300000001
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-F-2-01",
+      "count": 2,
+      "requestedTotalMs": 4000,
+      "score": 285,
+      "exploded": null,
+      "requestedHolds": [
+        2000,
+        2000
+      ],
+      "actualHolds": [
+        2000.6425999999992,
+        2005.854800000001
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-F-4-01",
+      "count": 4,
+      "requestedTotalMs": 4000,
+      "score": 285,
+      "exploded": null,
+      "requestedHolds": [
+        1000,
+        1000,
+        1000,
+        1000
+      ],
+      "actualHolds": [
+        1002.6316999999981,
+        1008.1144000000022,
+        1011.9143999999978,
+        1000.4913000000015
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-X-10000-01",
+      "count": 1,
+      "requestedTotalMs": 10000,
+      "score": 0,
+      "exploded": true,
+      "requestedHolds": [
+        10000
+      ],
+      "actualHolds": [
+        10000.939799999996
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-X-15000-01",
+      "count": 1,
+      "requestedTotalMs": 15000,
+      "score": 0,
+      "exploded": true,
+      "requestedHolds": [
+        15000
+      ],
+      "actualHolds": [
+        15007.2749
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1D-X-5000-01",
+      "count": 1,
+      "requestedTotalMs": 5000,
+      "score": 275,
+      "exploded": null,
+      "requestedHolds": [
+        5000
+      ],
+      "actualHolds": [
+        5007.1957
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1E-CONTROL-FULL-01",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": false,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1010.7441000000035
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1E-CONTROL-FULL-02",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": false,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1011.4346000000005
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1E-CONTROL-FULL-03",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": false,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1008.3410000000003
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1E-CONTROL-FULL-04",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": false,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1012.8549000000021
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1E-G-CONTROL-01",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": false,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1001.5420000000013
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1E-G-CONTROL-02",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": false,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1013.9555999999975
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    },
+    {
+      "id": "IA-1E-G-CONTROL-03",
+      "count": 1,
+      "requestedTotalMs": 1000,
+      "score": 270,
+      "exploded": false,
+      "requestedHolds": [
+        1000
+      ],
+      "actualHolds": [
+        1001.0959999999977
+      ],
+      "evidence": "Native procedure, not accepted domain Shake count"
+    }
+  ],
+  "pressCountOnly": {
+    "status": "CONTRADICTED BY PROCEDURE DATA",
+    "conflicts": [
+      {
+        "value": 1,
+        "ids": [
+          "IA-1D-BASELINE-02",
+          "IA-1D-BASELINE-03",
+          "IA-1D-BASELINE-04",
+          "IA-1D-BASELINE-05",
+          "IA-1D-BASELINE-06",
+          "IA-1D-CONTROL-07",
+          "IA-1D-CONTROL-08",
+          "IA-1D-CONTROL-09",
+          "IA-1D-CONTROL-10",
+          "IA-1D-CONTROL-11",
+          "IA-1D-CONTROL-12",
+          "IA-1D-CONTROL-13",
+          "IA-1D-CONTROL-14",
+          "IA-1D-CONTROL-15",
+          "IA-1D-CONTROL-16",
+          "IA-1D-CONTROL-17",
+          "IA-1D-CONTROL-18",
+          "IA-1D-CONTROL-19",
+          "IA-1D-CONTROL-20",
+          "IA-1D-CONTROL-21",
+          "IA-1D-CONTROL-22",
+          "IA-1D-CONTROL-23",
+          "IA-1D-CONTROL-24",
+          "IA-1D-CONTROL-28",
+          "IA-1D-CONTROL-29",
+          "IA-1D-CONTROL-30",
+          "IA-1D-CONTROL-31",
+          "IA-1D-E-1-01",
+          "IA-1D-F-1-01",
+          "IA-1D-X-10000-01",
+          "IA-1D-X-15000-01",
+          "IA-1D-X-5000-01",
+          "IA-1E-CONTROL-FULL-01",
+          "IA-1E-CONTROL-FULL-02",
+          "IA-1E-CONTROL-FULL-03",
+          "IA-1E-CONTROL-FULL-04",
+          "IA-1E-G-CONTROL-01",
+          "IA-1E-G-CONTROL-02",
+          "IA-1E-G-CONTROL-03"
+        ],
+        "scores": [
+          270,
+          275,
+          0
+        ]
+      },
+      {
+        "value": 2,
+        "ids": [
+          "IA-1D-E-2-01",
+          "IA-1D-F-2-01"
+        ],
+        "scores": [
+          270,
+          285
+        ]
+      }
+    ]
+  },
+  "requestedTotalDurationOnly": {
+    "status": "CONTRADICTED BY PROCEDURE DATA",
+    "conflicts": [
+      {
+        "value": 4000,
+        "ids": [
+          "IA-1D-E-4-01",
+          "IA-1D-F-1-01",
+          "IA-1D-F-2-01",
+          "IA-1D-F-4-01"
+        ],
+        "scores": [
+          285,
+          275
+        ]
+      },
+      {
+        "value": 5000,
+        "ids": [
+          "IA-1D-E-5-01",
+          "IA-1D-X-5000-01"
+        ],
+        "scores": [
+          300,
+          275
+        ]
+      }
+    ]
+  },
+  "countAndDuration": "NOT FIT; does not imply accepted-count, internal-duration or effective-action mapping",
+  "discreteBonus": "NOT YET TESTABLE AS INTERNAL RULE",
+  "actualInternalDuration": "UNMEASURED",
+  "modelStatus": "NO_CANDIDATE"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "IA-1E-G-CONTROL-02",
+  "resultTiming": "after-serve",
+  "exploded": false,
+  "score": 270,
+  "reactionId": "ref.react.r01",
+  "visibleFill": "full-indicator-visible",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261013T072410713-35276/result-072517283.png",
+  "date": "2026-10-13T07:30:39.565Z",
+  "method": "direct-visual"
+}

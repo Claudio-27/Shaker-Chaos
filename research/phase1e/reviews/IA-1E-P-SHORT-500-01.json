@@ -1,0 +1,12 @@
+{
+  "id": "IA-1E-P-SHORT-500-01",
+  "resultTiming": "unknown",
+  "exploded": false,
+  "phase": "preparation-screen",
+  "reactionId": "ref.phase.no-served-result",
+  "visibleFill": "not-confirmed",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261013T074047397-20504/result-074139414.png",
+  "date": "2026-10-13T07:47:24.963Z",
+  "method": "direct-visual"
+}

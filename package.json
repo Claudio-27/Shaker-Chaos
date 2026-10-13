@@ -30,7 +30,8 @@
     "research:native:stop": "node research/native-runner/cli.mjs stop",
     "research:native:record": "node research/native-runner/record.mjs",
     "research:raw": "node scripts/research.mjs raw",
-    "research:native:phase1d": "node research/native-runner/phase1d.mjs"
+    "research:native:phase1d": "node research/native-runner/phase1d.mjs",
+    "research:native:phase1e": "node research/native-runner/phase1e.mjs"
   },
   "dependencies": {
     "react": "19.3.0",

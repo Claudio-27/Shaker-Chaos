@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "shake-grid-20261013-v1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "notAfterUtc": "2026-10-13T08:11:44.016Z",
+  "jobs": [
+    {
+      "setting": "S-1x4000",
+      "repeat": "01"
+    },
+    {
+      "setting": "S-2x2000",
+      "repeat": "01"
+    },
+    {
+      "setting": "S-4x1000",
+      "repeat": "01"
+    },
+    {
+      "setting": "S-1x4000",
+      "repeat": "02"
+    },
+    {
+      "setting": "S-2x2000",
+      "repeat": "02"
+    },
+    {
+      "setting": "S-4x1000",
+      "repeat": "02"
+    },
+    {
+      "setting": "S-1x4000",
+      "repeat": "03"
+    },
+    {
+      "setting": "S-2x2000",
+      "repeat": "03"
+    },
+    {
+      "setting": "S-4x1000",
+      "repeat": "03"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "modelStatus": "INSUFFICIENT_DATA / NO_SCORING_CANDIDATE",
+  "label": "RESEARCH CANDIDATE — NOT PRODUCTION READY",
+  "candidateId": null,
+  "productionReady": false,
+  "totalFixtures": 104,
+  "matchedFixtures": 0,
+  "mismatchedFixtures": 0,
+  "unknownFixtures": 104,
+  "unknownFields": 246,
+  "maximumNumericError": null,
+  "exactMatchPercentage": 0
+}

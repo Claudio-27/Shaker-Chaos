@@ -85,6 +85,14 @@ function Targets($session) {
  if($scale -le 0){throw 'Invalid stage scaling'}
  return @{Map=$map;Geometry=$g;Scale=$scale;Left=($g.Width-$s.width*$scale)/2;Top=$topInset+($availHeight-$s.height*$scale)/2}
 }
+
+function Idle-Gesture($session,$action) {
+ $fresh=Geometry $session
+ if($fresh.X -ne $script:runGeometry.X -or $fresh.Y -ne $script:runGeometry.Y -or $fresh.Width -ne $script:runGeometry.Width -or $fresh.Height -ne $script:runGeometry.Height -or $fresh.Dpi -ne $script:runGeometry.Dpi){throw 'Geometry changed before idle'}
+ $timing=[ReferenceNative]::Idle($session.Data.windowHandle,$session.Data.processId,$session.Data.windowTitle,[int]$action.waitMs,$abortPath)
+ return @{kind='idle';requestedWaitMs=$action.waitMs;measuredWaitMs=$timing.MeasuredWaitMs;startMs=$timing.StartMs;endMs=$timing.EndMs;inputSent=$false;geometry=$fresh}
+}
+
 function Gesture($session,$action,[string]$ordinal) {
  # No activation here: loss of foreground between actions aborts the sequence.
  $m=Targets $session
@@ -160,11 +168,19 @@ try {
    $request=Get-Content -LiteralPath $requestPath -Raw | ConvertFrom-Json -DateKind String
    if($request.sessionId -ne $session.Data.sessionId -or $request.initialVisualConfirmed -ne $true){throw 'Current session and visual confirmation required'}
    if(!$request.actions -or $request.actions.Count -gt 30){throw '1..30 actions required'}
+   foreach($step in $request.actions){
+    if($null -ne $step.PSObject.Properties['kind'] -and $step.kind -eq 'idle'){
+     if(@($step.PSObject.Properties.Name | Where-Object {$_ -notin @('kind','waitMs')}).Count -gt 0 -or ($step.waitMs -isnot [int] -and $step.waitMs -isnot [long]) -or $step.waitMs -lt 0 -or $step.waitMs -gt 30000){throw 'Invalid idle request; no input'}
+    }else{
+     if(@($step.PSObject.Properties.Name | Where-Object {$_ -notin @('target','holdMs','captureDuring')}).Count -gt 0 -or ($step.holdMs -isnot [int] -and $step.holdMs -isnot [long]) -or $step.holdMs -lt 0 -or $step.holdMs -gt 15000){throw 'Invalid hold request; no input'}
+     if($null -ne $step.PSObject.Properties['captureDuring'] -and $step.captureDuring -isnot [bool]){throw 'Invalid capture flag; no input'}
+    }
+   }
    Activate $session | Out-Null
    $script:runGeometry=Geometry $session
    if($null -ne $request.PSObject.Properties['expectedGeometry']){if($script:runGeometry.Width -ne $request.expectedGeometry.width -or $script:runGeometry.Height -ne $request.expectedGeometry.height -or $script:runGeometry.Dpi -ne $request.expectedGeometry.dpi){throw 'Frozen procedure geometry/DPI mismatch; no input'}}
    $trace=@();$n=0
-   foreach($action in $request.actions){$n++;$trace+=Gesture $session $action ('action-'+[DateTime]::UtcNow.ToString('HHmmssfff')+'-'+$n)}
+   foreach($action in $request.actions){$n++;if($null -ne $action.PSObject.Properties['kind'] -and $action.kind -eq 'idle'){$trace+=Idle-Gesture $session $action}else{$trace+=Gesture $session $action ('action-'+[DateTime]::UtcNow.ToString('HHmmssfff')+'-'+$n)}}
    $reactionCaptures=@();$captureGaps=@()
    if($null -ne $request.PSObject.Properties['afterServeWaitMs']){if($request.afterServeWaitMs -lt 0 -or $request.afterServeWaitMs -gt 30000){throw 'Invalid result wait'};for($waited=0;$waited -lt $request.afterServeWaitMs;$waited+=2000){Start-Sleep -Milliseconds ([Math]::Min(2000,$request.afterServeWaitMs-$waited));try{$reactionCaptures+=Capture $session ('reaction-'+[DateTime]::UtcNow.ToString('HHmmssfff'))}catch{$captureGaps+=@{dateTime=[DateTime]::UtcNow.ToString('o');reason=$_.Exception.Message}}}}
    $resultCapture=$null;try{$resultCapture=Capture $session ('result-'+[DateTime]::UtcNow.ToString('HHmmssfff'))}catch{$captureGaps+=@{dateTime=[DateTime]::UtcNow.ToString('o');reason=$_.Exception.Message}}

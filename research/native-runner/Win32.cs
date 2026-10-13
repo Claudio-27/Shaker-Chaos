@@ -126,6 +126,30 @@ public static class ReferenceNative {
       SetThreadDpiAwarenessContext(prior);
     }
   }
+
+  public class IdleTiming { public double StartMs,EndMs,MeasuredWaitMs; public int RequestedWaitMs; }
+  public static IdleTiming Idle(long handle,int pid,string title,int duration,string sentinel) {
+    if(duration<0||duration>30000)throw new ArgumentOutOfRangeException("duration");
+    IntPtr prior=BeginDpi();
+    try {
+      Abort(sentinel);Geometry initial=Read(handle,pid,title,true);
+      Point cursor;GetPhysicalCursorPos(out cursor);
+      if((GetAsyncKeyState(1)&0x8000)!=0)throw new InvalidOperationException("Mouse held during idle");
+      var result=new IdleTiming {RequestedWaitMs=duration,StartMs=Clock.Elapsed.TotalMilliseconds};
+      do {
+        Abort(sentinel);Same(initial,Read(handle,pid,title,true));
+        AtTarget(initial,12,12);AtTarget(initial,initial.Width-13,initial.Height-13);AtTarget(initial,initial.Width/2,initial.Height/2);
+        Point current;GetPhysicalCursorPos(out current);
+        if(Math.Abs(current.X-cursor.X)>4||Math.Abs(current.Y-cursor.Y)>4)throw new OperationCanceledException("Cursor moved externally during idle");
+        if((GetAsyncKeyState(1)&0x8000)!=0)throw new OperationCanceledException("External mouse hold during idle");
+        double left=duration-(Clock.Elapsed.TotalMilliseconds-result.StartMs);
+        if(left>2)Thread.Sleep((int)Math.Min(4,left-1));else Thread.SpinWait(100);
+      }while(Clock.Elapsed.TotalMilliseconds-result.StartMs<duration);
+      result.EndMs=Clock.Elapsed.TotalMilliseconds;result.MeasuredWaitMs=result.EndMs-result.StartMs;
+      return result;
+    }finally{EndDpi(prior);}
+  }
+
   public static string Capture(long handle,int pid,string title,string sentinel,string path) {
     Abort(sentinel);Geometry g=Read(handle,pid,title,true);
     AtTarget(g,12,12);AtTarget(g,g.Width-13,12);AtTarget(g,12,g.Height-13);AtTarget(g,g.Width-13,g.Height-13);AtTarget(g,g.Width/2,g.Height/2);

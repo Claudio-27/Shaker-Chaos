@@ -1,0 +1,50 @@
+{
+  "rawObservations": 98,
+  "referenceFixtures": 104,
+  "appendOnlyCorrections": 2,
+  "statuses": {
+    "VERIFIED": 0,
+    "STRONGLY_SUPPORTED": 6,
+    "UNVERIFIED": 98
+  },
+  "exactInputs": 0,
+  "phase1e": {
+    "scope": "RESEARCH ONLY — NOT GAME MECHANICS — NOT PRODUCTION READY",
+    "controls": {
+      "passed": false,
+      "stopCausalInference": false,
+      "controls": [
+        {
+          "setting": "CONTROL-FULL",
+          "expectedScore": 270,
+          "attempts": 0,
+          "ids": [],
+          "scores": [],
+          "passed": false,
+          "drift": false,
+          "aborted": []
+        },
+        {
+          "setting": "CONTROL-5000",
+          "expectedScore": 111,
+          "attempts": 0,
+          "ids": [],
+          "scores": [],
+          "passed": false,
+          "drift": false,
+          "aborted": []
+        }
+      ]
+    },
+    "totalRuns": 0,
+    "inputCompleted": 0,
+    "scored": 0,
+    "aborted": [],
+    "pendingReviews": [],
+    "settings": [],
+    "pairs": [],
+    "modelStatus": "NO_CANDIDATE",
+    "canonicalQuantum": null,
+    "canonicalCapacity": null
+  }
+}

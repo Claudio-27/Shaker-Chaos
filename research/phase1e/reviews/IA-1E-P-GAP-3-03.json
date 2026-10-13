@@ -1,0 +1,12 @@
+{
+  "id": "IA-1E-P-GAP-3-03",
+  "resultTiming": "after-serve",
+  "exploded": false,
+  "score": 63,
+  "reactionId": "ref.react.r01",
+  "visibleFill": "not-confirmed",
+  "visuallyVerified": true,
+  "resultCapture": "research/.captures/NATIVE-20261013T073932500-25140/result-074036501.png",
+  "date": "2026-10-13T07:42:37.466Z",
+  "method": "direct-visual"
+}

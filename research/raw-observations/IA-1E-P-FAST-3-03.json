@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "id": "IA-1E-P-FAST-3-03",
+  "experimentId": "pour-capture/P-FAST-3",
+  "referenceBuild": "ia-therightmix-ede221ad99e03173",
+  "date": "2026-10-13",
+  "environmentId": "ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+  "method": "AUTOMATED OBSERVATION",
+  "repetition": 3,
+  "initialCondition": "Phase1E cold launch; frozen script control-full-v1; ia-therightmix-ede221ad99e03173__ruffle-desktop-nightly-20261011-win64-gui",
+  "requestedActions": [
+    {
+      "kind": "cold-start",
+      "target": "exact SWF / fresh Ruffle process"
+    },
+    {
+      "kind": "player-control",
+      "target": "letsMixOrb",
+      "requestedDurationMs": 100
+    },
+    {
+      "kind": "select",
+      "target": "ingredientSlot08",
+      "requestedDurationMs": 80
+    },
+    {
+      "kind": "pour",
+      "target": "pour",
+      "requestedDurationMs": 1667
+    },
+    {
+      "kind": "pour",
+      "target": "pour",
+      "requestedDurationMs": 1667
+    },
+    {
+      "kind": "pour",
+      "target": "pour",
+      "requestedDurationMs": 1666
+    },
+    {
+      "kind": "shake",
+      "target": "shake",
+      "requestedDurationMs": 1000
+    },
+    {
+      "kind": "serve",
+      "target": "serve",
+      "requestedDurationMs": 80
+    }
+  ],
+  "deliveredInputs": [],
+  "inputMapping": "UNMAPPED",
+  "observed": {
+    "exploded": false,
+    "score": 63,
+    "phase": "result-screen",
+    "reactionId": "ref.react.r01"
+  },
+  "visibleNotes": "Direct visual capture and neutral reaction identity; mechanical acceptance is separate from OS input delivery; procedure f57c2385b76b5ee00d7f59a227023eef1bcdb9998a51787acb3af2dac35068fe",
+  "limitations": [
+    "Canonical quantity, Flash ticks and capacity unmapped. Requested and measured OS timing differ. No formula or bonus inferred."
+  ],
+  "confidence": "medium",
+  "status": "UNVERIFIED",
+  "source": "Native Windows black-box input; public official Ruffle release; SWF ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+  "native": {
+    "sessionId": "NATIVE-20261013T073825032-15648",
+    "coldLaunch": true,
+    "swfSha256": "ede221ad99e031732a049409278ce45bc1602706045b95ab83756e72af8f23a7",
+    "executableSha256": "b0840c1db59ee428ab35015fdd155a09465d6649fb19de09ee34d352dd247656",
+    "ruffleVersion": "Ruffle 0.8.0-nightly.2026.10.11-nightly (8c6f3e95203a765c39639ee9366abe8340830709 2026-10-11)",
+    "renderer": "dx12 requested explicitly; fidelity unverified",
+    "os": "Windows",
+    "clock": "Stopwatch / per-command monotonic milliseconds",
+    "actions": [
+      {
+        "commandId": "NATIVE-20261013T073825032-15648-trace-073922776",
+        "semanticTarget": "letsMixOrb",
+        "requestedHoldMs": 100,
+        "measuredHoldMs": 108.0225,
+        "downMs": 61.4209,
+        "upMs": 169.4434,
+        "window": {
+          "width": 600,
+          "height": 470,
+          "dpi": 120,
+          "screenX": 137,
+          "screenY": 166
+        },
+        "client": {
+          "y": 440,
+          "x": 300
+        },
+        "stage": {
+          "y": 410,
+          "x": 300
+        },
+        "stageScale": 1,
+        "captures": [
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073832719-1-before.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073832719-1-after.png"
+        ],
+        "buttonDownObserved": true,
+        "buttonUpObserved": true
+      },
+      {
+        "commandId": "NATIVE-20261013T073825032-15648-trace-073922776",
+        "semanticTarget": "ingredientSlot08",
+        "requestedHoldMs": 80,
+        "measuredHoldMs": 93.97520000000009,
+        "downMs": 1366.568,
+        "upMs": 1460.5432,
+        "window": {
+          "width": 600,
+          "height": 470,
+          "dpi": 120,
+          "screenX": 137,
+          "screenY": 166
+        },
+        "client": {
+          "y": 145,
+          "x": 343
+        },
+        "stage": {
+          "y": 115,
+          "x": 343
+        },
+        "stageScale": 1,
+        "captures": [
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073834124-2-before.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073834124-2-after.png"
+        ],
+        "buttonDownObserved": true,
+        "buttonUpObserved": true
+      },
+      {
+        "commandId": "NATIVE-20261013T073825032-15648-trace-073922776",
+        "semanticTarget": "pour",
+        "requestedHoldMs": 1667,
+        "measuredHoldMs": 1670.5944000000004,
+        "downMs": 2663.3392,
+        "upMs": 4333.9336,
+        "window": {
+          "width": 600,
+          "height": 470,
+          "dpi": 120,
+          "screenX": 137,
+          "screenY": 166
+        },
+        "client": {
+          "y": 443,
+          "x": 75
+        },
+        "stage": {
+          "y": 413,
+          "x": 75
+        },
+        "stageScale": 1,
+        "captures": [
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073835396-3-before.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073835396-3-after.png"
+        ],
+        "buttonDownObserved": true,
+        "buttonUpObserved": true
+      },
+      {
+        "commandId": "NATIVE-20261013T073825032-15648-trace-073922776",
+        "semanticTarget": "pour",
+        "requestedHoldMs": 1667,
+        "measuredHoldMs": 1670.8077000000003,
+        "downMs": 5508.891,
+        "upMs": 7179.6987,
+        "window": {
+          "width": 600,
+          "height": 470,
+          "dpi": 120,
+          "screenX": 137,
+          "screenY": 166
+        },
+        "client": {
+          "y": 443,
+          "x": 75
+        },
+        "stage": {
+          "y": 413,
+          "x": 75
+        },
+        "stageScale": 1,
+        "captures": [
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073838270-4-before.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073838270-4-after.png"
+        ],
+        "buttonDownObserved": true,
+        "buttonUpObserved": true
+      },
+      {
+        "commandId": "NATIVE-20261013T073825032-15648-trace-073922776",
+        "semanticTarget": "pour",
+        "requestedHoldMs": 1666,
+        "measuredHoldMs": 1669.4660999999996,
+        "downMs": 8392.5858,
+        "upMs": 10062.0519,
+        "window": {
+          "width": 600,
+          "height": 470,
+          "dpi": 120,
+          "screenX": 137,
+          "screenY": 166
+        },
+        "client": {
+          "y": 443,
+          "x": 75
+        },
+        "stage": {
+          "y": 413,
+          "x": 75
+        },
+        "stageScale": 1,
+        "captures": [
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073841142-5-before.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073841142-5-after.png"
+        ],
+        "buttonDownObserved": true,
+        "buttonUpObserved": true
+      },
+      {
+        "commandId": "NATIVE-20261013T073825032-15648-trace-073922776",
+        "semanticTarget": "shake",
+        "requestedHoldMs": 1000,
+        "measuredHoldMs": 1012.6183999999994,
+        "downMs": 11272.7361,
+        "upMs": 12285.3545,
+        "window": {
+          "width": 600,
+          "height": 470,
+          "dpi": 120,
+          "screenX": 137,
+          "screenY": 166
+        },
+        "client": {
+          "y": 443,
+          "x": 207
+        },
+        "stage": {
+          "y": 413,
+          "x": 207
+        },
+        "stageScale": 1,
+        "captures": [
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073844012-6-before.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073844012-6-during.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073844012-6-after.png"
+        ],
+        "buttonDownObserved": true,
+        "buttonUpObserved": true
+      },
+      {
+        "commandId": "NATIVE-20261013T073825032-15648-trace-073922776",
+        "semanticTarget": "serve",
+        "requestedHoldMs": 80,
+        "measuredHoldMs": 92.40900000000147,
+        "downMs": 13513.4389,
+        "upMs": 13605.8479,
+        "window": {
+          "width": 600,
+          "height": 470,
+          "dpi": 120,
+          "screenX": 137,
+          "screenY": 166
+        },
+        "client": {
+          "y": 443,
+          "x": 341
+        },
+        "stage": {
+          "y": 413,
+          "x": 341
+        },
+        "stageScale": 1,
+        "captures": [
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073846243-7-before.png",
+          "research/.captures/NATIVE-20261013T073825032-15648/action-073846243-7-after.png"
+        ],
+        "buttonDownObserved": true,
+        "buttonUpObserved": true
+      }
+    ],
+    "traceFiles": [
+      "research/.local-reference/NATIVE-20261013T073825032-15648-trace-073922776.json"
+    ],
+    "reactionCaptures": [
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073849574.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073851887.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073854206.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073856553.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073858937.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073901277.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073903608.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073905926.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073908260.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073910592.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073912928.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073915264.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073917580.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073919900.png",
+      "research/.captures/NATIVE-20261013T073825032-15648/reaction-073922208.png"
+    ],
+    "captureGaps": [],
+    "visibleFill": "not-confirmed",
+    "resultCapture": "research/.captures/NATIVE-20261013T073825032-15648/result-073922488.png",
+    "scoreRead": {
+      "score": 63,
+      "method": "direct-visual",
+      "confidence": "high",
+      "visuallyVerified": true,
+      "capture": "research/.captures/NATIVE-20261013T073825032-15648/result-073922488.png"
+    }
+  }
+}

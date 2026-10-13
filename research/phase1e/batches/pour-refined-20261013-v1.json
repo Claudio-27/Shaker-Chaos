@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "pour-refined-20261013-v1",
+  "status": "AUTHORIZED_EXECUTION_WINDOW",
+  "notAfterUtc": "2026-10-13T08:11:44.016Z",
+  "jobs": [
+    {
+      "setting": "P-MATCH-2230",
+      "repeat": "11"
+    },
+    {
+      "setting": "P-MATCH-2095",
+      "repeat": "12"
+    },
+    {
+      "setting": "P-MATCH-2154",
+      "repeat": "13"
+    }
+  ]
+}
