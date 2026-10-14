@@ -1,0 +1,174 @@
+[
+  {
+    "name": "rough",
+    "actions": [
+      {
+        "type": "PourStarted",
+        "operationId": 0,
+        "ingredientId": "orchard",
+        "atMs": 0
+      },
+      {
+        "type": "PourEnded",
+        "operationId": 0,
+        "reason": "completed",
+        "atMs": 1050
+      },
+      {
+        "type": "ShakeStarted",
+        "operationId": 1,
+        "atMs": 1050
+      },
+      {
+        "type": "ShakeEnded",
+        "operationId": 1,
+        "reason": "completed",
+        "atMs": 1150
+      },
+      {
+        "type": "Served",
+        "atMs": 1150
+      }
+    ],
+    "expected": {
+      "history": "16d41df0a8e90a9fb374d9a5106e55899a8cc491a48da2c2fb1e5fdbb1ec8856",
+      "result": "d2db0189e7b45634af0b199d0d84a41b21caa41d2ed039b6de7d371220bec259",
+      "reward": "1b732d88c07a037247dad8e911a2e736c8d88900c8a723e4712c311cdd6cbd92",
+      "score": 211
+    }
+  },
+  {
+    "name": "mid-volume",
+    "actions": [
+      {
+        "type": "PourStarted",
+        "operationId": 0,
+        "ingredientId": "orchard",
+        "atMs": 0
+      },
+      {
+        "type": "PourEnded",
+        "operationId": 0,
+        "reason": "completed",
+        "atMs": 5800
+      },
+      {
+        "type": "IceAdded",
+        "requestedUnits": 1,
+        "atMs": 5800
+      },
+      {
+        "type": "ShakeStarted",
+        "operationId": 1,
+        "atMs": 5800
+      },
+      {
+        "type": "ShakeEnded",
+        "operationId": 1,
+        "reason": "completed",
+        "atMs": 8000
+      },
+      {
+        "type": "Served",
+        "atMs": 8000
+      }
+    ],
+    "expected": {
+      "history": "7d671956d1b22ccaf9e0f5655c8c08d24a228b179a1778869c5d0a2285ad14af",
+      "result": "82513f0bccc341b08de29c4b1a5d30fbb4b4a324f3d1980d43716ef26cf5f499",
+      "reward": "cfbf1f219482729e5139c034a78259ded70773ba96cec0f87042e98e73aaa8f7",
+      "score": 4725
+    }
+  },
+  {
+    "name": "excellent",
+    "actions": [
+      {
+        "type": "PourStarted",
+        "operationId": 0,
+        "ingredientId": "orchard",
+        "atMs": 0
+      },
+      {
+        "type": "PourEnded",
+        "operationId": 0,
+        "reason": "completed",
+        "atMs": 10800
+      },
+      {
+        "type": "IceAdded",
+        "requestedUnits": 1,
+        "atMs": 10800
+      },
+      {
+        "type": "IceAdded",
+        "requestedUnits": 1,
+        "atMs": 10800
+      },
+      {
+        "type": "ShakeStarted",
+        "operationId": 1,
+        "atMs": 10800
+      },
+      {
+        "type": "ShakeEnded",
+        "operationId": 1,
+        "reason": "completed",
+        "atMs": 17800
+      },
+      {
+        "type": "GarnishChanged",
+        "garnishId": "citrus-wheel",
+        "atMs": 17800
+      },
+      {
+        "type": "Served",
+        "atMs": 17800
+      }
+    ],
+    "expected": {
+      "history": "b666b2a7158a1bbaef0e8a51bba0c423d66a2b8cb16d2c32f80056d48defe5a4",
+      "result": "674ee2b607d0fa16c248ab3562cd7c04ec411b51f44ead4a36ae2381be33500c",
+      "reward": "4d6ff61343022d6fdc301b9c8dc15c922dddad6040c84c4b58a011c02236284e",
+      "score": 9550
+    }
+  },
+  {
+    "name": "explosion",
+    "actions": [
+      {
+        "type": "PourStarted",
+        "operationId": 0,
+        "ingredientId": "orchard",
+        "atMs": 0
+      },
+      {
+        "type": "PourEnded",
+        "operationId": 0,
+        "reason": "completed",
+        "atMs": 1300
+      },
+      {
+        "type": "ShakeStarted",
+        "operationId": 1,
+        "atMs": 1300
+      },
+      {
+        "type": "ShakeEnded",
+        "operationId": 1,
+        "reason": "completed",
+        "atMs": 9500
+      },
+      {
+        "type": "Served",
+        "atMs": 9500
+      }
+    ],
+    "expected": {
+      "history": "9ab3ab57504b1f67443bc3312f30b390298ac5c3ab494729481eccae437ebb46",
+      "result": "da63a91f139b0e14d3d02f12021374e7b3cb302b7091a7d0bb42c1a015828a56",
+      "reward": "84d40c52a6d3041f97b67b6aba4f3c95a91527b6eb5d58848752180af932ca52",
+      "score": 0
+    }
+  }
+]

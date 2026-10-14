@@ -1,5 +1,5 @@
 import { ingredientVisuals, optionalAsset, selectedEffect } from '../content/visualPlan.ts';
-import { memo, useLayoutEffect, useMemo, useRef } from 'react';
+import { lazy, Suspense, memo, useLayoutEffect, useMemo, useRef } from 'react';
 import type { ReactNode, RefObject } from 'react';
 import type { BartenderDefinition, IngredientDefinition, MixState } from '../domain/model.ts';
 import type { ClassicInspiredTuningProfile } from '../domain/classicProfile.ts';
@@ -10,6 +10,7 @@ import type { AssetId, EnvironmentVisualDefinition, ReactionId, VisualCatalog, V
 import { playerCopy } from '../content/playerExperience.ts';
 import { AssetImage, SequenceArt } from './AssetVisual.tsx';
 import { bottleSlot, bottleSlotVariables } from './classicStageLayout.ts';
+import { BACKGROUND_STYLE } from './classicVisualFraming.ts';
 import { useClassicStageFrame } from './useClassicStageFrame.ts';
 import { VisualDebug } from './VisualDebug.tsx';
 import type { PresentationDiagnostics } from './VisualDebug.tsx';
@@ -22,10 +23,10 @@ export function GameStage({ environment, debug, diagnostics, failed, children, m
   readonly failed: boolean; readonly children: ReactNode; readonly meta?: ReactNode;
 }) {
   const stageRef = useRef<HTMLElement | null>(null);
-  const { frameRef, variables, scale } = useClassicStageFrame();
-  return <div className="classic-stage-frame" ref={frameRef} style={variables}><div className="classic-stage-sizer">
+  const { frameRef, variables, scale, exact } = useClassicStageFrame();
+  return <div className="classic-stage-frame" data-classic-exact={exact || undefined} ref={frameRef} style={variables}><div className="classic-stage-sizer">
   <section className={`game-stage ${debug ? 'stage-debug' : ''}`} data-failed={failed} ref={stageRef} aria-label="Banco di miscelazione">
-    <div className="environment-layers" aria-hidden="true">
+    <div className="environment-layers" style={BACKGROUND_STYLE} aria-hidden="true">
       <AssetImage assetId={environment.background} className="environment-background" priority="high" />
       {environment.backBar && <AssetImage assetId={environment.backBar} className="environment-back-bar" />}
       {environment.decorations?.map((layer, index) => <AssetImage key={layer.asset + ':' + index} assetId={layer.asset}
@@ -55,7 +56,7 @@ export const BottleShelf = memo(function BottleShelf({ loadout, ingredients, vis
       return <button type="button" className={`bottle-hitbox ${selected ? 'is-selected' : ''}`} data-hitbox="bottle" style={bottleSlotVariables(page * 4 + index)} data-slot={bottleSlot(page * 4 + index).centerX}
         aria-label={ingredient.name + ', ' + formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0)) + ' nel mix'}
         data-pour={selected ? pourFeedback : 'idle'} disabled={disabled} aria-pressed={selected} key={ingredient.id} onClick={() => onSelect(ingredient.id)}>
-        <AssetImage assetId={selected ? optionalAsset(visuals, visual.selectedBottle, visual.bottle)! : visual.bottle} fallback={visual.bottle} className="bottle-image" />
+        <AssetImage assetId={selected ? optionalAsset(visuals, visual.selectedBottle, visual.bottle)! : visual.bottle} fallback={visual.bottle} className="bottle-image" framing="bottle" />
         <span className="bottle-copy"><strong>{ingredient.shortLabel}</strong><span>{ingredient.description}</span>
           <b>{formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0))} nel mix</b></span>
         <span className="bottle-selected" aria-hidden="true">{selected ? '✓' : ''}</span>
@@ -67,6 +68,7 @@ export const BottleShelf = memo(function BottleShelf({ loadout, ingredients, vis
   a.selectedId === b.selectedId && a.disabled === b.disabled && a.pourFeedback === b.pourFeedback &&
   a.onSelect === b.onSelect && a.formatVolume === b.formatVolume && sameLiquid(a.mix, b.mix));
 
+const CalibrationPose = import.meta.env.DEV ? lazy(() => import('./ClassicCalibrationPose.tsx')) : null;
 export const BartenderArea = memo(function BartenderArea({ loadout, bartender, visuals, reactionId, pose, working, attemptKey, reducedMotion, lastResort }: {
   readonly loadout: VisualLoadout; readonly bartender: BartenderDefinition; readonly visuals: VisualCatalog; readonly reactionId: ReactionId;
   readonly pose: 'idle' | 'tasting' | 'reaction' | 'failure'; readonly working: 'idle' | 'pouring' | 'shaking';
@@ -86,6 +88,7 @@ export const BartenderArea = memo(function BartenderArea({ loadout, bartender, v
   return <section className={`bartender-area working-${working}`} data-zone="bartender" data-pose={pose} aria-label={bartender.name + ', il tuo bartender'}>
     <div className="bartender-name"><AssetImage assetId={visual.portrait ?? visual.idle} fallback={visual.idle} lastResort={lastResort} /><span><strong>{bartender.name}</strong><small>Il tuo compagno di esperimenti</small></span></div>
     <div className="character-safe-area" data-safe-area="character">
+      {import.meta.env.DEV && CalibrationPose && <Suspense fallback={null}><CalibrationPose /></Suspense>}
       <SequenceArt key={bartender.id + ':' + reactionId + ':' + attemptKey + ':' + pose} sequence={sequence} fallback={visual.idle}
         reducedMotion={reducedMotion} lastResort={lastResort} motion={pose === 'reaction' && !reducedMotion ? reaction.motion : 'none'} className="character-body" />
       {visual.accessories?.map(id => <AssetImage key={id} assetId={id} className="character-accessory" />)}
@@ -95,7 +98,7 @@ export const BartenderArea = memo(function BartenderArea({ loadout, bartender, v
 });
 export function CounterArea({ assetId, fit, children }: { readonly assetId: AssetId; readonly fit: 'cover' | 'contain'; readonly children: ReactNode }) {
   return <section className="counter-area" data-zone="counter" aria-label="Banco e preparazione">
-    <AssetImage assetId={assetId} className="counter-surface" style={{ objectFit: fit }} /><div className="counter-content">{children}</div>
+    <AssetImage assetId={assetId} className="counter-surface" framing="counter" style={{ objectFit: fit }} /><div className="counter-content">{children}</div>
   </section>;
 }
 
@@ -108,7 +111,7 @@ export const MixingStation = memo(function MixingStation({ mix, volume, capacity
     <div className={`vessel-art ${shaking ? 'is-shaking' : ''} ${failed ? 'is-failed' : ''}`} role="img"
       aria-label={failed ? 'Il mix ha fatto boom!' : (served ? 'Bicchiere' : 'Shaker') + ', ' + formatVolume(volume) + ' di ' + formatVolume(capacity) + ', ghiaccio ' + mix.iceUnits}>
       {pourFeedback === 'pouring' && <span className="pour-stream" aria-hidden="true" />}
-      <AssetImage assetId={served ? visuals.gameplay.glass : visuals.gameplay.shaker} className="vessel-shell" />
+      <AssetImage assetId={served ? visuals.gameplay.glass : visuals.gameplay.shaker} className="vessel-shell" framing={served ? 'glass' : 'shaker'} />
       {mix.garnishId && <AssetImage key={attemptKey + ':' + mix.garnishId} assetId={visuals.gameplay.garnish} className="garnish-image garnish-cue" />}
       {failed && <span className="burst-ring" aria-hidden="true" />}
     </div>
@@ -149,21 +152,22 @@ export function RoundProgress({ phase }: { readonly phase: PlayerPhase }) {
   </ol>;
 }
 const scoreLabels = { balance: 'Ingredienti', ice: 'Ghiaccio', shake: 'Agitazione', garnish: 'Guarnizione' } as const;
-export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink, reward, line, children, resetAction, guidanceKey }: {
+export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink, reward, line, children, resetAction, guidanceKey, milestone }: {
   readonly result: ClassicScoreResult | null; readonly stage: ResultStage; readonly title: string; readonly ingredients: readonly IngredientDefinition[];
   readonly profile: ClassicInspiredTuningProfile; readonly titleRef: RefObject<HTMLHeadingElement | null>;
-  readonly line: string; readonly children?: ReactNode; readonly resetAction?: ReactNode; readonly guidanceKey?: string; readonly reward?: ReactNode; readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
+  readonly line: string; readonly children?: ReactNode; readonly resetAction?: ReactNode; readonly guidanceKey?: string; readonly milestone?: ReactNode; readonly reward?: ReactNode; readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => { if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [result, stage, guidanceKey]);
   const revealScore = result && scoreVisible(stage), revealReaction = result && reactionVisible(stage);
   return <section className={`score-hud result-${stage}`} data-zone="hud" data-result-stage={stage} aria-labelledby="score-title" aria-busy={!!result && stage !== 'breakdown'}>
+    {milestone}
     <div className="result-scroll" ref={scrollRef} tabIndex={0} role="region" aria-label="Messaggi e dettagli del drink">
     <div className="score-top">
       <div><span className="eyebrow">{result ? "IL VERDETTO DEL BANCO" : "IL TUO GIRO"}</span>
         <h2 id="score-title" ref={titleRef} tabIndex={-1}>{revealReaction ? title : result ? playerCopy.tasting.title : title}</h2>
       </div>
-      {result && <div className="score-number" aria-live="polite" aria-atomic="true"><strong>{revealScore ? result.totalScore : '—'}</strong><span>{revealScore ? '/ ' + result.maximum : result ? 'si assaggia…' : 'da scoprire'}</span></div>}
+      {result && <div className="score-number" aria-live="polite" aria-atomic="true"><strong>{revealScore ? new Intl.NumberFormat('it-IT', { useGrouping: true }).format(result.totalScore) : '—'}</strong><span>{revealScore ? '/ ' + new Intl.NumberFormat('it-IT', { useGrouping: true }).format(result.maximum) : result ? 'si assaggia…' : 'da scoprire'}</span></div>}
     </div>
     <p className="bartender-line" aria-live="polite">“{line}”</p>
     {result ? <>

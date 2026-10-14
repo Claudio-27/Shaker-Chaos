@@ -23,7 +23,7 @@ import { createResetGuard, gameplayPresentation } from './gameplayPresentation.t
 import { reactionVisible } from './resultPresentation.ts';
 import { resolvePlayerLoadout } from '../application/playerContent.ts';
 import { createBrowserPlayer } from '../platform/playerBootstrap.ts';
-import { Collection, PlayerHUD, RewardPresentation } from './PlayerProgression.tsx';
+import { Collection, PlayerHUD, RewardPresentation, RoundMilestone } from './PlayerProgression.tsx';
 import { useReducedMotion, useResultReveal } from './usePlayerPresentation.ts';
 
 const { catalog, volumeDisplay, visuals, scene: initialScene } = gamePresentation;
@@ -232,6 +232,7 @@ export function App() {
             <AssetImage assetId={visuals.controls.reset} /><span>Reset</span>
           </button>} result={state.result} stage={reveal.stage} title={title} line={line} ingredients={catalog.ingredients} profile={profile}
             titleRef={resultTitle} skipRef={skipButton} onSkip={reveal.skip} onNewDrink={newDrink}
+            milestone={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RoundMilestone key={attemptKey} reward={playerSnapshot.reward} /> : null}
             reward={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RewardPresentation reward={playerSnapshot.reward} visuals={visuals} /> : null}>
             <RoundProgress phase={ui.phase} />
             <p className="phase-status" role="status">{ui.instruction}</p>

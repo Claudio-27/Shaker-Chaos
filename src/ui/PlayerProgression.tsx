@@ -51,3 +51,10 @@ export function Collection({ profile, visuals, onEquip, onClose }: {
     </div>{group.kind === 'effect' && <button className="no-effect-button" type="button" aria-pressed={profile.equippedLoadout.effectOverride === null} onClick={() => onEquip(null)}>Nessun effetto</button>}</section>)}
   </dialog>;
 }
+
+/** Decorative, temporary duplicate of the durable accessible reward details inside the panel. */
+export function RoundMilestone({ reward }: { readonly reward: ProgressionReward }) {
+  const view = rewardView(reward);
+  if (!view.levelUp && !view.unlocks.length) return null;
+  return <aside className="round-milestone" aria-hidden="true"><strong>{view.levelUp ?? 'Nuovo contenuto!'}</strong><span>{view.unlocks.map(item => item.displayName).join(' · ')}</span></aside>;
+}

@@ -2,13 +2,15 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { optionalAsset, resolveAsset } from '../content/visualPlan.ts';
 import type { AssetId, VisualCatalog, VisualSequence } from '../content/visualModel.ts';
+import { visualFramingStyle } from './classicVisualFraming.ts';
+import type { VisualFraming } from './classicVisualFraming.ts';
 const VisualContext = createContext<VisualCatalog | null>(null);
 export function VisualAssetsProvider({ catalog, children }: { readonly catalog: VisualCatalog; readonly children: ReactNode }) {
   return <VisualContext.Provider value={catalog}>{children}</VisualContext.Provider>;
 }
-export function AssetImage({ assetId, fallback, lastResort, optional = false, className = '', alt = '', style, priority = 'auto' }: {
+export function AssetImage({ assetId, fallback, lastResort, optional = false, className = '', alt = '', style, framing, priority = 'auto' }: {
   readonly assetId: AssetId; readonly fallback?: AssetId; readonly lastResort?: AssetId; readonly optional?: boolean; readonly className?: string;
-  readonly alt?: string; readonly style?: CSSProperties; readonly priority?: 'high' | 'low' | 'auto';
+  readonly alt?: string; readonly style?: CSSProperties; readonly framing?: VisualFraming; readonly priority?: 'high' | 'low' | 'auto';
 }) {
   const catalog = useContext(VisualContext);
   const [failed, setFailed] = useState<readonly AssetId[]>([]);
@@ -20,8 +22,8 @@ export function AssetImage({ assetId, fallback, lastResort, optional = false, cl
   if (!current) return optional ? <span hidden data-asset-error={assetId} /> : <span className="asset-error" data-asset-error={assetId} role="img" aria-label="Artwork non disponibile">Artwork non disponibile</span>;
   const asset = resolveAsset(catalog, current);
   return <img src={import.meta.env.BASE_URL + asset.path} width={asset.width} height={asset.height}
-    data-asset-id={assetId} data-resolved-asset={current} data-fallback={current !== assetId ? 'true' : undefined}
-    className={'asset-image ' + className} alt={alt} draggable={false} decoding="async" fetchPriority={priority} style={style}
+    data-visual-framing={framing && visualFramingStyle(current, framing) ? framing : undefined} data-asset-id={assetId} data-resolved-asset={current} data-fallback={current !== assetId ? 'true' : undefined}
+    className={'asset-image ' + className} alt={alt} draggable={false} decoding="async" fetchPriority={priority} style={{ ...visualFramingStyle(current, framing), ...style }}
     onError={() => { setFailed((previous) => [...previous, current]); }} />;
 }
 /** Decorative playback only: no game callbacks, events, score inputs, or completion gates. */
@@ -49,6 +51,6 @@ export function SequenceArt({ sequence, intro, motion, fallback, lastResort, red
   const current = frames[reduced ? frames.length - 1 : Math.min(frame, frames.length - 1)];
   if (!current) return null;
   return <div className={'sequence-art ' + className} data-motion={reduced ? 'none' : motion}>
-    <AssetImage assetId={current.assetId} {...(fallback ? { fallback } : {})} {...(lastResort ? { lastResort } : {})} priority="high" />
+    <AssetImage assetId={current.assetId} {...(fallback ? { fallback } : {})} {...(lastResort ? { lastResort } : {})} priority="high" framing="bartender" />
   </div>;
 }

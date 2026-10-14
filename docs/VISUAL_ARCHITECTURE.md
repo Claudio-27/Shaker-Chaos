@@ -88,3 +88,12 @@ Le cache sono versionate per contenuto; l'attivazione pulisce solo versioni del 
 ## Controlli
 
 I 53 test precedenti sono conservati nei loro intenti, aggiornando la verifica SVG per supportare PNG e la policy cache. Nuovi test verificano cataloghi/bundle/ID, indipendenza, score invariato, selettività, delivery, hash e cache. Le verifiche UI e le misure reali sono nel rapporto di ingest; i test del progetto non verificano la compatibilità del riferimento.
+
+
+## Fase 2F — sagoma visibile e geometria separata
+
+classicStageLayout.ts resta la fonte immutata delle regioni/hitbox600×440 della2E. classicVisualFraming.ts descrive invece canvas sorgente, bounding box alpha≥8 e piazzamento della sagoma: scala uniforme, centro e baseline. AssetImage applica i CSS custom properties al vero asset risolto, quindi anche i fallback offline restano coerenti. Le origini della vecchia immagine delle bottiglie sono sommate esplicitamente, senza spostare il pulsante. Fuori dal landscape canonico rimane il fitting responsive2E.
+
+Bartender: dieci pose, altezza292, centrox495, baseline348. Bottiglie: sagome alte111–118 e baseline208 su mensola CSS. Banco: sagoma larga600 da y292; sfondo ritagliato prima dei due piani incorporati. Shaker108, calice62, gauge esterno invariato. Le misure non entrano negli eventi, nel MixState, nel CompatibilityInput, nello scoring o nei premi. PNG e catalogo sono immutati. Il loadout di produzione posseduto/equipaggiato continua a persistere come dalla2C; solo l’anteprima DEV non persiste.
+
+Parametri DEV classicExact=1 e classicPose=b01.idle permettono calibrazione1:1 e posa ferma senza eventi di gioco; vengono eliminati dalla produzione e controllati dall’audit. Visual Debug mostra anche sagome, ancore, sorgente/canvas/scala. Per misure, verifiche e export futuri necessari vedere PHASE_2F_REPORT.md.
