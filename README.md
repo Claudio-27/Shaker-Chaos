@@ -1,6 +1,10 @@
 # Shaker-Chaos
 
-## Fase corrente: 2C — profilo e progressione locale
+## Fase corrente: 2D — ricomposizione classica
+
+Una sola scena da banco: bottiglie grandi sulla mensola a sinistra, bartender a destra, banco quasi a tutta larghezza, shaker al centro basso e Versa/Agita/Servi in una riga fissa. Guida e risultato condividono il libro del banco in basso a destra; Livello/XP/monete restano nella barra compatta, Collezione si apre solo su richiesta. Artwork e tutti i sistemi delle fasi 2A–2C sono invariati. [Rapporto 2D](docs/PHASE_2D_REPORT.md).
+
+## Checkpoint 2C — profilo e progressione locale
 
 Livello, XP e monete fittizie salvati nel browser; ricompense assegnate una volta quando il risultato diventa definitivo. Formula successo: 20+floor(score/100) XP e 5+floor(score/250) monete; fallimento:5 XP/2 monete. La progressione non modifica lo scoring del cocktail.
 

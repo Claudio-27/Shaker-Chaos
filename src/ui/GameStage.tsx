@@ -41,7 +41,7 @@ export const BottleShelf = memo(function BottleShelf({ loadout, ingredients, vis
   readonly formatVolume: (value: VolumeUnit) => string;
 }) {
   return <section className="bottle-shelf" data-zone="bottles" aria-labelledby="ingredients-title">
-    <div className="zone-heading"><span>01 / LE NOTE</span><h2 id="ingredients-title">Scegli un ingrediente</h2></div>
+    <div className="zone-heading"><span>LE BOTTIGLIE DEL BANCO</span><h2 id="ingredients-title">Scegli un ingrediente</h2></div>
     <div className="bottle-list">{ingredients.map(ingredient => {
       const visual = ingredientVisuals(visuals, loadout, ingredient.id);
       if (!visual) throw new Error('Missing ingredient visual: ' + ingredient.id);
@@ -84,15 +84,6 @@ export const BartenderArea = memo(function BartenderArea({ loadout, bartender, v
       {visual.accessories?.map(id => <AssetImage key={id} assetId={id} className="character-accessory" />)}
       {pose === 'reaction' && reactionId === 'lab.excellent' && effect && !reducedMotion && <AssetImage assetId={effect} optional className="character-effect" />}
     </div>
-  </section>;
-});
-export const ReactionOverlay = memo(function ReactionOverlay({ title, line, terminal, anticipating }: {
-  readonly title: string; readonly line: string; readonly terminal: boolean; readonly anticipating: boolean;
-}) {
-  return <section className="reaction-overlay" data-zone="reaction" aria-live="polite" aria-atomic="true" aria-label="Reazione del bartender">
-    <p className="eyebrow">{anticipating ? 'IL MOMENTO DELL’ASSAGGIO' : terminal ? 'IL VERDETTO DEL BANCO' : 'DUE PAROLE DAL BARTENDER'}</p>
-    <h2>{title}</h2><p className="bartender-line">“{line}”</p>
-    <p className="reaction-instruction">{terminal ? playerCopy.nextRound : 'Versa, agita e servi. Il prossimo mix è tuo.'}</p>
   </section>;
 });
 export function CounterArea({ assetId, fit, children }: { readonly assetId: AssetId; readonly fit: 'cover' | 'contain'; readonly children: ReactNode }) {
@@ -151,19 +142,20 @@ export function RoundProgress({ phase }: { readonly phase: PlayerPhase }) {
   </ol>;
 }
 const scoreLabels = { balance: 'Ingredienti', ice: 'Ghiaccio', shake: 'Agitazione', garnish: 'Guarnizione' } as const;
-export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink, reward }: {
+export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink, reward, line, children }: {
   readonly result: ClassicScoreResult | null; readonly stage: ResultStage; readonly title: string; readonly ingredients: readonly IngredientDefinition[];
   readonly profile: ClassicInspiredTuningProfile; readonly titleRef: RefObject<HTMLHeadingElement | null>;
-  readonly reward?: ReactNode; readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
+  readonly line: string; readonly children?: ReactNode; readonly reward?: ReactNode; readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
 }) {
   const revealScore = result && scoreVisible(stage), revealReaction = result && reactionVisible(stage);
   return <section className={`score-hud result-${stage}`} data-zone="hud" data-result-stage={stage} aria-labelledby="score-title" aria-busy={!!result && stage !== 'breakdown'}>
     <div className="score-top">
-      <div><span className="eyebrow">03 / L'ASSAGGIO</span>
-        <h2 id="score-title" ref={titleRef} tabIndex={-1}>{revealReaction ? title : result ? playerCopy.tasting.title : 'Il tuo prossimo assaggio'}</h2>
+      <div><span className="eyebrow">{result ? "IL VERDETTO DEL BANCO" : "IL TUO GIRO"}</span>
+        <h2 id="score-title" ref={titleRef} tabIndex={-1}>{revealReaction ? title : result ? playerCopy.tasting.title : title}</h2>
       </div>
-      <div className="score-number" aria-live="polite" aria-atomic="true"><strong>{revealScore ? result.totalScore : '—'}</strong><span>{revealScore ? '/ ' + result.maximum : result ? 'si assaggia…' : 'da scoprire'}</span></div>
+      {result && <div className="score-number" aria-live="polite" aria-atomic="true"><strong>{revealScore ? result.totalScore : '—'}</strong><span>{revealScore ? '/ ' + result.maximum : result ? 'si assaggia…' : 'da scoprire'}</span></div>}
     </div>
+    <p className="bartender-line" aria-live="polite">“{line}”</p>
     {result ? <>
       <div className="breakdown" data-revealed={stage === 'breakdown'}>
         {stage === 'breakdown' ? result.breakdown.map(item => <div className="breakdown-row" key={item.component}>
@@ -175,13 +167,13 @@ export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredien
         {stage !== 'breakdown' && <button type="button" className="skip-result" ref={skipRef} onClick={onSkip}>{playerCopy.skip}</button>}
         <button type="button" className="new-drink-button" onClick={onNewDrink}>{playerCopy.newDrink}<span aria-hidden="true">↻</span></button>
       </div>
-    </> : <div className="breakdown"><p className="waiting-note">Il risultato arriva dopo l’assaggio. Per ora, trova il tuo mix.</p></div>}
+    </> : <div className="round-guidance">{children}</div>}
     {!result && <details className="demo-guide"><summary>Note del banco <span aria-hidden="true">+</span></summary>
       <strong>Un equilibrio da provare</strong>
       <p>{Object.entries(profile.score.targetParts).map(([id, parts]) => parts + ' ' + (ingredients.find(item => item.id === id)?.shortLabel.toLowerCase() ?? id)).join(' · ')}</p>
       <p>Il ghiaccio rinfresca, l’agrume completa. Agita con ritmo, senza esagerare!</p>
       <small>Ogni nuova pressione di Versa ha un breve avvio. Tieni premuto per far crescere il mix.</small>
     </details>}
-    <p className="scoring-notice"><strong>{result ? playerCopy.nextRound : 'Il tuo stile, un mix alla volta.'}</strong></p>
+    {!result && <p className="scoring-notice"><strong>Il tuo stile, un mix alla volta.</strong></p>}
   </section>;
 });

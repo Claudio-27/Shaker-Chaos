@@ -1,0 +1,179 @@
+/* Phase 2D: a single back bar, physical counter and anchored tasting book. */
+:root { background: #eee8dc; }
+.app-shell { max-width: 1520px; padding: max(8px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left)); }
+.topbar { padding-bottom: 8px; border: 0; min-height: 52px; }
+.brand { font-size: 17px; }
+.player-tools { gap: 10px; }
+.player-hud { grid-template-columns: auto minmax(80px,110px) auto; gap: 8px; }
+.connection { font-size: 10px; }
+.scene-title { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.game-stage { --composition: "classic-landscape"; display: block; overflow: clip; height: max(620px,calc(100svh - 90px)); min-height: 0; padding: 0; border: 2px solid #704521; border-radius: 12px; background: #4e2917; box-shadow: 0 6px 18px #34251726; }
+.environment-layers::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg,#20160e70,transparent 50%); pointer-events: none; }
+.bottle-shelf { position: absolute; top: 24px; left: 24px; width: 61%; height: 53%; }
+.bottle-shelf .zone-heading { display: inline-block; padding: 8px 12px; margin: 0; color: #fff3d6; background: #412914df; border: 1px solid #bc8b4b; border-radius: 3px; box-shadow: 0 2px 4px #1c120d40; }
+.bottle-shelf .zone-heading > span { color: #e0bd7c; font-size: 9px; }
+.bottle-shelf .zone-heading h2 { font-family: Georgia,serif; font-size: 18px; font-weight: 400; }
+.bottle-list { position: absolute; bottom: 14px; width: 100%; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; align-items: end; border-bottom: 12px solid #683718; box-shadow: 0 5px 0 #bc7f35,0 12px 12px #27170d80; padding: 0 10px; }
+.bottle-hitbox { min-height: 268px; padding: 12px 6px 10px; flex-direction: column; justify-content: end; gap: 8px; text-align: center; border: 2px solid transparent; border-radius: 4px 4px 0 0; background: transparent; box-shadow: none; }
+.bottle-hitbox.is-selected { background: linear-gradient(0deg,#f0c97545,transparent 85%); border-color: transparent; border-bottom-color: #ffe0a3; box-shadow: inset 0 -3px #ffe0a3; }
+.bottle-hitbox:hover:enabled { border-color: #f3cb8790; }
+.bottle-hitbox:focus-visible { outline-color: #ffe5b0; outline-offset: 2px; }
+.bottle-image { width: 112px; height: 202px; filter: drop-shadow(0 6px 4px #24140d80); }
+.bottle-copy { width: 100%; gap: 3px; padding: 6px 4px; border-radius: 2px; background: #f9edce; box-shadow: 0 2px 3px #29190c40; }
+.bottle-copy strong { font-size: 13px; }
+.bottle-copy > span, .shelf-hint { display: none; }
+.bottle-copy b { font-size: 11px; color: #3b5a40; }
+.bottle-selected { top: 8px; right: 8px; width: 22px; height: 22px; }
+.is-selected .bottle-selected { background: #f7d48d; color: #412914; }
+.bartender-area { position: absolute; right: 1%; top: 12px; width: 34%; height: 63%; justify-content: start; z-index: 1; }
+.bartender-name { padding: 4px 9px; border: 0; border-radius: 3px; color: #fff3d6; background: #412914e8; }
+.bartender-name > img { width: 25px; height: 28px; }
+.bartender-name small { display: none; }
+.character-safe-area { width: 100%; max-width: none; height: 100%; margin: 0; overflow: visible; }
+.character-body { inset: 0; width: 100%; height: 100%; }
+.character-body > img { object-position: center bottom; }
+.counter-area { position: absolute; left: 0; bottom: 0; width: 100%; height: 43%; border-radius: 0 0 9px 9px; background: transparent; box-shadow: none; z-index: 2; }
+.counter-surface { inset: auto 0 -80px; height: auto; object-position: center bottom; clip-path: inset(0 0 80px); }
+.counter-content { display: flex; align-items: center; justify-content: center; width: 67%; height: 190px; padding: 0 12px; gap: 14px; top: -26px; }
+.mixing-station { flex: 0 1 278px; flex-direction: row; justify-content: center; align-items: center; gap: 8px; order: 1; }
+.vessel-art { width: 132px; height: 190px; flex-shrink: 0; filter: drop-shadow(0 8px 4px #29160965); }
+.mix-meter { max-width: 108px; padding: 7px 5px; border-radius: 3px; background: #f6e7c9f5; border: 1px solid #946334; box-shadow: 0 2px 5px #20140e50; }
+.mix-meter > strong { font-size: 22px; }
+.fill-label { font-size: 9px; }
+.mix-status { display: block; line-height: 1.4; }
+.capacity-track { height: 10px; border-radius: 2px; margin: 6px 0; }
+.ice-dock { gap: 5px; }
+.extras { display: contents; }
+.extras button { width: 94px; flex-shrink: 0; flex-direction: column; justify-content: center; gap: 2px; padding: 6px 4px; min-height: 84px; border: 0; border-bottom: 3px solid #947044; border-radius: 50% 50% 6px 6px; background: radial-gradient(ellipse at center,#fff7d8,#e4c58f); box-shadow: 0 6px 5px #29160955; font-size: 11px; color: #24453c; }
+.extras button:first-child { order: 0; }
+.extras button:last-child { order: 2; }
+.extras img { width: 36px; height: 32px; }
+.extras b { margin: 0; font-size: 10px; }
+.extras button.is-complete { background: #dce8cd; border-color: #557451; }
+.extras button:disabled { opacity: .78; }
+.controls-area, .game-stage[data-failed="true"] .controls-area { position: absolute; bottom: 8px; left: 16px; width: calc(67% - 28px); z-index: 4; padding: 0; border-radius: 0; background: transparent; }
+.mix-controls { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
+.hold-button, .serve-button { height: 72px; min-height: 72px; border: 2px solid #f2d4a5; border-bottom: 5px solid #684220; border-radius: 5px; box-shadow: 0 3px 5px #29160960; }
+.hold-button { padding: 10px 12px; grid-template-columns: 30px minmax(0,1fr); }
+.hold-button strong, .serve-button span { font-size: 20px; letter-spacing: .5px; text-transform: uppercase; }
+.hold-button small { font-size: 11px; }
+.pour-button { background: #efc475; }
+.shake-button { background: #c7d9ab; }
+.serve-button { justify-content: center; padding: 10px; gap: 10px; background: #244f43; }
+.serve-button img { width: 28px; height: 28px; }
+.controls-area button:disabled { opacity: 1; color: #5d594a; background: #bcaf98; border-color: #cabba0; box-shadow: 0 3px 5px #29160935; }
+.controls-area .serve-button:disabled img { filter: none; }
+.hold-button.is-held { box-shadow: inset 0 0 0 3px #fff0c4,0 3px 5px #29160960; }
+.control-footnote { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; }
+.hold-hint { margin: 0; font-size: 10px; color: #fff3d8; text-shadow: 0 1px 2px #291609; }
+.reset-button { width: 44px; min-height: 44px; background: #f4e2bd; border: 1px solid #8c6538; border-radius: 4px; flex-shrink: 0; }
+.score-hud { position: absolute; top: 50%; bottom: 12px; right: 14px; width: calc(33% - 24px); z-index: 4; display: block; overflow: auto; overscroll-behavior: contain; padding: 14px 16px; border: 2px solid #a8783e; border-top: 5px solid #644024; border-radius: 3px; background: #fbefd6; box-shadow: 0 5px 9px #24160d65; scrollbar-width: thin; }
+.score-hud .eyebrow { color: #72512d; font-size: 9px; }
+.score-top { gap: 8px; flex-wrap: nowrap; }
+.score-top h2 { font-family: Georgia,serif; font-size: 23px; line-height: 1.1; font-weight: 400; margin-top: 6px; }
+.score-number { min-width: 72px; }
+.score-number strong { font-size: 33px; }
+.bartender-line { font-size: 12px; line-height: 1.5; color: #405943; margin: 6px 0; }
+.round-progress { margin: 14px 0 10px; }
+.round-progress li { font-size: 10px; }
+.round-progress [aria-current="step"] { background: #e6dec5; }
+.phase-status { margin: 0; min-height: 0; font-size: 12px; }
+.play-feedback { margin-top: 6px; min-height: 17px; }
+.shake-risk { margin-top: 6px; padding: 5px; }
+.breakdown { margin: 8px 0; min-height: 0; }
+.breakdown-row { padding: 3px 0; }
+.waiting-note { min-height: 40px; color: #405943; }
+.score-hud .result-actions { margin-top: 8px; }
+.new-drink-button { min-height: 44px; padding: 7px 10px; border-radius: 4px; }
+.round-reward { margin-top: 6px; padding-top: 6px; font-size: 11px; }
+.unlock-card { padding: 4px 0; }
+.unlock-card img { width: 30px; height: 32px; }
+.scoring-notice { margin-top: 6px; }
+.demo-guide { margin-top: 6px; border-color: #cdbb95; }
+footer { padding-top: 6px; font-size: 9px; }
+@media (min-width: 960px) and (min-height: 880px) and (orientation: landscape) {
+  .bottle-image { height: 260px; width: 145px; }
+  .bottle-hitbox { min-height: 330px; }
+  .counter-content { height: 235px; top: -25px; }
+  .vessel-art { width: 156px; height: 228px; }
+}
+@media (min-width: 960px) and (max-width: 1100px) and (orientation: landscape) {
+  .connection { display: none; }
+  .bottle-shelf { left: 18px; width: 60%; }
+  .bottle-list { gap: 8px; padding: 0 4px; }
+  .bottle-copy strong { font-size: 12px; }
+  .counter-content { gap: 8px; padding: 0 8px; }
+  .extras button { width: 76px; }
+  .score-hud { top: 49%; right: 10px; width: calc(33% - 16px); padding: 10px; }
+  .score-hud .breakdown-row { padding: 2px 0; }
+  .score-top h2 { font-size: 20px; }
+  .mix-controls { gap: 7px; }
+  .hold-button { padding: 10px 8px; column-gap: 6px; }
+  .hold-button strong, .serve-button span { font-size: 18px; }
+}
+@media (max-width: 959px), (orientation: portrait) {
+  .game-stage { --composition: "classic-portrait"; display: grid; height: auto; grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-template-rows: 330px 210px auto auto; grid-template-areas: "bottles bartender" "counter counter" "controls controls" "hud hud"; gap: 0; padding: 0 12px 12px; }
+  .bottle-shelf { position: relative; inset: auto; width: 100%; height: 100%; padding-top: 14px; z-index: 2; }
+  .bottle-shelf .zone-heading { padding: 7px; }
+  .bottle-list { gap: 3px; padding: 0; bottom: 4px; }
+  .bottle-hitbox { min-height: 210px; padding: 4px 2px; }
+  .bottle-image { width: 70px; height: 138px; }
+  .bottle-copy strong { font-size: 10px; }
+  .bottle-copy b { font-size: 9px; }
+  .bartender-area { position: relative; inset: auto; width: 100%; height: 100%; padding-top: 14px; }
+  .character-safe-area { height: 290px; max-width: none; }
+  .counter-area { position: relative; inset: auto; width: calc(100% + 24px); margin-left: -12px; height: 210px; }
+  .counter-surface { inset: auto 0 0; height: 100%; clip-path: none; object-fit: cover !important; object-position: center top; }
+  .counter-content { width: 100%; height: 200px; padding: 0 12px; top: 0; gap: 14px; }
+  .controls-area, .game-stage[data-failed="true"] .controls-area { position: relative; inset: auto; width: 100%; padding: 10px 0 0; grid-area: controls; }
+  .score-hud { position: relative; inset: auto; width: 100%; height: auto; max-height: none; overflow: visible; margin: 6px 0 0; display: block; }
+  .score-hud .result-actions, .score-hud .round-reward, .score-hud .scoring-notice { grid-column: auto; grid-row: auto; }
+  .score-top h2 { font-size: 23px; }
+  .score-hud .round-guidance { max-width: 450px; }
+  .hold-hint { line-height: 1.4; }
+}
+@media (max-width: 599px) {
+  .app-shell { padding: max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(6px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left)); }
+  .topbar { gap: 5px; }
+  .brand { font-size: 14px; }
+  .brand-icon { font-size: 22px; }
+  .player-hud { grid-template-columns: auto minmax(0,1fr) auto; margin-bottom: 5px; font-size: 11px; }
+  .game-stage { --composition: "classic-narrow"; grid-template-columns: minmax(0,1fr); grid-template-rows: 230px 280px 190px auto auto; grid-template-areas: "bottles" "bartender" "counter" "controls" "hud"; padding: 0 10px 10px; border-radius: 8px; }
+  .bottle-shelf { padding-top: 10px; }
+  .bottle-shelf .zone-heading { padding: 5px 8px; }
+  .bottle-shelf .zone-heading h2 { font-size: 15px; }
+  .bottle-list { bottom: 0; border-bottom-width: 8px; }
+  .bottle-hitbox { min-height: 172px; gap: 3px; }
+  .bottle-image { width: 60px; height: 116px; }
+  .bottle-copy { padding: 4px 2px; }
+  .bottle-copy strong { font-size: 10px; }
+  .bottle-selected { width: 18px; height: 18px; top: 0; right: 0; }
+  .bartender-area { padding-top: 12px; }
+  .character-safe-area { max-width: 250px; height: 252px; }
+  .counter-area { width: calc(100% + 20px); margin-left: -10px; height: 190px; }
+  .counter-content { gap: 4px; padding: 0 6px; height: 185px; }
+  .mixing-station { flex: 1 1 auto; gap: 3px; }
+  .vessel-art { width: 86px; height: 144px; }
+  .mix-meter { max-width: 90px; }
+  .mix-meter > strong { font-size: 19px; }
+  .extras button { width: 62px; min-height: 76px; font-size: 10px; }
+  .extras img { width: 28px; height: 28px; }
+  .mix-controls { gap: 5px; }
+  .hold-button { display: flex; flex-direction: column; gap: 3px; padding: 6px 2px; text-align: center; }
+  .hold-button > img { width: 22px; height: 22px; }
+  .hold-button strong, .serve-button span { font-size: 15px; }
+  .hold-button small { font-size: 9px; }
+  .serve-button { flex-direction: column; gap: 4px; padding: 6px 2px; }
+  .serve-button span { max-width: 70px; line-height: 1.2; }
+  .serve-button img { width: 22px; height: 22px; }
+  .control-footnote { gap: 5px; }
+  .hold-hint { font-size: 9px; }
+  .score-hud { padding: 14px; }
+}
+@media (max-width: 359px) {
+  .vessel-art { width: 65px; height: 132px; }
+  .mix-meter { max-width: 80px; padding: 5px 3px; }
+  .extras button { width: 56px; }
+  .score-top h2 { font-size: 21px; }
+}
+

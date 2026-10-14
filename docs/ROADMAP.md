@@ -1,6 +1,10 @@
 # Roadmap
 
-## Stato corrente — 2C, profilo/XP/economia locale
+## Stato corrente — 2D, scena classica
+
+Ricomposizione della sola schermata normale, con priorità landscape 1280×800 e 1024×768; portrait/narrow possono scorrere. Scoring/progressione/save e ricerca chiusa restano invariati. Arresto dopo 2D. Prossimo passo consigliato: breve playtest su tablet reale per gerarchia visiva, touch e installazione PWA; eventuali ritocchi soltanto con nuovo prompt. Shop/purchases/bundles sono una proposta storica, non avviata. [Rapporto 2D](PHASE_2D_REPORT.md).
+
+## Checkpoint — 2C, profilo/XP/economia locale
 
 Profilo V1, repository locale, XP/monete originali, curve/level-up, reward settlement idempotente, stats, ownership, sblocchi2/3, equip persistente e Collection integrati a valle dello scoring. Nessuna modifica al tuning cocktail; ricerca1 chiusa.
 

@@ -1,5 +1,9 @@
 # Architettura
 
+## Presentazione attiva 2D — scena classica
+
+App mantiene identici stato, dispatcher, callback, effetti e settlement. Cambiano soltanto il markup della scena e classicLayout.css, importato dopo gli stili condivisi. BottleShelf occupa il back bar; BartenderArea mantiene gli stessi SequenceArt/pose; CounterArea separa oggetti e utensili dalla riga ControlsArea. ScoreHUD mantiene una sola regione/focus heading attraverso guida → assaggio → score → reazione → breakdown/ricompensa. I tre controlli restano nella stessa posizione, disabilitati quando il giro finisce. Ghiaccio/agrume e meter esterno usano gli stessi asset e progress semantics. Nessun nuovo stato, timer, preload, dipendenza o regola. [Rapporto 2D](PHASE_2D_REPORT.md).
+
 ## Architettura attiva 2C — progressione a valle del risultato
 
 Il dominio cocktail, classicGame/productionBootstrap e tuning2A restano invariati. Il dispatcher UI chiama la transizione pura, poi il PlayerController quando compare un nuovo frozen RoundResult: liquidazione sincrona prima del render, senza effetti React o timer. useSyncExternalStore legge uno snapshot stabile del profilo; il layer visivo della fase2B continua a rivelare un risultato già definitivo.

@@ -16,7 +16,7 @@ import { totalVolumeUnits } from '../domain/mix.ts';
 import { registerOfflineShell } from '../platform/pwa.ts';
 import type { ShellStatus } from '../platform/pwa.ts';
 import { AssetImage, VisualAssetsProvider } from './AssetVisual.tsx';
-import { BartenderArea, BottleShelf, ControlsArea, CounterArea, GameStage, MixingStation, ReactionOverlay, RoundProgress, ScoreHUD } from './GameStage.tsx';
+import { BartenderArea, BottleShelf, ControlsArea, CounterArea, GameStage, MixingStation, RoundProgress, ScoreHUD } from './GameStage.tsx';
 import { primeSceneVisuals } from '../platform/visualPreload.ts';
 import { HoldButton } from './HoldButton.tsx';
 import { createResetGuard, gameplayPresentation } from './gameplayPresentation.ts';
@@ -176,7 +176,7 @@ export function App() {
           <span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
       </header>
       <main>
-        <div className="intro"><div><p className="eyebrow">IL TUO PICCOLO LABORATORIO AL BANCO</p><h1>Un po’ di ritmo. <em>Un po’ di caos.</em></h1></div><p>Tre ingredienti. Un nuovo esperimento.</p></div>
+        <h1 className="scene-title">Il banco di Shaker-Chaos</h1>
         {compatLab && CompatibilityLab && <Suspense fallback={null}><CompatibilityLab currentSession={state.session} /></Suspense>}
         {assetLab && AssetLab && <Suspense fallback={null}><AssetLab loadout={loadout} visuals={visuals} ingredientIds={scene.ingredientIds} onChange={setPreviewLoadout} /></Suspense>}
         {tuningLab && TuningInspector && <Suspense fallback={null}><TuningInspector profile={profile} presentation={diagnostics}
@@ -190,60 +190,56 @@ export function App() {
             disabled={!ui.controls.ingredient} pourFeedback={ui.pourFeedback} onSelect={setSelectedId} formatVolume={formatVolume} />
           <BartenderArea loadout={loadout} bartender={bartender} visuals={visuals} reactionId={reactionId} pose={pose}
             working={ui.pouring ? 'pouring' : ui.shaking ? 'shaking' : 'idle'} attemptKey={attemptKey} reducedMotion={reducedMotion} lastResort={visuals.bartenders[initialScene.bartenderId]!.idle} />
-          <ReactionOverlay title={title} line={line} terminal={ui.terminal} anticipating={anticipating} />
           <CounterArea assetId={counter.surface} fit={counter.fit}>
             <MixingStation mix={mix} volume={volume} capacity={profile.capacityUnits} maximumIce={profile.ice.maximumActions} visuals={visuals}
               formatVolume={formatVolume} shaking={ui.shaking} served={ui.terminal && !state.view.failed} failed={state.view.failed}
               pourFeedback={ui.pourFeedback} risk={ui.risk} attemptKey={attemptKey} />
-            <ControlsArea>
-              <RoundProgress phase={ui.phase} />
-              {ui.terminal ? <div className="round-finish"><strong>{state.view.failed ? 'Un po’ troppo entusiasmo!' : 'Il tuo giro è completo.'}</strong>
-                <p>{anticipating ? playerCopy.tasting.status : playerCopy.nextRound}</p>
-              </div> : <>
-                <p className="phase-status" role="status">{ui.instruction}</p>
-                <div className="mix-controls">
-                  <HoldButton label={`Versa ${selected?.name ?? 'ingrediente'}: tieni premuto`} className="pour-button" buttonRef={pourButton}
-                    disabled={!ui.controls.pour} clock={sessionTime} ownership={holdOwnership}
-                    onAction={pourAction} onStart={beginPour} onEnd={endPour} resetToken={attemptKey}>
-                    <AssetImage assetId={visuals.controls.pour} /><strong>Versa</strong>
-                    <small>{ui.pourFeedback === 'idle' ? selected?.shortLabel.toLowerCase() : playerCopy.pour[ui.pourFeedback]}</small>
-                  </HoldButton>
-                  <HoldButton label="Agita: tieni premuto" className="shake-button" buttonRef={shakeButton} disabled={!ui.controls.shake} clock={sessionTime} ownership={holdOwnership}
-                    onAction={shakeAction} onStart={beginShake} onEnd={endShake} resetToken={attemptKey}>
-                    <AssetImage assetId={visuals.controls.shake} /><strong>Agita</strong><small>{ui.shaking ? 'Si agita!' : 'tieni premuto'}</small>
-                  </HoldButton>
-                </div>
-                <div className="extras">
-                  <button type="button" className={mix.iceUnits === profile.ice.maximumActions ? 'is-complete' : ''} disabled={!ui.mixing}
-                    aria-disabled={!ui.controls.ice} aria-label={'Ghiaccio, ' + mix.iceUnits + ' di ' + profile.ice.maximumActions}
-                    onClick={() => {
-                      if (!ui.controls.ice) { setCue(playerCopy.ice.maximum); return; }
-                      dispatch({ type: 'IceAdded', requestedUnits: 1, atMs: sessionTime() });
-                    }}>
-                    <AssetImage assetId={visuals.gameplay.ice} />Ghiaccio <b>{mix.iceUnits}/{profile.ice.maximumActions}</b>
-                  </button>
-                  <button type="button" className={mix.garnishId ? 'is-complete' : ''} disabled={!ui.controls.garnish} aria-pressed={!!mix.garnishId}
-                    aria-label={mix.garnishId ? playerCopy.garnish.added : 'Aggiungi agrume, dopo aver agitato'} onClick={() =>
-                      dispatch({ type: 'GarnishChanged', garnishId: profile.garnish.id, atMs: sessionTime() })}>
-                    <AssetImage assetId={visuals.gameplay.garnish} />Agrume <b>{mix.garnishId ? '✓' : '+'}</b>
-                  </button>
-                </div>
-                <div className="serve-row">
-                  <button type="button" className="serve-button" ref={serveButton} disabled={!ui.controls.serve}
-                    onClick={() => dispatch({ type: 'Served', atMs: sessionTime() })}><span>Servi il mix</span><AssetImage assetId={visuals.controls.serve} /></button>
-                  <button type="button" className="reset-button" aria-label={playerCopy.reset} disabled={!ui.controls.reset} onClick={newDrink}><AssetImage assetId={visuals.controls.reset} /></button>
-                </div>
-                {state.view.shakeCount > 0 && <p className="shake-risk" data-risk={ui.risk} role="status">
-                  <span aria-hidden="true">{ui.risk === 'danger' ? '!' : ui.risk === 'risky' ? '≈' : '✦'}</span>{playerCopy.risk[ui.risk]}
-                </p>}
-                <p id="hold-help" className="hold-hint">{playerCopy.holdHelp}</p>
-                <p className="play-feedback" key={cue} aria-live="polite">{cue}</p>
-              </>}
-            </ControlsArea>
+            <div className="extras">
+              <button type="button" className={mix.iceUnits === profile.ice.maximumActions ? 'is-complete' : ''} disabled={!ui.mixing}
+                aria-disabled={!ui.controls.ice} aria-label={'Ghiaccio, ' + mix.iceUnits + ' di ' + profile.ice.maximumActions}
+                onClick={() => {
+                  if (!ui.controls.ice) { setCue(playerCopy.ice.maximum); return; }
+                  dispatch({ type: 'IceAdded', requestedUnits: 1, atMs: sessionTime() });
+                }}>
+                <AssetImage assetId={visuals.gameplay.ice} />Ghiaccio <b>{mix.iceUnits}/{profile.ice.maximumActions}</b>
+              </button>
+              <button type="button" className={mix.garnishId ? 'is-complete' : ''} disabled={!ui.controls.garnish} aria-pressed={!!mix.garnishId}
+                aria-label={mix.garnishId ? playerCopy.garnish.added : 'Aggiungi agrume, dopo aver agitato'} onClick={() =>
+                  dispatch({ type: 'GarnishChanged', garnishId: profile.garnish.id, atMs: sessionTime() })}>
+                <AssetImage assetId={visuals.gameplay.garnish} />Agrume <b>{mix.garnishId ? '✓' : '+'}</b>
+              </button>
+            </div>
           </CounterArea>
-          <ScoreHUD result={state.result} stage={reveal.stage} title={finalCopy.title} ingredients={catalog.ingredients} profile={profile}
+          <ControlsArea>
+            <div className="mix-controls">
+              <HoldButton label={`Versa ${selected?.name ?? 'ingrediente'}: tieni premuto`} className="pour-button" buttonRef={pourButton}
+                disabled={ui.terminal || !ui.controls.pour} clock={sessionTime} ownership={holdOwnership}
+                onAction={pourAction} onStart={beginPour} onEnd={endPour} resetToken={attemptKey}>
+                <AssetImage assetId={visuals.controls.pour} /><strong>Versa</strong>
+                <small>{ui.pourFeedback === 'idle' ? selected?.shortLabel.toLowerCase() : playerCopy.pour[ui.pourFeedback]}</small>
+              </HoldButton>
+              <HoldButton label="Agita: tieni premuto" className="shake-button" buttonRef={shakeButton} disabled={ui.terminal || !ui.controls.shake} clock={sessionTime} ownership={holdOwnership}
+                onAction={shakeAction} onStart={beginShake} onEnd={endShake} resetToken={attemptKey}>
+                <AssetImage assetId={visuals.controls.shake} /><strong>Agita</strong><small>{ui.shaking ? 'Si agita!' : 'tieni premuto'}</small>
+              </HoldButton>
+              <button type="button" className="serve-button" ref={serveButton} disabled={ui.terminal || !ui.controls.serve}
+                onClick={() => dispatch({ type: 'Served', atMs: sessionTime() })}><AssetImage assetId={visuals.controls.serve} /><span>Servi il mix</span></button>
+            </div>
+            <div className="control-footnote">
+              <p id="hold-help" className="hold-hint">{ui.terminal ? playerCopy.nextRound : playerCopy.holdHelp}</p>
+              <button type="button" className="reset-button" aria-label={playerCopy.reset} disabled={!ui.controls.reset} onClick={newDrink}><AssetImage assetId={visuals.controls.reset} /></button>
+            </div>
+          </ControlsArea>
+          <ScoreHUD result={state.result} stage={reveal.stage} title={title} line={line} ingredients={catalog.ingredients} profile={profile}
             titleRef={resultTitle} skipRef={skipButton} onSkip={reveal.skip} onNewDrink={newDrink}
-            reward={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RewardPresentation reward={playerSnapshot.reward} visuals={visuals} /> : null} />
+            reward={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RewardPresentation reward={playerSnapshot.reward} visuals={visuals} /> : null}>
+            <RoundProgress phase={ui.phase} />
+            <p className="phase-status" role="status">{ui.instruction}</p>
+            {state.view.shakeCount > 0 && <p className="shake-risk" data-risk={ui.risk} role="status">
+              <span aria-hidden="true">{ui.risk === 'danger' ? '!' : ui.risk === 'risky' ? '≈' : '✦'}</span>{playerCopy.risk[ui.risk]}
+            </p>}
+            <p className="play-feedback" key={cue} aria-live="polite">{cue}</p>
+          </ScoreHUD>
         </GameStage>
       </main>
       <footer><span>Un progetto indipendente. Forme originali, un mix alla volta.</span><span>SHAKER-CHAOS</span></footer>
