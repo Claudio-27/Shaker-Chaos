@@ -1,5 +1,9 @@
 # Architettura
 
+## Presentazione attiva 2E — coordinate canoniche
+
+`classicStageLayout.ts` è l’unica fonte delle coordinate 600×440, dei layer e dei box di interazione. `useClassicStageFrame` misura il frame con ResizeObserver e aggiorna soltanto la scala; `classicStage.css` applica il transform uniforme alla scena. Nessuna dipendenza da clock/gameplay. Landscape fisso da960×480 con larghezza maggiore dell’altezza; altrimenti flusso indipendente. La grafica e i target sono separati sullo stesso elemento button: pseudo-elemento per la faccia, hitbox reale ampliata a44CSSpx, coordinate relative generate. Mobile48px. Collection è un dialogo fuori dall’antenato trasformato. [Geometria, layer e compromesso del fondale](PHASE_2E_REPORT.md).
+
 ## Presentazione attiva 2D — scena classica
 
 App mantiene identici stato, dispatcher, callback, effetti e settlement. Cambiano soltanto il markup della scena e classicLayout.css, importato dopo gli stili condivisi. BottleShelf occupa il back bar; BartenderArea mantiene gli stessi SequenceArt/pose; CounterArea separa oggetti e utensili dalla riga ControlsArea. ScoreHUD mantiene una sola regione/focus heading attraverso guida → assaggio → score → reazione → breakdown/ricompensa. I tre controlli restano nella stessa posizione, disabilitati quando il giro finisce. Ghiaccio/agrume e meter esterno usano gli stessi asset e progress semantics. Nessun nuovo stato, timer, preload, dipendenza o regola. [Rapporto 2D](PHASE_2D_REPORT.md).

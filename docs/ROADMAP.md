@@ -1,6 +1,10 @@
 # Roadmap
 
-## Stato corrente — 2D, scena classica
+## Stato corrente — 2E, geometria classica fissa
+
+Scena 600×440 con scala uniforme, coordinate e layer centrali, pannello90px fisso con scroll interno, hitbox accessibili e griglia50px solo DEV. Tutti i sistemi2A–2C e gli asset sono invariati. Arresto dopo2E. Passo consigliato: breve verifica su tablet reale, leggibilità dei risultati nel pannello compatto e playtest della composizione; nessuna ricerca storica o shop avviati. [Rapporto 2E](PHASE_2E_REPORT.md).
+
+## Checkpoint — 2D, scena classica
 
 Ricomposizione della sola schermata normale, con priorità landscape 1280×800 e 1024×768; portrait/narrow possono scorrere. Scoring/progressione/save e ricerca chiusa restano invariati. Arresto dopo 2D. Prossimo passo consigliato: breve playtest su tablet reale per gerarchia visiva, touch e installazione PWA; eventuali ritocchi soltanto con nuovo prompt. Shop/purchases/bundles sono una proposta storica, non avviata. [Rapporto 2D](PHASE_2D_REPORT.md).
 

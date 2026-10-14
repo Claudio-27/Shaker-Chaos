@@ -169,12 +169,6 @@ export function App() {
   const diagnostics = { phase: ui.phase, pour: ui.pourFeedback, risk: ui.risk, result: reveal.stage, reduced: reducedMotion };
   return <VisualAssetsProvider catalog={visuals}>
     <div className="app-shell" data-reduced-motion={reducedMotion}>
-      <header className="topbar">
-        <a className="brand" href="./" aria-label="Shaker-Chaos, pagina iniziale"><span className="brand-icon" aria-hidden="true">✳</span><span>SHAKER<span className="brand-dash">—</span>CHAOS</span></a>
-        <div className="player-tools"><PlayerHUD snapshot={playerSnapshot} />
-          <button type="button" className="collection-button" disabled={ui.pouring || ui.shaking} onClick={() => setCollectionOpen(true)}>Collezione</button>
-          <span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span></div>
-      </header>
       <main>
         <h1 className="scene-title">Il banco di Shaker-Chaos</h1>
         {compatLab && CompatibilityLab && <Suspense fallback={null}><CompatibilityLab currentSession={state.session} /></Suspense>}
@@ -185,7 +179,12 @@ export function App() {
           dispatch({ type: 'Reset', atMs: sessionTime() }); setPreviewLoadout(null); setPlayer(createBrowserPlayer());
         }} /></Suspense>}
         {collectionOpen && <Collection profile={playerSnapshot.profile} visuals={visuals} onEquip={equip} onClose={() => setCollectionOpen(false)} />}
-        <GameStage environment={environment} debug={visualDebug} diagnostics={diagnostics} failed={state.view.failed}>
+        <GameStage environment={environment} debug={visualDebug} diagnostics={diagnostics} failed={state.view.failed}
+          meta={<header className="topbar"><div className="player-tools">
+            <PlayerHUD snapshot={playerSnapshot} />
+            <button type="button" className="collection-button" disabled={ui.pouring || ui.shaking} onClick={() => setCollectionOpen(true)}>Collezione</button>
+            <span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span>
+          </div></header>}>
           <BottleShelf loadout={loadout} ingredients={catalog.ingredients} visuals={visuals} mix={mix} selectedId={selectedId}
             disabled={!ui.controls.ingredient} pourFeedback={ui.pourFeedback} onSelect={setSelectedId} formatVolume={formatVolume} />
           <BartenderArea loadout={loadout} bartender={bartender} visuals={visuals} reactionId={reactionId} pose={pose}
@@ -194,21 +193,6 @@ export function App() {
             <MixingStation mix={mix} volume={volume} capacity={profile.capacityUnits} maximumIce={profile.ice.maximumActions} visuals={visuals}
               formatVolume={formatVolume} shaking={ui.shaking} served={ui.terminal && !state.view.failed} failed={state.view.failed}
               pourFeedback={ui.pourFeedback} risk={ui.risk} attemptKey={attemptKey} />
-            <div className="extras">
-              <button type="button" className={mix.iceUnits === profile.ice.maximumActions ? 'is-complete' : ''} disabled={!ui.mixing}
-                aria-disabled={!ui.controls.ice} aria-label={'Ghiaccio, ' + mix.iceUnits + ' di ' + profile.ice.maximumActions}
-                onClick={() => {
-                  if (!ui.controls.ice) { setCue(playerCopy.ice.maximum); return; }
-                  dispatch({ type: 'IceAdded', requestedUnits: 1, atMs: sessionTime() });
-                }}>
-                <AssetImage assetId={visuals.gameplay.ice} />Ghiaccio <b>{mix.iceUnits}/{profile.ice.maximumActions}</b>
-              </button>
-              <button type="button" className={mix.garnishId ? 'is-complete' : ''} disabled={!ui.controls.garnish} aria-pressed={!!mix.garnishId}
-                aria-label={mix.garnishId ? playerCopy.garnish.added : 'Aggiungi agrume, dopo aver agitato'} onClick={() =>
-                  dispatch({ type: 'GarnishChanged', garnishId: profile.garnish.id, atMs: sessionTime() })}>
-                <AssetImage assetId={visuals.gameplay.garnish} />Agrume <b>{mix.garnishId ? '✓' : '+'}</b>
-              </button>
-            </div>
           </CounterArea>
           <ControlsArea>
             <div className="mix-controls">
@@ -222,15 +206,31 @@ export function App() {
                 onAction={shakeAction} onStart={beginShake} onEnd={endShake} resetToken={attemptKey}>
                 <AssetImage assetId={visuals.controls.shake} /><strong>Agita</strong><small>{ui.shaking ? 'Si agita!' : 'tieni premuto'}</small>
               </HoldButton>
-              <button type="button" className="serve-button" ref={serveButton} disabled={ui.terminal || !ui.controls.serve}
-                onClick={() => dispatch({ type: 'Served', atMs: sessionTime() })}><AssetImage assetId={visuals.controls.serve} /><span>Servi il mix</span></button>
+              <button type="button" className="serve-button" aria-label="Servi il mix" ref={serveButton} disabled={ui.terminal || !ui.controls.serve}
+                onClick={() => dispatch({ type: 'Served', atMs: sessionTime() })}><AssetImage assetId={visuals.controls.serve} /><span>Servi</span></button>
             </div>
             <div className="control-footnote">
               <p id="hold-help" className="hold-hint">{ui.terminal ? playerCopy.nextRound : playerCopy.holdHelp}</p>
-              <button type="button" className="reset-button" aria-label={playerCopy.reset} disabled={!ui.controls.reset} onClick={newDrink}><AssetImage assetId={visuals.controls.reset} /></button>
             </div>
           </ControlsArea>
-          <ScoreHUD result={state.result} stage={reveal.stage} title={title} line={line} ingredients={catalog.ingredients} profile={profile}
+          <div className="extras" data-zone="extras">
+            <button type="button" className={mix.iceUnits === profile.ice.maximumActions ? 'is-complete' : ''} disabled={!ui.mixing}
+              aria-disabled={!ui.controls.ice} aria-label={'Ghiaccio, ' + mix.iceUnits + ' di ' + profile.ice.maximumActions}
+              onClick={() => {
+                if (!ui.controls.ice) { setCue(playerCopy.ice.maximum); return; }
+                dispatch({ type: 'IceAdded', requestedUnits: 1, atMs: sessionTime() });
+              }}>
+              <AssetImage assetId={visuals.gameplay.ice} />Ghiaccio <b>{mix.iceUnits}/{profile.ice.maximumActions}</b>
+            </button>
+            <button type="button" className={mix.garnishId ? 'is-complete' : ''} disabled={!ui.controls.garnish} aria-pressed={!!mix.garnishId}
+              aria-label={mix.garnishId ? playerCopy.garnish.added : 'Aggiungi agrume, dopo aver agitato'} onClick={() =>
+                dispatch({ type: 'GarnishChanged', garnishId: profile.garnish.id, atMs: sessionTime() })}>
+              <AssetImage assetId={visuals.gameplay.garnish} />Agrume <b>{mix.garnishId ? '✓' : '+'}</b>
+            </button>
+          </div>
+          <ScoreHUD guidanceKey={ui.phase + ':' + ui.risk} resetAction={<button type="button" className="reset-button" aria-label={playerCopy.reset} disabled={!ui.controls.reset} onClick={newDrink}>
+            <AssetImage assetId={visuals.controls.reset} /><span>Reset</span>
+          </button>} result={state.result} stage={reveal.stage} title={title} line={line} ingredients={catalog.ingredients} profile={profile}
             titleRef={resultTitle} skipRef={skipButton} onSkip={reveal.skip} onNewDrink={newDrink}
             reward={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RewardPresentation reward={playerSnapshot.reward} visuals={visuals} /> : null}>
             <RoundProgress phase={ui.phase} />

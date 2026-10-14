@@ -1,6 +1,10 @@
 # Shaker-Chaos
 
-## Fase corrente: 2D — ricomposizione classica
+## Fase corrente: 2E — scena logica 600×440
+
+Landscape: una sola scena canonica 600×440 scalata proporzionalmente nel viewport. Bottiglie, bartender, banco, preparazione, comandi, HUD e pannello usano coordinate centrali in `classicStageLayout.ts`. Nessun riordino fra 1280×800 e 1024×768; portrait/mobile usano un flusso separato con target48px. [Rapporto 2E](docs/PHASE_2E_REPORT.md).
+
+## Checkpoint 2D — ricomposizione classica
 
 Una sola scena da banco: bottiglie grandi sulla mensola a sinistra, bartender a destra, banco quasi a tutta larghezza, shaker al centro basso e Versa/Agita/Servi in una riga fissa. Guida e risultato condividono il libro del banco in basso a destra; Livello/XP/monete restano nella barra compatta, Collezione si apre solo su richiesta. Artwork e tutti i sistemi delle fasi 2A–2C sono invariati. [Rapporto 2D](docs/PHASE_2D_REPORT.md).
 

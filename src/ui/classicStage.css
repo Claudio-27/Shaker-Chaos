@@ -1,0 +1,170 @@
+/* Logical stage overrides. Portrait keeps the independent flow from Phase 2D. */
+.classic-stage-frame, .classic-stage-sizer { width: 100%; min-width: 0; }
+.bottle-page { display: contents; }
+footer { display: none; }
+.game-stage > .topbar { grid-area: meta; padding: 8px; min-width: 0; background: #f8ebd5e6; border-radius: 3px; }
+.game-stage > .topbar .player-tools { display: flex; width: 100%; justify-content: space-between; }
+.game-stage > .topbar .player-hud { flex: 1; width: auto; }
+.game-stage > .topbar .collection-button { flex-shrink: 0; }
+.extras { grid-area: extras; display: flex; justify-content: center; gap: 16px; margin: 8px 0; }
+.score-hud .result-scroll { min-width: 0; }
+@media (max-width: 959px), (orientation: portrait), (max-height: 479px) {
+  .game-stage { grid-template-rows: auto 330px 210px auto auto auto; grid-template-areas: "meta meta" "bottles bartender" "counter counter" "controls controls" "extras extras" "hud hud"; }
+  .score-hud .result-actions { position: static; }
+  .game-stage > .topbar .connection { display: none; }
+}
+@media (max-width: 599px) {
+  .game-stage { grid-template-rows: auto 230px 280px 190px auto auto auto; grid-template-areas: "meta" "bottles" "bartender" "counter" "controls" "extras" "hud"; }
+  .game-stage > .topbar .player-tools { gap: 6px; align-items: center; }
+  .game-stage > .topbar .player-hud { order: 0; grid-template-columns: auto minmax(36px,1fr) auto; gap: 4px; margin: 0; }
+  .player-hud > strong, .player-coins { font-size: 10px; }
+  .player-xp { font-size: 9px; }
+  .collection-button { padding: 6px; font-size: 10px; margin: 0; }
+  .app-shell button, .app-shell summary { min-width: 48px; min-height: 48px; }
+  .collection-heading button { min-width: 48px; min-height: 48px; }
+  .score-hud .reset-button { width: 100%; display: flex; justify-content: center; gap: 8px; }
+}
+@media (min-width: 960px) and (min-height: 480px) and (orientation: landscape) {
+  .app-shell { max-width: none; padding: max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left)); }
+  .classic-stage-frame { height: calc(100svh - max(12px,env(safe-area-inset-top)) - max(12px,env(safe-area-inset-bottom))); display: flex; align-items: center; justify-content: center; }
+  .classic-stage-sizer { position: relative; flex: none; width: calc(var(--stage-width) * var(--stage-scale)); height: calc(var(--stage-height) * var(--stage-scale)); }
+  .game-stage { --composition: "classic-fixed-600x440"; position: absolute; inset: 0 auto auto 0; width: var(--stage-width); height: var(--stage-height); min-height: 0; display: block; padding: 0; border: 0; border-radius: 4px; transform: scale(var(--stage-scale)); transform-origin: top left; box-shadow: 0 0 0 2px #704521,0 5px 12px #29180c60; }
+  .environment-layers { z-index: var(--layer-environment); clip-path: inset(0 0 calc(var(--stage-height) - var(--counter-y)) 0); }
+  .environment-layers > img { object-fit: cover; object-position: center center; }
+  .environment-background { z-index: var(--layer-environment); }
+  .environment-back-bar, .environment-decoration { z-index: var(--layer-backBar); }
+  .environment-layers::after { background: linear-gradient(0deg,#29170d25,transparent 60%); }
+  .game-stage > .topbar { position: absolute; left: var(--meta-x); top: var(--meta-y); width: var(--meta-w); height: var(--meta-h); min-height: 0; padding: 0; border: 0; margin: 0; z-index: var(--layer-hud); display: block; background: #f8ebd5d9; border-radius: 2px; }
+  .player-tools, .game-stage > .topbar .player-hud { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
+  .player-hud > strong { position: absolute; left: var(--level-x); top: var(--level-y); width: var(--level-w); height: var(--level-h); font-size: 9px; line-height: 24px; }
+  .player-xp { position: absolute; left: var(--xp-x); top: var(--xp-y); width: var(--xp-w); height: var(--xp-h); font-size: 8px; text-align: center; }
+  .xp-track { height: 3px; margin-top: 3px; }
+  .player-coins { position: absolute; left: var(--coins-x); top: var(--coins-y); width: var(--coins-w); height: var(--coins-h); font-size: 9px; line-height: 24px; }
+  .profile-warning { position: absolute; left: var(--warning-x); top: var(--warning-y); width: var(--warning-w); height: var(--warning-h); max-width: none; font-size: 7px; line-height: 1.2; overflow: auto; }
+  .connection { display: block; position: absolute; right: 78px; top: 12px; font-size: 0; }
+  .connection i { display: block; width: 4px; height: 4px; }
+  .player-tools:has(.profile-warning) .connection { display: none; }
+  .bottle-shelf { position: absolute; left: var(--shelf-x); top: var(--shelf-y); width: var(--shelf-w); height: var(--shelf-h); padding: 0; z-index: var(--layer-bottles); }
+  .bottle-shelf .zone-heading, .shelf-hint, .bartender-name, .fill-label, .mix-status, .ice-dock, .round-progress, .hold-hint { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; padding: 0; border: 0; margin: 0; }
+  .bottle-list { position: absolute; inset: 0; display: flex; width: 100%; height: 100%; padding: 0; gap: 0; margin: 0; border: 0; box-shadow: none; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; scroll-snap-type: x mandatory; }
+  .bottle-page { position: relative; display: block; flex: 0 0 var(--shelf-w); height: var(--shelf-h); scroll-snap-align: start; }
+  .bottle-hitbox { position: absolute; left: var(--bottle-target-x); top: var(--bottle-target-y); width: var(--bottle-target-w); height: var(--bottle-target-h); min-height: 0; padding: 0; gap: 0; border: 0; outline: 1px solid transparent; outline-offset: -1px; border-radius: 3px; background: transparent; box-shadow: none; }
+  .bottle-hitbox.is-selected { outline-color: #f5d49a; box-shadow: inset 0 -2px #f5d49a; background: linear-gradient(0deg,#f6cf7f35,transparent); }
+  .bottle-image { position: absolute; left: var(--bottle-art-x); top: var(--bottle-art-y); width: var(--bottle-art-w); height: var(--bottle-art-h); max-width: none; object-fit: contain; }
+  .bottle-copy { position: absolute; top: calc(var(--bottle-target-h) + 1px); left: 0; width: 100%; padding: 0; gap: 2px; background: transparent; box-shadow: none; color: #fff3d7; text-shadow: 0 1px 2px #29170d; }
+  .bottle-copy strong { font-size: 9px; line-height: 1.1; }
+  .bottle-copy b { font-size: 7px; color: #fff0d2; }
+  .bottle-selected { width: 13px; height: 13px; top: 0; right: 0; font-size: 8px; }
+  .bartender-area { position: absolute; inset: auto; left: var(--bartender-x); top: var(--bartender-y); width: var(--bartender-w); height: var(--bartender-h); padding: 0; margin: 0; display: block; z-index: var(--layer-bartender); }
+  .character-safe-area { width: 100%; height: 100%; max-width: none; padding: 0; margin: 0; overflow: visible; }
+  .character-body, .character-accessory, .character-effect { inset: 0; width: 100%; height: 100%; }
+  .character-body > img { object-fit: contain; object-position: center bottom; }
+  .character-effect { z-index: var(--layer-effects); }
+  .counter-area { position: absolute; inset: auto; left: var(--counter-x); top: var(--counter-y); width: var(--counter-w); height: var(--counter-h); margin: 0; padding: 0; border-radius: 0; background: transparent; z-index: var(--layer-counter); }
+  .counter-surface { inset: auto; left: var(--counter-art-x); top: var(--counter-art-y); width: var(--counter-art-w); height: var(--counter-art-h); max-width: none; clip-path: none; object-fit: contain; }
+  .counter-content { position: static; width: 100%; height: 100%; display: block; padding: 0; }
+  .mixing-station { position: absolute; left: var(--mixing-x); top: var(--mixing-y); width: var(--mixing-w); height: var(--mixing-h); display: block; z-index: var(--layer-mixing); }
+  .vessel-art { position: absolute; left: var(--shaker-x); top: var(--shaker-y); width: var(--shaker-w); height: var(--shaker-h); }
+  .mixing-station[data-served="true"] .vessel-art { left: var(--glass-x); top: var(--glass-y); width: var(--glass-w); height: var(--glass-h); }
+  .mix-meter { position: absolute; left: var(--meter-x); top: var(--meter-y); width: var(--meter-w); height: var(--meter-h); max-width: none; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+  .capacity-track { position: absolute; left: calc((var(--meter-w) - var(--meter-h)) / 2); top: calc((var(--meter-h) - var(--meter-w)) / 2); width: var(--meter-h); height: var(--meter-w); margin: 0; border: 1px solid #e8c58b; border-radius: 2px; transform: rotate(-90deg); background: #2a3029d9; }
+  .canonical-fill { background: linear-gradient(90deg,#d7b169,#f6dfa9) !important; }
+  .mix-meter > strong { position: absolute; left: var(--fill-number-x); top: var(--fill-number-y); width: var(--fill-number-w); height: var(--fill-number-h); font-size: 10px; line-height: 18px; color: #fff4d9; text-shadow: 0 1px 2px #29170d; white-space: nowrap; }
+  .mix-meter small { font-size: 9px; color: inherit; }
+  .composition-meter { display: none; }
+  .extras { position: absolute; inset: 0; width: var(--stage-width); height: var(--stage-height); display: block; margin: 0; pointer-events: none; z-index: var(--layer-mixing); }
+  .extras button { position: absolute; min-height: 0; margin: 0; pointer-events: auto; padding: 0; gap: 0; border: 0; border-radius: 50%; background: transparent; box-shadow: none; isolation: isolate; font-size: 8px; }
+  .extras button:first-child { left: var(--ice-x); top: var(--ice-y); width: var(--ice-w); height: var(--ice-h); }
+  .extras button:last-child { left: var(--garnish-x); top: var(--garnish-y); width: var(--garnish-w); height: var(--garnish-h); }
+  .extras button::before { content: ''; position: absolute; inset: 1px; border-radius: 50%; z-index: -1; background: radial-gradient(ellipse,#fff0c9,#bd925e); border-bottom: 2px solid #714a2d; box-shadow: 0 3px 4px #29160970; }
+  .extras button.is-complete::before { background: #d3e1c1; }
+  .extras img { width: 26px; height: 25px; }
+  .extras b { position: absolute; right: -4px; top: -4px; font-size: 8px; padding: 2px 3px; border-radius: 3px; background: #f9e4b4; color: #24453c; }
+  .controls-area, .game-stage[data-failed="true"] .controls-area { position: absolute; inset: 0; width: var(--stage-width); height: var(--stage-height); padding: 0; pointer-events: none; background: transparent; z-index: var(--layer-controls); }
+  .mix-controls { display: contents; }
+  .hold-button, .serve-button, .collection-button, .reset-button, .skip-result, .new-drink-button { position: absolute; min-width: 0; min-height: 0; height: auto; padding: 0; margin: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; isolation: isolate; pointer-events: auto; }
+  .hold-button::before, .serve-button::before, .collection-button::before, .reset-button::before, .skip-result::before, .new-drink-button::before { content: ''; position: absolute; z-index: -1; border: 1px solid #eacc93; border-bottom: 3px solid #704b2d; border-radius: 3px; background: var(--control-face,#f4e0b9); box-shadow: 0 2px 3px #29170d80; }
+  .pour-button { left: var(--pour-x); top: var(--pour-y); width: var(--pour-w); height: var(--pour-h); --control-face: #ecc17a; }
+  .pour-button::before { left: var(--pour-face-x); top: var(--pour-face-y); width: var(--pour-face-w); height: var(--pour-face-h); }
+  .shake-button { left: var(--shake-x); top: var(--shake-y); width: var(--shake-w); height: var(--shake-h); --control-face: #ccdcad; }
+  .shake-button::before { left: var(--shake-face-x); top: var(--shake-face-y); width: var(--shake-face-w); height: var(--shake-face-h); }
+  .serve-button { left: var(--serve-x); top: var(--serve-y); width: var(--serve-w); height: var(--serve-h); --control-face: #244f43; color: #fff3d8; display: flex; flex-direction: row; justify-content: center; gap: 6px; }
+  .serve-button::before { left: var(--serve-face-x); top: var(--serve-face-y); width: var(--serve-face-w); height: var(--serve-face-h); }
+  .hold-button { display: grid; grid-template-columns: 20px minmax(0,1fr); grid-template-rows: 1fr 1fr; align-items: center; text-align: left; column-gap: 5px; padding: 6px 8px; }
+  .hold-button > img { width: 19px; height: 19px; }
+  .hold-button strong, .serve-button span { font-size: 13px; letter-spacing: .3px; line-height: 1; }
+  .hold-button small { font-size: 7px; }
+  .serve-button img { width: 19px; height: 19px; }
+  .controls-area button:disabled { background: transparent; box-shadow: none; color: #585445; }
+  .controls-area button:disabled::before { background: #b8ac96; border-color: #d6c8ab; }
+  .hold-button.is-held { box-shadow: none; }
+  .hold-button.is-held::before { box-shadow: inset 0 0 0 2px #fff1c9,0 2px 3px #29170d80; }
+  .control-footnote { position: static; min-height: 0; }
+  .collection-button { left: var(--collection-x); top: var(--collection-y); width: var(--collection-w); height: var(--collection-h); font-size: 8px; }
+  .collection-button::before { left: var(--collection-face-x); top: var(--collection-face-y); width: var(--collection-face-w); height: var(--collection-face-h); border-bottom-width: 2px; }
+  .score-hud { position: absolute; inset: auto; left: var(--message-x); top: var(--message-y); width: var(--message-w); height: var(--message-h); padding: 0; margin: 0; overflow: visible; border: 0; border-radius: 2px; background: #f8e9c9; box-shadow: 0 0 0 1px #966836,0 3px 4px #29170d60; z-index: var(--layer-hud); }
+  .result-scroll { position: absolute; inset: 0 auto auto 0; width: 100%; height: var(--message-scroll-h); overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; scrollbar-width: thin; padding: 8px; }
+  .result-scroll:focus-visible { outline: 1px solid #a86e2e; outline-offset: -2px; }
+  .score-top { display: flex; flex-direction: column; align-items: start; gap: 2px; }
+  .score-top > div:first-child { flex: none; }
+  .score-hud .eyebrow { display: none; }
+  .score-top h2 { margin: 0; font: 650 11px/1.2 "Segoe UI",system-ui,sans-serif; }
+  .score-top h2:focus { outline-width: 1px; outline-offset: 1px; }
+  .score-number { order: -1; display: flex; flex-direction: row; align-items: baseline; gap: 4px; }
+  .score-number strong { font-size: 18px; line-height: 1.1; }
+  .score-number > span { font-size: 8px; margin: 0; }
+  .bartender-line { font-size: 8px; line-height: 1.3; margin: 3px 0; }
+  .result-idle .bartender-line { display: none; }
+  .phase-status { font-size: 9px; line-height: 1.3; margin-top: 3px; min-height: 0; }
+  .play-feedback { font-size: 8px; line-height: 1.25; margin-top: 2px; min-height: 0; }
+  .round-guidance { display: flex; flex-direction: column; }
+  .shake-risk { font-size: 8px; line-height: 1.2; padding: 3px; margin: 3px 0; }
+  .shake-risk[data-risk="risky"], .shake-risk[data-risk="danger"] { order: -1; }
+  .shake-risk span { font-size: 10px; }
+  .breakdown { margin: 4px 0; }
+  .breakdown-row { grid-template-columns: 48px minmax(0,1fr) 28px; gap: 4px; font-size: 7px; padding: 2px 0; }
+  .breakdown-row b { font-size: 7px; }
+  .mini-track { height: 2px; }
+  .waiting-note { min-height: 0; font-size: 8px; line-height: 1.3; }
+  .round-reward { font-size: 8px; margin-top: 4px; padding-top: 4px; }
+  .reward-amounts { gap: 8px; }
+  .level-up { font-size: 8px; margin-top: 3px; }
+  .unlock-card { gap: 4px; padding: 3px 0; }
+  .unlock-card img { display: none; }
+  .unlock-card small { font-size: 7px; }
+  .unlock-card strong { font-size: 8px; }
+  .score-hud .result-actions { position: static; display: block; height: 0; margin: 0; }
+  .reset-button, .new-drink-button { left: var(--reset-x); top: var(--reset-y); width: var(--reset-w); height: var(--reset-h); display: flex; align-items: center; justify-content: center; gap: 3px; font-size: 8px; font-weight: 650; }
+  .reset-button::before, .new-drink-button::before { left: var(--reset-face-x); top: var(--reset-face-y); width: var(--reset-face-w); height: var(--reset-face-h); }
+  .reset-button img { width: 13px; height: 13px; }
+  .new-drink-button { --control-face: #244f43; color: #fff3d8; }
+  .new-drink-button span { font-size: 12px; }
+  .skip-result { left: var(--skip-x); top: var(--skip-y); width: var(--skip-w); height: var(--skip-h); font-size: 7px; }
+  .skip-result::before { left: var(--skip-face-x); top: var(--skip-face-y); width: var(--skip-face-w); height: var(--skip-face-h); }
+  .demo-guide { margin-top: 3px; }
+  .demo-guide summary { min-height: 26px; font-size: 8px; }
+  .demo-guide > strong, .demo-guide p, .demo-guide small { font-size: 8px; line-height: 1.3; margin: 3px 0; }
+  .scoring-notice { display: none; }
+  .collection-dialog { max-width: min(860px,calc(100vw - 24px)); }
+}
+
+/* Very short landscape uses the same readable flow as portrait. */
+@media (min-width: 960px) and (max-height: 479px) and (orientation: landscape) {
+  .game-stage { display: grid; height: auto; min-height: 0; padding: 0 12px 12px; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 0; }
+  .bottle-shelf { position: relative; inset: auto; width: 100%; height: 330px; padding-top: 14px; }
+  .bottle-list { grid-template-columns: repeat(3,minmax(0,1fr)); bottom: 4px; }
+  .bottle-image { width: 70px; height: 138px; }
+  .bottle-hitbox { min-height: 210px; padding: 4px 2px; }
+  .bartender-area { position: relative; inset: auto; width: 100%; height: 330px; padding-top: 14px; }
+  .character-safe-area { height: 290px; }
+  .counter-area { position: relative; inset: auto; width: calc(100% + 24px); height: 210px; margin-left: -12px; }
+  .counter-surface { inset: auto 0 0; height: 100%; clip-path: none; }
+  .counter-content { width: 100%; height: 200px; top: 0; }
+  .controls-area, .game-stage[data-failed="true"] .controls-area { position: relative; inset: auto; grid-area: controls; width: 100%; padding: 10px 0 0; }
+  .score-hud { position: relative; inset: auto; width: 100%; height: auto; overflow: visible; margin-top: 6px; }
+}
+/* Give the active warning the first line of the fixed, deliberately small message region. */
+@media (min-width: 960px) and (min-height: 480px) and (orientation: landscape) {
+  .score-hud.result-idle:has(.shake-risk[data-risk="risky"]) .score-top,
+  .score-hud.result-idle:has(.shake-risk[data-risk="danger"]) .score-top { display: none; }
+}
