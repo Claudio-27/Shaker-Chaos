@@ -38,6 +38,7 @@ function inspect(bytes) {
   return {width,height,format:'png',encodedBytes:bytes.length,decodedRgbaBytes:width*height*4,transparentPixels:transparent,partialAlphaPixels:partial,alphaBoundsAbove8:bounds};
 }
 const repository=resolve(import.meta.dirname,'..');
+if(process.argv.includes('--copy'))throw new Error('Master ingestion is frozen. Originals live in art-source; use npm run art:build for runtime variants.');
 const sourceRoot=process.argv[2];
 if(!sourceRoot)throw new Error('Supply explicitly authorized source directory');
 const rows=JSON.parse(await readFile(resolve(repository,'scripts/artwork-mapping.json'),'utf8'));

@@ -135,3 +135,7 @@ Ricerca locale 1C: npm run research:native:doctor / calibrate / smoke / run; rea
 ## Fase 1D — caratterizzazione quantitativa nativa
 
 Baseline congelata e cinque cold run nuovi a270; prove control/treatment, ledger append-only e dashboard per frequenze, tempi e abort. [Rapporto e limiti](docs/NATIVE_CHARACTERIZATION_FINDINGS.md), [procedura e comandi](research/phase1d/README.md), [sicurezza](docs/NATIVE_AUTOMATION_SAFETY.md). Le fixture importano lo score originale nel Lab, mantenendo CURRENT DEMO UNKNOWN quando manca la mappatura canonica. Nessuna formula o meccanica dichiarata VERIFIED; scoring e contenuti del gioco invariati. Stop dopo1D, nessun commit/push/PR.
+
+## Fase 2G — asset runtime
+
+Stage 600×440, gameplay, scoring e progressi preservati. I master sono in art-source/art/, i derivati pubblici in public/art/runtime/. Dev e build usano i derivati versionati; npm run art:build è manutenzione esplicita, npm run art:verify verifica integrità/crop, npm run art:measure aggiorna il budget. [Pipeline](docs/ART_RUNTIME_PIPELINE.md), [rapporto completo](docs/PHASE_2G_REPORT.md), [export artistici futuri](docs/ART_EXPORT_REQUIREMENTS.md). 280 test; nessun commit della fase 2G.

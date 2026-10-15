@@ -142,3 +142,7 @@ Per più cataloghi o più schede, il pinning di una singola scena per service wo
 Pose registrate per canvas/baseline, non per punti anatomici; nuove proporzioni possono richiedere anchor/scale metadata per asset. Lo sfondo con banco incorporato e i recipienti senza fill mask restano i limiti artistici principali. Non è necessario rigenerare per giocare alla demo; sono raccomandati export ottimizzati, fondali modulari e mask dedicate prima della rifinitura finale.
 
 **Preserve information until research proves it irrelevant.** Dominio, history, VolumeUnit e scoring della fase 0.1 sono invariati; nessuna mappatura ml, formula del riferimento o fase 1 introdotta. Nessun XP, valuta, account, backend, transazione, acquisto o vault. Nessun commit, push, PR o modifica dei remote.
+
+## Fase 2G — stato corrente degli asset
+
+Questo rapporto conserva i risultati storici di ingest. Da 2G i 21 PNG originali sono master immutabili in art-source/art/; i vecchi path art/… in artwork-inventory.json indicano provenienza. Il gioco distribuisce 41 PNG derivati con hash, in public/art/runtime/, più i 21 SVG preesistenti. Non ricopiare i master in public: il vecchio --copy è disabilitato. Build normale senza rigenerazione; manutenzione con art:build, verifica con art:verify, misure con art:measure. Policy PWA corrente: 62 URL esatti on-demand, 7 file shell, zero artwork precached e limite 32 elementi. Per metadati, registrazione del crop e fallback di risoluzione vedere [ART_RUNTIME_PIPELINE](ART_RUNTIME_PIPELINE.md) e [PHASE_2G_REPORT](PHASE_2G_REPORT.md).

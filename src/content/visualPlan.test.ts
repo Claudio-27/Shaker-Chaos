@@ -16,7 +16,7 @@ test('public content resolves to real repository-owned PNGs and SVGs with declar
     assert.ok(asset);
     const bytes = await readFile(new URL('../../public/' + asset.path, import.meta.url));
     if (asset.format === 'png') {
-      assert.equal(bytes.readUInt32BE(16), asset.width); assert.equal(bytes.readUInt32BE(20), asset.height);
+      assert.equal(bytes.readUInt32BE(16), asset.runtime?.variants['1x'].width ?? asset.width); assert.equal(bytes.readUInt32BE(20), asset.runtime?.variants['1x'].height ?? asset.height);
     } else {
       const source = bytes.toString('utf8');
       assert.ok(source.includes('viewBox="0 0 ' + asset.width + ' ' + asset.height + '"'), asset.path);

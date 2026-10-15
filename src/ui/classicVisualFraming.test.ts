@@ -76,7 +76,7 @@ test.after(async()=>{await server.close();});
 const render=(node:Parameters<typeof renderToStaticMarkup>[0])=>renderToStaticMarkup(createElement(assets.VisualAssetsProvider,{catalog:publicVisualCatalog,children:node}));
 test('real AssetImage applies framing to the resolved fallback and retains original dimensions and alt text',()=>{
   const html=render(createElement(assets.AssetImage,{assetId:'bartender.missing',fallback:'bartender.b01.idle',framing:'bartender',alt:'Bartender di prova'}));
-  assert.match(html,/data-resolved-asset="bartender.b01.idle"/);assert.match(html,/data-visual-framing="bartender"/);assert.match(html,/width="1086" height="1448"/);assert.match(html,/alt="Bartender di prova"/);assert.match(html,/--art-width:/);
+  assert.match(html,/data-resolved-asset="bartender.b01.idle"/);assert.match(html,/data-visual-framing="bartender"/);assert.match(html,/width="1086" height="1448"/);assert.match(html,/aria-label="Bartender di prova"/);assert.match(html,/--art-width:/);
 });
 test('real framed bottle shelf preserves accessible selection, canonical quantities and independent hitboxes',()=>{
   const html=render(createElement(stage.BottleShelf,{loadout:gamePresentation.scene,ingredients:gamePresentation.catalog.ingredients,visuals:publicVisualCatalog,mix:emptyMix(),selectedId:'orchard',disabled:false,pourFeedback:'idle',onSelect(){},formatVolume:String}));
@@ -94,4 +94,18 @@ test('secondary HUD visual children stay inside the unchanged 30px canonical str
     assert.ok(b.x>=HUD_BOUNDS.x&&b.x+b.width<=HUD_BOUNDS.x+HUD_BOUNDS.width);
     assert.ok(b.y>=HUD_BOUNDS.y&&b.y+b.height<=HUD_BOUNDS.y+HUD_BOUNDS.height);
   }
+});
+
+test('runtime raster uses the original SVG viewBox and registered crop coordinates without moving its frame',()=>{
+ const asset=publicVisualCatalog.assets['ingredient.bottle01']!,crop=asset.runtime!.crop;
+ const html=render(createElement(assets.AssetImage,{assetId:'ingredient.bottle01',framing:'bottle'}));
+ assert.match(html,/viewBox="0 0 1024 1536"/);assert.ok(html.includes('x="'+crop.x+'" y="'+crop.y+'" width="'+crop.width+'" height="'+crop.height+'"'));
+ assert.ok(html.includes(asset.runtime!.variants['1x'].path));assert.doesNotMatch(html,/art-source|__art-source/);assert.match(html,/aria-hidden="true"/);
+});
+test('2G changes only image-type selectors in the three locked 2F stylesheets, with identical specificity',()=>{
+ const baseline=JSON.parse(readFileSync(new URL('./runtimeStyleRegression.fixture.json',import.meta.url),'utf8')) as Record<string,string>;
+ for(const [path,expected] of Object.entries(baseline)){
+  const source=readFileSync(new URL('../../'+path,import.meta.url),'utf8').replaceAll('\r\n','\n').replaceAll(':is(img, svg)','img');
+  assert.equal(createHash('sha256').update(source).digest('hex'),expected,path);
+ }
 });

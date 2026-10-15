@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "alphaThreshold": 8,
+  "maxStageScale": 1.8,
+  "expectedDprs": [
+    1,
+    2
+  ],
+  "pillowVersion": "12.3.0",
+  "categories": {
+    "bartender": {
+      "padding": 16,
+      "opaqueHeight1x": 544
+    },
+    "bottle": {
+      "padding": 12,
+      "opaqueHeight1x": 224
+    },
+    "portrait": {
+      "padding": 12,
+      "canvasHeight1x": 128
+    },
+    "shaker": {
+      "padding": 16,
+      "opaqueHeight1x": 224
+    },
+    "glass": {
+      "padding": 16,
+      "opaqueHeight1x": 208
+    },
+    "counter": {
+      "padding": 12,
+      "opaqueWidth1x": 1088
+    },
+    "effect": {
+      "padding": 20,
+      "canvasHeight1x": 384
+    },
+    "background": {
+      "padding": 0,
+      "sourceResolution": true
+    }
+  }
+}

@@ -1,9 +1,18 @@
 import type { ReactionTier } from '../domain/model.ts';
 export type AssetId = `bartender.${string}` | `environment.${string}` | `counter.${string}` | `effect.${string}` | `ingredient.${string}` | `gameplay.${string}` | `ui.${string}`;
 export type ReactionId = `lab.${string}`;
+export interface RasterBounds { readonly x: number; readonly y: number; readonly width: number; readonly height: number }
+export interface RuntimeRasterVariant { readonly path: string; readonly width: number; readonly height: number; readonly bytes: number; readonly sha256: string; readonly format: 'png' }
+export interface RuntimeAssetDefinition {
+  readonly category: string; readonly source: { readonly width: number; readonly height: number; readonly sha256: string; readonly alpha: RasterBounds };
+  readonly crop: RasterBounds; readonly padding: number; readonly alphaThreshold: number;
+  readonly variants: Readonly<Record<'1x' | '2x', RuntimeRasterVariant>>;
+}
 export interface ImageAssetDefinition {
   readonly path: string; readonly width: number; readonly height: number;
   readonly format: 'svg' | 'png' | 'webp' | 'avif'; readonly visibility: 'public';
+  /** width/height retain the logical source canvas; variant dimensions describe encoded raster pixels. */
+  readonly runtime?: RuntimeAssetDefinition;
 }
 export interface VisualSequence {
   readonly frames: readonly AssetId[]; readonly frameDurationMs: number; readonly loop?: boolean;

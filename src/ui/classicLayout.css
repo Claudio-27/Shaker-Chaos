@@ -27,11 +27,11 @@
 .is-selected .bottle-selected { background: #f7d48d; color: #412914; }
 .bartender-area { position: absolute; right: 1%; top: 12px; width: 34%; height: 63%; justify-content: start; z-index: 1; }
 .bartender-name { padding: 4px 9px; border: 0; border-radius: 3px; color: #fff3d6; background: #412914e8; }
-.bartender-name > img { width: 25px; height: 28px; }
+.bartender-name > :is(img, svg) { width: 25px; height: 28px; }
 .bartender-name small { display: none; }
 .character-safe-area { width: 100%; max-width: none; height: 100%; margin: 0; overflow: visible; }
 .character-body { inset: 0; width: 100%; height: 100%; }
-.character-body > img { object-position: center bottom; }
+.character-body > :is(img, svg) { object-position: center bottom; }
 .counter-area { position: absolute; left: 0; bottom: 0; width: 100%; height: 43%; border-radius: 0 0 9px 9px; background: transparent; box-shadow: none; z-index: 2; }
 .counter-surface { inset: auto 0 -80px; height: auto; object-position: center bottom; clip-path: inset(0 0 80px); }
 .counter-content { display: flex; align-items: center; justify-content: center; width: 67%; height: 190px; padding: 0 12px; gap: 14px; top: -26px; }
@@ -47,7 +47,7 @@
 .extras button { width: 94px; flex-shrink: 0; flex-direction: column; justify-content: center; gap: 2px; padding: 6px 4px; min-height: 84px; border: 0; border-bottom: 3px solid #947044; border-radius: 50% 50% 6px 6px; background: radial-gradient(ellipse at center,#fff7d8,#e4c58f); box-shadow: 0 6px 5px #29160955; font-size: 11px; color: #24453c; }
 .extras button:first-child { order: 0; }
 .extras button:last-child { order: 2; }
-.extras img { width: 36px; height: 32px; }
+.extras :is(img, svg) { width: 36px; height: 32px; }
 .extras b { margin: 0; font-size: 10px; }
 .extras button.is-complete { background: #dce8cd; border-color: #557451; }
 .extras button:disabled { opacity: .78; }
@@ -60,9 +60,9 @@
 .pour-button { background: #efc475; }
 .shake-button { background: #c7d9ab; }
 .serve-button { justify-content: center; padding: 10px; gap: 10px; background: #244f43; }
-.serve-button img { width: 28px; height: 28px; }
+.serve-button :is(img, svg) { width: 28px; height: 28px; }
 .controls-area button:disabled { opacity: 1; color: #5d594a; background: #bcaf98; border-color: #cabba0; box-shadow: 0 3px 5px #29160935; }
-.controls-area .serve-button:disabled img { filter: none; }
+.controls-area .serve-button:disabled :is(img, svg) { filter: none; }
 .hold-button.is-held { box-shadow: inset 0 0 0 3px #fff0c4,0 3px 5px #29160960; }
 .control-footnote { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; }
 .hold-hint { margin: 0; font-size: 10px; color: #fff3d8; text-shadow: 0 1px 2px #291609; }
@@ -87,7 +87,7 @@
 .new-drink-button { min-height: 44px; padding: 7px 10px; border-radius: 4px; }
 .round-reward { margin-top: 6px; padding-top: 6px; font-size: 11px; }
 .unlock-card { padding: 4px 0; }
-.unlock-card img { width: 30px; height: 32px; }
+.unlock-card :is(img, svg) { width: 30px; height: 32px; }
 .scoring-notice { margin-top: 6px; }
 .demo-guide { margin-top: 6px; border-color: #cdbb95; }
 footer { padding-top: 6px; font-size: 9px; }
@@ -157,15 +157,15 @@ footer { padding-top: 6px; font-size: 9px; }
   .mix-meter { max-width: 90px; }
   .mix-meter > strong { font-size: 19px; }
   .extras button { width: 62px; min-height: 76px; font-size: 10px; }
-  .extras img { width: 28px; height: 28px; }
+  .extras :is(img, svg) { width: 28px; height: 28px; }
   .mix-controls { gap: 5px; }
   .hold-button { display: flex; flex-direction: column; gap: 3px; padding: 6px 2px; text-align: center; }
-  .hold-button > img { width: 22px; height: 22px; }
+  .hold-button > :is(img, svg) { width: 22px; height: 22px; }
   .hold-button strong, .serve-button span { font-size: 15px; }
   .hold-button small { font-size: 9px; }
   .serve-button { flex-direction: column; gap: 4px; padding: 6px 2px; }
   .serve-button span { max-width: 70px; line-height: 1.2; }
-  .serve-button img { width: 22px; height: 22px; }
+  .serve-button :is(img, svg) { width: 22px; height: 22px; }
   .control-footnote { gap: 5px; }
   .hold-hint { font-size: 9px; }
   .score-hud { padding: 14px; }

@@ -100,7 +100,7 @@ test('all 21 source copies retain their inventoried byte hashes and dimensions',
   const rows: { path: string; sha256: string; width: number; height: number }[] = JSON.parse(await readFile(new URL('../../docs/artwork-inventory.json', import.meta.url), 'utf8'));
   assert.equal(rows.length, 21);
   for (const row of rows) {
-    const bytes = await readFile(new URL('../../public/' + row.path, import.meta.url));
+    const bytes = await readFile(new URL('../../art-source/' + row.path, import.meta.url));
     assert.equal(createHash('sha256').update(bytes).digest('hex'), row.sha256, row.path);
     assert.equal(bytes.readUInt32BE(16), row.width); assert.equal(bytes.readUInt32BE(20), row.height);
   }

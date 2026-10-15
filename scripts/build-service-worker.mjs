@@ -1,3 +1,4 @@
+import { allRuntimePaths } from '../src/content/runtimeVariants.ts';
 import { createHash } from 'node:crypto';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -17,7 +18,7 @@ validateVisualCatalog(publicVisualCatalog);
 validatePublicContent(publicContentCatalog, publicVisualCatalog);
 const files = (await walk(dist)).filter((file) => file !== 'sw.js');
 assertProductionBoundaries(await Promise.all(files.filter(file => /\.(js|css|html)$/.test(file)).map(async file => [file, await readFile(join(dist, file), 'utf8')])), files);
-const artwork = [...new Set(Object.values(publicVisualCatalog.assets).map((asset) => asset.path))].sort();
+const artwork = [...new Set(Object.values(publicVisualCatalog.assets).flatMap(allRuntimePaths))].sort();
 const shell = files.filter((file) => ['index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png'].includes(file) ||
   /^assets\/[a-zA-Z0-9_-]+\.(js|css)$/.test(file));
 if (files.some((file) => !shell.includes(file) && !artwork.includes(file)) || artwork.some((file) => !files.includes(file)))

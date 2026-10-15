@@ -1,3 +1,4 @@
+import { runtimeArtManifest } from './runtimeArtManifest.ts';
 import type { VisualCatalog } from './visualModel.ts';
 
 /** Public supplied artwork plus original fallbacks; all image paths live here. */
@@ -151,147 +152,168 @@ export const publicVisualCatalog: VisualCatalog = {
       "visibility": "public"
     },
     "bartender.b01.idle": {
-      "path": "art/bartenders/b01/idle.png",
+      "runtime": runtimeArtManifest["bartender.b01.idle"],
+      "path": runtimeArtManifest["bartender.b01.idle"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b01.tasting": {
-      "path": "art/bartenders/b01/tasting.png",
+      "runtime": runtimeArtManifest["bartender.b01.tasting"],
+      "path": runtimeArtManifest["bartender.b01.tasting"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b01.rough": {
-      "path": "art/bartenders/b01/rough.png",
+      "runtime": runtimeArtManifest["bartender.b01.rough"],
+      "path": runtimeArtManifest["bartender.b01.rough"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b01.balanced": {
-      "path": "art/bartenders/b01/balanced.png",
+      "runtime": runtimeArtManifest["bartender.b01.balanced"],
+      "path": runtimeArtManifest["bartender.b01.balanced"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b01.excellent": {
-      "path": "art/bartenders/b01/excellent.png",
+      "runtime": runtimeArtManifest["bartender.b01.excellent"],
+      "path": runtimeArtManifest["bartender.b01.excellent"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b01.portrait": {
-      "path": "art/bartenders/b01/portrait.png",
+      "runtime": runtimeArtManifest["bartender.b01.portrait"],
+      "path": runtimeArtManifest["bartender.b01.portrait"].variants["1x"].path,
       "width": 1254,
       "height": 1254,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b02.idle": {
-      "path": "art/bartenders/b02/idle.png",
+      "runtime": runtimeArtManifest["bartender.b02.idle"],
+      "path": runtimeArtManifest["bartender.b02.idle"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b02.tasting": {
-      "path": "art/bartenders/b02/tasting.png",
+      "runtime": runtimeArtManifest["bartender.b02.tasting"],
+      "path": runtimeArtManifest["bartender.b02.tasting"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b02.rough": {
-      "path": "art/bartenders/b02/rough.png",
+      "runtime": runtimeArtManifest["bartender.b02.rough"],
+      "path": runtimeArtManifest["bartender.b02.rough"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b02.balanced": {
-      "path": "art/bartenders/b02/balanced.png",
+      "runtime": runtimeArtManifest["bartender.b02.balanced"],
+      "path": runtimeArtManifest["bartender.b02.balanced"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b02.excellent": {
-      "path": "art/bartenders/b02/excellent.png",
+      "runtime": runtimeArtManifest["bartender.b02.excellent"],
+      "path": runtimeArtManifest["bartender.b02.excellent"].variants["1x"].path,
       "width": 1086,
       "height": 1448,
       "format": "png",
       "visibility": "public"
     },
     "bartender.b02.portrait": {
-      "path": "art/bartenders/b02/portrait.png",
+      "runtime": runtimeArtManifest["bartender.b02.portrait"],
+      "path": runtimeArtManifest["bartender.b02.portrait"].variants["1x"].path,
       "width": 1254,
       "height": 1254,
       "format": "png",
       "visibility": "public"
     },
     "effect.ice-blue": {
-      "path": "art/effects/ice-blue.png",
+      "runtime": runtimeArtManifest["effect.ice-blue"],
+      "path": runtimeArtManifest["effect.ice-blue"].variants["1x"].path,
       "width": 1254,
       "height": 1254,
       "format": "png",
       "visibility": "public"
     },
     "effect.sparkles": {
-      "path": "art/effects/sparkles.png",
+      "runtime": runtimeArtManifest["effect.sparkles"],
+      "path": runtimeArtManifest["effect.sparkles"].variants["1x"].path,
       "width": 1254,
       "height": 1254,
       "format": "png",
       "visibility": "public"
     },
     "counter.c01.surface": {
-      "path": "art/counters/c01/surface.png",
+      "runtime": runtimeArtManifest["counter.c01.surface"],
+      "path": runtimeArtManifest["counter.c01.surface"].variants["1x"].path,
       "width": 2172,
       "height": 724,
       "format": "png",
       "visibility": "public"
     },
     "environment.e01.background": {
-      "path": "art/environments/e01/background.png",
+      "runtime": runtimeArtManifest["environment.e01.background"],
+      "path": runtimeArtManifest["environment.e01.background"].variants["1x"].path,
       "width": 1586,
       "height": 992,
       "format": "png",
       "visibility": "public"
     },
     "ingredient.bottle01": {
-      "path": "art/ingredients/bottle01.png",
+      "runtime": runtimeArtManifest["ingredient.bottle01"],
+      "path": runtimeArtManifest["ingredient.bottle01"].variants["1x"].path,
       "width": 1024,
       "height": 1536,
       "format": "png",
       "visibility": "public"
     },
     "ingredient.bottle02": {
-      "path": "art/ingredients/bottle02.png",
+      "runtime": runtimeArtManifest["ingredient.bottle02"],
+      "path": runtimeArtManifest["ingredient.bottle02"].variants["1x"].path,
       "width": 1024,
       "height": 1536,
       "format": "png",
       "visibility": "public"
     },
     "ingredient.bottle03": {
-      "path": "art/ingredients/bottle03.png",
+      "runtime": runtimeArtManifest["ingredient.bottle03"],
+      "path": runtimeArtManifest["ingredient.bottle03"].variants["1x"].path,
       "width": 1024,
       "height": 1536,
       "format": "png",
       "visibility": "public"
     },
     "gameplay.chrome-shaker": {
-      "path": "art/gameplay/chrome-shaker.png",
+      "runtime": runtimeArtManifest["gameplay.chrome-shaker"],
+      "path": runtimeArtManifest["gameplay.chrome-shaker"].variants["1x"].path,
       "width": 1024,
       "height": 1536,
       "format": "png",
       "visibility": "public"
     },
     "gameplay.martini-glass": {
-      "path": "art/gameplay/martini-glass.png",
+      "runtime": runtimeArtManifest["gameplay.martini-glass"],
+      "path": runtimeArtManifest["gameplay.martini-glass"].variants["1x"].path,
       "width": 1024,
       "height": 1536,
       "format": "png",

@@ -21,7 +21,7 @@ export function VisualDebug({ stageRef, presentation, scale = 1 }: {
     const update = () => {
       const bounds = stage.getBoundingClientRect();
       const composition = getComputedStyle(stage).getPropertyValue('--composition').trim().replaceAll('"', '');
-      setArt(Array.from(stage.querySelectorAll<HTMLImageElement>('img[data-visual-framing]')).filter(image => !image.closest('.character-body') || getComputedStyle(image.closest('.character-body')!).visibility !== 'hidden').flatMap(image => {
+      setArt(Array.from(stage.querySelectorAll<SVGSVGElement | HTMLImageElement>('[data-visual-framing]')).filter(image => !image.closest('.character-body') || getComputedStyle(image.closest('.character-body')!).visibility !== 'hidden').flatMap(image => {
         const id = image.dataset.resolvedAsset!, measured = VISUAL_SAMPLES[id];
         if (!measured) return [];
         const rect = image.getBoundingClientRect(), unit = bounds.width / STAGE_WIDTH;

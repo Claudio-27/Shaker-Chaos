@@ -1,7 +1,7 @@
 # Istruzioni per Shaker-Chaos
 
-La radice del repository è il workspace. Lavorare su main, solo locale: niente nuovi rami, push, PR, servizi esterni o modifiche ai remoti. La ricerca sul riferimento è CLOSED BY PRODUCT DECISION: non avviare Ruffle/SWF, automazione nativa, nuove osservazioni o ricerca web.
+Workspace: solo repository. Main soltanto, nessun ramo, commit, push, PR, GitHub o servizi esterni durante la fase2G. Il checkpoint2F cbff3e2 è stato creato prima della fase su esplicita autorizzazione dell’utente; questa eccezione è esaurita. Lasciare2G non committata.
 
-La fase 2F calibra solo la presentazione degli artwork originali: geometria canonica 600×440 e hitbox della 2E, gameplay, scoring, XP/monete/unlock, profilo, persistenza, Collection, input e offline devono restare invariati. Nessuna modifica ai file artwork. Nessuno shop, account, backend o vault. Fermarsi dopo la fase 2F.
+Scena600×440, coordinate2E/2F, hitbox, gameplay/scoring/progressione/profilo/persistenza/Collection/input/result flow sono bloccati.2G modifica soltanto pipeline degli asset e varianti tecniche. Originali in art-source immutabili e verificati tramite hash; runtime in public/art/runtime. Niente generazione artistica, ridisegno, inpainting, maschere liquide inventate, file esterni Desktop, shop, acquisti, backend o account.
 
-L’utente ha autorizzato esplicitamente il commit locale bd4ed5e del checkpoint 2E prima di iniziare la 2F. Questa eccezione è esaurita; lasciare le modifiche 2F non committate per la revisione.
+Ricerca sul riferimento CLOSED BY PRODUCT DECISION. Non eseguire Ruffle/SWF, automazione nativa o nuovi esperimenti; non esaminare artwork del riferimento. Fermarsi dopo2G.

@@ -30,7 +30,7 @@ footer { display: none; }
   .classic-stage-sizer { position: relative; flex: none; width: calc(var(--stage-width) * var(--stage-scale)); height: calc(var(--stage-height) * var(--stage-scale)); }
   .game-stage { --composition: "classic-fixed-600x440"; position: absolute; inset: 0 auto auto 0; width: var(--stage-width); height: var(--stage-height); min-height: 0; display: block; padding: 0; border: 0; border-radius: 4px; transform: scale(var(--stage-scale)); transform-origin: top left; box-shadow: 0 0 0 2px #704521,0 5px 12px #29180c60; }
   .environment-layers { z-index: var(--layer-environment); clip-path: inset(0 0 calc(var(--stage-height) - var(--counter-y)) 0); }
-  .environment-layers > img { object-fit: cover; object-position: center center; }
+  .environment-layers > :is(img, svg) { object-fit: cover; object-position: center center; }
   .environment-background { z-index: var(--layer-environment); }
   .environment-back-bar, .environment-decoration { z-index: var(--layer-backBar); }
   .environment-layers::after { background: linear-gradient(0deg,#29170d25,transparent 60%); }
@@ -58,7 +58,7 @@ footer { display: none; }
   .bartender-area { position: absolute; inset: auto; left: var(--bartender-x); top: var(--bartender-y); width: var(--bartender-w); height: var(--bartender-h); padding: 0; margin: 0; display: block; z-index: var(--layer-bartender); }
   .character-safe-area { width: 100%; height: 100%; max-width: none; padding: 0; margin: 0; overflow: visible; }
   .character-body, .character-accessory, .character-effect { inset: 0; width: 100%; height: 100%; }
-  .character-body > img { object-fit: contain; object-position: center bottom; }
+  .character-body > :is(img, svg) { object-fit: contain; object-position: center bottom; }
   .character-effect { z-index: var(--layer-effects); }
   .counter-area { position: absolute; inset: auto; left: var(--counter-x); top: var(--counter-y); width: var(--counter-w); height: var(--counter-h); margin: 0; padding: 0; border-radius: 0; background: transparent; z-index: var(--layer-counter); }
   .counter-surface { inset: auto; left: var(--counter-art-x); top: var(--counter-art-y); width: var(--counter-art-w); height: var(--counter-art-h); max-width: none; clip-path: none; object-fit: contain; }
@@ -78,7 +78,7 @@ footer { display: none; }
   .extras button:last-child { left: var(--garnish-x); top: var(--garnish-y); width: var(--garnish-w); height: var(--garnish-h); }
   .extras button::before { content: ''; position: absolute; inset: 1px; border-radius: 50%; z-index: -1; background: radial-gradient(ellipse,#fff0c9,#bd925e); border-bottom: 2px solid #714a2d; box-shadow: 0 3px 4px #29160970; }
   .extras button.is-complete::before { background: #d3e1c1; }
-  .extras img { width: 26px; height: 25px; }
+  .extras :is(img, svg) { width: 26px; height: 25px; }
   .extras b { position: absolute; right: -4px; top: -4px; font-size: 8px; padding: 2px 3px; border-radius: 3px; background: #f9e4b4; color: #24453c; }
   .controls-area, .game-stage[data-failed="true"] .controls-area { position: absolute; inset: 0; width: var(--stage-width); height: var(--stage-height); padding: 0; pointer-events: none; background: transparent; z-index: var(--layer-controls); }
   .mix-controls { display: contents; }
@@ -91,10 +91,10 @@ footer { display: none; }
   .serve-button { left: var(--serve-x); top: var(--serve-y); width: var(--serve-w); height: var(--serve-h); --control-face: #244f43; color: #fff3d8; display: flex; flex-direction: row; justify-content: center; gap: 6px; }
   .serve-button::before { left: var(--serve-face-x); top: var(--serve-face-y); width: var(--serve-face-w); height: var(--serve-face-h); }
   .hold-button { display: grid; grid-template-columns: 20px minmax(0,1fr); grid-template-rows: 1fr 1fr; align-items: center; text-align: left; column-gap: 5px; padding: 6px 8px; }
-  .hold-button > img { width: 19px; height: 19px; }
+  .hold-button > :is(img, svg) { width: 19px; height: 19px; }
   .hold-button strong, .serve-button span { font-size: 13px; letter-spacing: .3px; line-height: 1; }
   .hold-button small { font-size: 7px; }
-  .serve-button img { width: 19px; height: 19px; }
+  .serve-button :is(img, svg) { width: 19px; height: 19px; }
   .controls-area button:disabled { background: transparent; box-shadow: none; color: #585445; }
   .controls-area button:disabled::before { background: #b8ac96; border-color: #d6c8ab; }
   .hold-button.is-held { box-shadow: none; }
@@ -130,13 +130,13 @@ footer { display: none; }
   .reward-amounts { gap: 8px; }
   .level-up { font-size: 8px; margin-top: 3px; }
   .unlock-card { gap: 4px; padding: 3px 0; }
-  .unlock-card img { display: none; }
+  .unlock-card :is(img, svg) { display: none; }
   .unlock-card small { font-size: 7px; }
   .unlock-card strong { font-size: 8px; }
   .score-hud .result-actions { position: static; display: block; height: 0; margin: 0; }
   .reset-button, .new-drink-button { left: var(--reset-x); top: var(--reset-y); width: var(--reset-w); height: var(--reset-h); display: flex; align-items: center; justify-content: center; gap: 3px; font-size: 8px; font-weight: 650; }
   .reset-button::before, .new-drink-button::before { left: var(--reset-face-x); top: var(--reset-face-y); width: var(--reset-face-w); height: var(--reset-face-h); }
-  .reset-button img { width: 13px; height: 13px; }
+  .reset-button :is(img, svg) { width: 13px; height: 13px; }
   .new-drink-button { --control-face: #244f43; color: #fff3d8; }
   .new-drink-button span { font-size: 12px; }
   .skip-result { left: var(--skip-x); top: var(--skip-y); width: var(--skip-w); height: var(--skip-h); font-size: 7px; }
@@ -170,7 +170,7 @@ footer { display: none; }
 }
 /* Phase 2F: source-padding compensation changes pixels, never stage regions or hitboxes. */
 @media (min-width: 960px) and (min-height: 480px) and (orientation: landscape) {
-  .game-stage img[data-visual-framing] { position: absolute; inset: auto; left: var(--art-left); top: var(--art-top); width: var(--art-width); height: var(--art-height); max-width: none; object-fit: fill; pointer-events: none; }
+  .game-stage :is(img, svg)[data-visual-framing] { position: absolute; inset: auto; left: var(--art-left); top: var(--art-top); width: var(--art-width); height: var(--art-height); max-width: none; object-fit: fill; pointer-events: none; }
   .environment-layers { clip-path: inset(0 0 calc(440px - var(--scene-bg-clip)) 0); }
   .environment-layers .environment-background { left: var(--scene-bg-x); top: 0; right: auto; bottom: auto; width: var(--scene-bg-w); height: var(--scene-bg-h); max-width: none; object-fit: fill; }
   .environment-layers::after { background: linear-gradient(0deg,#29170d12,transparent 35%); }
@@ -191,12 +191,12 @@ footer { display: none; }
   .canonical-fill { box-shadow: inset 0 2px 2px #fff6d560; }
   .extras button { padding: 30px 0 0; border-radius: 4px; color: #fff1cd; text-shadow: 0 1px 2px #291609; }
   .extras button::before, .extras button.is-complete::before { inset: auto 3px 10px; height: 7px; border: 0; border-radius: 50%; background: radial-gradient(ellipse,#221008a0,transparent 70%); box-shadow: none; }
-  .extras img { position: absolute; width: 38px; height: 35px; left: calc(50% - 19px); top: -1px; filter: drop-shadow(0 2px 1px #291609b0); }
-  .extras button:first-child img { filter: drop-shadow(0 0 1px #e5faff) drop-shadow(0 2px 1px #162927); }
-  .extras button.is-complete img { filter: drop-shadow(0 0 2px #bfdc83) drop-shadow(0 1px 1px #18291c); }
+  .extras :is(img, svg) { position: absolute; width: 38px; height: 35px; left: calc(50% - 19px); top: -1px; filter: drop-shadow(0 2px 1px #291609b0); }
+  .extras button:first-child :is(img, svg) { filter: drop-shadow(0 0 1px #e5faff) drop-shadow(0 2px 1px #162927); }
+  .extras button.is-complete :is(img, svg) { filter: drop-shadow(0 0 2px #bfdc83) drop-shadow(0 1px 1px #18291c); }
   .extras button:disabled { opacity: .4; background: transparent; }
   .extras button.is-complete { opacity: .82; background: transparent; }
-  .extras button:active:not(:disabled) img { transform: translateY(2px); }
+  .extras button:active:not(:disabled) :is(img, svg) { transform: translateY(2px); }
   .extras b { font-size: 7px; right: -1px; top: 0; padding: 1px 2px; border: 1px solid #6f623c; background: #d4c392; border-radius: 2px; text-shadow: none; }
   .hold-button::before, .serve-button::before { border: 2px solid #5e432a; border-bottom-width: 4px; border-radius: 5px; background: linear-gradient(#ffffff38,transparent 42%,#00000012),var(--control-face); box-shadow: inset 0 1px 0 #fff1c5c0,0 2px 2px #29170d90; }
   .hold-button strong, .serve-button span { font: 800 16px/1 "Segoe UI",system-ui,sans-serif; letter-spacing: .2px; }

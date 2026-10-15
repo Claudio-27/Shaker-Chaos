@@ -30,9 +30,9 @@ async function fetchFrom(worker, url, mode = 'cors', extra = {}) {
   worker.listeners.fetch({ request: { url, method: 'GET', mode, ...extra }, respondWith: (promise) => { pending = promise; } });
   return pending ? await pending : undefined;
 }
-async function warm(worker, paths) {
+async function warm(worker, paths, fallbackPaths = {}) {
   let pending, reply;
-  worker.listeners.message({ data: { type: 'CACHE_SCENE', paths }, ports: [{ postMessage: (value) => { reply = value; } }], waitUntil: (promise) => { pending = promise; } });
+  worker.listeners.message({ data: { type: 'CACHE_SCENE', paths, fallbackPaths }, ports: [{ postMessage: (value) => { reply = value; } }], waitUntil: (promise) => { pending = promise; } });
   if (pending) await pending;
   return reply;
 }
@@ -96,4 +96,19 @@ test('runtime cache stays bounded while retaining pinned active-scene images', a
   await warm(w, ['art/active.png']);
   for (let i = 0; i < 40; i++) await fetchFrom(w, 'http://localhost/game/art/variant-' + i + '.png');
   assert.equal(w.art.size, 32); assert.ok(w.art.has('http://localhost/game/art/active.png'));
+});
+
+test('scene warm does not download alternate resolutions when preferred files succeed',async()=>{
+ const w=worker({artCount:1});assert.equal((await warm(w,['art/active.png'],{'art/active.png':'art/variant-0.png'})).ok,true);
+ assert.deepEqual(w.fetched,['http://localhost/game/art/active.png']);assert.equal(w.art.size,1);
+});
+test('offline scene warm succeeds from the other cached resolution without needing masters',async()=>{
+ const w=worker({offline:true,artCount:1});w.art.set('http://localhost/game/art/variant-0.png',{ok:true,type:'basic'});
+ assert.equal((await warm(w,['art/active.png'],{'art/active.png':'art/variant-0.png'})).ok,true);
+ assert.deepEqual(w.fetched,['http://localhost/game/art/active.png']);assert.equal(w.art.size,1);
+});
+test('scene fallback validation rejects private paths and unrequested sources before fetching',async()=>{
+ for(const alternatives of [{'art/active.png':'../art-source/master.png'},{'art/not-requested.png':'art/variant-0.png'},{'art/active.png':'https://example.invalid/secret'}]){
+  const w=worker({artCount:1});assert.equal((await warm(w,['art/active.png'],alternatives)).ok,false);assert.equal(w.fetched.length,0);
+ }
 });

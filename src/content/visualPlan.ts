@@ -49,6 +49,12 @@ export function validateVisualCatalog(catalog: VisualCatalog): void {
       throw new RangeError('Invalid public asset dimensions or delivery: ' + id);
     if (!/^art\/[a-z0-9/._-]+\.(svg|png|webp|avif)$/.test(asset.path) || asset.path.split('/').includes('..') || !asset.path.endsWith('.' + asset.format))
       throw new RangeError('Asset must be a repository-owned public art path: ' + id);
+    if (asset.runtime) {
+      const runtime = asset.runtime, crop = runtime.crop;
+      if (runtime.source.width !== asset.width || runtime.source.height !== asset.height || !/^art\/runtime\//.test(asset.path)) throw new RangeError('Invalid runtime source frame');
+      if (![crop.x,crop.y,crop.width,crop.height].every(Number.isSafeInteger) || crop.x < 0 || crop.y < 0 || crop.width <= 0 || crop.height <= 0 || crop.x+crop.width > asset.width || crop.y+crop.height > asset.height) throw new RangeError('Invalid runtime crop');
+      for (const variant of Object.values(runtime.variants)) if (!/^art\/runtime\/[a-z0-9/._-]+\.png$/.test(variant.path) || variant.path.split('/').includes('..') || ![variant.width,variant.height,variant.bytes].every(n=>Number.isSafeInteger(n)&&n>0) || !/^[a-f0-9]{64}$/.test(variant.sha256)) throw new RangeError('Invalid runtime variant');
+    }
   }
   const sequence = (value: VisualSequence) => {
     if (!value.frames.length || !Number.isSafeInteger(value.frameDurationMs) || value.frameDurationMs <= 0) throw new RangeError('Invalid visual sequence');

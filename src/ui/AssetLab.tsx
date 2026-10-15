@@ -11,9 +11,10 @@ export default function AssetLab({ loadout, visuals, ingredientIds, onChange }: 
   useEffect(() => {
     const inspect = () => setDimensions(JSON.stringify({
       viewport: [window.innerWidth, window.innerHeight],
-      images: [...document.querySelectorAll<HTMLImageElement>('.game-stage img')].map((image) => ({
+      images: [...document.querySelectorAll<HTMLImageElement | SVGSVGElement>('.game-stage [data-asset-id]')].map((image) => ({
         requested: image.dataset.assetId, resolved: image.dataset.resolvedAsset,
-        actual: [image.naturalWidth, image.naturalHeight], fallback: image.dataset.fallback === 'true',
+        actual: image instanceof HTMLImageElement ? [image.naturalWidth, image.naturalHeight] : [Number(image.dataset.runtimeWidth), Number(image.dataset.runtimeHeight)],
+        runtimePath: image.dataset.runtimePath, variantFallback: image.dataset.variantFallback === 'true', fallback: image.dataset.fallback === 'true',
       })),
       missing: [...document.querySelectorAll('[data-asset-error]')].map((node) => node.getAttribute('data-asset-error')),
     }, null, 2));

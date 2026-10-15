@@ -50,8 +50,26 @@ self.addEventListener('message', (event) => {
   if (!urls.length || urls.length > MAX_ART_ENTRIES || urls.some((url) => !ART_URLS.includes(url))) {
     event.ports?.[0]?.postMessage({ ok: false }); return;
   }
+  const alternatives = new Map();
+  try {
+    const input = event.data.fallbackPaths ?? {};
+    if (!input || typeof input !== 'object' || Array.isArray(input)) throw new Error('Invalid fallbacks');
+    for (const [from,to] of Object.entries(input)) {
+      if (typeof to !== 'string') throw new Error('Invalid fallback path');
+      const source = new URL(from,self.registration.scope).href, target = new URL(to,self.registration.scope).href;
+      if (!urls.includes(source) || !ART_URLS.includes(target)) throw new Error('Fallback outside exact allowlist');
+      alternatives.set(source,target);
+    }
+  } catch { event.ports?.[0]?.postMessage({ ok: false }); return; }
   activeScene = new Set(urls);
-  event.waitUntil(Promise.all(urls.map(artwork)).then((responses) => {
+  event.waitUntil(Promise.all(urls.map(async url => {
+    try { const response = await artwork(url); if (!response.ok) throw new Error('Primary unavailable'); return response; }
+    catch (error) {
+      const alternate = alternatives.get(url); if (!alternate) throw error;
+      activeScene.add(alternate); const response = await artwork(alternate);
+      if (response.ok) activeScene.delete(url); return response;
+    }
+  })).then((responses) => {
     event.ports?.[0]?.postMessage({ ok: responses.every((response) => response.ok) });
   }).catch(() => { event.ports?.[0]?.postMessage({ ok: false }); }));
 });

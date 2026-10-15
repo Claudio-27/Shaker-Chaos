@@ -1,0 +1,71 @@
+{
+  "activeIds": [
+    "bartender.b01.idle",
+    "environment.e01.background",
+    "counter.c01.surface",
+    "gameplay.chrome-shaker",
+    "gameplay.martini-glass",
+    "gameplay.ice",
+    "gameplay.garnish",
+    "ui.pour",
+    "ui.shake",
+    "ui.serve",
+    "ui.reset",
+    "bartender.b01.portrait",
+    "ingredient.bottle03",
+    "ingredient.bottle02",
+    "ingredient.bottle01"
+  ],
+  "activeDistinctImageUrls": 15,
+  "activeRasterCount": 9,
+  "before": {
+    "pngBytes": 13205660,
+    "rgbaBytes": 56620816
+  },
+  "after1x": {
+    "pngBytes": 2832219,
+    "rgbaBytes": 8922428
+  },
+  "after2x": {
+    "pngBytes": 4759688,
+    "rgbaBytes": 16717984
+  },
+  "publicRuntimeUrls": 62,
+  "categories": {
+    "bartender.b01": {
+      "sourceBytes": 6633068,
+      "runtime1x": 1035551,
+      "runtime2x": 3397274
+    },
+    "bartender.b02": {
+      "sourceBytes": 6911058,
+      "runtime1x": 1082130,
+      "runtime2x": 3499996
+    },
+    "ingredient": {
+      "sourceBytes": 4322668,
+      "runtime1x": 97792,
+      "runtime2x": 316361
+    },
+    "gameplay": {
+      "sourceBytes": 2955841,
+      "runtime1x": 69282,
+      "runtime2x": 222060
+    },
+    "effect": {
+      "sourceBytes": 2114171,
+      "runtime1x": 256659,
+      "runtime2x": 881086
+    },
+    "counter": {
+      "sourceBytes": 1547657,
+      "runtime1x": 405630,
+      "runtime2x": 1471285
+    },
+    "environment": {
+      "sourceBytes": 2111373,
+      "runtime1x": 2046022,
+      "runtime2x": 2046022
+    }
+  }
+}
