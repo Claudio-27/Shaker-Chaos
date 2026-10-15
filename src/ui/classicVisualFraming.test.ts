@@ -109,3 +109,9 @@ test('2G changes only image-type selectors in the three locked 2F stylesheets, w
   assert.equal(createHash('sha256').update(source).digest('hex'),expected,path);
  }
 });
+
+test('environment renderer gracefully chooses legacy when clean art is unregistered, without a technical player message',()=>{
+ const missing={...publicVisualCatalog,assets:{...publicVisualCatalog.assets,'environment.e01.background.clean':undefined}};
+ const html=renderToStaticMarkup(createElement(assets.VisualAssetsProvider,{catalog:missing,children:createElement(assets.EnvironmentArt,{environment:missing.environments['environment.e01']!})}));
+ assert.match(html,/environment-background/);assert.match(html,/data-resolved-asset="environment.e01.background"/);assert.doesNotMatch(html,/Artwork non disponibile|art-source|test-clean/);
+});

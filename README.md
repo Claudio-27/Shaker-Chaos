@@ -139,3 +139,11 @@ Baseline congelata e cinque cold run nuovi a270; prove control/treatment, ledger
 ## Fase 2G — asset runtime
 
 Stage 600×440, gameplay, scoring e progressi preservati. I master sono in art-source/art/, i derivati pubblici in public/art/runtime/. Dev e build usano i derivati versionati; npm run art:build è manutenzione esplicita, npm run art:verify verifica integrità/crop, npm run art:measure aggiorna il budget. [Pipeline](docs/ART_RUNTIME_PIPELINE.md), [rapporto completo](docs/PHASE_2G_REPORT.md), [export artistici futuri](docs/ART_EXPORT_REQUIREMENTS.md). 280 test; nessun commit della fase 2G.
+
+## Fase 2H — scena bloccata e clean export opzionale
+
+Checkpoint2G:797ac28, creato su autorizzazione dell’utente prima della2H. **CLASSIC STAGE GEOMETRY LOCKED AFTER PHASE 2H.** Contratto dello sfondo pulito opzionale e fallback legacy pronti, senza nuovi artwork o migrazioni. Il clean export manca: **BLOCKED ON NEW ART EXPORT**. [Brief esatto](docs/ART_REQUEST_ENVIRONMENT_E01_CLEAN.md), [baseline finali](docs/visual-baselines/phase2h/README.md), [rapporto](docs/PHASE_2H_REPORT.md). 291 test. Le modifiche2H rimangono non committate su main.
+
+## Aggiornamento clean background — 2026-10-16
+
+Export clean creato su richiesta esplicita e integrato:1600×1000 opaco, originale storico e nativo generato conservati. Il fondale pulito è preferito automaticamente, con fallback legacy e banco indipendente. [File, provenienza e prompt finale](docs/CLEAN_BACKGROUND_GENERATION.md). La richiesta corrente autorizza un unico commit locale comprendente la2H pendente e il nuovo fondale; nessun push.

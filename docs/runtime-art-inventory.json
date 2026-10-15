@@ -955,8 +955,8 @@
           900
         ]
       },
-      "initialSceneCritical": true,
-      "deferredReason": null,
+      "initialSceneCritical": false,
+      "deferredReason": "Legacy background; fetched only if preferred clean delivery fails",
       "discardedMaximumAlpha": 0,
       "sourceRgbaSha256": "a329e35944145dec4a062dfed09f0edb654815cc517501d8fae966a2073d3db3"
     },
@@ -1242,6 +1242,69 @@
       "deferredReason": null,
       "discardedMaximumAlpha": 1,
       "sourceRgbaSha256": "32b55da5bcc03e20a729d2d08dbd2cfb347533fcf653fbf42366844951f9cf94"
+    },
+    {
+      "id": "environment.e01.background.clean",
+      "category": "background",
+      "source": {
+        "width": 1600,
+        "height": 1000,
+        "sha256": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b",
+        "alpha": {
+          "x": 0,
+          "y": 0,
+          "width": 1600,
+          "height": 1000
+        }
+      },
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 1000
+      },
+      "padding": 0,
+      "alphaThreshold": 8,
+      "variants": {
+        "1x": {
+          "path": "art/runtime/environments/e01/background-clean-1x-58561551ef61.png",
+          "width": 1440,
+          "height": 900,
+          "bytes": 1632039,
+          "sha256": "58561551ef6176a3774506712f617a6143afe1d3c177e53caae9908343aa4e86",
+          "format": "png"
+        },
+        "2x": {
+          "path": "art/runtime/environments/e01/background-clean-2x-7b87d6443b34.png",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 1921815,
+          "sha256": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b",
+          "format": "png"
+        }
+      },
+      "sourcePath": "art-source/art/environments/e01/background-clean.png",
+      "historicalPublicPath": "art/environments/e01/background-clean.png",
+      "sourceBytes": 1921815,
+      "sourceRgbaBytes": 6400000,
+      "canonical": {
+        "canvas": [
+          799.3951612903226,
+          500
+        ],
+        "clipY": 292
+      },
+      "maximumSupportedCss": {
+        "sourceCanvas": [
+          1439,
+          900
+        ]
+      },
+      "initialSceneCritical": true,
+      "deferredReason": null,
+      "discardedMaximumAlpha": 0,
+      "sourceRgbaSha256": "5d2f4d00d317c14b3ed1ef156ff225f6d98332a436383080394e9955cc3c35d9",
+      "provenance": "Built-in image_gen edit requested explicitly by the user on 2026-10-16, using original approved Shaker-Chaos background as reference. Historical source preserved."
     }
   ],
   "formatStudy": {
@@ -1432,7 +1495,41 @@
           "bytes": 26318,
           "rgbaIdentical": true
         }
+      },
+      {
+        "id": "environment.e01.background.clean",
+        "pngBytes": 1632039,
+        "webpLossless": {
+          "bytes": 1402944,
+          "rgbaIdentical": true
+        },
+        "avifQuality100": {
+          "bytes": 1368712,
+          "rgbaIdentical": false,
+          "maximumChannelDifference": 2
+        }
       }
     ]
-  }
+  },
+  "environmentSources": [
+    {
+      "id": "environment.e01.background.clean",
+      "environmentId": "environment.e01",
+      "role": "backgroundClean",
+      "legacyId": "environment.e01.background",
+      "sourcePath": "art-source/art/environments/e01/background-clean.png",
+      "minimumWidth": 1600,
+      "minimumHeight": 1000,
+      "aspectRatio": 1.6,
+      "aspectTolerance": 0.015,
+      "runtimeWidth1x": 1440,
+      "runtimeWidth2x": 2880,
+      "requiresOpaque": true,
+      "provenance": "Built-in image_gen edit requested explicitly by the user on 2026-10-16, using original approved Shaker-Chaos background as reference. Historical source preserved.",
+      "present": true,
+      "width": 1600,
+      "height": 1000,
+      "sha256": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b"
+    }
+  ]
 }

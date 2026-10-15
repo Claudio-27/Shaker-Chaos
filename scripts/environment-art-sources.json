@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "exports": [
+    {
+      "id": "environment.e01.background.clean",
+      "environmentId": "environment.e01",
+      "role": "backgroundClean",
+      "legacyId": "environment.e01.background",
+      "sourcePath": "art-source/art/environments/e01/background-clean.png",
+      "minimumWidth": 1600,
+      "minimumHeight": 1000,
+      "aspectRatio": 1.6,
+      "aspectTolerance": 0.015,
+      "runtimeWidth1x": 1440,
+      "runtimeWidth2x": 2880,
+      "requiresOpaque": true,
+      "provenance": "Built-in image_gen edit requested explicitly by the user on 2026-10-16, using original approved Shaker-Chaos background as reference. Historical source preserved."
+    }
+  ]
+}

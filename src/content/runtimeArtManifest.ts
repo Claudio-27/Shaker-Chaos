@@ -840,5 +840,45 @@ export const runtimeArtManifest = {
         "format": "png"
       }
     }
+  },
+  "environment.e01.background.clean": {
+    "category": "background",
+    "source": {
+      "width": 1600,
+      "height": 1000,
+      "sha256": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b",
+      "alpha": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 1000
+      }
+    },
+    "crop": {
+      "x": 0,
+      "y": 0,
+      "width": 1600,
+      "height": 1000
+    },
+    "padding": 0,
+    "alphaThreshold": 8,
+    "variants": {
+      "1x": {
+        "path": "art/runtime/environments/e01/background-clean-1x-58561551ef61.png",
+        "width": 1440,
+        "height": 900,
+        "bytes": 1632039,
+        "sha256": "58561551ef6176a3774506712f617a6143afe1d3c177e53caae9908343aa4e86",
+        "format": "png"
+      },
+      "2x": {
+        "path": "art/runtime/environments/e01/background-clean-2x-7b87d6443b34.png",
+        "width": 1600,
+        "height": 1000,
+        "bytes": 1921815,
+        "sha256": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b",
+        "format": "png"
+      }
+    }
   }
 } as const satisfies Readonly<Record<string, RuntimeAssetDefinition>>;

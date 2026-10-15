@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
-import { optionalAsset, resolveAsset } from '../content/visualPlan.ts';
-import type { AssetId, VisualCatalog, VisualSequence } from '../content/visualModel.ts';
+import { environmentBackground, optionalAsset, resolveAsset } from '../content/visualPlan.ts';
+import type { AssetId, EnvironmentVisualDefinition, VisualCatalog, VisualSequence } from '../content/visualModel.ts';
 import { runtimeCandidates } from '../content/runtimeVariants.ts';
 import type { RasterDemand } from '../content/runtimeVariants.ts';
 import { readRasterDemand } from '../platform/visualViewport.ts';
@@ -19,7 +19,14 @@ export function VisualAssetsProvider({ catalog, children }: { readonly catalog: 
   }, []);
   return <VisualContext.Provider value={catalog}><DemandContext.Provider value={demand}>{children}</DemandContext.Provider></VisualContext.Provider>;
 }
-export function AssetImage({ assetId, fallback, lastResort, optional = false, className = '', alt = '', style, framing, priority = 'auto' }: {
+/** Fallback is presentation-only and never changes the saved environment/content ID. */
+export function EnvironmentArt({ environment }: { readonly environment: EnvironmentVisualDefinition }) {
+  const catalog = useContext(VisualContext);
+  if (!catalog) throw new Error('Visual assets require an explicit catalog');
+  const { preferred, legacy } = environmentBackground(catalog, environment);
+  return <AssetImage key={preferred} assetId={preferred} fallback={legacy} className="environment-background" priority="high" optional />;
+}
+export function AssetImage({ assetId, fallback: suppliedFallback, lastResort, optional = false, className = '', alt = '', style, framing, priority = 'auto' }: {
   readonly assetId: AssetId; readonly fallback?: AssetId; readonly lastResort?: AssetId; readonly optional?: boolean; readonly className?: string;
   readonly alt?: string; readonly style?: CSSProperties; readonly framing?: VisualFraming; readonly priority?: 'high' | 'low' | 'auto';
 }) {
@@ -27,6 +34,7 @@ export function AssetImage({ assetId, fallback, lastResort, optional = false, cl
   const [failedPaths, setFailedPaths] = useState<readonly string[]>([]);
   const [failed, setFailed] = useState<readonly AssetId[]>([]);
   if (!catalog) throw new Error('Visual assets require an explicit catalog');
+  const fallback = suppliedFallback ?? (assetId.startsWith('environment.') ? Object.values(catalog.environments).find(environment => environment.backgroundClean === assetId)?.background : undefined);
   const preferred = optional || fallback ? optionalAsset(catalog, assetId, fallback) : assetId;
   const current = preferred && !failed.includes(preferred) ? preferred :
     fallback && !failed.includes(fallback) ? optionalAsset(catalog, fallback) :

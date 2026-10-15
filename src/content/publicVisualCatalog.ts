@@ -1,9 +1,13 @@
 import { runtimeArtManifest } from './runtimeArtManifest.ts';
-import type { VisualCatalog } from './visualModel.ts';
+import type { AssetId, RuntimeAssetDefinition, VisualCatalog } from './visualModel.ts';
+
+const cleanId = 'environment.e01.background.clean';
+const clean = (runtimeArtManifest as Partial<Record<AssetId, RuntimeAssetDefinition>>)[cleanId];
 
 /** Public supplied artwork plus original fallbacks; all image paths live here. */
 export const publicVisualCatalog: VisualCatalog = {
   "assets": {
+    ...(clean ? { [cleanId]: { path: clean.variants['1x'].path, width: clean.source.width, height: clean.source.height, format: 'png' as const, visibility: 'public' as const, runtime: clean } } : {}),
     "bartender.milo.idle": {
       "path": "art/placeholders/milo-idle.svg",
       "width": 480,
@@ -469,7 +473,8 @@ export const publicVisualCatalog: VisualCatalog = {
     },
     "environment.e01": {
       "id": "environment.e01",
-      "background": "environment.e01.background"
+      "background": "environment.e01.background",
+      "backgroundClean": "environment.e01.background.clean"
     }
   },
   "reactions": {

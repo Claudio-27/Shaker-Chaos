@@ -1,5 +1,5 @@
 import type { ReactionTier } from '../domain/model.ts';
-import type { AssetId, ImageAssetDefinition, SceneSelection, VisualCatalog, VisualLoadout, VisualSequence } from './visualModel.ts';
+import type { AssetId, EnvironmentVisualDefinition, ImageAssetDefinition, SceneSelection, VisualCatalog, VisualLoadout, VisualSequence } from './visualModel.ts';
 import { validateLoadout } from './visualLoadout.ts';
 export function resolveAsset(catalog: VisualCatalog, id: AssetId): ImageAssetDefinition {
   const asset = catalog.assets[id];
@@ -11,6 +11,10 @@ export function optionalAsset(catalog: VisualCatalog, id: AssetId | undefined, f
   if (id && catalog.assets[id]?.visibility === 'public') return id;
   if (fallback) { resolveAsset(catalog, fallback); return fallback; }
   return undefined;
+}
+/** Same stable environment ID, independently selected counter. Missing clean art is normal. */
+export function environmentBackground(catalog: VisualCatalog, environment: EnvironmentVisualDefinition) {
+  return { preferred: optionalAsset(catalog, environment.backgroundClean, environment.background)!, legacy: environment.background };
 }
 export function selectReactionId(catalog: VisualCatalog, tier: ReactionTier) { return catalog.reactionByTier[tier]; }
 export function selectedEffect(catalog: VisualCatalog, loadout: VisualLoadout): AssetId | undefined {
@@ -28,7 +32,7 @@ export function planSceneAssets(catalog: VisualCatalog, selection: SceneSelectio
   validateLoadout(catalog, selection);
   const bartender = catalog.bartenders[selection.bartenderId]!;
   const environment = catalog.environments[selection.environmentId]!;
-  const critical = new Set<AssetId>([bartender.idle, environment.background, catalog.counters[selection.counterId]!.surface,
+  const critical = new Set<AssetId>([bartender.idle, environmentBackground(catalog, environment).preferred, catalog.counters[selection.counterId]!.surface,
     catalog.gameplay.shaker, catalog.gameplay.glass, catalog.gameplay.ice, catalog.gameplay.garnish,
     ...Object.values(catalog.controls), ...(bartender.accessories ?? []), ...(environment.decorations ?? []).map((layer) => layer.asset)]);
   if (environment.backBar) critical.add(environment.backBar);
@@ -80,6 +84,7 @@ export function validateVisualCatalog(catalog: VisualCatalog): void {
   for (const [id, environment] of Object.entries(catalog.environments)) {
     if (id !== environment.id) throw new RangeError('Environment visual key differs from content ID');
     resolveAsset(catalog, environment.background);
+    if (environment.backgroundClean && catalog.assets[environment.backgroundClean]) resolveAsset(catalog, environment.backgroundClean);
     if (environment.backBar) resolveAsset(catalog, environment.backBar);
     environment.decorations?.forEach((layer) => resolveAsset(catalog, layer.asset));
   }

@@ -29,7 +29,9 @@ export interface IngredientVisualDefinition {
   readonly liquid: { readonly color: string; readonly overlay?: AssetId };
 }
 export interface EnvironmentVisualDefinition {
-  readonly id: string; readonly background: AssetId; readonly backBar?: AssetId; readonly decorations?: readonly VisualLayer[];
+  readonly id: string; readonly background: AssetId;
+  /** Optional clean layer; background stays the independently retained legacy fallback. */
+  readonly backgroundClean?: AssetId; readonly backBar?: AssetId; readonly decorations?: readonly VisualLayer[];
 }
 export interface CounterVisualDefinition { readonly id: string; readonly surface: AssetId; readonly fit: 'cover' | 'contain' }
 export interface EffectVisualDefinition { readonly id: string; readonly asset?: AssetId }

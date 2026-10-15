@@ -103,3 +103,11 @@ Portrait separati: master **512×512** alpha, inquadratura coerente con i ritrat
 Sparkles/ice-blue separati, alpha e pivot esplicito relativo al canvas del bartender. Nessun nuovo effetto permanente sul personaggio. Il loro contenuto rimane indipendente da gameplay, punteggio e ricompense.
 
 Ogni consegna comprende ID canonico, dimensioni, alpha bounds, pivot/baseline, spazio colore, elenco livelli e hash. Master fuori dal web root; derivati e manifest generati dalla pipeline. Nessuno SVG semplice di comando va rasterizzato. Qualsiasi compressione lossy richiede una futura approvazione visiva esplicita.
+
+## Fase 2H — contratto di consegna vincolante
+
+**CLASSIC STAGE GEOMETRY LOCKED AFTER PHASE 2H.** L’artwork futuro deve adattarsi a classicStageLayout.ts e al framing 2F. Nessun nuovo sistema può spostare mensola, bartender, piano banco, mixing, comandi, HUD o messaggi: usare overlay/dialoghi/schermate secondarie. classicStageContract.ts espone riferimenti alle costanti esistenti, senza una seconda configurazione.
+
+Clean export attualmente assente. Drop-in preciso: **art-source/art/environments/e01/background-clean.png**. Contratto tecnico in scripts/environment-art-sources.json, brief in [ART_REQUEST_ENVIRONMENT_E01_CLEAN](ART_REQUEST_ENVIRONMENT_E01_CLEAN.md). Master3200×2000 consigliato, minimo1600×1000; runtime1440/2880px di larghezza con cap alla sorgente. PNG opaco, sRGB, circa16:10; nessun ritaglio nuovo o ricostruzione automatica. Il contesto artistico richiede revisione visiva anche dopo i controlli tecnici.
+
+Il file deve essere l’export approvato dall’utente. La sua presenza attiva la preferenza alla successiva art:build; non si modifica mai il master legacy o il record storico dei suoi hash. Nessun nuovo export è stato prodotto in2H. Il limite del doppio banco resta **BLOCKED ON NEW ART EXPORT**.

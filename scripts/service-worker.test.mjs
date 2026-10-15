@@ -112,3 +112,18 @@ test('scene fallback validation rejects private paths and unrequested sources be
   const w=worker({artCount:1});assert.equal((await warm(w,['art/active.png'],alternatives)).ok,false);assert.equal(w.fetched.length,0);
  }
 });
+
+test('ordered clean-resolution and legacy offline fallbacks stop at the first cached success',async()=>{
+ const w=worker({offline:true,artCount:2});w.art.set('http://localhost/game/art/variant-1.png',{ok:true,type:'basic'});
+ assert.equal((await warm(w,['art/active.png'],{'art/active.png':['art/variant-0.png','art/variant-1.png']})).ok,true);
+ assert.deepEqual(w.fetched,['http://localhost/game/art/active.png','http://localhost/game/art/variant-0.png']);
+});
+test('multiple offline alternatives remain deferred when preferred artwork succeeds',async()=>{
+ const w=worker({artCount:2});assert.equal((await warm(w,['art/active.png'],{'art/active.png':['art/variant-0.png','art/variant-1.png']})).ok,true);
+ assert.deepEqual(w.fetched,['http://localhost/game/art/active.png']);
+});
+test('invalid or unbounded alternative chains reject before any network request',async()=>{
+ for(const chain of [[],[null],['../art-source/master.png'],['art/variant-0.png','https://example.invalid/secret'],Array(5).fill('art/variant-0.png')]){
+  const w=worker({artCount:1});assert.equal((await warm(w,['art/active.png'],{'art/active.png':chain})).ok,false);assert.equal(w.fetched.length,0);
+ }
+});

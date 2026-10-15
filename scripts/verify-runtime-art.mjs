@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -9,11 +9,20 @@ export function verifyRuntimeArt() {
   const read=path=>readFileSync(resolve(root,path));
   const data=JSON.parse(read('docs/runtime-art-inventory.json'));
   const historical=JSON.parse(read('docs/artwork-inventory.json'));
-  assert.equal(data.assets.length,historical.length);
+  const contract=JSON.parse(read('scripts/environment-art-sources.json'));
+  const optional=(data.environmentSources ?? []).filter(row=>row.present);
+  for(const spec of contract.exports){
+    const record=data.environmentSources?.find(row=>row.id===spec.id);assert.ok(record,'Run art:build -- --environments-only to refresh source discovery');
+    assert.equal(record.sourcePath,spec.sourcePath);
+    const exists=existsSync(resolve(root,spec.sourcePath));assert.equal(record.present,exists,'Optional source changed; rerun art:build -- --environments-only');
+    if(exists){const bytes=read(spec.sourcePath);assert.equal(sha256(bytes),record.sha256);assert.ok(bytes.readUInt32BE(16)>=spec.minimumWidth&&bytes.readUInt32BE(20)>=spec.minimumHeight);}
+  }
+  assert.equal(data.assets.length,historical.length+optional.length);
+  function sha256(bytes){return createHash('sha256').update(bytes).digest('hex');}
   assert.deepEqual(data.config,JSON.parse(read('scripts/art-runtime-config.json')));
   const sha=bytes=>createHash('sha256').update(bytes).digest('hex'),paths=new Set();
   for(const row of data.assets){
-    const original=historical.find(item=>item.id===row.id);assert.ok(original);
+    const original=historical.find(item=>item.id===row.id) ?? optional.find(item=>item.id===row.id);assert.ok(original);
     assert.ok(row.sourcePath.startsWith('art-source/'));assert.equal(sha(read(row.sourcePath)),original.sha256);
     assert.equal(row.source.width,original.width);assert.equal(row.source.height,original.height);
     const {crop,source}=row;assert.ok(crop.x>=0&&crop.y>=0&&crop.width>0&&crop.height>0&&crop.x+crop.width<=source.width&&crop.y+crop.height<=source.height);

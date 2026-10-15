@@ -1,7 +1,6 @@
-import { runtimeCandidates, runtimePath } from '../content/runtimeVariants.ts';
+import { sceneDownloads } from '../content/sceneDownloads.ts';
 import { readRasterDemand } from './visualViewport.ts';
 import type { SceneSelection, VisualCatalog } from '../content/visualModel.ts';
-import { planSceneAssets, resolveAsset } from '../content/visualPlan.ts';
 export type ShellStatus = 'development' | 'unavailable' | 'ready' | 'error';
 /** Explicit warm works even on the first uncontrolled page visit. */
 export async function registerOfflineShell(catalog: VisualCatalog, selection: SceneSelection): Promise<ShellStatus> {
@@ -12,9 +11,7 @@ export async function registerOfflineShell(catalog: VisualCatalog, selection: Sc
     await navigator.serviceWorker.register(new URL('sw.js', base), { scope: base.pathname });
     const registration = await navigator.serviceWorker.ready;
     if (!registration.active) return 'error';
-    const ids = planSceneAssets(catalog, selection).critical, demand = readRasterDemand();
-    const paths = ids.map(id => runtimePath(resolveAsset(catalog,id),demand));
-    const fallbackPaths = Object.fromEntries(ids.flatMap(id => { const candidates = runtimeCandidates(resolveAsset(catalog,id),demand); return candidates.length > 1 ? [[candidates[0]!.path,candidates[1]!.path]] : []; }));
+    const { paths, fallbackPaths } = sceneDownloads(catalog, selection, readRasterDemand());
     const ready = await new Promise<boolean>((resolve) => {
       const channel = new MessageChannel();
       const timer = window.setTimeout(() => { channel.port1.close(); resolve(false); }, 30000);

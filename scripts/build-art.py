@@ -8,6 +8,13 @@ CONFIG=json.loads((ROOT/'scripts/art-runtime-config.json').read_text(encoding='u
 if PIL.__version__!=CONFIG['pillowVersion']:
     raise RuntimeError('Reproducible art:build requires Pillow '+CONFIG['pillowVersion']+'; found '+PIL.__version__)
 SOURCE=json.loads((ROOT/'docs/artwork-inventory.json').read_text(encoding='utf-8'))
+CONTRACT=json.loads((ROOT/'scripts/environment-art-sources.json').read_text(encoding='utf-8'))
+if any(arg!='--environments-only' for arg in sys.argv[1:]):raise ValueError('Unknown art build argument')
+INCREMENTAL='--environments-only' in sys.argv[1:]
+previous_path=ROOT/'docs/runtime-art-inventory.json'
+previous=json.loads(previous_path.read_text(encoding='utf-8')) if previous_path.exists() else {}
+previous_rows={row['id']:row for row in previous.get('assets',[])}
+optional_specs={};environment_sources=[]
 def owned(relative):
     p=(ROOT/relative).resolve()
     if ROOT not in p.parents: raise ValueError('Path outside repository')
@@ -31,19 +38,40 @@ def encode_png(image):
     stream=io.BytesIO()
     image.save(stream,format='PNG',optimize=True,compress_level=9)
     return stream.getvalue()
+for spec in CONTRACT['exports']:
+    source=owned(spec['sourcePath'])
+    if not source.is_relative_to(owned('art-source')):raise ValueError('Environment master outside source tree')
+    record={**spec,'present':source.is_file()}
+    if record['present']:
+        raw=source.read_bytes();image=Image.open(io.BytesIO(raw)).convert('RGBA')
+        if raw[:8]!=b'\x89PNG\r\n\x1a\n':raise ValueError('Clean source must be PNG')
+        if image.width<spec['minimumWidth'] or image.height<spec['minimumHeight'] or abs(image.width/image.height-spec['aspectRatio'])>spec['aspectTolerance']:raise ValueError('Clean source dimensions/aspect violate environment contract')
+        if spec['requiresOpaque'] and image.getchannel('A').getextrema()!=(255,255):raise ValueError('Clean background must be opaque')
+        record.update({'width':image.width,'height':image.height,'sha256':sha(raw)})
+        SOURCE.append({'id':spec['id'],'path':spec['sourcePath'][len('art-source/'):],'sha256':sha(raw)})
+        optional_specs[spec['id']]=spec
+    environment_sources.append(record)
 manifest={};inventory=[];variants_paths=set();codec={'pillow':PIL.__version__,'webpSupported':features.check('webp'),'avifSupported':features.check('avif'),'webpSettings':{'lossless':True,'quality':75,'method':4,'exact':True},'comparisons':[]}
 for old in SOURCE:
     asset_id=old['id'];cat=category(asset_id);settings=CONFIG['categories'][cat]
     relative='art-source/'+old['path'];source=owned(relative);raw=source.read_bytes()
     if sha(raw)!=old['sha256']:raise ValueError('Master hash mismatch: '+asset_id)
     if not source.is_relative_to(owned('art-source')):raise ValueError('Source outside approved source folder')
+    retained=previous_rows.get(asset_id)
+    same_contract=asset_id not in optional_specs or previous.get('environmentSources',[])==environment_sources
+    if INCREMENTAL and retained and retained['source']['sha256']==sha(raw) and previous.get('config')==CONFIG and same_contract:
+        manifest[asset_id]={key:retained[key] for key in ['category','source','crop','padding','alphaThreshold','variants']}
+        inventory.append(retained);variants_paths.update(v['path'] for v in retained['variants'].values())
+        codec['comparisons'].extend(row for row in previous.get('formatStudy',{}).get('comparisons',[]) if row['id']==asset_id)
+        print('Retained unchanged:',asset_id,flush=True);continue
     image=Image.open(io.BytesIO(raw)).convert('RGBA');alpha=image.getchannel('A')
     alpha_box=alpha.point(lambda n:255 if n>=CONFIG['alphaThreshold'] else 0).getbbox()
     if not alpha_box:raise ValueError('Empty alpha artwork')
     pad=settings['padding'];l,t,r,b=alpha_box
     crop=(max(0,l-pad),max(0,t-pad),min(image.width,r+pad),min(image.height,b+pad)) if cat!='background' else (0,0,image.width,image.height)
     cropped=image.crop(crop);cw,ch=cropped.size;opaque_w,opaque_h=r-l,b-t
-    if settings.get('sourceResolution'):base_scale=1
+    if asset_id in optional_specs:base_scale=optional_specs[asset_id]['runtimeWidth1x']/image.width
+    elif settings.get('sourceResolution'):base_scale=1
     elif 'opaqueHeight1x' in settings:base_scale=settings['opaqueHeight1x']/opaque_h
     elif 'opaqueWidth1x' in settings:base_scale=settings['opaqueWidth1x']/opaque_w
     else:base_scale=settings['canvasHeight1x']/image.height
@@ -51,7 +79,7 @@ for old in SOURCE:
     row={'category':cat,'source':source_info,'crop':box_tuple(crop),'padding':pad,'alphaThreshold':CONFIG['alphaThreshold'],'variants':{}}
     runtime_images={}
     for density in [1,2]:
-        scale=min(1,base_scale*density);size=(max(1,round(cw*scale)),max(1,round(ch*scale)))
+        scale=min(1,optional_specs[asset_id]['runtimeWidth'+str(density)+'x']/image.width) if asset_id in optional_specs else min(1,base_scale*density);size=(max(1,round(cw*scale)),max(1,round(ch*scale)))
         resized=cropped if size==cropped.size else cropped.convert('RGBa').resize(size,Image.Resampling.LANCZOS).convert('RGBA')
         if resized.getchannel('A').getextrema()==(255,255):resized=resized.convert('RGB')
         data=encode_png(resized);digest=sha(data)
@@ -88,6 +116,12 @@ if old_manifest.exists():
         for v in old['variants'].values():
             p=owned('public/'+v['path'])
             if v['path'] not in variants_paths and p.is_relative_to(owned('public/art/runtime')):p.unlink(missing_ok=True)
-output={'schemaVersion':1,'generator':'scripts/build-art.py','config':CONFIG,'assets':inventory,'formatStudy':codec}
+for spec in environment_sources:
+    for item in inventory:
+        if item['id']==spec['id'] and spec['present']:
+            item['initialSceneCritical']=True;item['deferredReason']=None;item['provenance']=spec['provenance']
+        elif item['id']==spec['legacyId']:
+            item['initialSceneCritical']=not spec['present'];item['deferredReason']='Legacy background; fetched only if preferred clean delivery fails' if spec['present'] else None
+output={'schemaVersion':1,'generator':'scripts/build-art.py','config':CONFIG,'assets':inventory,'formatStudy':codec,'environmentSources':environment_sources}
 write_stable(ROOT/'docs/runtime-art-inventory.json',(json.dumps(output,indent=2)+'\n').encode('utf-8'))
 write_stable(ROOT/'src/content/runtimeArtManifest.ts',("// GENERATED by npm run art:build. Runtime URLs only; master paths stay outside the web root.\nimport type { RuntimeAssetDefinition } from './visualModel.ts';\nexport const runtimeArtManifest = "+json.dumps(manifest,indent=2)+" as const satisfies Readonly<Record<string, RuntimeAssetDefinition>>;\n").encode('utf-8'))

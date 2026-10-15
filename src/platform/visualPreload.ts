@@ -1,12 +1,16 @@
-import { runtimePath } from '../content/runtimeVariants.ts';
+import { sceneDownloads } from '../content/sceneDownloads.ts';
 import { readRasterDemand } from './visualViewport.ts';
-import { planSceneAssets, resolveAsset } from '../content/visualPlan.ts';
 import type { SceneSelection, VisualCatalog } from '../content/visualModel.ts';
-/** Warm only current visible public assets; variants load when rendered. */
+/** Warm current visible assets only; follow alternatives only after a delivery failure. */
 export function primeSceneVisuals(catalog: VisualCatalog, selection: SceneSelection, baseUrl: string): () => void {
-  for (const id of planSceneAssets(catalog, selection).critical) {
-    const image = new Image();
-    image.decoding = 'async'; image.src = baseUrl + runtimePath(resolveAsset(catalog, id), readRasterDemand());
-  }
-  return () => {};
+  const { paths, fallbackPaths } = sceneDownloads(catalog, selection, readRasterDemand());
+  const images = paths.map(path => {
+    const image = new Image(), candidates = [path, ...(fallbackPaths[path] ?? [])];
+    let index = 0;
+    image.decoding = 'async';
+    image.onerror = () => { if (++index < candidates.length) image.src = baseUrl + candidates[index]; };
+    image.src = baseUrl + path;
+    return image;
+  });
+  return () => { for (const image of images) image.onerror = null; };
 }

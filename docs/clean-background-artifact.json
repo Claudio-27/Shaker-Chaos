@@ -1,0 +1,18 @@
+{
+  "created": "2026-10-16",
+  "method": "built-in image_gen",
+  "nativeSize": [
+    1586,
+    992
+  ],
+  "exportSize": [
+    1600,
+    1000
+  ],
+  "exportTransform": "LANCZOS technical resample; native retained; no new detail invented",
+  "hashes": {
+    "art-source/art/environments/e01/background.png": "83fd5f50914a82f2cb81414930bebb5021875a66e56e2a180d7999eb83ee9559",
+    "art-source/art/environments/e01/background-clean.native.png": "e3a428e341ad32f1bcb57845897dbc89cba93602adcfdea1280328d87cb0bb4a",
+    "art-source/art/environments/e01/background-clean.png": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b"
+  }
+}

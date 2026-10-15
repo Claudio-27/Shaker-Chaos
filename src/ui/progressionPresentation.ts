@@ -1,3 +1,4 @@
+import { environmentBackground } from '../content/visualPlan.ts';
 import type { PlayerSnapshot } from '../application/playerController.ts';
 import type { ContentItem } from '../content/contentModel.ts';
 import type { VisualCatalog, AssetId } from '../content/visualModel.ts';
@@ -33,7 +34,7 @@ export function collectionItems() { return publicContentCatalog.items.filter(ite
 export function contentPortrait(item: ContentItem, visuals: VisualCatalog): AssetId | undefined {
   const id = item.visualDefinitionId;
   if (item.kind === 'bartender') return visuals.bartenders[id]?.portrait ?? visuals.bartenders[id]?.idle;
-  if (item.kind === 'environment') return visuals.environments[id]?.background;
+  if (item.kind === 'environment') { const environment = visuals.environments[id]; return environment ? environmentBackground(visuals, environment).preferred : undefined; }
   if (item.kind === 'counter') return visuals.counters[id]?.surface;
   if (item.kind === 'effect') return visuals.effects[id]?.asset;
 }

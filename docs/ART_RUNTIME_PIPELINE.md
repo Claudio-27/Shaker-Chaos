@@ -66,3 +66,19 @@ Lo sfondo rimane intero e sensibile alla composizione: niente nuovo crop portrai
 npm run art:measure ricostruisce docs/runtime-art-performance.json dal planner corrente e dall’inventario generato, senza rigenerare immagini. Le somme sono byte dei file e RGBA teorico, non benchmark di RAM, rete o tablet fisico. Due esecuzioni complete della pipeline finale hanno prodotto gli stessi 43 file byte per byte (41 PNG e due manifest).
 
 I tre campioni WebP lossless (b01 idle, bottle01 e calice) sono stati anche decodificati in Chrome e confrontati su checkerboard; tutti i 21 campioni hanno RGBA identico nel confronto Pillow. PNG resta il formato scelto in questa fase. Verifiche browser, fallback offline e limiti nel [rapporto 2G](PHASE_2G_REPORT.md).
+
+## Fase 2H — clean background opzionale
+
+Contratto: scripts/environment-art-sources.json. Target approvato: art-source/art/environments/e01/background-clean.png; in questa fase è **assente**, senza placeholder. Il catalogo mantiene environment.e01 e preferisce automaticamente environment.e01.background.clean quando il relativo runtime è generato. Nessuna migrazione dei loadout.
+
+Dopo il drop-in eseguire **npm run art:build -- --environments-only** con lo stesso ART_PYTHON/Pillow12.3.0. Il comando scopre il file, verifica PNG opaco, dimensioni minime1600×1000 e rapporto, registra provenienza/hash e produce1x/2x1440/2880px con cap al master. Riusa senza rigenerarli tutti gli asset già verificati e invariati. Seguire con art:verify, art:measure e check. La build normale continua a usare i derivati versionati; non cerca o scarica immagini. La verifica semantica del clean rimane visiva.
+
+environmentSources nell’inventario è un record additivo di presenza/provenienza. docs/artwork-inventory.json e i21 master storici non cambiano. Rimuovendo il clean e rieseguendo la manutenzione si torna al legacy; vengono rimossi solo i derivati obsoleti generati, con i confini già previsti. Lo schema del profilo non cambia.
+
+PWA: stesso precache7shell, allowlist esatta dei runtime e limite32. Ora le alternative supportano una catena limitata/validata, comprendente clean1x/2x elegacy; niente download speculativi. Offline usa il clean se già disponibile; può usare il legacy in cache se la consegna clean fallisce. In assenza di export la verifica reale riguarda il legacy: non si dichiara un clean offline mai fornito. Non si memorizzano master o path diart-source.
+
+Vedere [brief artista](ART_REQUEST_ENVIRONMENT_E01_CLEAN.md), [rapporto2H](PHASE_2H_REPORT.md) e baseline finali. **CLASSIC STAGE GEOMETRY LOCKED AFTER PHASE 2H.**
+
+## Clean background attivo — 2026-10-16
+
+Il target opzionale è stato soddisfatto su richiesta esplicita con image_gen integrato: sorgente export1600×1000 e raster nativo1586×992 conservato, ridimensionamento tecnico lieve dichiarato. Ruoli e ID invariati;22 sorgenti registrate e43 PNG runtime, più21SVG (64 URL). Il clean1x è1440×900,2x1600×1000: cap al dettaglio realmente disponibile, nessuna promessa di nuovi dettagli per il lieve aumento del canvas. Legacy e tutti gli altri raster invariati. Vedere CLEAN_BACKGROUND_GENERATION.md e il prompt completo. Questo aggiornamento risolve lo stato “assente” del contratto; la pipeline resta deterministica e il normale build non genera immagini.

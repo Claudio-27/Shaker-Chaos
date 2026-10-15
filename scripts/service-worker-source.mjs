@@ -55,20 +55,25 @@ self.addEventListener('message', (event) => {
     const input = event.data.fallbackPaths ?? {};
     if (!input || typeof input !== 'object' || Array.isArray(input)) throw new Error('Invalid fallbacks');
     for (const [from,to] of Object.entries(input)) {
-      if (typeof to !== 'string') throw new Error('Invalid fallback path');
-      const source = new URL(from,self.registration.scope).href, target = new URL(to,self.registration.scope).href;
-      if (!urls.includes(source) || !ART_URLS.includes(target)) throw new Error('Fallback outside exact allowlist');
-      alternatives.set(source,target);
+      const values = typeof to === 'string' ? [to] : to;
+      if (!Array.isArray(values) || !values.length || values.length > 4 || values.some(path => typeof path !== 'string')) throw new Error('Invalid fallback paths');
+      const source = new URL(from,self.registration.scope).href, targets = [...new Set(values.map(path => new URL(path,self.registration.scope).href))];
+      if (!urls.includes(source) || targets.some(target => !ART_URLS.includes(target))) throw new Error('Fallback outside exact allowlist');
+      alternatives.set(source,targets);
     }
   } catch { event.ports?.[0]?.postMessage({ ok: false }); return; }
   activeScene = new Set(urls);
   event.waitUntil(Promise.all(urls.map(async url => {
-    try { const response = await artwork(url); if (!response.ok) throw new Error('Primary unavailable'); return response; }
-    catch (error) {
-      const alternate = alternatives.get(url); if (!alternate) throw error;
-      activeScene.add(alternate); const response = await artwork(alternate);
-      if (response.ok) activeScene.delete(url); return response;
+    let lastError;
+    for (const candidate of [url, ...(alternatives.get(url) ?? [])]) {
+      activeScene.add(candidate);
+      try {
+        const response = await artwork(candidate); if (!response.ok) throw new Error('Artwork unavailable');
+        if (candidate !== url) activeScene.delete(url);
+        return response;
+      } catch (error) { if (candidate !== url) activeScene.delete(candidate); lastError = error; }
     }
+    throw lastError;
   })).then((responses) => {
     event.ports?.[0]?.postMessage({ ok: responses.every((response) => response.ok) });
   }).catch(() => { event.ports?.[0]?.postMessage({ ok: false }); }));

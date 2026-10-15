@@ -1,7 +1,7 @@
 {
   "activeIds": [
     "bartender.b01.idle",
-    "environment.e01.background",
+    "environment.e01.background.clean",
     "counter.c01.surface",
     "gameplay.chrome-shaker",
     "gameplay.martini-glass",
@@ -19,18 +19,18 @@
   "activeDistinctImageUrls": 15,
   "activeRasterCount": 9,
   "before": {
-    "pngBytes": 13205660,
-    "rgbaBytes": 56620816
+    "pngBytes": 13016102,
+    "rgbaBytes": 56727568
   },
   "after1x": {
-    "pngBytes": 2832219,
-    "rgbaBytes": 8922428
+    "pngBytes": 2418236,
+    "rgbaBytes": 7813180
   },
   "after2x": {
-    "pngBytes": 4759688,
-    "rgbaBytes": 16717984
+    "pngBytes": 4635481,
+    "rgbaBytes": 16824736
   },
-  "publicRuntimeUrls": 62,
+  "publicRuntimeUrls": 64,
   "categories": {
     "bartender.b01": {
       "sourceBytes": 6633068,
@@ -63,9 +63,9 @@
       "runtime2x": 1471285
     },
     "environment": {
-      "sourceBytes": 2111373,
-      "runtime1x": 2046022,
-      "runtime2x": 2046022
+      "sourceBytes": 4033188,
+      "runtime1x": 3678061,
+      "runtime2x": 3967837
     }
   }
 }

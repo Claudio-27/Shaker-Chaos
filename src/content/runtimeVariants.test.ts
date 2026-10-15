@@ -11,7 +11,7 @@ import type { AssetId } from './visualModel.ts';
 const inventory=JSON.parse(readFileSync(new URL('../../docs/runtime-art-inventory.json',import.meta.url),'utf8'));
 
 test('generated runtime manifest verifies native dimensions and byte hashes of every master/variant',()=>{
-  assert.deepEqual(verifyRuntimeArt(),{masters:21,runtimeFiles:41});validateVisualCatalog(publicVisualCatalog);
+  assert.deepEqual(verifyRuntimeArt(),{masters:inventory.assets.length,runtimeFiles:new Set(inventory.assets.flatMap((row:{variants:Record<string,{path:string}>})=>Object.values(row.variants).map(v=>v.path))).size});validateVisualCatalog(publicVisualCatalog);
 });
 test('all production PNG IDs use runtime-only paths; original master URLs are absent from public',()=>{
   for(const [id,asset] of Object.entries(publicVisualCatalog.assets))if(asset!.format==='png'){

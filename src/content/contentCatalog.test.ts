@@ -6,7 +6,7 @@ import { publicContentCatalog, publicContentItem } from './publicContentCatalog.
 import { publicVisualCatalog as visuals } from './publicVisualCatalog.ts';
 import { validatePublicContent } from './contentValidation.ts';
 import { replaceVisualSlot, validateLoadout } from './visualLoadout.ts';
-import { ingredientVisuals, optionalAsset, planSceneAssets, resolveAsset, selectedEffect, validateVisualCatalog } from './visualPlan.ts';
+import { environmentBackground, ingredientVisuals, optionalAsset, planSceneAssets, resolveAsset, selectedEffect, validateVisualCatalog } from './visualPlan.ts';
 import type { AssetId, ImageAssetDefinition, VisualLoadout } from './visualModel.ts';
 import { gameDependencies } from '../application/bootstrap.ts';
 import { newGame, transitionGame } from '../application/game.ts';
@@ -40,7 +40,7 @@ test('all bartender, environment and counter combinations resolve independently'
     validateLoadout(visuals, combined);
     const plan = planSceneAssets(visuals, { ...combined, ingredientIds: ['orchard', 'citrus', 'soda'] });
     assert.ok(plan.critical.includes(visuals.bartenders[bartenderId]!.idle));
-    assert.ok(plan.critical.includes(visuals.environments[environmentId]!.background));
+    assert.ok(plan.critical.includes(environmentBackground(visuals,visuals.environments[environmentId]!).preferred));
     assert.ok(plan.critical.includes(visuals.counters[counterId]!.surface));
   }
   const next = replaceVisualSlot(loadout, 'bartenderId', 'bartender.b02');

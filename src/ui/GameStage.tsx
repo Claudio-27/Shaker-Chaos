@@ -8,7 +8,7 @@ import type { VolumeUnit } from '../domain/quantity.ts';
 import { volumeUnits } from '../domain/quantity.ts';
 import type { AssetId, EnvironmentVisualDefinition, ReactionId, VisualCatalog, VisualLoadout, VisualSequence } from '../content/visualModel.ts';
 import { playerCopy } from '../content/playerExperience.ts';
-import { AssetImage, SequenceArt } from './AssetVisual.tsx';
+import { AssetImage, EnvironmentArt, SequenceArt } from './AssetVisual.tsx';
 import { bottleSlot, bottleSlotVariables } from './classicStageLayout.ts';
 import { BACKGROUND_STYLE } from './classicVisualFraming.ts';
 import { useClassicStageFrame } from './useClassicStageFrame.ts';
@@ -27,7 +27,7 @@ export function GameStage({ environment, debug, diagnostics, failed, children, m
   return <div className="classic-stage-frame" data-classic-exact={exact || undefined} ref={frameRef} style={variables}><div className="classic-stage-sizer">
   <section className={`game-stage ${debug ? 'stage-debug' : ''}`} data-failed={failed} ref={stageRef} aria-label="Banco di miscelazione">
     <div className="environment-layers" style={BACKGROUND_STYLE} aria-hidden="true">
-      <AssetImage assetId={environment.background} className="environment-background" priority="high" />
+      <EnvironmentArt environment={environment} />
       {environment.backBar && <AssetImage assetId={environment.backBar} className="environment-back-bar" />}
       {environment.decorations?.map((layer, index) => <AssetImage key={layer.asset + ':' + index} assetId={layer.asset}
         className={`environment-decoration depth-${layer.depth}`} style={{ objectFit: layer.fit }} />)}
