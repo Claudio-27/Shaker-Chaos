@@ -111,3 +111,10 @@ Ogni consegna comprende ID canonico, dimensioni, alpha bounds, pivot/baseline, s
 Clean export attualmente assente. Drop-in preciso: **art-source/art/environments/e01/background-clean.png**. Contratto tecnico in scripts/environment-art-sources.json, brief in [ART_REQUEST_ENVIRONMENT_E01_CLEAN](ART_REQUEST_ENVIRONMENT_E01_CLEAN.md). Master3200×2000 consigliato, minimo1600×1000; runtime1440/2880px di larghezza con cap alla sorgente. PNG opaco, sRGB, circa16:10; nessun ritaglio nuovo o ricostruzione automatica. Il contesto artistico richiede revisione visiva anche dopo i controlli tecnici.
 
 Il file deve essere l’export approvato dall’utente. La sua presenza attiva la preferenza alla successiva art:build; non si modifica mai il master legacy o il record storico dei suoi hash. Nessun nuovo export è stato prodotto in2H. Il limite del doppio banco resta **BLOCKED ON NEW ART EXPORT**.
+
+
+## Aggiornamento 2I — export clean presente e verificato
+
+Le indicazioni di assenza/blocco nelle sezioni2H sono storiche. background-clean.png esiste (1600×1000, PNG RGB opaco) ed è stato verificato nel gioco600×440 e offline: **DOUBLE_COUNTER_STATUS: RESOLVED**. Nessun nuovo export o generazione in2I. Le sorgenti e i derivati esistenti restano byte-identici. Identità pubblica environment.e01, banco counter.c01 indipendente, legacy solo fallback.
+
+**MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I.** Conservare composizione/ancore/geometry; adattare le future consegne allo stage approvato, senza riorganizzarlo. Rapporto e baseline in PHASE_2I_REPORT.md e visual-baselines/phase2h/.

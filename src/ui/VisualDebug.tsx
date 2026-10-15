@@ -1,3 +1,4 @@
+import type { EnvironmentVisualDefinition } from '../content/visualModel.ts';
 import { useEffect, useState } from 'react';
 import type { RefObject } from 'react';
 import type { PlayerPhase, PourFeedback, ShakeRisk } from './gameplayPresentation.ts';
@@ -9,9 +10,10 @@ export interface PresentationDiagnostics {
   readonly phase: PlayerPhase; readonly pour: PourFeedback; readonly risk: ShakeRisk;
   readonly result: ResultStage; readonly reduced: boolean;
 }
-export function VisualDebug({ stageRef, presentation, scale = 1 }: {
-  readonly stageRef: RefObject<HTMLElement | null>; readonly presentation: PresentationDiagnostics; readonly scale?: number;
+export function VisualDebug({ stageRef, presentation, environment, scale = 1 }: {
+  readonly environment: EnvironmentVisualDefinition; readonly stageRef: RefObject<HTMLElement | null>; readonly presentation: PresentationDiagnostics; readonly scale?: number;
 }) {
+  const [background, setBackground] = useState('');
   const [info, setInfo] = useState(''), [geometry, setGeometry] = useState(false);
   const [art, setArt] = useState<readonly OpaqueDiagnostic[]>([]);
   useEffect(() => {
@@ -29,6 +31,9 @@ export function VisualDebug({ stageRef, presentation, scale = 1 }: {
         const visible = { x: (rect.x - bounds.x) / unit + measured.opaque.x * factor, y: (rect.y - bounds.y) / unit + measured.opaque.y * factor, width: measured.opaque.width * factor, height: measured.opaque.height * factor };
         return [{ id, bounds: visible, detail: id + ' · source ' + measured.source.width + '×' + measured.source.height + ' · canvas ' + (rect.width / unit).toFixed(1) + '×' + (rect.height / unit).toFixed(1) + ' · opaque ' + visible.width.toFixed(1) + '×' + visible.height.toFixed(1) + ' · anchor ' + (visible.x + visible.width / 2).toFixed(1) + ',' + (visible.y + visible.height).toFixed(1) + ' · scale ' + factor.toFixed(4) }];
       }));
+      const image = stage.querySelector<SVGSVGElement>('.environment-background');
+      const resolved = image?.dataset.resolvedAsset;
+      setBackground(environment.id + ' · Background visual: ' + (resolved === environment.backgroundClean ? 'CLEAN' : 'LEGACY') + ' · Fallback: ' + (environment.backgroundClean && environment.background ? 'available' : 'none') + ' · ' + (image?.dataset.runtimePath ?? 'SVG'));
       setInfo(`${window.innerWidth}×${window.innerHeight} · scena ${Math.round(bounds.width)}×${Math.round(bounds.height)} · ${composition} · scala ${scale.toFixed(3)}`);
     };
     const observer = new ResizeObserver(update);
@@ -36,12 +41,12 @@ export function VisualDebug({ stageRef, presentation, scale = 1 }: {
     const mutation = new MutationObserver(update); mutation.observe(stage, { childList: true, subtree: true, attributes: true, attributeFilter: ['src', 'data-resolved-asset', 'data-served'] });
     window.addEventListener('resize', update); update();
     return () => { observer.disconnect(); mutation.disconnect(); window.removeEventListener('resize', update); };
-  }, [stageRef, scale]);
+  }, [stageRef, scale, environment]);
   if (!import.meta.env.DEV) return null;
   const regions = { shelf: BOTTLE_SHELF_BOUNDS, host: BARTENDER_BOUNDS, counter: COUNTER_BOUNDS, mixing: MIXING_BOUNDS, message: MESSAGE_PANEL_BOUNDS, HUD: HUD_BOUNDS };
   return <>
     <aside className="visual-debug-info" style={{ top: 38, bottom: 'auto', left: 8, fontSize: 6, padding: 3, maxWidth: 380, zIndex: STAGE_LAYERS.debug }} aria-label="Diagnostica composizione">
-      {info}<br />Presentation · {presentation.phase} / {presentation.pour} / {presentation.risk} / {presentation.result} / reduced {String(presentation.reduced)}<br />
+      {info}<br /><span data-background-diagnostic="CLEAN_ENVIRONMENT_DIAGNOSTIC_DEV_ONLY">{background}</span><br />Presentation · {presentation.phase} / {presentation.pour} / {presentation.risk} / {presentation.result} / reduced {String(presentation.reduced)}<br />
       <label style={{ display: 'flex', alignItems: 'center', minHeight: 44 / scale, pointerEvents: 'auto' }}><input type="checkbox" checked={geometry} onChange={event => setGeometry(event.target.checked)} />Griglia classica 600×440</label>
       <a href="?visualDebug=1&classicExact=1" style={{ color: '#fff0bf', pointerEvents: 'auto' }}>Vista DEV 1:1 · 600×440 CSS px</a>
       <details style={{ maxHeight: 100, overflow: 'auto', pointerEvents: 'auto' }}><summary>Sagome opache e dimensioni</summary>{art.map(item => <p key={item.id}>{item.detail}</p>)}</details>

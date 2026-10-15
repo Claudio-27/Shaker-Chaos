@@ -1,13 +1,9 @@
-# Baseline visive finali — fase 2H
+# Baseline visive — aggiornamento fase 2I
 
-Set originale **Shaker-Chaos**, senza immagini del riferimento. Stato del fondale: legacy, **BLOCKED ON NEW ART EXPORT**. La baseline fissa il risultato disponibile e la geometria, senza dichiarare risolto il doppio banco.
+Le sette baseline originali Shaker-Chaos della cartella storica phase2h sono state aggiornate il 16 ottobre 2026 con il fondale CLEAN effettivamente verificato nel browser Chrome. **DOUBLE_COUNTER_STATUS: RESOLVED.** Il set precedente legacy rimane recuperabile nel commit locale8713115. Nessuna immagine del riferimento.
 
-In DEV aprire /?artRegression=1&classicExact=1&scene=CASE su viewport1280×800. Usare i sette CASE elencati in manifest.json: b01-idle, b01-result, b02-idle, b02-result, failure, collection-closed, collection-open. Fixture in memoria e animazioni decorative ferme, nessuna scrittura ai progressi. Le immagini dei primi sei casi sono il solo rettangolo600×440 del palco. Collection-open mostra il viewport1280×800 perché il dialogo è un overlay secondario: il palco sottostante rimane600×440. Il dialogo mantiene scroll/focus/accessibilità reali.
+Viewport1280×800; palco esatto600×440. In DEV aprire /?artRegression=1&classicExact=1&scene=CASE, con i sette casi del manifest. I primi sei screenshot sono il clip600×440; Collection-open è il viewport1280×800 perché il dialogo è esterno al palco. Le fixture sono in memoria, senza persistenza o clock, con animazioni decorative ferme e comandi senza azioni. Risultati canonici deterministici9550 e0; il flusso reale di produzione è verificato separatamente.
 
-I risultati usano il gioco deterministico: eccellente9550, fallimento0. Le pose/effetti sono artwork già presenti. Le catture sono JPEG del browser: i loro hash proteggono i file di riferimento, non rappresentano una promessa di identità pixel in tutti i browser. Nessuna dipendenza snapshot aggiunta.
+manifest.json lega file, dimensioni, hash e SHA del clean effettivamente usato. I JPEG non promettono identità pixel tra browser/DPR differenti. Revisionare a pari viewport/DPR; verificare le ancore con VisualDebug e i test di geometria, storia, scoring e premi. Non modificare il lock dei cinque file per accomodare nuove funzionalità. La revisione deve rifiutare spostamenti di host/comandi, doppio banco, HUD ingrandito o composizione dashboard. Il test verifica l'integrità dei file, non interpreta semanticamente i pixel.
 
-Verifica futura: confrontare a pari viewport/DPR, controllare ancore e layer con VisualDebug, poi eseguire i test di geometria/CSS e i golden di history/score/reward. La geometria approvata resta in classicStageLayout.ts; il contratto espone i medesimi riferimenti. Non aggiornare il lock dei cinque file per accomodare un artwork nuovo.
-
-Dopo l’arrivo di background-clean: rifare solo le baseline artistiche con revisione esplicita del fondale e test di cambio banco/offline. Conservare la provenienza del set legacy e il blocco geometrico. **CLASSIC STAGE GEOMETRY LOCKED AFTER PHASE 2H.**
-
-Nota di cattura finale: il caso failure è stato riacquisito nel browser integrato Chromium dopo l’interruzione della sessione Chrome, a pari viewport1280×800 e palco600×440. La fixture usa served=false in caso di fallimento, come App: niente calice al posto dello shaker. Le fixture restano scene di composizione in memoria con controlli senza azioni di gioco, non snapshot dell’intero profilo/premio di una partita reale; il flusso di produzione è verificato separatamente.
+MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I. Vedere [rapporto2I](../../PHASE_2I_REPORT.md) e [prove produzione/offline](../phase2i/offline-evidence.json). Funzionalità future solo overlay, dialoghi o schermate secondarie.

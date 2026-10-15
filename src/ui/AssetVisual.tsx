@@ -53,7 +53,13 @@ export function AssetImage({ assetId, fallback: suppliedFallback, lastResort, op
       className={'asset-image ' + className} role={alt ? 'img' : undefined} aria-label={alt || undefined} aria-hidden={!alt || undefined} focusable="false"
       style={{ overflow: 'hidden', ...visualFramingStyle(current, framing), ...style }}>
       {href && <image href={href} x={sourcePreview ? 0 : crop.x} y={sourcePreview ? 0 : crop.y} width={sourcePreview ? asset.width : crop.width} height={sourcePreview ? asset.height : crop.height} preserveAspectRatio="none"
-        onError={() => { if (candidate && !sourcePreview && candidates.some(item => item.path !== candidate.path && !failedPaths.includes(item.path))) setFailedPaths(previous => [...previous, candidate.path]); else setFailed(previous => [...previous, current]); }} />}
+        ref={node => {
+          if (!node) return;
+          // SVG image errors do not bubble; listen directly rather than relying on React delegation.
+          const failedImage = () => { if (candidate && !sourcePreview && candidates.some(item => item.path !== candidate.path && !failedPaths.includes(item.path))) setFailedPaths(previous => [...previous, candidate.path]); else setFailed(previous => [...previous, current]); };
+          node.addEventListener('error', failedImage);
+          return () => node.removeEventListener('error', failedImage);
+        }} />}
     </svg>;
   }
   return <img src={import.meta.env.BASE_URL + asset.path} width={asset.width} height={asset.height}

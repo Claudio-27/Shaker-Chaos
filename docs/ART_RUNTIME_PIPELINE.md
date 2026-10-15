@@ -82,3 +82,10 @@ Vedere [brief artista](ART_REQUEST_ENVIRONMENT_E01_CLEAN.md), [rapporto2H](PHASE
 ## Clean background attivo — 2026-10-16
 
 Il target opzionale è stato soddisfatto su richiesta esplicita con image_gen integrato: sorgente export1600×1000 e raster nativo1586×992 conservato, ridimensionamento tecnico lieve dichiarato. Ruoli e ID invariati;22 sorgenti registrate e43 PNG runtime, più21SVG (64 URL). Il clean1x è1440×900,2x1600×1000: cap al dettaglio realmente disponibile, nessuna promessa di nuovi dettagli per il lieve aumento del canvas. Legacy e tutti gli altri raster invariati. Vedere CLEAN_BACKGROUND_GENERATION.md e il prompt completo. Questo aggiornamento risolve lo stato “assente” del contratto; la pipeline resta deterministica e il normale build non genera immagini.
+
+
+## Verifica runtime 2I
+
+Il clean è stato osservato su richiesta runtime1x1440×900 e a domanda superiore2x1600×1000. Il secondo tier è intenzionalmente limitato alla sorgente disponibile; non è un URL master, anche se ne condivide i byte. Una navigazione stabile1280×800 ha richiesto soltanto clean1x; nessun legacy, master o sibling. Il cambio viewport può correttamente cambiare tier secondo scala×DPR.
+
+Corretto il listener diretto error su SVG image con cleanup: il guasto delle due risoluzioni simulato solo nella fixture DEV attiva il legacy. La normale catena di preferenza/cache non cambia. In produzione restano64 URL art ammessi,7shell precache,zero art precached e limite32. Cache2843ac5a0c2438be. Prova reale server spento/reload/round9550 senza fallback del fondale: visual-baselines/phase2i/offline-evidence.json. I nuovi sblocchi mai scaricati possono ancora mostrare una miniatura opzionale vuota offline; la scena attiva resta disponibile. Nessun prefetch indiscriminato aggiunto.

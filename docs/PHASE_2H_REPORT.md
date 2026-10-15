@@ -62,3 +62,8 @@ L’utente ha successivamente chiesto di creare il clean background con il fonda
 Preferenza di produzione ora environment.e01.background.clean; legacy preservato, counter.c01 indipendente. Derivati clean1440×900 e1600×1000;22 sorgenti registrate/43 PNG runtime/64 URL pubblici ammessi. Tutti i21 master storici,41 derivati2G e97 file protetti rimangono identici. Geometria e regole non cambiano. Le sette baseline in visual-baselines/phase2h documentano il precedente fondale legacy e sono etichettate come tali; non vengono presentate come catture del nuovo export. La verifica visiva odierna è sul fondale generato; l’anteprima browser odierna non è stata completata per indisponibilità della sessione, senza alterare la validazione automatica.
 
 Provenienza, file nativo, export tecnico e prompt finale in [CLEAN_BACKGROUND_GENERATION](CLEAN_BACKGROUND_GENERATION.md). Un unico commit locale autorizzato include la fondazione2H pendente e questo nuovo asset; nessun push o accessoGitHub.
+
+
+## Stato successivo — fase 2I, 2026-10-16
+
+La successiva verifica reale del clean è stata completata, incluso il round offline con server spento. **DOUBLE_COUNTER_STATUS: RESOLVED. MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I.** Le sette baseline della cartella phase2h sono ora aggiornate e marcate2I; la versione legacy descritta sopra rimane nel commit8713115. Il rapporto storico non viene riscritto: PHASE_2I_REPORT.md documenta le prove nuove, il fix di fallback SVG e i limiti residui.

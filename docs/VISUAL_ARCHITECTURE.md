@@ -127,3 +127,14 @@ Baseline finali del nostro gioco: [visual-baselines/phase2h](visual-baselines/ph
 ## Fondale clean — aggiornamento del 2026-10-16
 
 È ora presente il clean background richiesto esplicitamente dall’utente. Il catalogo lo seleziona attraverso la risoluzione2H già predisposta; environment.e01 e counter.c01 restano stabili. Il fondale non include il banco né gli oggetti di preparazione; il banco selezionabile rimane l’unico piano in primo piano. Il legacy rimane fallback, non un secondo layer simultaneo. Nessuna modifica a CSS, framing o stage. [Provenienza e prompt](CLEAN_BACKGROUND_GENERATION.md). I set di baseline legacy restano storici; non sostituiscono una futura cattura artistica aggiornata. CLASSIC STAGE GEOMETRY LOCKED AFTER PHASE2H.
+
+
+## Fase 2I — verifica reale e blocco della scena
+
+**MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I.** **DOUBLE_COUNTER_STATUS: RESOLVED**, dopo ispezione del gioco reale e delle fixture600×440 con environment.e01 CLEAN e banco indipendente counter.c01. Le sette baseline sono ora aggiornate, conservando i set precedenti nella storia Git. Bloccati palco600×440, composizione clean, regione bartender, mensola, piano banco, mixing, comandi, pannello e HUD. Nuove funzionalità solo overlay/dialoghi/schermate secondarie.
+
+Nessun artwork, CSS, coordinata o metadato di framing modificato. Il framing2F condiviso conserva scala/crop e compatibilità legacy; il clip292 non è una nuova maschera e rimane necessario anche al fallback. Nessuno strip/overlay/gradiente aggiunto. Prova positiva con counter.studio. Le pose dieci e gli effetti sparkles/ice-blue sono stati osservati.
+
+Correzione d'integrazione: gli errori di SVG image non propagati richiedono listener diretto e cleanup; il guasto reale DEV delle due varianti clean ora attiva il legacy. La preferenza normale resta clean. ArtRegression può simulare il guasto solo nella fixture DEV con cleanFailure=1, senza mutare catalogo, asset o profilo. VisualDebug riporta environment.e01, CLEAN/LEGACY, runtime e fallback disponibile; l'audit impedisce l'inclusione di questi strumenti in produzione.
+
+PWA verificata su build index-K30thIJp.js/cache2843ac5a0c2438be: server spento, reload e round9550 con clean1x, nessuna richiesta legacy/master/sibling. Artwork mai richiesto resta differito, come prima. Vedere [rapporto](PHASE_2I_REPORT.md), [baseline](visual-baselines/phase2h/manifest.json), [prove offline](visual-baselines/phase2i/offline-evidence.json).

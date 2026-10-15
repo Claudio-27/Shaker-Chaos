@@ -21,3 +21,8 @@ Il prompt finale completo è in CLEAN_BACKGROUND_GENERATION_PROMPT.txt. Metodo: 
 TypeScript strict, lint ESLint,291 test, build di produzione/audit di isolamento e art:verify superati con il clean realmente presente. Nessuna modifica ai97 file protetti della precedente verifica (inclusi gameplay, stage/framing/CSS,21 sorgenti e41 raster storici). Allowlist PWA64 runtime,7file shell, zero artwork precached. L’anteprima browser in questa sessione non è stata completata perché la sessione di controllo non rispondeva; non viene dichiarata una nuova prova visiva in-game/offline. Il fondale completo è stato ispezionato visivamente e i percorsi preferiti/fallback sono coperti dai test. I sette screenshot2H restano esplicitamente baseline legacy.
 
 Hash e dimensioni in clean-background-artifact.json; prompt in CLEAN_BACKGROUND_GENERATION_PROMPT.txt. Consegna in un unico commit locale autorizzato, includendo la fondazione2H che era pendente. Nessun push o accessoGitHub.
+
+
+## Post-verifica 2I — 2026-10-16
+
+La limitazione browser della consegna precedente è stata superata: clean visto nel gioco reale,600×440, due bartender/dieci pose, banco alternativo e round offline con server fermo. **DOUBLE_COUNTER_STATUS: RESOLVED. MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I.** Sorgente1600×1000/SHA7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b e tutti i raster preservati; nessuna chiamata image generation nella2I. Le sette baseline sono state aggiornate con il clean, mantenendo la versione precedente nel commit8713115. Vedere PHASE_2I_REPORT.md per prove e limiti. La generazione descritta sopra rimane esclusivamente quella precedente.

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "project": "Shaker-Chaos",
-  "phase": "2H",
-  "backgroundStatus": "legacy — BLOCKED ON NEW ART EXPORT",
+  "phase": "2I",
+  "backgroundStatus": "CLEAN — DOUBLE_COUNTER_STATUS: RESOLVED",
   "stage": {
     "width": 600,
     "height": 440
@@ -16,8 +16,8 @@
     {
       "name": "b01-idle",
       "path": "docs/visual-baselines/phase2h/b01-idle.jpg",
-      "bytes": 67448,
-      "sha256": "f478bbc94c9479b53c13ba54018ff622102857664784bd35f2a0faa1e9866a81",
+      "bytes": 64930,
+      "sha256": "3cdd8f2cf11fa4e8de3de8517d3cd23348deb7991357ed5d3a158d692aa68c8c",
       "capture": "stage clip 600×440",
       "url": "/?artRegression=1&classicExact=1&scene=b01-idle",
       "browser": "Chrome"
@@ -25,8 +25,8 @@
     {
       "name": "b01-result",
       "path": "docs/visual-baselines/phase2h/b01-result.jpg",
-      "bytes": 67490,
-      "sha256": "7fd103cdda923ad9ff5c92b16f2c98283e936445a1234cd19ceb2e48781e6bff",
+      "bytes": 65348,
+      "sha256": "c8c961c2c6043941c2a3c5effceca3c729ccfc41e131cca46b92aed44d690368",
       "capture": "stage clip 600×440",
       "url": "/?artRegression=1&classicExact=1&scene=b01-result",
       "browser": "Chrome"
@@ -34,8 +34,8 @@
     {
       "name": "b02-idle",
       "path": "docs/visual-baselines/phase2h/b02-idle.jpg",
-      "bytes": 67484,
-      "sha256": "ab2e1770c9295e9bd838ef546dbd92cad753b03fafc6e3267ce8c160519d62bc",
+      "bytes": 65159,
+      "sha256": "977ec44a08df6f78e597958d7b7afc3a6bef2b4688ff410dd58f35e18cb95e74",
       "capture": "stage clip 600×440",
       "url": "/?artRegression=1&classicExact=1&scene=b02-idle",
       "browser": "Chrome"
@@ -43,8 +43,8 @@
     {
       "name": "b02-result",
       "path": "docs/visual-baselines/phase2h/b02-result.jpg",
-      "bytes": 67121,
-      "sha256": "2af48a058082e1901f5807dcc4832d80d87c4145cde1f6f7a73c366bed0cd84f",
+      "bytes": 65210,
+      "sha256": "e822492705a999f2ad17120513eba7edbd4dd63f60124516504054442dfd6af1",
       "capture": "stage clip 600×440",
       "url": "/?artRegression=1&classicExact=1&scene=b02-result",
       "browser": "Chrome"
@@ -52,17 +52,17 @@
     {
       "name": "failure",
       "path": "docs/visual-baselines/phase2h/failure.jpg",
-      "bytes": 65974,
-      "sha256": "a3408809d6b05aa03560f1342b5d8922a9db5459c43ade8a5da7b188b667484d",
+      "bytes": 64011,
+      "sha256": "2d35252d24c42eb7f72b24af4415cd00bb8a8afe3eec521a358a1bd33dc28e9b",
       "capture": "stage clip 600×440",
       "url": "/?artRegression=1&classicExact=1&scene=failure",
-      "browser": "Codex in-app browser (Chromium), final fixture recapture"
+      "browser": "Chrome"
     },
     {
       "name": "collection-closed",
       "path": "docs/visual-baselines/phase2h/collection-closed.jpg",
-      "bytes": 67256,
-      "sha256": "3cb7f8a518d4ce26646827e696206b1f59252ac0acdce9043d6a2a338b54662e",
+      "bytes": 65094,
+      "sha256": "9d7a3f1bc9855a6112c702c7bf9b2604b7262de3188a10d360e61b6a9fae8f21",
       "capture": "stage clip 600×440",
       "url": "/?artRegression=1&classicExact=1&scene=collection-closed",
       "browser": "Chrome"
@@ -70,11 +70,18 @@
     {
       "name": "collection-open",
       "path": "docs/visual-baselines/phase2h/collection-open.jpg",
-      "bytes": 49092,
-      "sha256": "f14361ca83a59f8cf1084482af1d0b734e2e32601a91d91b3c4d34cadce33f43",
+      "bytes": 48439,
+      "sha256": "be1ceddcec3fcb1c53d92bd20bfcef325814178dbfd3bc0fed16b2fb2936065e",
       "capture": "full viewport 1280×800; canonical stage underneath remains 600×440",
       "url": "/?artRegression=1&classicExact=1&scene=collection-open",
       "browser": "Chrome"
     }
-  ]
+  ],
+  "background": {
+    "contentId": "environment.e01",
+    "assetId": "environment.e01.background.clean",
+    "sourceSha256": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b",
+    "runtimePath": "art/runtime/environments/e01/background-clean-1x-58561551ef61.png"
+  },
+  "previousBaselineCommit": "8713115"
 }

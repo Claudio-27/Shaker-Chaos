@@ -1,0 +1,76 @@
+{
+  "phase": "2I",
+  "date": "2026-10-16",
+  "browser": "Chrome",
+  "productionOrigin": "http://127.0.0.1:4217/",
+  "bundle": "assets/index-K30thIJp.js",
+  "cacheVersion": "2843ac5a0c2438be",
+  "verification": "Preview process stopped with Ctrl+C, then actual browser reload and complete round. DOM resolved asset attributes plus pageAssets resource inventory and visible scene. No direct CacheStorage dump.",
+  "serverRunningDuringReloadAndRound": false,
+  "background": {
+    "contentId": "environment.e01",
+    "resolvedAsset": "environment.e01.background.clean",
+    "runtimePath": "art/runtime/environments/e01/background-clean-1x-58561551ef61.png",
+    "fallback": false,
+    "observedEnvironmentRequests": [
+      "art/runtime/environments/e01/background-clean-1x-58561551ef61.png"
+    ],
+    "sourceOrLegacyOrSiblingRequests": []
+  },
+  "idle": {
+    "bartender": "bartender.b02.idle",
+    "counter": "counter.c01.surface",
+    "bottles": [
+      "ingredient.bottle03",
+      "ingredient.bottle02",
+      "ingredient.bottle01"
+    ],
+    "vessel": "gameplay.chrome-shaker",
+    "missingAssets": []
+  },
+  "round": {
+    "capacity": 240,
+    "ice": 2,
+    "shakeActions": 1,
+    "garnish": true,
+    "ingredientScore": 8450,
+    "iceScore": 1000,
+    "garnishScore": 100,
+    "shakeScore": 0,
+    "totalScore": 9550,
+    "reaction": "excellent",
+    "failed": false,
+    "xp": 115,
+    "coins": 43,
+    "host": "bartender.b02.excellent",
+    "effect": "effect.sparkles",
+    "vessel": "gameplay.martini-glass"
+  },
+  "profileAfterReload": {
+    "level": 3,
+    "xpWithinLevel": 100,
+    "xpForNext": 200,
+    "coins": 131,
+    "bartenderId": "bartender.b02",
+    "environmentId": "environment.e01",
+    "counterId": "counter.c01"
+  },
+  "limitation": "The newly unlocked, never-requested effect.ice-blue thumbnail was hidden in the reward card offline. It is deferred artwork; active scene/effect and gameplay remained available.",
+  "proofs": [
+    {
+      "path": "docs/visual-baselines/phase2i/offline-idle.jpg",
+      "bytes": 159968,
+      "sha256": "0d2a6d2664714c5597986cccf777668ff8e60bf96ecab193109afacefe31fa94"
+    },
+    {
+      "path": "docs/visual-baselines/phase2i/offline-result.jpg",
+      "bytes": 161914,
+      "sha256": "410ed17197ddc84e228d96cdecd1bc08ff9568c695018bbf78d3556db584cdf1"
+    },
+    {
+      "path": "docs/visual-baselines/phase2i/failure-production.jpg",
+      "bytes": 162024,
+      "sha256": "f5e2222d858d4296c6f62f4d84a87e3d730e16959d7c0511b972ee45a5585d69"
+    }
+  ]
+}

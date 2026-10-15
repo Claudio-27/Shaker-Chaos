@@ -1,3 +1,4 @@
+import { withCleanBackgroundFailure } from './cleanBackgroundFailure.ts';
 import { useRef, useState } from 'react';
 import { gameDependencies, gamePresentation } from '../application/productionBootstrap.ts';
 import { newClassicGame, transitionClassicGame } from '../application/classicGame.ts';
@@ -9,10 +10,11 @@ import { reactionCopy } from '../content/playerExperience.ts';
 import { AssetImage, VisualAssetsProvider } from './AssetVisual.tsx';
 import { BartenderArea, BottleShelf, ControlsArea, CounterArea, GameStage, MixingStation, ScoreHUD } from './GameStage.tsx';
 import { Collection, PlayerHUD } from './PlayerProgression.tsx';
-const profile=gameDependencies.profile,visuals=gamePresentation.visuals;
+const profile=gameDependencies.profile;
 /** Frozen OUR-GAME fixtures, memory-only. No profile/localStorage writes, input automation or clocks. */
 export default function ArtRegression(){
   const query=new URLSearchParams(window.location.search),name=query.get('scene')??'b01-idle';
+  const visuals=query.get('cleanFailure')==='1'?withCleanBackgroundFailure(gamePresentation.visuals):gamePresentation.visuals;
   const host=name.startsWith('b02-')?'bartender.b02':'bartender.b01',selected=name==='selected'?'citrus':'orchard';
   const failure=name==='failure', result=name==='result'||name.endsWith('-result')||failure, mixing=name==='mixing'||result;
   const [collectionOpen,setCollectionOpen]=useState(name==='collection-open');

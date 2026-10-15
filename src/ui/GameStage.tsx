@@ -34,7 +34,7 @@ export function GameStage({ environment, debug, diagnostics, failed, children, m
     </div>
     {meta}
     {children}
-    {import.meta.env.DEV && debug && <VisualDebug scale={scale} stageRef={stageRef} presentation={diagnostics} />}
+    {import.meta.env.DEV && debug && <VisualDebug environment={environment} scale={scale} stageRef={stageRef} presentation={diagnostics} />}
   </section></div></div>;
 }
 function sameLiquid(a: MixState, b: MixState) {
