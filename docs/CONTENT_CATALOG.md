@@ -1,5 +1,11 @@
 # Catalogo modulare
 
+## Aggiornamento corrente2J
+
+Due ContentItem esistenti acquisiscono PriceMetadata coins intenzionale: bartender.b02=300 ed effect.ice-blue=150. Mantengono entrambi gli unlock di progressione e aggiungono currency come alternativa OR. Starter e placeholder invariati. Un solo nuovo bundle canonico, bundle.b02-ice-blue “Un nuovo turno”, referenzia i due ID senza copiarne asset o definizioni. I quattro bundle di esempio preesistenti rimangono non venduti.
+
+productionStore espone3 offerte: due ITEM e un BUNDLE. Validazione di cosmetico pubblico opzionale, prezzo intero, pubblicazione e inclusioni; nessun asset tecnico o privato vendibile. Il prezzo del bundle usa soltanto gli elementi mancanti con floor(subtotal×85/100):382 completo,127 se B02 posseduto,255 se effetto posseduto. [Shop e politica prezzi](SHOP_SYSTEM.md). Le sezioni precedenti alla2J conservano il contesto della fondazione del catalogo.
+
 ## Stato attuale 2C — proprietà separate dalle definizioni
 
 ContentItem e BundleDefinition restano canonici; profilo persistente conserva soltanto ID/entitlements e loadout. Starter: bartender.b01, environment.e01, counter.c01, bottles.supplied, effect.sparkles. Progressione: bartender.b02 al livello2, effect.ice-blue al livello3, configurati in progressionTuning.ts. Metadati unlock aggiornati alle requirementId; segnaposto legacy development, ispezionabili in AssetLab e esclusi dalla Collection normale.

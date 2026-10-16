@@ -1,68 +1,75 @@
 import type { PlayerProfileRepository, ProfileDiagnostic, ProfileLoad, PersistenceStatus } from '../application/playerProfileRepository.ts';
-import type { PlayerProfileV1, ProgressionTuningProfile } from '../domain/playerProfile.ts';
-import { validatePlayerProfile } from '../domain/playerProfile.ts';
-export interface ProfileStorage { getItem(key: string): string | null; setItem(key: string, value: string): void }
-export const profileStorageKey = 'shaker-chaos.player-profile';
-export const recoveryStorageKey = profileStorageKey + '.recovery';
-export type MigrationResult = { readonly kind: 'current'; readonly profile: PlayerProfileV1 } | { readonly kind: 'corrupt' | 'older-unsupported' | 'future-unsupported'; readonly detail: string };
-/** Migration dispatcher: only V1 exists. Unknown older/future formats are preserved, never guessed. */
-export function migratePlayerProfile(raw: string, tuning: ProgressionTuningProfile): MigrationResult {
-  let value: unknown;
-  try { value = JSON.parse(raw); } catch { return { kind: 'corrupt', detail: 'Invalid JSON' }; }
-  if (typeof value !== 'object' || value === null || !('schemaVersion' in value) || !Number.isSafeInteger(value.schemaVersion)) return { kind: 'corrupt', detail: 'Missing schema version' };
-  if ((value.schemaVersion as number) > 1) return { kind: 'future-unsupported', detail: 'Future schema ' + value.schemaVersion };
-  if ((value.schemaVersion as number) < 1) return { kind: 'older-unsupported', detail: 'No registered migration for schema ' + value.schemaVersion };
-  try { return { kind: 'current', profile: validatePlayerProfile(value, tuning) }; }
-  catch (error) { return { kind: 'corrupt', detail: error instanceof Error ? error.message : 'Invalid profile' }; }
+import type { PlayerProfile, PlayerProfileV2, ProgressionTuningProfile } from '../domain/playerProfile.ts';
+import { addInteger, immutable, validatePlayerProfile } from '../domain/playerProfile.ts';
+import { migrateV1ToV2, validatePlayerProfileV2 } from '../domain/playerProfileV2.ts';
+export interface ProfileStorage { getItem(key:string):string|null;setItem(key:string,value:string):void }
+export const profileStorageKey='shaker-chaos.player-profile';
+export const recoveryStorageKey=profileStorageKey+'.recovery';
+export type MigrationResult={readonly kind:'current';readonly profile:PlayerProfileV2;readonly migrated:boolean}|{readonly kind:'corrupt'|'older-unsupported'|'future-unsupported';readonly detail:string};
+export function migratePlayerProfile(raw:string,tuning:ProgressionTuningProfile):MigrationResult {
+  let value:unknown;try{value=JSON.parse(raw);}catch{return {kind:'corrupt',detail:'Invalid JSON'};}
+  if(typeof value!=='object'||value===null||!('schemaVersion' in value)||!Number.isSafeInteger(value.schemaVersion))return {kind:'corrupt',detail:'Missing schema version'};
+  if((value.schemaVersion as number)>2)return {kind:'future-unsupported',detail:'Future schema '+value.schemaVersion};
+  if((value.schemaVersion as number)<1)return {kind:'older-unsupported',detail:'No registered migration for schema '+value.schemaVersion};
+  try{return {kind:'current',profile:value.schemaVersion===1?migrateV1ToV2(validatePlayerProfile(value,tuning),tuning):validatePlayerProfileV2(value,tuning),migrated:value.schemaVersion===1};}
+  catch(error){return {kind:'corrupt',detail:error instanceof Error?error.message:'Invalid profile'};}
 }
-export function createLocalPlayerProfileRepository(storage: ProfileStorage | null, starter: () => PlayerProfileV1,
-  tuning: ProgressionTuningProfile, reconcile: (profile: PlayerProfileV1) => PlayerProfileV1): PlayerProfileRepository {
-  let cached: ProfileLoad | null = null, protectedSave = false, expectedRaw: string | null = null, blockedStatus: PersistenceStatus = 'memory';
-  const diagnostics: ProfileDiagnostic[] = [];
-  const diagnostic = (entry: ProfileDiagnostic) => { diagnostics.push(entry); if (diagnostics.length > 16) diagnostics.shift(); };
-  const persist = (profile: PlayerProfileV1): PersistenceStatus => {
-    if (protectedSave) return blockedStatus;
-    if (!storage) return 'memory';
-    try {
-      if (storage.getItem(profileStorageKey) !== expectedRaw) { protectedSave = true; diagnostic({ kind: 'writer-conflict', detail: 'Another local writer changed this save; keeping session in memory' }); return 'memory'; }
-      const raw = JSON.stringify(profile); storage.setItem(profileStorageKey, raw); expectedRaw = raw; return 'saved';
-    }
-    catch (error) { diagnostic({ kind: 'write-failed', detail: String(error).slice(0, 200) }); return 'memory'; }
+/** Browser callers defer initial/reconciliation writes until the shared profile lock is held. */
+export function createLocalPlayerProfileRepository(storage:ProfileStorage|null,starter:()=>PlayerProfile,tuning:ProgressionTuningProfile,
+  reconcile:(profile:PlayerProfileV2)=>PlayerProfileV2,options:{readonly deferInitialWrites?:boolean}={}):PlayerProfileRepository {
+  let cached:ProfileLoad|null=null,protectedSave=false,expectedRaw:string|null=null,blockedStatus:PersistenceStatus='memory',pending=false;
+  const diagnostics:ProfileDiagnostic[]=[];
+  const diagnostic=(entry:ProfileDiagnostic)=>{diagnostics.push(entry);if(diagnostics.length>16)diagnostics.shift();};
+  const snapshot=(profile:PlayerProfileV2,status:PersistenceStatus):ProfileLoad=>immutable({profile,status,diagnostics:[...diagnostics]});
+  const current=(profile:PlayerProfile)=>profile.schemaVersion===1?migrateV1ToV2(profile,tuning):validatePlayerProfileV2(profile,tuning);
+  const persist=(profile:PlayerProfileV2):PersistenceStatus=>{
+    if(protectedSave)return blockedStatus;if(!storage)return 'memory';
+    try{
+      if(storage.getItem(profileStorageKey)!==expectedRaw){diagnostic({kind:'writer-conflict',detail:'Save changed before write; reload and retry'});return 'conflict';}
+      const raw=JSON.stringify(profile);storage.setItem(profileStorageKey,raw);
+      if(storage.getItem(profileStorageKey)!==raw){diagnostic({kind:'writer-conflict',detail:'Save changed during write; reload and retry'});return 'conflict';}
+      expectedRaw=raw;return 'saved';
+    }catch(error){diagnostic({kind:'write-failed',detail:String(error).slice(0,200)});return 'memory';}
   };
-  const load = (): ProfileLoad => {
-    if (cached) return cached;
-    let raw: string | null = null, profile: PlayerProfileV1;
-    try { raw = storage?.getItem(profileStorageKey) ?? null; }
-    catch (error) { diagnostic({ kind: 'read-failed', detail: String(error).slice(0, 200) }); protectedSave = true; }
-    if (raw !== null) {
-      expectedRaw = raw; const migration = migratePlayerProfile(raw, tuning);
-      if (migration.kind === 'current') {
-        profile = reconcile(migration.profile);
-        const status = profile === migration.profile ? 'saved' : persist(profile);
-        cached = { profile, status, diagnostics: [...diagnostics] }; return cached;
+  const load=():ProfileLoad=>{
+    if(cached)return cached;
+    let raw:string|null=null,profile:PlayerProfileV2;
+    try{raw=storage?.getItem(profileStorageKey)??null;}catch(error){diagnostic({kind:'read-failed',detail:String(error).slice(0,200)});protectedSave=true;}
+    expectedRaw=raw;
+    if(raw!==null){const migration=migratePlayerProfile(raw,tuning);
+      if(migration.kind==='current'){
+        profile=reconcile(migration.profile);pending=migration.migrated||profile!==migration.profile;
+        const status=pending?(options.deferInitialWrites?'memory':persist(profile)):'saved';
+        if(status==='saved')pending=false;
+        return cached=snapshot(profile,status);
       }
-      diagnostic({ kind: migration.kind, detail: migration.detail, rawPreview: raw.slice(0, 4000) });
-      if (migration.kind !== 'corrupt') { protectedSave = true; blockedStatus = 'unsupported'; }
-      else {
-        try {
-          if (!storage) throw new Error('Storage unavailable');
-          const existing = storage.getItem(recoveryStorageKey);
-          if (existing !== null && existing !== raw) throw new Error('Recovery slot already preserves another save');
-          storage.setItem(recoveryStorageKey, raw); // Exact original bytes before replacing a corrupt current save.
-        } catch (error) { protectedSave = true; diagnostic({ kind: 'recovery-failed', detail: String(error).slice(0, 200) }); }
-      }
+      diagnostic({kind:migration.kind,detail:migration.detail,rawPreview:raw.slice(0,4000)});
+      if(migration.kind!=='corrupt'){protectedSave=true;blockedStatus='unsupported';}
+      else{try{if(!storage)throw new Error('Storage unavailable');const existing=storage.getItem(recoveryStorageKey);
+        if(existing!==null&&existing!==raw)throw new Error('Recovery slot preserves another save');
+        // A recovery copy contains no currency mutation and must precede any replacement.
+        storage.setItem(recoveryStorageKey,raw);
+      }catch(error){protectedSave=true;diagnostic({kind:'recovery-failed',detail:String(error).slice(0,200)});}}
     }
-    profile = reconcile(starter()); const status = persist(profile);
-    cached = { profile, status: status === 'saved' && raw !== null ? 'recovered' : status, diagnostics: [...diagnostics] }; return cached;
+    profile=reconcile(current(starter()));pending=true;
+    const status=options.deferInitialWrites?'memory':persist(profile);if(status==='saved')pending=false;
+    return cached=snapshot(profile,status==='saved'&&raw!==null?'recovered':status);
   };
-  return {
-    load,
-    save(profile) {
-      validatePlayerProfile(profile, tuning); const status = persist(profile);
-      cached = { profile, status, diagnostics: diagnostics.slice(-16) }; return status;
+  const refresh=():ProfileLoad=>{
+    if(!cached)return load();
+    try{const raw=storage?.getItem(profileStorageKey)??null;
+      if(raw!==expectedRaw){cached=null;protectedSave=false;blockedStatus='memory';pending=false;return load();}
+    }catch(error){diagnostic({kind:'read-failed',detail:String(error).slice(0,200)});}
+    return cached!;
+  };
+  return {load,refresh,
+    flush(){load();if(!pending)return cached!.status;const status=persist(cached!.profile);pending=status==='memory';cached=snapshot(cached!.profile,status);return status;},
+    save(input){
+      const p=current(input),previous=load().profile;
+      if(p.profileId!==previous.profileId||p.revision!==previous.revision){diagnostic({kind:'writer-conflict',detail:'Stale profile revision'});cached=snapshot(previous,'conflict');return 'conflict';}
+      const next=validatePlayerProfileV2({...p,revision:addInteger(p.revision,1)},tuning),status=persist(next);
+      pending=status==='memory';cached=snapshot(status==='conflict'?previous:next,status);return status;
     },
   };
 }
-export function browserProfileStorage(): ProfileStorage | null {
-  try { return window.localStorage; } catch { return null; }
-}
+export function browserProfileStorage():ProfileStorage|null{try{return window.localStorage;}catch{return null;}}

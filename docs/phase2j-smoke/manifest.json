@@ -1,0 +1,97 @@
+{
+  "phase": "2J",
+  "date": "2026-10-16",
+  "browser": "Chrome",
+  "scope": "Isolated local test profiles; no original artwork/baseline replaced",
+  "purchaseSmokeBuild": "assets/index-pkfzRZKz.js",
+  "purchaseSmokeCache": "a701d2a373c7f7e5",
+  "finalBuild": "assets/index-ByAmgkIl.js",
+  "finalCache": "15c8965166af90ee",
+  "finalDifference": "Guard associates queued reward feedback with its original attempt; covered by reverse-completion/new-attempt test. Shop transaction code, pricing and stage unchanged.",
+  "productionOrigin": "http://127.0.0.1:5185/",
+  "serverStoppedDuringPurchaseAndRound": true,
+  "coordinationObserved": "WEB_LOCKS; second real tab updated coins/ownership/equip without reload",
+  "fullBundleIsolatedOrigin": "http://127.0.0.1:5187/",
+  "productionRound": {
+    "score": 9550,
+    "ingredientScore": 8450,
+    "iceScore": 1000,
+    "garnishScore": 100,
+    "shakeScore": 0,
+    "xp": 115,
+    "coins": 43
+  },
+  "offlinePurchase": {
+    "offer": "offer.new-shift",
+    "coinsBefore": 243,
+    "coinsSpent": 127,
+    "coinsAfter": 116,
+    "newlyGrantedIds": [
+      "effect.ice-blue"
+    ],
+    "alreadyOwnedIds": [
+      "bartender.b02"
+    ]
+  },
+  "offlineRound": {
+    "score": 9550,
+    "xp": 115,
+    "coins": 43,
+    "finalCoins": 159,
+    "level": 2,
+    "currentXp": 130,
+    "bartender": "bartender.b02",
+    "effect": "effect.ice-blue",
+    "background": "environment.e01.background.clean",
+    "missingStageAssets": []
+  },
+  "files": [
+    {
+      "name": "shop-production",
+      "path": "docs/phase2j-smoke/shop-production.jpg",
+      "bytes": 78583,
+      "sha256": "e4d51633c9d3f45df43bf7e740df8a0bb909715779afbb6f9e79a9c6c6879421",
+      "build": "assets/index-ByAmgkIl.js"
+    },
+    {
+      "name": "confirmation",
+      "path": "docs/phase2j-smoke/confirmation.jpg",
+      "bytes": 43874,
+      "sha256": "0f00f25b93e0829fdd66b18e82108cc3464f5a46cb27410a78f509e14e52042c",
+      "build": "assets/index-pkfzRZKz.js"
+    },
+    {
+      "name": "shop-mobile",
+      "path": "docs/phase2j-smoke/shop-mobile.jpg",
+      "bytes": 25739,
+      "sha256": "07588430c2bad6a82b0edccd057465436f4f29e6681d91f73413aa7372a12284",
+      "build": "assets/index-pkfzRZKz.js"
+    },
+    {
+      "name": "offline-owned",
+      "path": "docs/phase2j-smoke/offline-owned.jpg",
+      "bytes": 74317,
+      "sha256": "269261066d4202bf56167cbd0fb047102bf827038b20c31440ea0383bf6fecde",
+      "build": "assets/index-pkfzRZKz.js"
+    },
+    {
+      "name": "offline-round",
+      "path": "docs/phase2j-smoke/offline-round.jpg",
+      "bytes": 164422,
+      "sha256": "c82bab10d88680474607242457cd0d74c516c94ffdfe05f70abd2a8dfcb4374d",
+      "build": "assets/index-pkfzRZKz.js"
+    }
+  ],
+  "finalSmoke": {
+    "origin": "http://127.0.0.1:5191/",
+    "bundle": "assets/index-ByAmgkIl.js",
+    "serverStoppedReload": true,
+    "shopClosedAtStartup": true,
+    "starterCoins": 0,
+    "insufficientOffersDisabled": 3,
+    "stageAt1280": [
+      1058.181884765625,
+      776
+    ]
+  }
+}

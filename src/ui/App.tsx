@@ -37,6 +37,8 @@ const AssetLab = import.meta.env.DEV ? lazy(() => import('./AssetLab.tsx')) : nu
 const CompatibilityLab = import.meta.env.DEV ? lazy(() => import('./CompatibilityLab.tsx')) : null;
 const TuningInspector = import.meta.env.DEV ? lazy(() => import('./TuningInspector.tsx')) : null;
 const ProgressionLab = import.meta.env.DEV ? lazy(() => import('./ProgressionLab.tsx')) : null;
+const ShopLab = import.meta.env.DEV ? lazy(() => import('./ShopLab.tsx')) : null;
+const shopLab = import.meta.env.DEV && query.get('shopLab') === '1';
 const progressionLab = import.meta.env.DEV && query.get('progressionLab') === '1';
 const assetLab = import.meta.env.DEV && query.get('assetLab') === '1';
 const compatLab = import.meta.env.DEV && query.get('compatLab') === '1';
@@ -178,7 +180,8 @@ export function App() {
         {progressionLab && ProgressionLab && <Suspense fallback={null}><ProgressionLab controller={player} snapshot={playerSnapshot} onReset={() => {
           dispatch({ type: 'Reset', atMs: sessionTime() }); setPreviewLoadout(null); setPlayer(createBrowserPlayer());
         }} /></Suspense>}
-        {collectionOpen && <Collection profile={playerSnapshot.profile} visuals={visuals} onEquip={equip} onClose={() => setCollectionOpen(false)} />}
+        {shopLab && ShopLab && <Suspense fallback={null}><ShopLab controller={player} snapshot={playerSnapshot} /></Suspense>}
+        {collectionOpen && <Collection shop={{snapshot:playerSnapshot,controller:player}} profile={playerSnapshot.profile} visuals={visuals} onEquip={equip} onClose={() => setCollectionOpen(false)} />}
         <GameStage environment={environment} debug={visualDebug} diagnostics={diagnostics} failed={state.view.failed}
           meta={<header className="topbar"><div className="player-tools">
             <PlayerHUD snapshot={playerSnapshot} />

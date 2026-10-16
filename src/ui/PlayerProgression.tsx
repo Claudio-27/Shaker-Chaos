@@ -1,5 +1,7 @@
-import { memo, useEffect, useRef } from 'react';
-import type { PlayerProfileV1, ProgressionReward } from '../domain/playerProfile.ts';
+import { Storefront } from './Shop.tsx';
+import type { PlayerController } from '../application/playerController.ts';
+import { memo, useEffect, useRef, useState } from 'react';
+import type { PlayerProfile, ProgressionReward } from '../domain/playerProfile.ts';
 import type { PlayerSnapshot } from '../application/playerController.ts';
 import type { VisualCatalog } from '../content/visualModel.ts';
 import { AssetImage } from './AssetVisual.tsx';
@@ -25,9 +27,11 @@ export const RewardPresentation = memo(function RewardPresentation({ reward, vis
     })}
   </section>;
 });
-export function Collection({ profile, visuals, onEquip, onClose }: {
-  readonly profile: PlayerProfileV1; readonly visuals: VisualCatalog; readonly onEquip: (id: string | null) => void; readonly onClose: () => void;
+export function Collection({ profile, visuals, onEquip, onClose, shop }: {
+  readonly shop?: { readonly snapshot: PlayerSnapshot; readonly controller: PlayerController };
+  readonly profile: PlayerProfile; readonly visuals: VisualCatalog; readonly onEquip: (id: string | null) => void; readonly onClose: () => void;
 }) {
+  const [tab,setTab] = useState<'collection'|'shop'>('collection');
   const dialog = useRef<HTMLDialogElement>(null), heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     const target = dialog.current, previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -36,8 +40,10 @@ export function Collection({ profile, visuals, onEquip, onClose }: {
   }, []);
   const items = collectionItems();
   return <dialog ref={dialog} className="collection-dialog" aria-labelledby="collection-title" onCancel={event => { event.preventDefault(); onClose(); }}>
-    <div className="collection-heading"><div><p className="eyebrow">IL TUO ANGOLO AL BANCO</p><h2 ref={heading} tabIndex={-1} id="collection-title">La tua collezione</h2></div>
+    <div className="collection-heading"><div><p className="eyebrow">IL TUO ANGOLO AL BANCO</p><h2 ref={heading} tabIndex={-1} id="collection-title">{tab==='shop'?'Il negozio del bar':'La tua collezione'}</h2></div>
       <button type="button" onClick={onClose} aria-label="Chiudi collezione">✕</button></div>
+    {shop&&<div className="shop-tabs" role="tablist" aria-label="Collezione e negozio">{(['collection','shop'] as const).map(value=><button key={value} id={value+'-tab'} role="tab" type="button" aria-selected={tab===value} aria-controls={value+'-panel'} tabIndex={tab===value?0:-1} onClick={()=>setTab(value)} onKeyDown={event=>{if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();const next=value==='collection'?'shop':'collection';setTab(next);document.getElementById(next+'-tab')?.focus();}}}>{value==='collection'?'Collezione':'Negozio'}</button>)}</div>}
+    {tab==='shop'&&shop?<div id="shop-panel" role="tabpanel" aria-labelledby="shop-tab"><Storefront snapshot={shop.snapshot} controller={shop.controller} visuals={visuals} onCollection={()=>setTab('collection')}/></div>:<div id="collection-panel" role={shop?'tabpanel':undefined} aria-labelledby={shop?'collection-tab':undefined}>
     <p className="collection-intro">Il tuo bartender, il tuo ambiente. Ogni scelta ha il suo posto.</p>
     {collectionGroups.map(group => <section key={group.kind} aria-label={group.label}><h3>{group.label}</h3><div className="collection-grid">
       {items.filter(item => item.kind === group.kind).map(item => {
@@ -49,6 +55,7 @@ export function Collection({ profile, visuals, onEquip, onClose }: {
         </article>;
       })}
     </div>{group.kind === 'effect' && <button className="no-effect-button" type="button" aria-pressed={profile.equippedLoadout.effectOverride === null} onClick={() => onEquip(null)}>Nessun effetto</button>}</section>)}
+    </div>}
   </dialog>;
 }
 

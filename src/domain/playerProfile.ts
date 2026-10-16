@@ -26,6 +26,17 @@ export interface PlayerProfileV1 {
   readonly nextAttemptOrdinal: number; readonly lastSettledOrdinal: number;
   readonly rewardSettlementLedger: readonly ProgressionReward[];
 }
+/** Version 2 adds an explicit economy ledger; V1 remains the historical migration input. */
+export interface PurchaseReceipt {
+  readonly transactionId: string; readonly ordinal: number; readonly offerId: string; readonly profileId: string;
+  readonly coinsBefore: number; readonly coinsSpent: number; readonly coinsAfter: number;
+  readonly newlyGrantedContentIds: readonly string[]; readonly alreadyOwnedIncludedIds: readonly string[]; readonly timestamp: number;
+}
+export interface PlayerProfileV2 extends Omit<PlayerProfileV1, 'schemaVersion'> {
+  readonly schemaVersion: 2; readonly revision: number; readonly nextPurchaseOrdinal: number;
+  readonly purchaseTransactionLedger: readonly PurchaseReceipt[];
+}
+export type PlayerProfile = PlayerProfileV1 | PlayerProfileV2;
 export interface ProgressionTuningProfile {
   readonly id: string; readonly scoreMaximum: number; readonly legendaryTierId: string;
   readonly xp: { readonly base: number; readonly scoreDivisor: number; readonly failure: number };
@@ -58,7 +69,7 @@ export function progressionFromLifetime(lifetimeXp: number, tuning: ProgressionT
   while (low < high) { const mid = Math.ceil((low + high) / 2); if (levelThreshold(mid, tuning) <= lifetimeXp) low = mid; else high = mid - 1; }
   return immutable({ level: low, currentXp: lifetimeXp - levelThreshold(low, tuning), lifetimeXp });
 }
-export function gainXp(profile: PlayerProfileV1, xp: number, tuning: ProgressionTuningProfile): PlayerProfileV1 {
+export function gainXp<P extends PlayerProfile>(profile: P, xp: number, tuning: ProgressionTuningProfile): P {
   return immutable({ ...profile, progression: progressionFromLifetime(addInteger(profile.progression.lifetimeXp, xp), tuning) });
 }
 export function earnCoins(wallet: PlayerProfileV1['wallet'], coins: number): PlayerProfileV1['wallet'] {
@@ -66,7 +77,7 @@ export function earnCoins(wallet: PlayerProfileV1['wallet'], coins: number): Pla
   return immutable({ ...wallet, coins: addInteger(wallet.coins, coins), lifetimeCoinsEarned: addInteger(wallet.lifetimeCoinsEarned, coins) });
 }
 export function canAfford(wallet: PlayerProfileV1['wallet'], coins: number): boolean { integer(wallet.coins); integer(coins); return wallet.coins >= coins; }
-/** Future wallet primitive only. There is no purchase transaction or shop in 2C. */
+/** Shared wallet invariant for fictional coins only. */
 export function spendCoins(wallet: PlayerProfileV1['wallet'], coins: number): PlayerProfileV1['wallet'] {
   if (!canAfford(wallet, coins)) throw new RangeError('Insufficient fictional coins');
   return immutable({ ...wallet, coins: wallet.coins - coins, lifetimeCoinsSpent: addInteger(wallet.lifetimeCoinsSpent, coins) });

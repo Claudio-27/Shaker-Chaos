@@ -232,3 +232,12 @@ La serie1D mostra perché conservare la sequenza:5000ms continui e tre Pour che 
 ## Decisione di prodotto dopo1E
 
 Il13ottobre2026 l’utente sceglie un gioco originale con tuning approssimativo. Il profilo pubblico approximateGameplayProfile.ts contiene solo parametri originali e interi, senza runtime, screenshot, mappe, dati empirici o link esterni. È versionato e non ancora attivato nella demo. Le scelte non costituiscono compatibilità VERIFIED. Uno scorer futuro riceverà la storia e userà durate/conteggi distinti, senza perdere gli eventi o mescolare UI/reward con il dominio. Ricerca, proiezione, scoring e progressione restano separate; nessuna mappatura VolumeUnit/ml o ingredienti-reference inventata.
+
+
+## Fase2J — economia locale coordinata
+
+Canonical gameplay history → scorer → RoundResult rimane indipendente da profilo e negozio. Il nuovo servizio puro application/store.ts consuma soltanto catalogo/offerta, profiloV2, intenzione e timestamp; produce spend/ownership/ricevuta in un unico profilo immutabile. StoreOffer/PriceMetadata sono dati; React gestisce navigazione, conferma e feedback.
+
+PlayerProfileV2 aggiunge revision,nextPurchaseOrdinal e purchaseTransactionLedger64. La migrazioneV1 preserva tutti i dati precedenti. Repository con raw/revision, un JSON coerente e fallback in memoria esplicito. Adapter Web Locks + queue + BroadcastChannel/storage events coordina bootstrap, equip, ricompense e acquisti; senza Web Locks si documenta il limite non atomico. Scoring non attende il lock. L'ordinal reward viene emesso e liquidato nello stesso commit per supportare round paralleli, conservando il servizio puro e le formule.
+
+Solo dialogo Collezione/Negozio e conferma annidata: **MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I.** I123 file protetti comprendono palco, CSS/framing, art e baseline immutati. Caricamento anteprime visibili a richiesta, nessun nuovo asset/PWA dependency o backend. [Shop](SHOP_SYSTEM.md), [rapporto](PHASE_2J_REPORT.md).

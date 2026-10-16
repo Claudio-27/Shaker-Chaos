@@ -1,6 +1,13 @@
 # Roadmap
 
-## Stato corrente — 2E, geometria classica fissa
+## Stato corrente — fase2J
+
+Negozio locale in monete fittizie: due cosmetici pubblici esistenti e un bundle, conferma, transazioni idempotenti, profiloV2/migrazione, coordinamento fra schede, persistenza e acquisto offline. Formule2A–2C immutate; main stage2I bloccato, nessun nuovo artwork. [Sistema](SHOP_SYSTEM.md), [rapporto](PHASE_2J_REPORT.md).
+
+Arresto dopo2J. Raccomandazione futura: ampliare il catalogo con cosmetici reali e rivedere il pacing delle alternative acquisto/progressione, mantenendo il palco e usando overlay o schermate secondarie. Nessuna fase successiva, backend, account, pagamento reale o ricerca storica avviati. Tutte le sezioni successive sono checkpoint storici.
+
+
+## Checkpoint storico — 2E, geometria classica fissa
 
 Scena 600×440 con scala uniforme, coordinate e layer centrali, pannello90px fisso con scroll interno, hitbox accessibili e griglia50px solo DEV. Tutti i sistemi2A–2C e gli asset sono invariati. Arresto dopo2E. Passo consigliato: breve verifica su tablet reale, leggibilità dei risultati nel pannello compatto e playtest della composizione; nessuna ricerca storica o shop avviati. [Rapporto 2E](PHASE_2E_REPORT.md).
 

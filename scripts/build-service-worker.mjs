@@ -1,3 +1,5 @@
+import { productionStore } from '../src/content/storeCatalog.ts';
+import { validateStore } from '../src/application/store.ts';
 import { allRuntimePaths } from '../src/content/runtimeVariants.ts';
 import { createHash } from 'node:crypto';
 import { readdir, readFile, writeFile } from 'node:fs/promises';
@@ -14,6 +16,7 @@ async function walk(folder, prefix = '') {
   const entries = await readdir(folder, { withFileTypes: true });
   return (await Promise.all(entries.map((entry) => entry.isDirectory() ? walk(join(folder, entry.name), prefix + entry.name + '/') : prefix + entry.name))).flat().sort();
 }
+validateStore(productionStore, publicContentCatalog);
 validateVisualCatalog(publicVisualCatalog);
 validatePublicContent(publicContentCatalog, publicVisualCatalog);
 const files = (await walk(dist)).filter((file) => file !== 'sw.js');

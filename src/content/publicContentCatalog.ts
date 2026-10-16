@@ -1,8 +1,9 @@
 import type { ContentCatalog, ContentItem, ContentKind } from './contentModel.ts';
 import { progressionTuning, starterContentIds } from './progressionTuning.ts';
+const coinPrices: Readonly<Record<string,number>> = { 'bartender.b02': 300, 'effect.ice-blue': 150 };
 const item = (id: string, displayName: string, kind: ContentKind): ContentItem =>
-  ({ id, displayName, kind, visibility: 'public', visualDefinitionId: id, unlock: starterContentIds.some(starter => starter === id) ? [{ kind: 'default' }] :
-    progressionTuning.unlocks.some(rule => rule.contentId === id) ? [{ kind: 'progression', requirementId: progressionTuning.unlocks.find(rule => rule.contentId === id)!.requirementId }] :
+  ({ id, displayName, kind, ...(coinPrices[id] !== undefined ? { price: { currency: 'coins', amount: coinPrices[id]! } } : {}), visibility: 'public', visualDefinitionId: id, unlock: starterContentIds.some(starter => starter === id) ? [{ kind: 'default' }] :
+    progressionTuning.unlocks.some(rule => rule.contentId === id) ? [{ kind: 'progression', requirementId: progressionTuning.unlocks.find(rule => rule.contentId === id)!.requirementId }, ...(coinPrices[id] !== undefined ? [{ kind: 'currency' as const, currencyId: 'coins' }] : [])] :
     [{ kind: 'development', entitlementId: 'legacy-visual-preview' }] });
 /** One canonical item per ID; bundles contain references, never copies or visual configurations. */
 export const publicContentCatalog: ContentCatalog = {
@@ -20,6 +21,7 @@ export const publicContentCatalog: ContentCatalog = {
     item('bottles.supplied', 'Bottiglie fornite · abbinamento demo', 'bottle-set'),
   ],
   bundles: [
+    { id: 'bundle.b02-ice-blue', displayName: 'Un nuovo turno', visibility: 'public', includedContentIds: ['bartender.b02', 'effect.ice-blue'] },
     { id: 'bundle.b01-environment', displayName: 'Esempio: barista e ambiente', visibility: 'public', includedContentIds: ['bartender.b01', 'environment.e01'] },
     { id: 'bundle.b02-counter', displayName: 'Esempio: barista e banco', visibility: 'public', includedContentIds: ['bartender.b02', 'counter.c01'] },
     { id: 'bundle.environment-counter', displayName: 'Esempio: ambiente e banco', visibility: 'public', includedContentIds: ['environment.e01', 'counter.c01'] },

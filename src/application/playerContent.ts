@@ -1,4 +1,4 @@
-import type { PlayerLoadout, PlayerProfileV1 } from '../domain/playerProfile.ts';
+import type { PlayerLoadout, PlayerProfile } from '../domain/playerProfile.ts';
 import { immutable, integer } from '../domain/playerProfile.ts';
 import { evaluateProgressionUnlocks } from '../domain/progression.ts';
 import type { ContentCatalog, ContentItem } from '../content/contentModel.ts';
@@ -9,9 +9,9 @@ export const starterLoadout: PlayerLoadout = immutable({ bartenderId: gamePresen
   counterId: gamePresentation.scene.counterId, bottleSetId: gamePresentation.scene.bottleSetId, effectOverride: gamePresentation.visuals.bartenders[gamePresentation.scene.bartenderId]!.defaultEffectId ?? null });
 export const ownershipPolicy = { starterIds: starterContentIds, availablePublicIds: publicContentCatalog.items.filter(i => i.visibility === 'public').map(i => i.id) };
 export const contentSlot = { bartender: 'bartenderId', environment: 'environmentId', counter: 'counterId', 'bottle-set': 'bottleSetId', effect: 'effectOverride' } as const;
-export function ownsContent(profile: PlayerProfileV1, id: string): boolean { return profile.ownership.some(grant => grant.contentId === id); }
-export function canEquip(profile: PlayerProfileV1, item: ContentItem): boolean { return item.visibility === 'public' && Object.hasOwn(contentSlot, item.kind) && ownsContent(profile, item.id); }
-export function equipContent(profile: PlayerProfileV1, id: string | null, at: number, catalog: ContentCatalog = publicContentCatalog): PlayerProfileV1 {
+export function ownsContent(profile: PlayerProfile, id: string): boolean { return profile.ownership.some(grant => grant.contentId === id); }
+export function canEquip(profile: PlayerProfile, item: ContentItem): boolean { return item.visibility === 'public' && Object.hasOwn(contentSlot, item.kind) && ownsContent(profile, item.id); }
+export function equipContent<P extends PlayerProfile>(profile: P, id: string | null, at: number, catalog: ContentCatalog = publicContentCatalog): P {
   integer(at);
   const item = catalog.items.find(i => i.id === id);
   if (id !== null && (!item || !canEquip(profile, item))) throw new RangeError('Content is not an owned public cosmetic');
@@ -19,7 +19,7 @@ export function equipContent(profile: PlayerProfileV1, id: string | null, at: nu
   return immutable({ ...profile, updatedAt: Math.max(at, profile.updatedAt), equippedLoadout: { ...profile.equippedLoadout, [slot]: item?.id ?? null } });
 }
 /** Preserve inactive ownership IDs; only reconcile equipment against current definitions/ownership. */
-export function reconcilePlayerProfile(profile: PlayerProfileV1, at: number, catalog: ContentCatalog = publicContentCatalog): PlayerProfileV1 {
+export function reconcilePlayerProfile<P extends PlayerProfile>(profile: P, at: number, catalog: ContentCatalog = publicContentCatalog): P {
   const granted = evaluateProgressionUnlocks(profile, progressionTuning, { ...ownershipPolicy, availablePublicIds: catalog.items.filter(i => i.visibility === 'public').map(i => i.id) }, at).profile;
   const loadout = { ...granted.equippedLoadout }; let repaired = false;
   for (const [kind, slot] of Object.entries(contentSlot)) {
@@ -31,7 +31,7 @@ export function reconcilePlayerProfile(profile: PlayerProfileV1, at: number, cat
 }
 
 /** Persist canonical content IDs; resolve visual-definition IDs only for rendering. */
-export function resolvePlayerLoadout(profile: PlayerProfileV1, catalog: ContentCatalog = publicContentCatalog): PlayerLoadout {
+export function resolvePlayerLoadout(profile: PlayerProfile, catalog: ContentCatalog = publicContentCatalog): PlayerLoadout {
   const loadout = { ...profile.equippedLoadout };
   for (const [kind, slot] of Object.entries(contentSlot)) {
     const id = loadout[slot]; if (slot === 'effectOverride' && id === null) continue;

@@ -2,7 +2,7 @@ import { environmentBackground } from '../content/visualPlan.ts';
 import type { PlayerSnapshot } from '../application/playerController.ts';
 import type { ContentItem } from '../content/contentModel.ts';
 import type { VisualCatalog, AssetId } from '../content/visualModel.ts';
-import type { PlayerProfileV1, ProgressionReward } from '../domain/playerProfile.ts';
+import type { PlayerProfile, ProgressionReward } from '../domain/playerProfile.ts';
 import { nextLevelRequirement } from '../domain/playerProfile.ts';
 import { progressionTuning } from '../content/progressionTuning.ts';
 import { publicContentCatalog } from '../content/publicContentCatalog.ts';
@@ -11,7 +11,7 @@ export const collectionGroups = [
   { kind: 'bartender', label: 'Bartender' }, { kind: 'environment', label: 'Ambienti' },
   { kind: 'counter', label: 'Banchi' }, { kind: 'effect', label: 'Effetti' },
 ] as const;
-export function playerHudView(profile: PlayerProfileV1) {
+export function playerHudView(profile: PlayerProfile) {
   const capped = profile.progression.level >= progressionTuning.levels.technicalMaximum;
   const maximum = nextLevelRequirement(profile.progression.level, progressionTuning);
   return { level: 'Livello ' + profile.progression.level, xp: capped ? 'Livello massimo' : profile.progression.currentXp + ' / ' + maximum + ' XP',
@@ -19,11 +19,12 @@ export function playerHudView(profile: PlayerProfileV1) {
 }
 export function profileWarning(snapshot: PlayerSnapshot): string {
   if (snapshot.progressionError) return 'Il mix funziona, ma questo aggiornamento dei progressi non è riuscito.';
+  if (snapshot.status === 'conflict') return 'I progressi sono cambiati in un’altra scheda. Riprova.';
   if (snapshot.status === 'memory') return 'Progressi temporanei: questo browser non riesce a salvarli.';
   if (snapshot.status === 'unsupported') return 'Il salvataggio originale è conservato. Questo giro usa progressi temporanei.';
   return '';
 }
-export function collectionCard(profile: PlayerProfileV1, item: ContentItem) {
+export function collectionCard(profile: PlayerProfile, item: ContentItem) {
   const owned = canEquip(profile, item), slot = contentSlot[item.kind as keyof typeof contentSlot];
   const equipped = owned && profile.equippedLoadout[slot] === item.id;
   const rule = progressionTuning.unlocks.find(rule => rule.contentId === item.id);

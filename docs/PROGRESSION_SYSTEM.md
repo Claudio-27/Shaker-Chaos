@@ -1,6 +1,17 @@
-# Progressione locale — fase 2C
+# Progressione locale — stato corrente2J
 
-## Confine con il cocktail
+Il formato corrente è **PlayerProfileV2**, con migrazione esplicita daV1 e registro acquisti64 separato dai128 reward settlement. lifetimeCoinsSpent esisteva già e ora registra le spese reali in monete fittizie. Le formule XP/monete e gli unlock livello2/3 sono immutati; acquistare prima del livello evita grant/card duplicati.
+
+Tutte le scritture del profilo di produzione usano ProfileWriteCoordinator/Web Locks, con confronto raw/revision e sincronizzazione fra schede. Il cocktail viene valutato sincronicamente; la liquidazione dei progressi attende il lock senza bloccare scoring o assaggio. Ordinal reward emesso insieme alla liquidazione, così i round paralleli completati in ordine inverso vengono premiati entrambi. Un premio tardivo non appare sul drink successivo. Senza Web Locks, il fallback rileva conflitti noti ma non promette atomicità completa fra writer simultanei.
+
+Negozio ed equip condividono il dialogo Collezione. In caso di scrittura negata, spend/grant rimangono insieme solo nella sessione e la UI lo dichiara. [Sistema corrente e policy complete](SHOP_SYSTEM.md), [verifiche2J](PHASE_2J_REPORT.md).
+
+## Fondazione2C — documentazione storica
+
+Le sezioni seguenti descrivono il disegno originaleV1/2C; le limitazioni sullo shop, sul momento di riserva dell'ordinal e sul coordinamento tra schede sono state superate o precisate nell'aggiornamento2J sopra.
+
+
+### Confine con il cocktail
 
 La sessione canonica produce il risultato congelato 2A. La progressione lo consuma **dopo** lo scoring: non legge il livello, il wallet o i cosmetici per calcolare ingredienti, Ice, Shake, Garnish, tier o failure. Il risultato diventa definitivo a Serve o al fallimento; la ricompensa viene liquidata nel medesimo comando applicativo, prima del render e prima dell’assaggio. Non viene usato un React effect, timer, animazione o callback di reveal per assegnarla.
 
@@ -16,7 +27,7 @@ canonical session → production scorer → frozen RoundResult
 
 Il dispatcher UI mantiene la transizione del cocktail pura, aggiorna il riferimento della partita e chiama il controller del giocatore soltanto quando appare un nuovo risultato definitivo. Il controller non può modificare la partita o il risultato. Skip, reduced-motion, Reset e reload non assegnano nuove ricompense al risultato già liquidato.
 
-## Tuning originale approvato
+### Tuning originale approvato
 
 Fonte: `src/content/progressionTuning.ts`, ID `shaker-chaos-progression-v1`.
 
@@ -34,7 +45,7 @@ Da livello L a L+1 servono `100 + (L−1)×50 XP`: 100,150,200,250... La soglia 
 
 La curva è in configurazione. Una futura curva diversa richiede una migrazione deliberata dei salvataggi/proiezioni: non si interpreta un vecchio livello incoerente come un formato automaticamente compatibile.
 
-## PlayerProfileV1
+### PlayerProfileV1
 
 - `schemaVersion:1`, `profileId` locale non segreto, `createdAt`/`updatedAt` in epoch ms interi.
 - `progression`: level/currentXp/lifetimeXp. Livello e XP corrente sono una proiezione validata del lifetime XP.
@@ -46,7 +57,7 @@ La curva è in configurazione. Una futura curva diversa richiede una migrazione 
 
 Oggetti/array prodotti sono immutabili. Il profilo non contiene copie dei ContentItem, artwork, prezzi o dialoghi. Il suo ID distingue il salvataggio; non è account, login, identità personale o autorizzazione.
 
-## Identità e liquidazione una volta sola
+### Identità e liquidazione una volta sola
 
 Ogni istanza della partita ha un sessionId locale non segreto. `currentAttemptStart` della cronologia canonica distingue i tentativi in quella sessione. Al primo fatto accettato di un tentativo, il controller riserva un ordinal persistente; lo stesso tentativo conserva quella identità per tutti i tick. Reset apre un nuovo tentativo e può riservare un ordinal senza premio: i buchi sono intenzionali.
 
@@ -56,7 +67,7 @@ Il ledger conserva **gli ultimi 128 settlement** con timestamp, XP/monete, livel
 
 La scrittura include XP, monete, stats, ownership e ledger in un solo JSON. In caso di quota/storage bloccato si continua in memoria e si avvisa: quella ricompensa non è garantita oltre un reload finché il salvataggio non riesce. Un futuro servizio remoto richiederebbe una transazione autonoma, non fiducia nel client.
 
-## Starter e unlock
+### Starter e unlock
 
 Starter: livello1, XP0, monete0. Proprietà immediata:
 
@@ -74,7 +85,7 @@ Unlock di configurazione: `level-2-bartender` → bartender.b02 al livello2; `le
 
 OwnershipSource prepara starter/progression/currency-purchased/bundle-granted/promotional/private. Solo starter e progression hanno concessioni reali. Prezzi e BundleDefinition/includedContentIds rimangono metadati compatibili per una fase futura; nessun finto acquisto o grant di bundle è eseguito.
 
-## Repository e riconciliazione
+### Repository e riconciliazione
 
 `PlayerProfileRepository` è il contratto applicativo; l’adapter locale centralizza l’accesso a browser storage. Chiave: `shaker-chaos.player-profile`; copia di recupero: `shaker-chaos.player-profile.recovery`. Nessuna chiamata localStorage sparsa nei componenti.
 
@@ -94,7 +105,7 @@ Riconciliazione: conserva ownership di ID rimossi come entitlements inattivi; ag
 
 Il confronto del raw evita sovrascritture già osservabili fra schede; localStorage non offre una transazione atomica fra writer simultanei. Uso simultaneo in più schede non è una modalità supportata in 2C: coordinamento Web Locks o altro storage transazionale resta un lavoro futuro. Per l’uso corrente, reload/remount/effects ripetuti e skip non duplicano ricompense.
 
-## UI, accessibilità e offline
+### UI, accessibilità e offline
 
 HUD compatto: Livello, XP nel livello corrente e Monete, con progressbar nominata. Collezione è un dialog nativo con focus iniziale, Escape/chiusura e ritorno al trigger; card Owned/Equipped/Locked e pulsanti chiari, senza affidarsi solo al colore. Equipaggiamento consentito solo per cosmetici pubblici posseduti. Lo slot cambiato è l’unico aggiornato; il focus rimane sulla card dopo equip.
 
@@ -102,7 +113,7 @@ La ricompensa compare al breakdown della sequenza 2B: XP/monete, eventuale livel
 
 Tutto funziona senza rete: liquidazione, livelli, proprietà ed equipaggiamento. La cache PWA rimane selettiva: shell, soli path pubblici ammessi, scena attiva. Card bloccate non richiedono portrait; i nuovi sblocchi caricano soltanto la loro immagine se disponibile. Per un bartender appena equipaggiato ma mai scaricato, il renderer usa l’idle dello starter già in cache; il loadout scelto rimane persistito. Pose/reazioni/effetti mai visitati possono usare i fallback previsti. Non si precachea il catalogo dei contenuti bloccati.
 
-## DEV e confini futuri
+### DEV e confini futuri
 
 `?progressionLab=1`: schema, save status, livello/XP/next, wallet, ownership, loadout, stats, ledger e diagnostica; aggiunte esplicite di XP/monete di test, rivalutazione sblocchi e reset con checkbox di conferma. Reset tocca soltanto le due chiavi del profilo Shaker-Chaos. Adapter di reset, UI, CSS e testi DEV sono lazy e rifiutati dall’audit della produzione. Non è stato aggiunto import/export JSON opzionale.
 

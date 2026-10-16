@@ -1,10 +1,10 @@
 import { addInteger, earnCoins, gainXp, identifier, immutable, integer, settlementId, validateProgressionTuning } from './playerProfile.ts';
-import type { PlayerProfileV1, ProgressionReward, ProgressionTuningProfile, RoundIdentity } from './playerProfile.ts';
+import type { PlayerProfile, ProgressionReward, ProgressionTuningProfile, RoundIdentity } from './playerProfile.ts';
 export interface RoundResult { readonly totalScore: number; readonly failed: boolean; readonly mechanicalReactionTierId: string }
 export interface OwnershipPolicy { readonly starterIds: readonly string[]; readonly availablePublicIds: readonly string[] }
-export function evaluateProgressionUnlocks(profile: PlayerProfileV1, tuning: ProgressionTuningProfile, policy: OwnershipPolicy, at: number) {
+export function evaluateProgressionUnlocks<P extends PlayerProfile>(profile: P, tuning: ProgressionTuningProfile, policy: OwnershipPolicy, at: number) {
   integer(at, profile.createdAt); const owned = new Set(profile.ownership.map(item => item.contentId));
-  const additions: PlayerProfileV1['ownership'][number][] = [];
+  const additions: PlayerProfile['ownership'][number][] = [];
   const grant = (contentId: string, source: 'starter' | 'progression') => {
     if (!owned.has(contentId) && policy.availablePublicIds.includes(contentId)) { owned.add(contentId); additions.push({ contentId, source, grantedAt: at }); }
   };
@@ -21,14 +21,14 @@ export function rewardAmounts(result: RoundResult, tuning: ProgressionTuningProf
     coins: addInteger(tuning.coins.base, Math.floor(result.totalScore / tuning.coins.scoreDivisor)),
   });
 }
-export function issueRoundIdentity(profile: PlayerProfileV1, sessionId: string, attemptStartSequence: number, at: number) {
+export function issueRoundIdentity<P extends PlayerProfile>(profile: P, sessionId: string, attemptStartSequence: number, at: number) {
   identifier(sessionId); integer(at, profile.createdAt); integer(attemptStartSequence);
   return { profile: immutable({ ...profile, nextAttemptOrdinal: addInteger(profile.nextAttemptOrdinal, 1), updatedAt: Math.max(profile.updatedAt, at) }),
     round: immutable({ profileId: profile.profileId, sessionId, attemptStartSequence, ordinal: profile.nextAttemptOrdinal }) };
 }
 /** Downstream of the frozen cocktail result. No gameplay state, clock, browser or presentation inputs. */
-export function settleRoundReward(profile: PlayerProfileV1, result: RoundResult, round: RoundIdentity,
-  tuning: ProgressionTuningProfile, policy: OwnershipPolicy, at: number): { readonly profile: PlayerProfileV1; readonly reward: ProgressionReward | null; readonly duplicate: boolean } {
+export function settleRoundReward<P extends PlayerProfile>(profile: P, result: RoundResult, round: RoundIdentity,
+  tuning: ProgressionTuningProfile, policy: OwnershipPolicy, at: number): { readonly profile: P; readonly reward: ProgressionReward | null; readonly duplicate: boolean } {
   identifier(round.profileId); identifier(round.sessionId); integer(round.ordinal, 1); integer(round.attemptStartSequence); integer(at, profile.createdAt);
   if (round.profileId !== profile.profileId || round.ordinal >= profile.nextAttemptOrdinal) throw new RangeError('Unissued round identity');
   if (round.ordinal <= profile.lastSettledOrdinal) {

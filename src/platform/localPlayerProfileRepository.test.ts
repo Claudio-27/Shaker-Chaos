@@ -13,7 +13,7 @@ test('first creation persists one namespaced save; reload keeps ID, progress and
 });
 test('migration boundary accepts V1 and preserves unsupported older/future formats',()=>{
   assert.equal(migratePlayerProfile(JSON.stringify(newTestProfile()),tuning).kind,'current');
-  for(const [version,kind] of [[0,'older-unsupported'],[2,'future-unsupported']]){
+  for(const [version,kind] of [[0,'older-unsupported'],[3,'future-unsupported']]){
     const raw=JSON.stringify({schemaVersion:version,futureData:'keep'}),storage=memoryProfileStorage({[key]:raw}),repo=testRepository(storage);
     assert.equal(migratePlayerProfile(raw,tuning).kind,kind);assert.equal(repo.load().status,'unsupported');
     repo.save(gainXp(repo.load().profile,5,tuning));assert.equal(storage.values.get(key),raw);
@@ -45,7 +45,7 @@ test('save failure can recover later without losing in-memory progress',()=>{
 test('a changed save from another writer is preserved rather than overwritten',()=>{
   const storage=memoryProfileStorage(),repo=testRepository(storage),p=repo.load().profile;
   const other=JSON.stringify(gainXp(p,300,tuning));storage.setItem(key,other);
-  assert.equal(repo.save(gainXp(p,20,tuning)),'memory');assert.equal(storage.values.get(key),other);
+  assert.equal(repo.save(gainXp(p,20,tuning)),'conflict');assert.equal(storage.values.get(key),other);
   assert.equal(repo.load().diagnostics.at(-1)?.kind,'writer-conflict');
 });
 test('invalid writes do not replace the last valid save',()=>{

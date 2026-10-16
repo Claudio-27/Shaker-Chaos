@@ -1,0 +1,3 @@
+# Prove browser della fase2J
+
+Screenshot del gioco Shaker-Chaos locale, non artwork o nuove baseline. La vetrina, la conferma e il mobile documentano il dialogo separato dal palco. offline-owned mostra acquisizione singola residua; offline-round mostra stesso9550 con effetto acquistato e server spento. Dati, hash e versioni osservate in manifest.json. La build finale aggiunge soltanto il guard del feedback reward tardivo, testato separatamente; transazione shop e geometria identiche. I profili erano isolati su5185/5187, con fondi aggiunti tramite Shop Lab DEV, mai nei salvataggi preesistenti dell'utente. Nessuna sostituzione delle sette baseline2I.
