@@ -6,6 +6,6 @@ import { publicContentCatalog } from './publicContentCatalog.ts';
 export const productionStore: StoreCatalog = immutable({ offers: [
   { id:'offer.b02',kind:'ITEM',contentItemId:'bartender.b02',order:10,availability:{published:true} },
   { id:'offer.ice-blue',kind:'ITEM',contentItemId:'effect.ice-blue',order:20,availability:{published:true} },
-  { id:'offer.new-shift',kind:'BUNDLE',bundleId:'bundle.b02-ice-blue',pricing:{kind:'remaining-items',payPercent:85},order:30,availability:{published:true} },
+  { id:'offer.new-shift',kind:'BUNDLE',bundleId:'bundle.b02-ice-blue',pricing:{kind:'remaining-items',payPercent:85},order:30,availability:{published:true,minimumLevel:6} },
 ] });
 validateStore(productionStore,publicContentCatalog);

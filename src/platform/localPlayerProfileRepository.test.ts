@@ -9,7 +9,7 @@ test('first creation persists one namespaced save; reload keeps ID, progress and
   assert.equal(loaded.status,'saved');repo.save(gainXp(loaded.profile,120,tuning));
   const restored=testRepository(storage).load();assert.equal(restored.profile.profileId,loaded.profile.profileId);
   assert.equal(restored.profile.progression.level,2);assert.equal(storage.values.get('unrelated.save'),'keep');
-  assert.equal(restored.profile.ownership.length,6);
+  assert.equal(restored.profile.ownership.length,5);assert.deepEqual(restored.profile.equippedLoadout,loaded.profile.equippedLoadout);
 });
 test('migration boundary accepts V1 and preserves unsupported older/future formats',()=>{
   assert.equal(migratePlayerProfile(JSON.stringify(newTestProfile()),tuning).kind,'current');

@@ -1,0 +1,19 @@
+{
+  "phase": "2K",
+  "checkpoint": "d8dce00",
+  "date": "2026-10-16",
+  "origin": "http://127.0.0.1:5195",
+  "productionJs": "index-KSERVTal.js",
+  "css": "index-DonYw2gP.css",
+  "cache": "9b2ae6c9110c27e0",
+  "files": {
+    "production-level6.jpg": {
+      "bytes": 72702,
+      "sha256": "9aae9976d2d5f9747144a73499f3d8368fa702cae9e6e5ad623aeb662f3cbcb0"
+    },
+    "offline-owned.jpg": {
+      "bytes": 70847,
+      "sha256": "ec3561c49e24b96f75d44910eb19a06305e6481160ee2992b95a7210a3280481"
+    }
+  }
+}

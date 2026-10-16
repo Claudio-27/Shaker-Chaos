@@ -50,5 +50,5 @@ test('schema rejects corrupt projections, fractional values, duplicates and inco
 test('progression configuration rejects unsafe cadence, levels and duplicate unlock rules', () => {
   assert.doesNotThrow(()=>validateProgressionTuning(tuning));
   for(const changed of [{...tuning,xp:{...tuning.xp,scoreDivisor:0}},{...tuning,ledgerLimit:0},{...tuning,levels:{...tuning.levels,firstRequirement:0}},
-    {...tuning,levels:{...tuning.levels,technicalMaximum:Number.MAX_SAFE_INTEGER}},{...tuning,unlocks:[tuning.unlocks[0]!,tuning.unlocks[0]!]}]) assert.throws(()=>validateProgressionTuning(changed),RangeError);
+    {...tuning,levels:{...tuning.levels,technicalMaximum:Number.MAX_SAFE_INTEGER}},{...tuning,unlocks:[{requirementId:'a',contentId:'test',minimumLevel:2},{requirementId:'b',contentId:'test',minimumLevel:3}]}]) assert.throws(()=>validateProgressionTuning(changed),RangeError);
 });

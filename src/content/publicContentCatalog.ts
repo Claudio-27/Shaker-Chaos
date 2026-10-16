@@ -1,10 +1,19 @@
 import type { ContentCatalog, ContentItem, ContentKind } from './contentModel.ts';
 import { progressionTuning, starterContentIds } from './progressionTuning.ts';
-const coinPrices: Readonly<Record<string,number>> = { 'bartender.b02': 300, 'effect.ice-blue': 150 };
-const item = (id: string, displayName: string, kind: ContentKind): ContentItem =>
-  ({ id, displayName, kind, ...(coinPrices[id] !== undefined ? { price: { currency: 'coins', amount: coinPrices[id]! } } : {}), visibility: 'public', visualDefinitionId: id, unlock: starterContentIds.some(starter => starter === id) ? [{ kind: 'default' }] :
-    progressionTuning.unlocks.some(rule => rule.contentId === id) ? [{ kind: 'progression', requirementId: progressionTuning.unlocks.find(rule => rule.contentId === id)!.requirementId }, ...(coinPrices[id] !== undefined ? [{ kind: 'currency' as const, currencyId: 'coins' }] : [])] :
-    [{ kind: 'development', entitlementId: 'legacy-visual-preview' }] });
+const coinPurchases: Readonly<Record<string, { readonly amount: number; readonly availableFromLevel: number }>> = {
+  'bartender.b02': { amount: 300, availableFromLevel: 3 },
+  'effect.ice-blue': { amount: 150, availableFromLevel: 2 },
+};
+const item = (id: string, displayName: string, kind: ContentKind): ContentItem => {
+  const purchase = coinPurchases[id], grant = progressionTuning.unlocks.find(rule => rule.contentId === id);
+  const unlock: ContentItem['unlock'] = starterContentIds.some(starter => starter === id) ? [{ kind: 'default' }] : [
+    ...(grant ? [{ kind: 'progression' as const, requirementId: grant.requirementId }] : []),
+    ...(purchase ? [{ kind: 'currency' as const, currencyId: 'coins', availableFromLevel: purchase.availableFromLevel }] : []),
+    ...(!grant && !purchase ? [{ kind: 'development' as const, entitlementId: 'legacy-visual-preview' }] : []),
+  ];
+  return { id, displayName, kind, visibility: 'public', visualDefinitionId: id, unlock,
+    ...(purchase ? { price: { currency: 'coins', amount: purchase.amount } } : {}) };
+};
 /** One canonical item per ID; bundles contain references, never copies or visual configurations. */
 export const publicContentCatalog: ContentCatalog = {
   items: [

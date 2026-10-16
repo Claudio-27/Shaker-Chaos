@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { issueRoundIdentity, rewardAmounts, settleRoundReward, evaluateProgressionUnlocks } from '../domain/progression.ts';
 import { createPlayerProfile, gainXp, validatePlayerProfile } from '../domain/playerProfile.ts';
-import { progressionTuning as tuning } from '../content/progressionTuning.ts';
+import { freeGrantTuning as tuning } from './progressionTestFixtures.ts';
 const p=()=>createPlayerProfile('local-synthetic',1000,{bartenderId:'b',environmentId:'e',counterId:'c',bottleSetId:'bottles',effectOverride:null},['b','e','c','bottles']);
 const policy={starterIds:['b','e','c','bottles'],availablePublicIds:['b','e','c','bottles','bartender.b02','effect.ice-blue']};
 const result=(totalScore=5000,failed=false,mechanicalReactionTierId='okay')=>Object.freeze({totalScore,failed,mechanicalReactionTierId});

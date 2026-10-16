@@ -13,7 +13,7 @@ const buy=(p=fundedProfile(),id='offer.b02')=>purchaseOffer(p,intentFor(p,id),st
 test('production shop offers only two existing optional public cosmetics and one canonical bundle',()=>{
   validateStore(store,catalog);assert.equal(store.offers.length,3);
   assert.equal(catalog.items.find(i=>i.id==='bartender.b02')!.price!.amount,300);assert.equal(catalog.items.find(i=>i.id==='effect.ice-blue')!.price!.amount,150);
-  for(const id of ['bartender.b02','effect.ice-blue'])assert.ok(catalog.items.find(i=>i.id===id)!.unlock.some(u=>u.kind==='progression'));
+  for(const id of ['bartender.b02','effect.ice-blue']){assert.ok(catalog.items.find(i=>i.id===id)!.unlock.some(u=>u.kind==='currency'));assert.ok(!catalog.items.find(i=>i.id===id)!.unlock.some(u=>u.kind==='progression'));}
   const owned=fundedProfile().ownership.map(i=>i.contentId);assert.equal(owned.length,5);assert.ok(owned.includes('environment.e01'));
 });
 test('store rejects negative, fractional, overflowing, private, technical, missing and duplicate configuration',()=>{
@@ -74,10 +74,10 @@ test('changed quote, profile identity, ordinal and overflow fail before spending
   const max=immutable({...p,nextPurchaseOrdinal:Number.MAX_SAFE_INTEGER});assert.equal(purchaseOffer(max,intentFor(max),store,catalog,2000).status,'INVALID_CONFIGURATION');
   assert.equal(p.wallet.lifetimeCoinsSpent,0);
 });
-test('purchased-before-level ownership is retained and later progression produces no duplicate unlock',()=>{
+test('purchased ownership is retained and later progression produces no duplicate unlock',()=>{
   const purchased=buy().profile,leveled=reconcilePlayerProfile(gainXp(purchased,100,progressionTuning),2000);
   assert.equal(leveled.ownership.filter(i=>i.contentId==='bartender.b02').length,1);assert.equal(leveled.ownership.find(i=>i.contentId==='bartender.b02')!.source,'currency-purchased');
-  assert.equal(reconcilePlayerProfile(gainXp(fundedProfile(),100,progressionTuning),2000).ownership.at(-1)!.source,'progression');
+  assert.equal(reconcilePlayerProfile(gainXp(fundedProfile(),100,progressionTuning),2000).ownership.length,5);
 });
 test('bounded ledger evicts receipts but watermark prevents old identities from spending again',()=>{
   const items=Array.from({length:PURCHASE_LEDGER_LIMIT+2},(_,n)=>({id:'test-cosmetic-'+n,displayName:'Synthetic '+n,kind:'effect' as const,visibility:'public' as const,visualDefinitionId:'test',unlock:[{kind:'currency' as const,currencyId:'coins'}],price:{currency:'coins',amount:1}}));

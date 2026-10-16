@@ -6,6 +6,7 @@ import type { PlayerProfile, ProgressionReward } from '../domain/playerProfile.t
 import { nextLevelRequirement } from '../domain/playerProfile.ts';
 import { progressionTuning } from '../content/progressionTuning.ts';
 import { publicContentCatalog } from '../content/publicContentCatalog.ts';
+import { coinPurchaseMinimumLevel } from '../application/store.ts';
 import { canEquip, contentSlot } from '../application/playerContent.ts';
 export const collectionGroups = [
   { kind: 'bartender', label: 'Bartender' }, { kind: 'environment', label: 'Ambienti' },
@@ -28,7 +29,10 @@ export function collectionCard(profile: PlayerProfile, item: ContentItem) {
   const owned = canEquip(profile, item), slot = contentSlot[item.kind as keyof typeof contentSlot];
   const equipped = owned && profile.equippedLoadout[slot] === item.id;
   const rule = progressionTuning.unlocks.find(rule => rule.contentId === item.id);
-  return { owned, equipped, action: equipped ? 'Equipaggiato' : owned ? 'Usa ' + item.displayName : rule ? 'Sblocca al livello ' + rule.minimumLevel : 'Non ancora disponibile',
+  const purchase=item.unlock.some(u=>u.kind==='currency'&&u.currencyId==='coins')&&item.price?.currency==='coins';
+  const acquisition=rule ? 'Gratis al livello '+rule.minimumLevel : purchase ?
+    (profile.progression.level<coinPurchaseMinimumLevel(item) ? 'Acquistabile dal livello '+coinPurchaseMinimumLevel(item) : 'Acquista nel Negozio')+' · '+item.price!.amount+' monete' : 'Non ancora disponibile';
+  return { owned, equipped, action: equipped ? 'Equipaggiato' : owned ? 'Usa ' + item.displayName : acquisition,
     label: item.displayName + ', ' + (owned ? equipped ? 'equipaggiato' : 'posseduto' : 'bloccato') };
 }
 export function collectionItems() { return publicContentCatalog.items.filter(item => item.visibility === 'public' && !item.unlock.some(u => u.kind === 'development')); }

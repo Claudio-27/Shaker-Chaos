@@ -1,20 +1,27 @@
-# Negozio locale — fase 2J
+# Negozio locale — fase 2K
 
-Il negozio usa solo monete fittizie guadagnate dai cocktail e cosmetici pubblici già esistenti. Non introduce pagamenti reali, backend, account o consegna privata. Si apre dalla scheda **Negozio** del dialogo Collezione. Il palco600×440 e tutti i suoi artwork/layout restano bloccati.
+Il negozio vende cosmetici pubblici esistenti con monete fittizie guadagnate dai cocktail. Collezione/Negozio restano nel dialogo secondario; palco600×440, artwork e CSS sono bloccati. La2K corregge l'alternativa gratuita che nella2J anticipava qualsiasi acquisto normale.
 
-## Catalogo e prezzi
+## Livello, proprietà e prezzo
 
-StoreOffer è un modello dichiarativo ITEM/BUNDLE; availability separa pubblicazione e un eventuale livello minimo del negozio. I prezzi singoli hanno un'unica fonte: PriceMetadata nel catalogo canonico, currency=coins e amount intero sicuro≥0. La UI visualizza quote, non calcola prezzi o transazioni. I quattro bundle storici di esempio rimangono definizioni non vendute. L'unico nuovo bundle raggruppa due ContentItem esistenti, senza duplicare ID o immagini.
-
-| Offerta | Contenuto canonico | Prezzo | Alternativa |
+| Offerta | ID canonico | Acquistabile dal livello | Prezzo |
 | --- | --- | --- | --- |
-| offer.b02 | bartender.b02 — Bartender 02 | 300 | Progressione al livello2 |
-| offer.ice-blue | effect.ice-blue — Scia azzurra | 150 | Progressione al livello3 |
-| offer.new-shift | bundle.b02-ice-blue — Un nuovo turno | Dinamico, massimo382 | Concessione dei due ID canonici |
+| Bartender02 | bartender.b02 | 3 | 300monete |
+| Scia azzurra | effect.ice-blue | 2 | 150monete |
+| Un nuovo turno | bundle.b02-ice-blue | 6 | 382monete completo |
 
-Bartender02 ed effetto sono **progressione OR acquisto**, senza requisiti di livello per comprare. Lo starter conserva tutti e cinque gli entitlements precedenti. Nessun segnaposto DEV, asset tecnico, ingrediente, meccanica obbligatoria o contenuto privato è vendibile.
+**Raggiungere il livello rende acquistabile, senza concedere proprietà.** Nessuno dei due cosmetici è ora un grant gratuito. Lo starter conserva i cinque oggetti originali. Le formule di ricompensa, la curva XP e i prezzi2J sono conservati. Il bundle mantiene floor(costo residuo×85/100).
 
-validateStore respinge prezzi negativi/frazionari/unsafe, ID mancanti/duplicati, bundle vuoti o con contenuti duplicati/inesistenti/privati, asset tecnici, starter e segnaposto marcati development. Un'offerta richiede cosmetico pubblico opzionale, unlock currency coins e PriceMetadata valido. Audit esplicito con npm run shop:audit, eseguito anche dalla build prima della generazione SW. La configurazione corrente ha3 offerte su2 cosmetici e1 bundle.
+Fonti di configurazione:
+
+- ContentItem.unlock/default e starterContentIds: starter gratuito.
+- progressionTuning.unlocks: solo grant gratuiti intenzionali, con minimumLevel e requirementId. Attualmente vuoto; il servizio continua a supportare attraversamenti multipli e idempotenza.
+- ContentItem.unlock/currency: currencyId coins e availableFromLevel opzionale; assenza significa livello1. PriceMetadata è l'unica fonte del prezzo.
+- StoreOffer.availability: pubblicazione e minimo eventuale dell'offerta. Quote ITEM usa il massimo tra offerta e gate canonico; BUNDLE usa anche i gate di tutti gli elementi ancora non posseduti. Un bundle non può aggirarli.
+
+Progression e currency possono coesistere solo se si vuole deliberatamente una vera alternativa gratuita: non sono sinonimi. Una nuova offerta senza gate non richiede nuovo codice; un grant gratuito richiede una regola intenzionale e metadati progression coerenti. I quattro bundle storici di esempio rimangono non venduti. Nessun prodotto segnaposto, tecnico o privato è vendibile.
+
+validateStore verifica riferimenti e unicità, prezzi interi sicuri, livelli interi≥1, una sola regola coins per articolo e inclusioni pubbliche opzionali. L'audit npm run shop:audit include livello effettivo e round necessari sia per XP sia per saldo. La build valida il catalogo prima del service worker.
 
 ## Bundle e proprietà parziale
 
@@ -39,7 +46,7 @@ Se un futuro BundleDefinition ha un prezzo coins esplicito, la regola catalog-pr
 6. Il repository salva UN JSON coerente. SUCCESS è accompagnato da persistence: saved oppure memory/unsupported. La UI distingue “Acquistato!” da “Solo per questa sessione: non riusciamo a salvare i progressi”. Un conflitto non installa uno spend fittizio nel profilo corrente.
 7. La UI aggiorna stato e saldo. Nessun auto-equip: Equipaggia richiama lo stesso equipContent/controller della Collezione e cambia un solo slot.
 
-Esiti espliciti: SUCCESS, ALREADY_PROCESSED, ALREADY_OWNED, INSUFFICIENT_FUNDS, OFFER_UNAVAILABLE, PROFILE_CONFLICT, OFFER_CHANGED, INVALID_CONFIGURATION. INSUFFICIENT_FUNDS mostra esattamente le monete mancanti e mantiene il wallet non negativo. Un contenuto comprato prima del livello non riceve un doppio entitlement o una nuova card di sblocco quando la progressione lo raggiunge.
+Esiti espliciti: SUCCESS, ALREADY_PROCESSED, ALREADY_OWNED, INSUFFICIENT_FUNDS, OFFER_UNAVAILABLE, PROFILE_CONFLICT, OFFER_CHANGED, INVALID_CONFIGURATION. INSUFFICIENT_FUNDS mostra esattamente le monete mancanti e mantiene il wallet non negativo. Le proprietà storiche ottenute prima dei nuovi requisiti restano valide ed equipaggiabili. I livelli non generano un secondo entitlement o un addebito retroattivo.
 
 ## Profilo V2 e registro
 
@@ -61,18 +68,32 @@ BroadcastChannel shaker-chaos.profile-changes e storage events della sola chiave
 
 ## UI, accessibilità e offline
 
-Collezione resta la superficie di equip, con le sue anteprime di unlock precedenti; Negozio gestisce esclusivamente acquisizione. Tabs con aria-selected, frecce e focus visibile; categorie vuote omesse, ordine esplicito: disponibili/affordabili, non affordabili o bloccati, posseduti. Conferma è un dialogo nativo annidato con nome/descritto, focus iniziale, Escape isolato dal dialogo padre e ritorno al pulsante originario. Esito è un messaggio di stato focalizzabile. Le proprietà non sono comunicate solo dal colore. Pulsanti nuovi≥48px. Nessuna animazione di acquisto: reduced-motion non cambia la matematica. Nessun file audio o cue aggiunto.
+Collezione resta la superficie di equip. Per gli articoli non posseduti mostra “Acquistabile dal livello N · prezzo” oppure “Acquista nel Negozio · prezzo”; i veri premi gratuiti mostrano “Gratis al livello N”. Negozio gestisce acquisizione e mostra il requisito anche prima di avere fondi. Nessun testo “Sblocca” promette una concessione gratuita per gli acquisti. Tabs con aria-selected, frecce e focus visibile; categorie vuote omesse, ordine esplicito: disponibili/affordabili, non affordabili o bloccati, posseduti. Conferma è un dialogo nativo annidato con nome/descritto, focus iniziale, Escape isolato dal dialogo padre e ritorno al pulsante originario. Esito è un messaggio di stato focalizzabile. Le proprietà non sono comunicate solo dal colore. Pulsanti nuovi≥48px. Nessuna animazione di acquisto: reduced-motion non cambia la matematica. Nessun file audio o cue aggiunto.
 
 A negozio chiuso non sono montate card/anteprime. Aprendolo, IntersectionObserver carica le immagini visibili o prossime al viewport; nessun catalogo riscaldato all'avvio. Metadati pubblici già nel JS permettono acquisto offline anche senza immagine: AssetImage usa il fallback opzionale già esistente. Restano7 file shell precache,64 path art ammessi a richiesta,zero art precached e limite32. Non vengono aggiunti asset o URL protetti.
 
-Prova reale su origine isolata127.0.0.1:5185: profilo DEV500monete, acquisto B02=300/equip; produzione round9550 ⇒243monete. Stop preview, reload offline, bundle residuo127 ⇒116, grant solo Scia azzurra, equip esplicito/reload e round offline9550 ⇒159monete. Anche i progressi restano115→230XP, senza duplicazioni da reload. Su5187 il bundle totalmente non posseduto382 lascia118 e due grant. Vedere [rapporto](PHASE_2J_REPORT.md) e [prove UI](phase2j-smoke/manifest.json).
+Prove storiche2J: [rapporto](PHASE_2J_REPORT.md). Prove2K sulla nuova configurazione: [rapporto corrente](PHASE_2K_REPORT.md), inclusi gate, doppio clic, due schede e bundle parziale dopo stop reale del server/reload offline.
 
-## Pacing attuale
+## Pacing e scelta
 
-| Prezzo | Score1500:11monete/round | Score5000:25 | Score9550:43 |
-| --- | --- | --- | --- |
-| B02=300 | 28 round | 12 | 7 |
-| Scia=150 | 14 | 6 | 4 |
-| Bundle=382 | 35 | 16 | 9 |
+A score5000 si ricevono70XP/25monete. Scia acquistabile dal round2, con fondi al6; Bartender02 dal4, con fondi al12; bundle dal15, con fondi al16, senza spese precedenti. La scelta è acquistare prima il singolo desiderato oppure attendere e risparmiare. Chi desidera solo un cosmetico spende150 o300, meno del bundle completo. Dopo il livello6 il bundle residuo è intenzionalmente conveniente: non aggiungiamo malus o urgenza artificiale.
 
-Si tratta di arrotondamento per eccesso da saldo zero, senza spese precedenti. Gli unlock gratuiti dei livelli2/3 arrivano prima dei saldi necessari nel normale percorso: il primo negozio ha quindi un'utilità commerciale limitata con questi soli due contenuti. I prezzi rispettano la guida300–600/100–250 senza modificare le ricompense approvate. Per una vetrina più ricca servono nuovi cosmetici reali con politica di acquisizione deliberata; nessun prodotto fittizio è stato aggiunto. Questa è una raccomandazione futura, non lavoro avviato.
+Esempio medio: Scia al6 + bundle residuo255 al17 =405monete; risparmiare per il bundle completo al16 =382; Bartender al12 + bundle residuo127 al18 =427. I due singoli costano450 e si completano al18. Il vantaggio del bundle non annulla il valore dell'equip anticipato.
+
+## Simulatore e futuri contenuti
+
+npm run economy:simulate produce quattro scenari deterministici (basso, medio, alto, misto) e cinque casi di reward. Opzioni: --rounds=60 e --strategy=save|effect-first|bartender-first|bundle, dopo il separatore npm --. Il report per round mostra livello, XP lifetime/corrente, monete del giro, saldo, offerte appena disponibili, acquisti possibili e acquisti effettuati. Una lista di desideri ordinata aspetta il prossimo articolo senza sostituirlo con acquisti diversi. L'API simulateEconomy accetta anche piani come Scia→bundle per analizzare la proprietà parziale.
+
+Usa gli stessi servizi di reward, quote, grant e purchase del gioco, con timestamp/identità sintetici espliciti e profilo isolato. Non scrive storage, non equipaggia e non entra nella UI di produzione; il marker ECONOMY_SIMULATION_DEV_ONLY è respinto dall'audit del bundle. Le sequenze ripetute sono ipotesi di analisi, senza telemetria o stime in minuti.
+
+| Contenuto futuro | Configurazione |
+| --- | --- |
+| Starter | starterContentIds + default |
+| Premio gratuito | progressionTuning.unlocks + progression |
+| Acquisto per livello | currency.availableFromLevel + PriceMetadata + ITEM |
+| Acquisto senza gate | currency senza availableFromLevel + PriceMetadata + ITEM |
+| Bundle | riferimenti canonici + BUNDLE/pricing/availability |
+
+## Profili esistenti
+
+Resta PlayerProfileV2, senza nuovi campi e senza V3. V1→V2 continua invariata. Reconcile conserva tutti gli entitlements: starter, vecchi grant gratuiti, acquisti e bundle; conserva wallet, XP, receipt, watermark e loadout valido. Nessun costo retroattivo e nessuna compensazione inventata. Un livello già raggiunto ma privo di entitlement effettivo non diventa una promessa di grant storico: si applica la disponibilità corrente. Le ricevute di acquisti pre-gate restano valide. Anche un cosmetico posseduto sotto il nuovo gate rimane equipaggiabile.

@@ -43,19 +43,19 @@ export function Storefront({snapshot,controller,visuals,onCollection}:{readonly 
   const confirm=async()=>{const outcome=await controller.purchase(pending!.intent);setPending(null);setMessage(purchaseFeedback(outcome));return outcome;};
   return <section className="shop-surface" aria-label="Negozio cosmetici">
     <div className="shop-wallet"><strong aria-label={'Saldo: '+profile.wallet.coins+' monete'}>{profile.wallet.coins} monete</strong><span>Un tocco nuovo per il tuo bar.</span></div>
-    <p className="shop-intro">Solo monete del gioco, guadagnate preparando drink. Tutti i contenuti sono cosmetici.</p>
+    <p className="shop-intro">Solo monete del gioco, guadagnate preparando drink. Tutti i contenuti sono cosmetici. I livelli aprono nuove offerte: scegli come spendere le monete.</p>
     <div className="shop-filters" role="group" aria-label="Categorie negozio">{categories.map(c=><button key={c.id} type="button" aria-pressed={category===c.id} onClick={()=>setCategory(c.id)}>{c.name}</button>)}</div>
     <p ref={feedback} className="shop-feedback" role="status" tabIndex={-1}>{message}</p>
     <div className="shop-grid">{quotes.filter(q=>category==='all'||q.category===category).map(quote=>{
       const item=quote.kind==='ITEM'?publicContentCatalog.items.find(i=>i.id===quote.includedIds[0]):undefined;
       const card=item?collectionCard(profile,item):undefined,alternative=item&&progressionAlternative(item.id);
       const purchasable=quote.state==='AVAILABLE'&&!quote.missingCoins;
-      return <article className="shop-card" key={quote.offerId} aria-label={quote.name+', '+(quote.state==='OWNED'?'posseduto':quote.missingCoins?'monete insufficienti':'disponibile')}>
+      return <article className="shop-card" key={quote.offerId} aria-label={quote.name+', '+(quote.state==='OWNED'?'posseduto':quote.state==='LOCKED'?'acquistabile dal livello '+quote.minimumLevel:quote.state==='UNAVAILABLE'?'non disponibile':quote.missingCoins?'monete insufficienti':'disponibile')}>
         <ShopPreview contentId={quote.includedIds[0]!} visuals={visuals}/><small>{shopCategories.find(c=>c.id===quote.category)?.name??'Cosmetici'}</small><h4>{quote.name}</h4>
         {quote.kind==='BUNDLE'&&<ul aria-label={'Contenuti di '+quote.name}>{quote.includedIds.map(id=><li key={id}>{publicContentCatalog.items.find(i=>i.id===id)!.displayName}<span>{quote.alreadyOwnedIds.includes(id)?'Già posseduto':'Da ottenere'}</span></li>)}</ul>}
         {quote.state==='OWNED'?<><strong className="shop-owned">✓ Posseduto</strong>{item&&canEquip(profile,item)?<button type="button" disabled={card?.equipped} onClick={()=>controller.equip(item.id)}>{card?.equipped?'Equipaggiato':'Equipaggia '+item.displayName}</button>:<button type="button" onClick={onCollection}>Apri Collezione</button>}</>:
           <><strong className="shop-price">{quote.priceCoins} monete</strong>{quote.savings>0&&<p className="shop-saving">Risparmi {quote.savings} monete</p>}{alternative&&<p>{alternative}</p>}
-            {quote.state==='LOCKED'?<p>Negozio: dal livello {quote.minimumLevel}</p>:quote.state==='UNAVAILABLE'?<p>Non disponibile</p>:quote.missingCoins>0&&<p>Ti servono altre {quote.missingCoins} monete</p>}
+            {quote.minimumLevel>1&&<p>Acquistabile dal livello {quote.minimumLevel}</p>}{quote.state==='UNAVAILABLE'?<p>Non disponibile</p>:quote.state==='AVAILABLE'&&quote.missingCoins>0&&<p>Ti servono altre {quote.missingCoins} monete</p>}
             <button type="button" disabled={!purchasable} aria-label={'Acquista '+quote.name+' per '+quote.priceCoins+' monete'} onClick={()=>open(quote)}>Acquista</button></>}
       </article>;
     })}</div>

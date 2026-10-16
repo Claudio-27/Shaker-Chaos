@@ -1,7 +1,7 @@
-# Shaker-Chaos — fase 2J
+# Shaker-Chaos — fase 2K
 
-Solo repository e ramo main, HEAD iniziale53722a9, worktree pulito. Nessun commit, ramo, push, PR, GitHub, remoto o ricerca del riferimento. La precedente autorizzazione di commit riguardava soltanto2I. Stop dopo2J.
+Lavorare solo nel repository e su main. Checkpoint 2J d8dce00, 322 test verificati; commit locale autorizzato esplicitamente dall'utente. Lasciare le modifiche 2K non committate. Niente branch, push, PR, GitHub o servizi esterni. Stop dopo2K.
 
-MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I. DOUBLE_COUNTER_STATUS: RESOLVED. Geometria600×440, CSS/framing/coordinate, artwork e baseline immutabili. Il negozio usa il dialogo Collezione; nessuna riorganizzazione del palco. Gameplay/scoring e formule XP/monete invariati.
+MAIN CLASSIC GAME STAGE VISUALLY LOCKED AFTER PHASE 2I. DOUBLE_COUNTER_STATUS: RESOLVED. Geometria600×440, CSS/framing/coordinate, artwork e baseline immutabili. Gameplay, scorer, reaction tier, formule reward e curva XP invariati.
 
-Implementare solo economia locale in monete fittizie per cosmetici pubblici reali, conferma esplicita, transazioni atomiche/idempotenti, bundle proporzionati al contenuto non posseduto, migrazione versionata se necessaria, coordinamento tra schede e persistenza/offline. Niente denaro reale, backend, account, asset privati, rimborso o trading. Non generare artwork. Conservare tutti293 test preesistenti e aggiungere copertura significativa. Documentare risultati effettivi e limiti.
+Separare disponibilità per livello, acquisto in monete e veri grant gratuiti configurati. Solo cosmetici reali esistenti; nessuna revoca o addebito retroattivo. Conservare PlayerProfileV2, proprietà, acquisti, coordinamento, idempotenza, offline e conflitti. Aggiungere simulazione deterministica solo analisi, test mirati e documentazione delle decisioni. Nessun backend/account/cloud/denaro reale/asset nuovo o privato.

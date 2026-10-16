@@ -19,7 +19,14 @@ export function sellableContent(item: ContentItem): boolean {
   return item.visibility === 'public' && cosmeticKinds.has(item.kind) && !item.unlock.some(u=>u.kind==='default'||u.kind==='development'||u.kind==='private-entitlement') &&
     item.unlock.some(u=>u.kind==='currency'&&u.currencyId==='coins') && item.price?.currency === 'coins';
 }
-function price(item: ContentItem): number { if (!sellableContent(item)) throw new RangeError('Not optional public sellable cosmetic: '+item.id);integer(item.price!.amount);return item.price!.amount; }
+/** Availability grants no ownership. Omitted level means an ungated coin purchase. */
+export function coinPurchaseMinimumLevel(item: ContentItem): number {
+  const rules=item.unlock.filter(u=>u.kind==='currency'&&u.currencyId==='coins');
+  if(rules.length>1)throw new RangeError('Duplicate coin purchase rule');
+  const rule=rules[0], level=rule?.kind==='currency' ? rule.availableFromLevel??1 : 1;
+  integer(level,1);return level;
+}
+function price(item: ContentItem): number { coinPurchaseMinimumLevel(item); if (!sellableContent(item)) throw new RangeError('Not optional public sellable cosmetic: '+item.id);integer(item.price!.amount);return item.price!.amount; }
 export function validateStore(store: StoreCatalog, catalog: ContentCatalog): void {
   const ids = new Set<string>();
   if (new Set(catalog.items.map(i=>i.id)).size!==catalog.items.length || new Set(catalog.bundles.map(b=>b.id)).size!==catalog.bundles.length) throw new RangeError('Duplicate content definition');
@@ -46,7 +53,9 @@ export function quoteStoreOffer(profile: PlayerProfile, store: StoreCatalog, cat
   const includedIds=bundle?.includedContentIds??[item!.id], owned=new Set(profile.ownership.map(i=>i.contentId));
   const remainingIds=includedIds.filter(id=>!owned.has(id)), alreadyOwnedIds=includedIds.filter(id=>owned.has(id));
   const subtotal=(ids:readonly string[])=>safeNumber(ids.reduce((sum,id)=>sum+BigInt(price(catalog.items.find(i=>i.id===id)!)),0n));
-  const remainingSubtotal=subtotal(remainingIds), minimumLevel=offer.availability.minimumLevel??1;
+  // A bundle cannot bypass purchase gates of its unowned members. Owned entitlements stay valid.
+  const remainingSubtotal=subtotal(remainingIds), minimumLevel=Math.max(offer.availability.minimumLevel??1,
+    ...remainingIds.map(id=>coinPurchaseMinimumLevel(catalog.items.find(i=>i.id===id)!)));
   let priceCoins=remainingSubtotal;
   if(offer.kind==='BUNDLE')priceCoins=offer.pricing.kind==='remaining-items'?safeNumber(BigInt(remainingSubtotal)*BigInt(offer.pricing.payPercent)/100n):
     remainingSubtotal===0?0:safeNumber(BigInt(bundle!.price!.amount)*BigInt(remainingSubtotal)/BigInt(subtotal(includedIds)));

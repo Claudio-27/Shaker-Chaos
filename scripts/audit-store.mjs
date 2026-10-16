@@ -1,10 +1,11 @@
 import { validateStore, quoteStoreOffer } from '../src/application/store.ts';
 import { productionStore } from '../src/content/storeCatalog.ts';
 import { publicContentCatalog } from '../src/content/publicContentCatalog.ts';
-import { createPlayerProfile } from '../src/domain/playerProfile.ts';
+import { createPlayerProfile, levelThreshold } from '../src/domain/playerProfile.ts';
 import { starterLoadout } from '../src/application/playerContent.ts';
 import { starterContentIds, progressionTuning } from '../src/content/progressionTuning.ts';
 import { rewardAmounts } from '../src/domain/progression.ts';
 validateStore(productionStore,publicContentCatalog);
-const p=createPlayerProfile('audit-only',0,starterLoadout,starterContentIds),coins=[1500,5000,9550].map(totalScore=>rewardAmounts({totalScore,failed:false,mechanicalReactionTierId:'audit'},progressionTuning).coins);
-console.log(JSON.stringify({offers:productionStore.offers.map(o=>{const q=quoteStoreOffer(p,productionStore,publicContentCatalog,o.id);return {id:o.id,name:q.name,priceCoins:q.priceCoins,remainingIds:q.remainingIds,savings:q.savings,roundsAtLowMidStrong:coins.map(c=>Math.ceil(q.priceCoins/c))};}),coinRewards:coins},null,2));
+const rewards=[1500,5000,9550].map(totalScore=>rewardAmounts({totalScore,failed:false,mechanicalReactionTierId:'audit'},progressionTuning));
+const p=createPlayerProfile('audit-only',0,starterLoadout,starterContentIds),coins=rewards.map(r=>r.coins);
+console.log(JSON.stringify({offers:productionStore.offers.map(o=>{const q=quoteStoreOffer(p,productionStore,publicContentCatalog,o.id);return {id:o.id,name:q.name,priceCoins:q.priceCoins,remainingIds:q.remainingIds,savings:q.savings,minimumLevel:q.minimumLevel,state:q.state,roundsAtLowMidNearMax:rewards.map(r=>Math.max(Math.ceil(q.priceCoins/r.coins),Math.ceil(levelThreshold(q.minimumLevel,progressionTuning)/r.xp)))};}),coinRewards:coins},null,2));

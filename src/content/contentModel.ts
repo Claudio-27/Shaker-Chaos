@@ -4,7 +4,7 @@ export type ContentKind = 'bartender' | 'environment' | 'counter' | 'effect' | '
 export type UnlockMetadata =
   | { readonly kind: 'default' }
   | { readonly kind: 'progression'; readonly requirementId: string }
-  | { readonly kind: 'currency'; readonly currencyId: string }
+  | { readonly kind: 'currency'; readonly currencyId: string; readonly availableFromLevel?: number }
   | { readonly kind: 'bundle-entitlement' | 'private-entitlement' | 'promotion' | 'development'; readonly entitlementId: string };
 export interface PriceMetadata { readonly currency: string; readonly amount: number }
 export interface ContentItem {

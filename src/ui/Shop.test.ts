@@ -25,9 +25,9 @@ test('Collection starts on owned/equip surface; Shop tab exists but its acquisit
   const c=controller(),html=render(createElement(collection.Collection,{profile:c.snapshot().profile,visuals,onEquip(){},onClose(){},shop:{snapshot:c.snapshot(),controller:c}}));
   assert.match(html,/role="tablist"/);assert.match(html,/id="collection-tab"[^>]*aria-selected="true"/);assert.match(html,/>Negozio</);assert.doesNotMatch(html,/Negozio cosmetici|shop-grid|shop-preview/);
 });
-test('real storefront renders prices, acquisition alternatives, insufficiency and explicit category filters',()=>{
+test('real storefront renders prices, purchase levels, insufficiency and explicit category filters',()=>{
   const c=controller(0),html=render(createElement(shop.Storefront,{snapshot:c.snapshot(),controller:c,visuals,onCollection(){}}));
-  assert.match(html,/300 monete/);assert.match(html,/150 monete/);assert.match(html,/Ti servono altre 300 monete/);assert.match(html,/Oppure sblocca al livello 2/);assert.match(html,/disabled=""[^>]*aria-label="Acquista Bartender 02 per 300 monete"/);
+  assert.match(html,/300 monete/);assert.match(html,/150 monete/);assert.match(html,/Ti servono altre 300 monete/);assert.match(html,/Acquistabile dal livello 3/);assert.doesNotMatch(html,/Oppure sblocca|Gratis al livello/);assert.match(html,/disabled=""[^>]*aria-label="Acquista Bartender 02 per 300 monete"/);
   assert.match(html,/Categorie negozio/);assert.match(html,/Solo monete del gioco/);assert.doesNotMatch(html,/__art-source|src=".*b02|href=".*b02/,'previews are intersection-deferred');
 });
 test('owned item purchase is replaced by equip, bundle completion and savings use only remaining items',async()=>{

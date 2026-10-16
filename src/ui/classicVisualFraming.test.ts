@@ -12,6 +12,9 @@ import { gameDependencies, gamePresentation } from '../application/productionBoo
 import { newClassicGame, transitionClassicGame } from '../application/classicGame.ts';
 import type { ClassicGameAction } from '../application/classicGame.ts';
 import { createPlayerController } from '../application/playerController.ts';
+import { freeGrantTuning } from '../application/progressionTestFixtures.ts';
+import { evaluateProgressionUnlocks } from '../domain/progression.ts';
+import { ownershipPolicy } from '../application/playerContent.ts';
 import { testRepository } from '../platform/profileTestFixtures.ts';
 import { emptyMix } from '../domain/mix.ts';
 import type { AssetId } from '../content/visualModel.ts';
@@ -67,7 +70,10 @@ const sha=(value:unknown)=>createHash('sha256').update(JSON.stringify(value)).di
 for(const fixture of goldens)test(`2E regression: ${fixture.name} retains the exact canonical history, RoundResult and reward`,()=>{
   let game=newClassicGame(gameDependencies);for(const action of fixture.actions)game=transitionClassicGame(game,action,gameDependencies);
   const player=createPlayerController(testRepository(),'2e-golden',()=>2000);player.bindAttempt(0);player.settle(game.result!,0);
-  assert.equal(sha(game.session.history),fixture.expected.history);assert.equal(sha(game.result),fixture.expected.result);assert.equal(game.result!.totalScore,fixture.expected.score);assert.equal(sha(player.snapshot().reward),fixture.expected.reward);
+  assert.equal(sha(game.session.history),fixture.expected.history);assert.equal(sha(game.result),fixture.expected.result);assert.equal(game.result!.totalScore,fixture.expected.score);// 2K removes production free grants; keep the historical fixture byte-identical and check every other reward field.
+  const snapshot=player.snapshot();assert.deepEqual(snapshot.reward!.unlockedContentIds,[]);
+  const historicalGrants=evaluateProgressionUnlocks(snapshot.profile,freeGrantTuning,ownershipPolicy,2000).unlockedContentIds;
+  assert.equal(sha({...snapshot.reward,unlockedContentIds:historicalGrants}),fixture.expected.reward);
 });
 const server=await createServer({configFile:false,server:{middlewareMode:true,watch:null},appType:'custom'});
 const assets=await server.ssrLoadModule('/src/ui/AssetVisual.tsx') as typeof import('./AssetVisual.tsx');

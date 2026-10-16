@@ -1,11 +1,10 @@
 # Roadmap
 
-## Stato corrente — fase2J
+## Stato corrente — fase2K
 
-Negozio locale in monete fittizie: due cosmetici pubblici esistenti e un bundle, conferma, transazioni idempotenti, profiloV2/migrazione, coordinamento fra schede, persistenza e acquisto offline. Formule2A–2C immutate; main stage2I bloccato, nessun nuovo artwork. [Sistema](SHOP_SYSTEM.md), [rapporto](PHASE_2J_REPORT.md).
+Economia locale significativa con grant gratuiti separati dalla disponibilità d'acquisto: Scia150/livello2, Bartender02 300/livello3, bundle382/livello6 con prezzo residuo. Reward, curva XP, profiloV2, persistenza/coordinamento e stage2I invariati. Simulatore deterministico DEV e test di policy/legacy. [Rapporto](PHASE_2K_REPORT.md), [shop](SHOP_SYSTEM.md), [progressione](PROGRESSION_SYSTEM.md).
 
-Arresto dopo2J. Raccomandazione futura: ampliare il catalogo con cosmetici reali e rivedere il pacing delle alternative acquisto/progressione, mantenendo il palco e usando overlay o schermate secondarie. Nessuna fase successiva, backend, account, pagamento reale o ricerca storica avviati. Tutte le sezioni successive sono checkpoint storici.
-
+Checkpoint2J committato localmente con autorizzazione utente: d8dce00.2K resta non committata su main. Stop dopo2K. Proposta successiva: breve playtest dell'economia e dell'accessibilità su tablet reale; valutare futuri cosmetici originali solo dopo il playtest. Nessun asset, backend/account/cloud, pagamento reale o ricerca storica avviati. Le sezioni successive sono storiche.
 
 ## Checkpoint storico — 2E, geometria classica fissa
 

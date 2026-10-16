@@ -14,7 +14,7 @@ export function storefront(profile:PlayerProfileV2,store:StoreCatalog=production
 }
 export function progressionAlternative(id:string,catalog:ContentCatalog=publicContentCatalog):string|null{
   const item=catalog.items.find(i=>i.id===id),rule=progressionTuning.unlocks.find(r=>r.contentId===id);
-  return item?.unlock.some(u=>u.kind==='progression')&&item.unlock.some(u=>u.kind==='currency'&&u.currencyId==='coins')&&rule?'Oppure sblocca al livello '+rule.minimumLevel:null;
+  return item?.unlock.some(u=>u.kind==='progression')&&item.unlock.some(u=>u.kind==='currency'&&u.currencyId==='coins')&&rule?'Gratis al livello '+rule.minimumLevel:null;
 }
 export function purchaseFeedback(outcome:PurchaseOutcome):string{
   if(outcome.status==='SUCCESS')return 'Acquistato! '+outcome.receipt!.newlyGrantedContentIds.map(id=>publicContentCatalog.items.find(i=>i.id===id)?.displayName??'Contenuto').join(' · ')+(outcome.persistence==='saved'?'':' — Solo per questa sessione: non riusciamo a salvare i progressi.');

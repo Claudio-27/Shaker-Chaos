@@ -35,7 +35,8 @@
     "art:build": "node scripts/build-art.mjs",
     "art:verify": "node scripts/verify-runtime-art.mjs",
     "art:measure": "node scripts/measure-runtime-art.mjs",
-    "shop:audit": "node scripts/audit-store.mjs"
+    "shop:audit": "node scripts/audit-store.mjs",
+    "economy:simulate": "node scripts/economy-simulation.mjs"
   },
   "dependencies": {
     "react": "19.3.0",

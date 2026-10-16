@@ -1,5 +1,9 @@
 # Architettura
 
+## Politica economica corrente2K
+
+Disponibilità per acquisto separata da proprietà e grant gratuito: currency.availableFromLevel nel ContentItem canonico, PriceMetadata per prezzo, StoreOffer per pubblicazione/gate di offerta. Quote applicativa combina i gate dei contenuti mancanti; il grant puro legge solo progressionTuning.unlocks. Questa configurazione non modifica schemaV2 o dati esistenti. Il simulatore scripts/economy-simulation.mjs riusa i servizi reali, è solo analisi e non è importato dalla produzione. [Decisioni2K](PHASE_2K_REPORT.md). Tutto il palco2I e lo scoring restano bloccati.
+
 ## Presentazione attiva 2E — coordinate canoniche
 
 `classicStageLayout.ts` è l’unica fonte delle coordinate 600×440, dei layer e dei box di interazione. `useClassicStageFrame` misura il frame con ResizeObserver e aggiorna soltanto la scala; `classicStage.css` applica il transform uniforme alla scena. Nessuna dipendenza da clock/gameplay. Landscape fisso da960×480 con larghezza maggiore dell’altezza; altrimenti flusso indipendente. La grafica e i target sono separati sullo stesso elemento button: pseudo-elemento per la faccia, hitbox reale ampliata a44CSSpx, coordinate relative generate. Mobile48px. Collection è un dialogo fuori dall’antenato trasformato. [Geometria, layer e compromesso del fondale](PHASE_2E_REPORT.md).

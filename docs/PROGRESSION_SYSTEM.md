@@ -1,14 +1,20 @@
-# Progressione locale — stato corrente2J
+# Progressione locale — stato corrente2K
 
-Il formato corrente è **PlayerProfileV2**, con migrazione esplicita daV1 e registro acquisti64 separato dai128 reward settlement. lifetimeCoinsSpent esisteva già e ora registra le spese reali in monete fittizie. Le formule XP/monete e gli unlock livello2/3 sono immutati; acquistare prima del livello evita grant/card duplicati.
+Il formato resta **PlayerProfileV2**, con migrazioneV1,64ricevute acquisti e128reward settlement. La2K cambia solo la politica di acquisizione: **il livello apre un acquisto; la spesa concede proprietà; un free grant è una regola separata e intenzionale**.
 
-Tutte le scritture del profilo di produzione usano ProfileWriteCoordinator/Web Locks, con confronto raw/revision e sincronizzazione fra schede. Il cocktail viene valutato sincronicamente; la liquidazione dei progressi attende il lock senza bloccare scoring o assaggio. Ordinal reward emesso insieme alla liquidazione, così i round paralleli completati in ordine inverso vengono premiati entrambi. Un premio tardivo non appare sul drink successivo. Senza Web Locks, il fallback rileva conflitti noti ma non promette atomicità completa fra writer simultanei.
+Scia azzurra:150monete dal livello2. Bartender02:300 dal livello3. Bundle: livello6,382 completo/255 senza Bartender/127 senza Scia. Le due vecchie regole di grant gratuito2/3 sono rimosse dalla configurazione di produzione, senza toccare le proprietà già salvate. Starter invariato. progressionTuning.unlocks è ora vuoto ma continua a rappresentare soltanto veri grant gratuiti. ContentItem.unlock/currency.availableFromLevel definisce disponibilità per acquisto e non viene letto da evaluateProgressionUnlocks.
 
-Negozio ed equip condividono il dialogo Collezione. In caso di scrittura negata, spend/grant rimangono insieme solo nella sessione e la UI lo dichiara. [Sistema corrente e policy complete](SHOP_SYSTEM.md), [verifiche2J](PHASE_2J_REPORT.md).
+Reward e curva2C invariati: successo20+floor(score/100)XP e5+floor(score/250)monete; failure5XP/2monete. Soglie lifetime livelli2/3/4/5/6:100/250/450/700/1000XP. Nessuna valuta, proprietà o livello entra nello scorer del cocktail. Il reward registra unlockedContentIds soltanto per nuove concessioni effettive; una disponibilità d'acquisto non è uno sblocco gratuito.
+
+Nessuna migrazione nuova: i vecchi grant/acquisti, ricevute e loadout valido restano intatti; nessun addebito retroattivo. Il livello corrente non revoca proprietà. Non vengono ricreati vecchi grant mai presenti nel salvataggio. Una futura modifica della curva richiederebbe una decisione e migrazione distinta: qui la curva non cambia.
+
+Tutte le scritture continuano a usare ProfileWriteCoordinator/Web Locks, rilettura e confronto raw/revision, BroadcastChannel/storage events e transizione unica wallet/proprietà/ricevuta. Bootstrap, acquisto, equip e reward restano coordinati. Senza Web Locks il fallback rileva conflitti noti, senza promettere atomicità fra writer simultanei. Scrittura negata: intera transizione in memoria con avviso. Nessuna modifica ai servizi di persistenza/coordinamento in2K.
+
+Simulazione riproducibile: npm run economy:simulate -- --rounds=60 --strategy=bundle. Scenari basso/medio/alto/misto; nessun salvataggio del browser toccato. [Decisioni e traguardi](PHASE_2K_REPORT.md), [catalogo/shop corrente](SHOP_SYSTEM.md), [checkpoint2J](PHASE_2J_REPORT.md).
 
 ## Fondazione2C — documentazione storica
 
-Le sezioni seguenti descrivono il disegno originaleV1/2C; le limitazioni sullo shop, sul momento di riserva dell'ordinal e sul coordinamento tra schede sono state superate o precisate nell'aggiornamento2J sopra.
+Le sezioni seguenti sono storiche: descrivono il disegno originaleV1/2C, inclusi i vecchi grant gratuiti2/3 sostituiti dalla2K; le limitazioni sullo shop, sul momento di riserva dell'ordinal e sul coordinamento tra schede sono state superate o precisate nell'aggiornamento2J sopra.
 
 
 ### Confine con il cocktail
