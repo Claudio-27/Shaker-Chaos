@@ -4,6 +4,7 @@ import { App } from './ui/App.tsx';
 import './ui/styles.css';
 import './ui/classicLayout.css';
 import './ui/classicStage.css';
+import './ui/PlayerPolish.css';
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing application root');

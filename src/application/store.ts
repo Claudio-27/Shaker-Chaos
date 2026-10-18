@@ -1,5 +1,5 @@
 import type { ContentCatalog, ContentItem } from '../content/contentModel.ts';
-import type { PlayerProfile, PlayerProfileV2, PurchaseReceipt } from '../domain/playerProfile.ts';
+import type { PlayerProfile, EconomyPlayerProfile, PurchaseReceipt } from '../domain/playerProfile.ts';
 import { addInteger, identifier, immutable, integer, spendCoins } from '../domain/playerProfile.ts';
 import { PURCHASE_LEDGER_LIMIT, purchaseTransactionId, validPurchaseTransactionId } from '../domain/playerProfileV2.ts';
 interface OfferBase { readonly id: string; readonly order: number; readonly availability: { readonly published: boolean; readonly minimumLevel?: number } }
@@ -16,7 +16,7 @@ export interface StoreQuote {
 }
 const cosmeticKinds = new Set(['bartender','environment','counter','effect','bottle-set','reaction-set']);
 export function sellableContent(item: ContentItem): boolean {
-  return item.visibility === 'public' && cosmeticKinds.has(item.kind) && !item.unlock.some(u=>u.kind==='default'||u.kind==='development'||u.kind==='private-entitlement') &&
+  return item.visibility === 'public' && (cosmeticKinds.has(item.kind)||(item.kind==='ingredient'&&!!item.ingredientId&&item.id==='ingredient.'+item.ingredientId)) && !item.unlock.some(u=>u.kind==='default'||u.kind==='development'||u.kind==='private-entitlement') &&
     item.unlock.some(u=>u.kind==='currency'&&u.currencyId==='coins') && item.price?.currency === 'coins';
 }
 /** Availability grants no ownership. Omitted level means an ungated coin purchase. */
@@ -59,21 +59,21 @@ export function quoteStoreOffer(profile: PlayerProfile, store: StoreCatalog, cat
   let priceCoins=remainingSubtotal;
   if(offer.kind==='BUNDLE')priceCoins=offer.pricing.kind==='remaining-items'?safeNumber(BigInt(remainingSubtotal)*BigInt(offer.pricing.payPercent)/100n):
     remainingSubtotal===0?0:safeNumber(BigInt(bundle!.price!.amount)*BigInt(remainingSubtotal)/BigInt(subtotal(includedIds)));
-  const state=!offer.availability.published?'UNAVAILABLE':!remainingIds.length?'OWNED':profile.progression.level<minimumLevel?'LOCKED':'AVAILABLE';
+  const state=(!offer.availability.published||includedIds.some(id=>catalog.items.find(i=>i.id===id)!.publication==='unpublished'))?'UNAVAILABLE':!remainingIds.length?'OWNED':profile.progression.level<minimumLevel?'LOCKED':'AVAILABLE';
   const token=JSON.stringify([offer.id,includedIds,remainingIds,priceCoins,state]);
   return immutable({offerId,name:bundle?.displayName??item!.displayName,kind:offer.kind,category:item?.kind??'bundle',state,minimumLevel,includedIds,remainingIds,alreadyOwnedIds,
     priceCoins,remainingSubtotal,savings:Math.max(0,remainingSubtotal-priceCoins),missingCoins:Math.max(0,priceCoins-profile.wallet.coins),token});
 }
 export interface PurchaseIntent { readonly transactionId: string; readonly profileId: string; readonly ordinal: number; readonly offerId: string; readonly quoteToken: string }
-export function createPurchaseIntent(profile:PlayerProfileV2,quote:StoreQuote,nonce:string):PurchaseIntent {
+export function createPurchaseIntent(profile:EconomyPlayerProfile,quote:StoreQuote,nonce:string):PurchaseIntent {
   identifier(nonce);
   return immutable({profileId:profile.profileId,ordinal:profile.nextPurchaseOrdinal,offerId:quote.offerId,quoteToken:quote.token,transactionId:purchaseTransactionId(profile.profileId,profile.nextPurchaseOrdinal)+':'+nonce});
 }
 export type PurchaseStatus = 'SUCCESS' | 'ALREADY_PROCESSED' | 'ALREADY_OWNED' | 'INSUFFICIENT_FUNDS' | 'OFFER_UNAVAILABLE' | 'PROFILE_CONFLICT' | 'OFFER_CHANGED' | 'INVALID_CONFIGURATION';
-export interface PurchaseResult { readonly status: PurchaseStatus; readonly profile: PlayerProfileV2; readonly receipt?: PurchaseReceipt; readonly quote?: StoreQuote }
+export interface PurchaseResult<P extends EconomyPlayerProfile=EconomyPlayerProfile> { readonly status: PurchaseStatus; readonly profile: P; readonly receipt?: PurchaseReceipt; readonly quote?: StoreQuote }
 /** Pure immutable spend + entitlement + receipt transition. No browser, score or XP operations. */
-export function purchaseOffer(profile: PlayerProfileV2, intent: PurchaseIntent, store: StoreCatalog, catalog: ContentCatalog, timestamp: number): PurchaseResult {
-  const result=(status:PurchaseStatus,extra:Partial<PurchaseResult>={}):PurchaseResult=>immutable({status,profile,...extra});
+export function purchaseOffer<P extends EconomyPlayerProfile>(profile: P, intent: PurchaseIntent, store: StoreCatalog, catalog: ContentCatalog, timestamp: number): PurchaseResult<P> {
+  const result=(status:PurchaseStatus,extra:Partial<PurchaseResult<P>>={}):PurchaseResult<P>=>immutable({status,profile,...extra});
   try {
     validateStore(store,catalog);integer(intent.ordinal,1);integer(timestamp,profile.updatedAt);
     if(intent.profileId!==profile.profileId)return result('PROFILE_CONFLICT');

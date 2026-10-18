@@ -1,3 +1,10 @@
+import { FirstDrinkGuide, GuideDismiss, usePlayerGuide } from './PlayerHelp.tsx';
+import { barIngredients } from '../content/ingredientCatalog.ts';
+import { canUseIngredient,ingredientAvailability,shelfPage,transitionPlayerGame } from '../application/ingredientAccess.ts';
+import { recipeAvailability } from '../domain/recipes.ts';
+import { recipeCatalog } from '../content/recipeCatalog.ts';
+import { evaluateRecipe } from '../domain/recipes.ts';
+import { RecipeHint, RecipeOutcome } from './Recipes.tsx';
 import type { VisualLoadout } from '../content/visualModel.ts';
 import { classicFailurePresentation, classicReactionPresentation } from '../content/classicPresentation.ts';
 import { playerCopy, reactionCopy } from '../content/playerExperience.ts';
@@ -19,7 +26,7 @@ import { AssetImage, VisualAssetsProvider } from './AssetVisual.tsx';
 import { BartenderArea, BottleShelf, ControlsArea, CounterArea, GameStage, MixingStation, RoundProgress, ScoreHUD } from './GameStage.tsx';
 import { primeSceneVisuals } from '../platform/visualPreload.ts';
 import { HoldButton } from './HoldButton.tsx';
-import { createResetGuard, gameplayPresentation } from './gameplayPresentation.ts';
+import { createResetGuard, gameplayPresentation, controlHelp } from './gameplayPresentation.ts';
 import { reactionVisible } from './resultPresentation.ts';
 import { resolvePlayerLoadout } from '../application/playerContent.ts';
 import { createBrowserPlayer } from '../platform/playerBootstrap.ts';
@@ -29,7 +36,7 @@ import { useReducedMotion, useResultReveal } from './usePlayerPresentation.ts';
 const { catalog, volumeDisplay, visuals, scene: initialScene } = gamePresentation;
 const profile = gameDependencies.profile;
 const shellLabels: Record<ShellStatus, string> = {
-  development: 'Sessione locale', unavailable: 'Offline non disponibile', ready: 'Pronto anche offline', error: 'Cache offline non disponibile',
+  development: 'Sessione locale', unavailable: 'Offline non disponibile', ready: 'Pronto anche offline', error: 'Gioco offline non pronto',
 };
 const query = new URLSearchParams(window.location.search);
 const visualDebug = import.meta.env.DEV && query.get('visualDebug') === '1';
@@ -38,6 +45,8 @@ const CompatibilityLab = import.meta.env.DEV ? lazy(() => import('./Compatibilit
 const TuningInspector = import.meta.env.DEV ? lazy(() => import('./TuningInspector.tsx')) : null;
 const ProgressionLab = import.meta.env.DEV ? lazy(() => import('./ProgressionLab.tsx')) : null;
 const ShopLab = import.meta.env.DEV ? lazy(() => import('./ShopLab.tsx')) : null;
+const RecipeLab = import.meta.env.DEV ? lazy(() => import('./RecipeLab.tsx')) : null;
+const recipeLab = import.meta.env.DEV && query.get('recipeLab') === '1';
 const shopLab = import.meta.env.DEV && query.get('shopLab') === '1';
 const progressionLab = import.meta.env.DEV && query.get('progressionLab') === '1';
 const assetLab = import.meta.env.DEV && query.get('assetLab') === '1';
@@ -50,19 +59,26 @@ const soundByEvent: Partial<Record<string, PresentationSound>> = {
 export function App() {
   const [player, setPlayer] = useState(createBrowserPlayer);
   const playerSnapshot = useSyncExternalStore(player.subscribe, player.snapshot);
+  const guide=usePlayerGuide(playerSnapshot.profile);
   const [previewLoadout, setPreviewLoadout] = useState<VisualLoadout | null>(null);
   const ownedLoadout = useMemo(() => resolvePlayerLoadout(playerSnapshot.profile), [playerSnapshot.profile.equippedLoadout, playerSnapshot.profile.ownership]);
   const loadout = previewLoadout ?? ownedLoadout;
-  const scene = useMemo(() => ({ ...loadout, ingredientIds: initialScene.ingredientIds }), [loadout]);
+  const [shelfPageIndex,setShelfPageIndex]=useState(0);
+  const scene = useMemo(() => ({ ...loadout, ingredientIds: shelfPage(catalog.ingredients,shelfPageIndex).items.map(i=>i.id) }), [loadout,shelfPageIndex]);
+  const shelfAccess=useMemo(()=>Object.fromEntries(barIngredients.filter(i=>i.published).map(i=>{const access=ingredientAvailability(playerSnapshot.profile,i,visuals);return [i.id,{selectable:access.selectable,reason:access.state==='LEVEL_REQUIRED'?'Dal livello '+access.minimumLevel:access.state==='UNPUBLISHED'?'Non disponibile':'Acquista nel Negozio'}];})),[playerSnapshot.profile]);
+  const changeShelfPage=useCallback((page:number)=>{setShelfPageIndex(page);setSelectedId(shelfPage(catalog.ingredients,page).items.find(i=>canUseIngredient(player.snapshot().profile,i.id,visuals))?.id??'');},[player]);
+  const [selectedRecipeId,setSelectedRecipeId]=useState<string|null>(null);
+  const selectedRecipeRef=useRef<string|null>(null);
+  const [collectionTab,setCollectionTab]=useState<'collection'|'recipes'>('collection');
   const [collectionOpen, setCollectionOpen] = useState(false);
   const [state, setState] = useState(() => newClassicGame(gameDependencies));
   const stateRef = useRef(state);
   const dispatch = useCallback((action: Parameters<typeof transitionClassicGame>[1]) => {
-    const previous = stateRef.current, next = transitionClassicGame(previous, action, gameDependencies);
+    const previous = stateRef.current, next = transitionPlayerGame(previous, action, gameDependencies,player.snapshot().profile,visuals);
     if (next === previous) return;
     stateRef.current = next;
-    if (next.session.history !== previous.session.history) player.bindAttempt(next.view.derived.currentAttemptStart);
-    if (!previous.result && next.result) player.settle(next.result, next.view.derived.currentAttemptStart);
+    if (next.session.history !== previous.session.history) { if(action.type==='Reset')player.clearAttempt();else player.bindAttempt(next.view.derived.currentAttemptStart,selectedRecipeRef.current); }
+    if (!previous.result && next.result) player.settle(next.result, next.view.derived.currentAttemptStart,next.session);
     setState(next);
   }, [player]);
   const equip = useCallback((id: string | null) => { player.equip(id); setPreviewLoadout(null); }, [player]);
@@ -81,8 +97,15 @@ export function App() {
   const attemptKey = state.view.derived.currentAttemptStart;
   const reveal = useResultReveal(state.result, attemptKey, reducedMotion);
   const mix = state.view.derived.mix, volume = totalVolumeUnits(mix);
-  const selected = catalog.ingredients.find(item => item.id === selectedId);
+  const selected = catalog.ingredients.find(item => item.id === selectedId&&canUseIngredient(playerSnapshot.profile,item.id,visuals));
   const ui = gameplayPresentation(state, profile, !!selected);
+  const hints=controlHelp(state,profile,!!selected);
+  const activeRecipe=recipeCatalog.recipes.find(r=>r.id===selectedRecipeId);
+  const canChooseRecipe=state.session.history.length===attemptKey&&!state.result;
+  const recipeSelection={selectedRecipeId,canChoose:canChooseRecipe,onSelect:(id:string|null)=>{
+    if(!canChooseRecipe||(id&&!recipeCatalog.recipes.some(r=>r.id===id&&recipeAvailability(playerSnapshot.profile,r,recipeCatalog).state==='AVAILABLE')))return;
+    selectedRecipeRef.current=id;setSelectedRecipeId(id);setCollectionOpen(false);
+  }};
   const bartender = catalog.bartenders.find(item => item.id === scene.bartenderId);
   const mechanicalTier = state.result?.mechanicalReactionTierId ?? 'unrated';
   const mappedReaction = presentationForMechanicalTier(visuals, scene.bartenderId, mechanicalTier, classicReactionPresentation(visuals));
@@ -180,15 +203,16 @@ export function App() {
         {progressionLab && ProgressionLab && <Suspense fallback={null}><ProgressionLab controller={player} snapshot={playerSnapshot} onReset={() => {
           dispatch({ type: 'Reset', atMs: sessionTime() }); setPreviewLoadout(null); setPlayer(createBrowserPlayer());
         }} /></Suspense>}
+        {recipeLab && RecipeLab && <Suspense fallback={null}><RecipeLab controller={player} snapshot={playerSnapshot} selection={recipeSelection}/></Suspense>}
         {shopLab && ShopLab && <Suspense fallback={null}><ShopLab controller={player} snapshot={playerSnapshot} /></Suspense>}
-        {collectionOpen && <Collection shop={{snapshot:playerSnapshot,controller:player}} profile={playerSnapshot.profile} visuals={visuals} onEquip={equip} onClose={() => setCollectionOpen(false)} />}
+        {collectionOpen && <Collection onGuide={()=>{guide.reopen();setCollectionOpen(false);window.requestAnimationFrame(()=>document.querySelector<HTMLElement>('.result-scroll')?.focus());}} initialTab={collectionTab} recipes={recipeSelection} shop={{snapshot:playerSnapshot,controller:player}} profile={playerSnapshot.profile} visuals={visuals} onEquip={equip} onClose={() => setCollectionOpen(false)} />}
         <GameStage environment={environment} debug={visualDebug} diagnostics={diagnostics} failed={state.view.failed}
           meta={<header className="topbar"><div className="player-tools">
             <PlayerHUD snapshot={playerSnapshot} />
-            <button type="button" className="collection-button" disabled={ui.pouring || ui.shaking} onClick={() => setCollectionOpen(true)}>Collezione</button>
+            <button type="button" className="collection-button" title={ui.pouring||ui.shaking?'Rilascia il comando per aprire Collezione.':'Collezione, Ricette, Negozio e Aiuto'} disabled={ui.pouring || ui.shaking} onClick={() => {setCollectionTab('collection');setCollectionOpen(true);}}>Collezione</button>
             <span className="connection"><i aria-hidden="true" />{shellLabels[shellStatus]}</span>
           </div></header>}>
-          <BottleShelf loadout={loadout} ingredients={catalog.ingredients} visuals={visuals} mix={mix} selectedId={selectedId}
+          <BottleShelf page={shelfPageIndex} onPageChange={changeShelfPage} availability={shelfAccess} loadout={loadout} ingredients={catalog.ingredients} visuals={visuals} mix={mix} selectedId={selectedId}
             disabled={!ui.controls.ingredient} pourFeedback={ui.pourFeedback} onSelect={setSelectedId} formatVolume={formatVolume} />
           <BartenderArea loadout={loadout} bartender={bartender} visuals={visuals} reactionId={reactionId} pose={pose}
             working={ui.pouring ? 'pouring' : ui.shaking ? 'shaking' : 'idle'} attemptKey={attemptKey} reducedMotion={reducedMotion} lastResort={visuals.bartenders[initialScene.bartenderId]!.idle} />
@@ -199,17 +223,17 @@ export function App() {
           </CounterArea>
           <ControlsArea>
             <div className="mix-controls">
-              <HoldButton label={`Versa ${selected?.name ?? 'ingrediente'}: tieni premuto`} className="pour-button" buttonRef={pourButton}
+              <HoldButton hint={hints.pour} label={`Versa ${selected?.name ?? 'ingrediente'}: tieni premuto`} className="pour-button" buttonRef={pourButton}
                 disabled={ui.terminal || !ui.controls.pour} clock={sessionTime} ownership={holdOwnership}
                 onAction={pourAction} onStart={beginPour} onEnd={endPour} resetToken={attemptKey}>
                 <AssetImage assetId={visuals.controls.pour} /><strong>Versa</strong>
                 <small>{ui.pourFeedback === 'idle' ? selected?.shortLabel.toLowerCase() : playerCopy.pour[ui.pourFeedback]}</small>
               </HoldButton>
-              <HoldButton label="Agita: tieni premuto" className="shake-button" buttonRef={shakeButton} disabled={ui.terminal || !ui.controls.shake} clock={sessionTime} ownership={holdOwnership}
+              <HoldButton hint={hints.shake} label="Agita: tieni premuto" className="shake-button" buttonRef={shakeButton} disabled={ui.terminal || !ui.controls.shake} clock={sessionTime} ownership={holdOwnership}
                 onAction={shakeAction} onStart={beginShake} onEnd={endShake} resetToken={attemptKey}>
                 <AssetImage assetId={visuals.controls.shake} /><strong>Agita</strong><small>{ui.shaking ? 'Si agita!' : 'tieni premuto'}</small>
               </HoldButton>
-              <button type="button" className="serve-button" aria-label="Servi il mix" ref={serveButton} disabled={ui.terminal || !ui.controls.serve}
+              <button type="button" className="serve-button" aria-label="Servi il mix" title={hints.serve} ref={serveButton} disabled={ui.terminal || !ui.controls.serve}
                 onClick={() => dispatch({ type: 'Served', atMs: sessionTime() })}><AssetImage assetId={visuals.controls.serve} /><span>Servi</span></button>
             </div>
             <div className="control-footnote">
@@ -217,7 +241,7 @@ export function App() {
             </div>
           </ControlsArea>
           <div className="extras" data-zone="extras">
-            <button type="button" className={mix.iceUnits === profile.ice.maximumActions ? 'is-complete' : ''} disabled={!ui.mixing}
+            <button type="button" title={hints.ice} className={mix.iceUnits === profile.ice.maximumActions ? 'is-complete' : ''} disabled={!ui.mixing}
               aria-disabled={!ui.controls.ice} aria-label={'Ghiaccio, ' + mix.iceUnits + ' di ' + profile.ice.maximumActions}
               onClick={() => {
                 if (!ui.controls.ice) { setCue(playerCopy.ice.maximum); return; }
@@ -225,19 +249,20 @@ export function App() {
               }}>
               <AssetImage assetId={visuals.gameplay.ice} />Ghiaccio <b>{mix.iceUnits}/{profile.ice.maximumActions}</b>
             </button>
-            <button type="button" className={mix.garnishId ? 'is-complete' : ''} disabled={!ui.controls.garnish} aria-pressed={!!mix.garnishId}
+            <button type="button" title={hints.garnish} className={mix.garnishId ? 'is-complete' : ''} disabled={!ui.controls.garnish} aria-pressed={!!mix.garnishId}
               aria-label={mix.garnishId ? playerCopy.garnish.added : 'Aggiungi agrume, dopo aver agitato'} onClick={() =>
                 dispatch({ type: 'GarnishChanged', garnishId: profile.garnish.id, atMs: sessionTime() })}>
               <AssetImage assetId={visuals.gameplay.garnish} />Agrume <b>{mix.garnishId ? '✓' : '+'}</b>
             </button>
           </div>
-          <ScoreHUD guidanceKey={ui.phase + ':' + ui.risk} resetAction={<button type="button" className="reset-button" aria-label={playerCopy.reset} disabled={!ui.controls.reset} onClick={newDrink}>
-            <AssetImage assetId={visuals.controls.reset} /><span>Reset</span>
+          <ScoreHUD guideAction={guide.active&&(!state.result||reveal.stage==='breakdown')?<GuideDismiss phase={ui.phase} onDismiss={()=>{guide.dismiss();(state.result?resultTitle:pourButton).current?.focus({preventScroll:true});}}/>:null} guide={guide.active&&(!state.result||reveal.stage==='breakdown')?<FirstDrinkGuide phase={ui.phase} hasLiquid={volume>0}/>:null} guidanceKey={ui.phase + ':' + ui.risk} resetAction={<button type="button" className="reset-button" aria-label={playerCopy.reset} disabled={!ui.controls.reset} onClick={newDrink}>
+            <AssetImage assetId={visuals.controls.reset} /><span>Ricomincia</span>
           </button>} result={state.result} stage={reveal.stage} title={title} line={line} ingredients={catalog.ingredients} profile={profile}
             titleRef={resultTitle} skipRef={skipButton} onSkip={reveal.skip} onNewDrink={newDrink}
             milestone={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RoundMilestone key={attemptKey} reward={playerSnapshot.reward} /> : null}
-            reward={playerSnapshot.reward && reveal.stage === 'breakdown' ? <RewardPresentation reward={playerSnapshot.reward} visuals={visuals} /> : null}>
+            reward={reveal.stage==='breakdown'?<>{playerSnapshot.reward&&<RewardPresentation reward={playerSnapshot.reward} visuals={visuals}/>}{playerSnapshot.recipeReward&&<RecipeOutcome reward={playerSnapshot.recipeReward}/>}</>:null}>
             <RoundProgress phase={ui.phase} />
+            {activeRecipe&&<RecipeHint recipe={activeRecipe} result={evaluateRecipe(activeRecipe,state.view)} onDetails={()=>{setCollectionTab('recipes');setCollectionOpen(true);}}/>}
             <p className="phase-status" role="status">{ui.instruction}</p>
             {state.view.shakeCount > 0 && <p className="shake-risk" data-risk={ui.risk} role="status">
               <span aria-hidden="true">{ui.risk === 'danger' ? '!' : ui.risk === 'risky' ? '≈' : '✦'}</span>{playerCopy.risk[ui.risk]}

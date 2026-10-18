@@ -1,0 +1,538 @@
+[
+  {
+    "size": {
+      "width": 1280,
+      "height": 800
+    },
+    "surface": "Collezione",
+    "game": {
+      "guideTarget": {
+        "height": 47.6181640625,
+        "width": 186.9455108642578
+      },
+      "height": 800,
+      "overflow": 0,
+      "width": 1280
+    },
+    "box": {
+      "bottom": 784,
+      "left": 250,
+      "right": 1030,
+      "top": 16
+    },
+    "client": 763,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 763,
+    "viewport": [
+      1280,
+      800
+    ]
+  },
+  {
+    "size": {
+      "width": 1280,
+      "height": 800
+    },
+    "surface": "Negozio",
+    "game": {
+      "guideTarget": {
+        "height": 47.6181640625,
+        "width": 186.9455108642578
+      },
+      "height": 800,
+      "overflow": 0,
+      "width": 1280
+    },
+    "box": {
+      "bottom": 784,
+      "left": 250,
+      "right": 1030,
+      "top": 16
+    },
+    "client": 763,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 763,
+    "viewport": [
+      1280,
+      800
+    ]
+  },
+  {
+    "size": {
+      "width": 1280,
+      "height": 800
+    },
+    "surface": "Ricette",
+    "game": {
+      "guideTarget": {
+        "height": 47.6181640625,
+        "width": 186.9455108642578
+      },
+      "height": 800,
+      "overflow": 0,
+      "width": 1280
+    },
+    "box": {
+      "bottom": 784,
+      "left": 250,
+      "right": 1030,
+      "top": 16
+    },
+    "client": 763,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 763,
+    "viewport": [
+      1280,
+      800
+    ]
+  },
+  {
+    "size": {
+      "width": 1280,
+      "height": 800
+    },
+    "surface": "Aiuto",
+    "game": {
+      "guideTarget": {
+        "height": 47.6181640625,
+        "width": 186.9455108642578
+      },
+      "height": 800,
+      "overflow": 0,
+      "width": 1280
+    },
+    "box": {
+      "bottom": 723.75,
+      "left": 250,
+      "right": 1030,
+      "top": 76.25
+    },
+    "client": 778,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 778,
+    "viewport": [
+      1280,
+      800
+    ]
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "surface": "Collezione",
+    "game": {
+      "height": 768,
+      "overflow": 0,
+      "width": 1024
+    },
+    "box": {
+      "bottom": 752,
+      "left": 122,
+      "right": 902,
+      "top": 16
+    },
+    "client": 763,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 763,
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "surface": "Negozio",
+    "game": {
+      "height": 768,
+      "overflow": 0,
+      "width": 1024
+    },
+    "box": {
+      "bottom": 752,
+      "left": 122,
+      "right": 902,
+      "top": 16
+    },
+    "client": 763,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 763,
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "surface": "Ricette",
+    "game": {
+      "height": 768,
+      "overflow": 0,
+      "width": 1024
+    },
+    "box": {
+      "bottom": 752,
+      "left": 122,
+      "right": 902,
+      "top": 16
+    },
+    "client": 763,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 763,
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "size": {
+      "width": 1024,
+      "height": 768
+    },
+    "surface": "Aiuto",
+    "game": {
+      "height": 768,
+      "overflow": 0,
+      "width": 1024
+    },
+    "box": {
+      "bottom": 707.75,
+      "left": 122,
+      "right": 902,
+      "top": 60.25
+    },
+    "client": 778,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 778,
+    "viewport": [
+      1024,
+      768
+    ]
+  },
+  {
+    "size": {
+      "width": 768,
+      "height": 1024
+    },
+    "surface": "Collezione",
+    "game": {
+      "height": 1024,
+      "overflow": 0,
+      "width": 768
+    },
+    "box": {
+      "bottom": 1008,
+      "left": 19,
+      "right": 733.7999877929688,
+      "top": 16
+    },
+    "client": 698,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 698,
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "size": {
+      "width": 768,
+      "height": 1024
+    },
+    "surface": "Negozio",
+    "game": {
+      "height": 1024,
+      "overflow": 0,
+      "width": 768
+    },
+    "box": {
+      "bottom": 1008,
+      "left": 19,
+      "right": 733.7999877929688,
+      "top": 16
+    },
+    "client": 698,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 698,
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "size": {
+      "width": 768,
+      "height": 1024
+    },
+    "surface": "Ricette",
+    "game": {
+      "height": 1024,
+      "overflow": 0,
+      "width": 768
+    },
+    "box": {
+      "bottom": 1008,
+      "left": 19,
+      "right": 733.7999877929688,
+      "top": 16
+    },
+    "client": 698,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 698,
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "size": {
+      "width": 768,
+      "height": 1024
+    },
+    "surface": "Aiuto",
+    "game": {
+      "height": 1024,
+      "overflow": 0,
+      "width": 768
+    },
+    "box": {
+      "bottom": 846.25,
+      "left": 19,
+      "right": 733.7999877929688,
+      "top": 177.75
+    },
+    "client": 713,
+    "minTargetHeight": 44,
+    "minTargetWidth": 44,
+    "scroll": 713,
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "surface": "Collezione",
+    "game": {
+      "height": 844,
+      "overflow": 0,
+      "width": 390
+    },
+    "box": {
+      "bottom": 828,
+      "left": 19,
+      "right": 356.20001220703125,
+      "top": 16
+    },
+    "client": 320,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 320,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "surface": "Negozio",
+    "game": {
+      "height": 844,
+      "overflow": 0,
+      "width": 390
+    },
+    "box": {
+      "bottom": 828,
+      "left": 19,
+      "right": 356.20001220703125,
+      "top": 16
+    },
+    "client": 320,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 320,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "surface": "Ricette",
+    "game": {
+      "height": 844,
+      "overflow": 0,
+      "width": 390
+    },
+    "box": {
+      "bottom": 828,
+      "left": 19,
+      "right": 356.20001220703125,
+      "top": 16
+    },
+    "client": 320,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 320,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "size": {
+      "width": 390,
+      "height": 844
+    },
+    "surface": "Aiuto",
+    "game": {
+      "height": 844,
+      "overflow": 0,
+      "width": 390
+    },
+    "box": {
+      "bottom": 828,
+      "left": 19,
+      "right": 356.20001220703125,
+      "top": 16
+    },
+    "client": 320,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 320,
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "size": {
+      "width": 320,
+      "height": 640
+    },
+    "surface": "Collezione",
+    "game": {
+      "height": 640,
+      "overflow": 0,
+      "width": 320
+    },
+    "box": {
+      "bottom": 624,
+      "left": 19,
+      "right": 285.8000183105469,
+      "top": 16
+    },
+    "client": 250,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 250,
+    "viewport": [
+      320,
+      640
+    ]
+  },
+  {
+    "size": {
+      "width": 320,
+      "height": 640
+    },
+    "surface": "Negozio",
+    "game": {
+      "height": 640,
+      "overflow": 0,
+      "width": 320
+    },
+    "box": {
+      "bottom": 624,
+      "left": 19,
+      "right": 285.8000183105469,
+      "top": 16
+    },
+    "client": 250,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 250,
+    "viewport": [
+      320,
+      640
+    ]
+  },
+  {
+    "size": {
+      "width": 320,
+      "height": 640
+    },
+    "surface": "Ricette",
+    "game": {
+      "height": 640,
+      "overflow": 0,
+      "width": 320
+    },
+    "box": {
+      "bottom": 624,
+      "left": 19,
+      "right": 285.8000183105469,
+      "top": 16
+    },
+    "client": 250,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 250,
+    "viewport": [
+      320,
+      640
+    ]
+  },
+  {
+    "size": {
+      "width": 320,
+      "height": 640
+    },
+    "surface": "Aiuto",
+    "game": {
+      "height": 640,
+      "overflow": 0,
+      "width": 320
+    },
+    "box": {
+      "bottom": 624,
+      "left": 19,
+      "right": 285.8000183105469,
+      "top": 16
+    },
+    "client": 250,
+    "minTargetHeight": 48,
+    "minTargetWidth": 48,
+    "scroll": 250,
+    "viewport": [
+      320,
+      640
+    ]
+  }
+]

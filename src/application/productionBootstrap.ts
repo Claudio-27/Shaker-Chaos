@@ -1,3 +1,5 @@
+import { shelfPage } from './ingredientAccess.ts';
+import { barIngredients,validateIngredientCatalog } from '../content/ingredientCatalog.ts';
 import { publicCatalog } from '../content/publicCatalog.ts';
 import { publicContentCatalog } from '../content/publicContentCatalog.ts';
 import { publicVisualCatalog } from '../content/publicVisualCatalog.ts';
@@ -14,9 +16,11 @@ export const gameDependencies: ClassicGameDependencies = {
 export const gamePresentation = {
   catalog: publicCatalog, visuals: publicVisualCatalog,
   scene: { bartenderId: 'bartender.b01', environmentId: 'environment.e01', counterId: 'counter.c01', bottleSetId: 'bottles.supplied',
-    ingredientIds: publicCatalog.ingredients.map(ingredient => ingredient.id) },
+    ingredientIds: shelfPage(publicCatalog.ingredients,0).items.map(ingredient => ingredient.id) },
   volumeDisplay: { symbol: 'u' },
 };
 validateVisualCatalog(gamePresentation.visuals);
 planSceneAssets(gamePresentation.visuals, gamePresentation.scene);
 validatePublicContent(publicContentCatalog, gamePresentation.visuals);
+
+validateIngredientCatalog(barIngredients,publicVisualCatalog);

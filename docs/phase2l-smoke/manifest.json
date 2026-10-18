@@ -1,0 +1,26 @@
+{
+  "phase": "2L",
+  "date": "2026-10-16",
+  "checkpoint": "a0f8b21",
+  "origin": "http://127.0.0.1:5197",
+  "production": {
+    "js": "index-Ca8EkI3z.js",
+    "css": "index-BNnq6izH.css",
+    "cache": "1460971a4942ea62"
+  },
+  "files": {
+    "recipe-selector.jpg": {
+      "bytes": 101972,
+      "sha256": "0af9ccce744c375a2ef2fe74b062c729f63e42e8e4151dccd34281ccac8d6214"
+    },
+    "mobile-recipes.jpg": {
+      "bytes": 30634,
+      "sha256": "cdbd949ca4e2c409116278c00c0da2891ecbf493e1b1cb73099391737e0aa950"
+    },
+    "offline-result.jpg": {
+      "bytes": 143839,
+      "sha256": "2e74249c164840b149a95b3e45bc174f6961d477112c67d2ccac659a021a11b6"
+    }
+  },
+  "notes": "recipe-selector/offline-result: production. mobile-recipes: DEV, same final CSS. No gameplay baseline replaced."
+}

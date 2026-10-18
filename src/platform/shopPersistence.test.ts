@@ -24,9 +24,9 @@ test('V1→V2 migration preserves every original field and adds only explicit ve
 });
 test('repository migrates and persists V1 once; future schemas remain protected',()=>{
   const storage=memoryProfileStorage({[key]:JSON.stringify(newTestProfile())}),repo=testRepository(storage);const p=repo.load().profile;
-  assert.equal(p.schemaVersion,2);assert.equal(JSON.parse(storage.values.get(key)!).schemaVersion,2);const raw=storage.values.get(key);
+  assert.equal(p.schemaVersion,3);assert.equal(JSON.parse(storage.values.get(key)!).schemaVersion,3);const raw=storage.values.get(key);
   assert.deepEqual(testRepository(storage).load().profile,p);assert.equal(storage.values.get(key),raw);
-  assert.equal(migratePlayerProfile(JSON.stringify({schemaVersion:3}),tuning).kind,'future-unsupported');
+  assert.equal(migratePlayerProfile(JSON.stringify({schemaVersion:4}),tuning).kind,'future-unsupported');
 });
 test('V2 validation rejects malformed receipts, spent totals, revisions and watermarks',()=>{
   const p=fundedProfile(),bought=purchaseOffer(p,intentFor(p),productionStore,publicContentCatalog,2000).profile;
@@ -34,7 +34,7 @@ test('V2 validation rejects malformed receipts, spent totals, revisions and wate
 });
 test('purchase persisted in one coherent JSON write survives reload with receipt and unchanged equip',async()=>{
   const storage=memoryProfileStorage({[key]:JSON.stringify(fundedProfile())});let writes=0;const repo=testRepository({...storage,setItem(k:string,v:string){writes++;storage.setItem(k,v);}} as ReturnType<typeof memoryProfileStorage>);
-  const controller=createPlayerController(repo,'local-test',()=>2000),intent=intentFor(controller.snapshot().profile);const result=await controller.purchase(intent);
+  const controller=createPlayerController(repo,'local-test',()=>2000),intent=intentFor(controller.snapshot().profile);writes=0;const result=await controller.purchase(intent);
   assert.equal(result.status,'SUCCESS');assert.equal(result.persistence,'saved');assert.equal(writes,1);
   const restored=testRepository(storage).load().profile;assert.equal(restored.wallet.coins,700);assert.equal(restored.equippedLoadout.bartenderId,'bartender.b01');assert.equal(restored.purchaseTransactionLedger.length,1);
   assert.equal((await createPlayerController(testRepository(storage),'reload',()=>3000).purchase(intent)).status,'ALREADY_PROCESSED');
@@ -76,5 +76,5 @@ test('reverse completion across two tabs settles both rewards through same lock;
 });
 test('browser-style deferred bootstrap performs no main-profile write before coordinator work',()=>{
   const storage=memoryProfileStorage(),repo=createLocalPlayerProfileRepository(storage,newTestProfile,tuning,p=>reconcilePlayerProfile(p,2000),{deferInitialWrites:true});
-  repo.load();assert.equal(storage.values.has(key),false);repo.flush();assert.equal(JSON.parse(storage.values.get(key)!).schemaVersion,2);
+  repo.load();assert.equal(storage.values.has(key),false);repo.flush();assert.equal(JSON.parse(storage.values.get(key)!).schemaVersion,3);
 });

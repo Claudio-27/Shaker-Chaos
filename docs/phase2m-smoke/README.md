@@ -1,0 +1,5 @@
+# Prove locali2M
+
+Le immagini sono prove di collaudo, non nuove baseline del palco. normal-scene mostra la scena2M e i tre starter invariati; offline-result mostra Primo raggio perfetto/mastery100% dopo reload con il server5199 spento. Il giro reale ha usato120frutteto, un'agitazione breve e servizio, senza agrume/ghiaccio:4225punti,97XP e37monete con bonus first/perfect e due goal.
+
+ingredient-catalog mostra il Lab DEV pagina2/2: tre tasselli diagnostici esplicitamente non pubblicati con artwork mancante. End passa alla seconda pagina e Home ritorna agli starter. Non sono screenshot di nuove bottiglie finali. Le offerte normali sono3 e le ricette normali4. Nessuno stato React/storage è stato alterato da console; origini nuove5199/5201 separate dai salvataggi utente. Nessun asset è stato generato. Hash nel manifest. Il percorso completo con nuove bottiglie reali si verificherà dopo la consegna artistica; offline/multi-tab della configurazione futura sono coperti dai test dei servizi reali con dati sintetici.

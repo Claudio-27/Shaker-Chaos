@@ -65,7 +65,7 @@ test('drop-in discovery records source presence and provenance without altering 
   const inventory=JSON.parse(readFileSync(new URL('../../docs/runtime-art-inventory.json',import.meta.url),'utf8'));
   for(const spec of config.exports){const record=inventory.environmentSources.find((row:{id:string})=>row.id===spec.id);assert.ok(record);assert.equal(record.present,existsSync(new URL('../../'+spec.sourcePath,import.meta.url)));assert.ok(spec.sourcePath.startsWith('art-source/'));assert.equal(spec.id,cleanId);assert.equal(spec.legacyId,legacyId);assert.ok(spec.minimumWidth>=1600&&spec.minimumHeight>=1000);}
   const historical=JSON.parse(readFileSync(new URL('../../docs/artwork-inventory.json',import.meta.url),'utf8'));
-  assert.equal(historical.length,21);assert.ok(!historical.some((row:{id:string})=>row.id===cleanId));
+  assert.equal(historical.length,24);assert.ok(!historical.some((row:{id:string})=>row.id===cleanId));
 });
 
 test('final stage contract references authoritative geometry and preserves the complete 2G layout/framing/CSS',()=>{

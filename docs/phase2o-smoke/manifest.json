@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-17",
+  "origin": "http://127.0.0.1:5205/",
+  "browser": "Chrome",
+  "finalBuildCache": "34d3a74d0862ed2e",
+  "manualRoundBuildCache": "f5a4ed764d420714",
+  "finalProfile": {
+    "level": 7,
+    "currentXp": 366,
+    "coins": 480,
+    "completedRecipes": 7,
+    "perfectRecipes": 5,
+    "claimedGoals": 4
+  },
+  "proofs": [
+    {
+      "name": "offline-result.jpg",
+      "bytes": 146134,
+      "sha256": "df27e2838a4c4f168e5d03b6f08c033abbe1499fb61a291ae27417c909c7068c",
+      "width": 1536,
+      "height": 730
+    },
+    {
+      "name": "final-recipes.jpg",
+      "bytes": 84858,
+      "sha256": "726541729e2eb88fec5bcaba1b487b862de24f08ab40461566a4d34195a4d5eb",
+      "width": 1536,
+      "height": 674
+    },
+    {
+      "name": "bundle-owned.jpg",
+      "bytes": 64916,
+      "sha256": "46be066bc850ea7be7175d4d2d819f53b7c9fb76866bdb0dedebc0ff972ee299",
+      "width": 1536,
+      "height": 674
+    }
+  ]
+}

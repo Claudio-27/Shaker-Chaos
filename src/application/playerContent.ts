@@ -7,7 +7,7 @@ import { progressionTuning, starterContentIds } from '../content/progressionTuni
 import { gamePresentation } from './productionBootstrap.ts';
 export const starterLoadout: PlayerLoadout = immutable({ bartenderId: gamePresentation.scene.bartenderId, environmentId: gamePresentation.scene.environmentId,
   counterId: gamePresentation.scene.counterId, bottleSetId: gamePresentation.scene.bottleSetId, effectOverride: gamePresentation.visuals.bartenders[gamePresentation.scene.bartenderId]!.defaultEffectId ?? null });
-export const ownershipPolicy = { starterIds: starterContentIds, availablePublicIds: publicContentCatalog.items.filter(i => i.visibility === 'public').map(i => i.id) };
+export const ownershipPolicy = { starterIds: starterContentIds, availablePublicIds: publicContentCatalog.items.filter(i => i.visibility === 'public' && i.publication!=='unpublished').map(i => i.id) };
 export const contentSlot = { bartender: 'bartenderId', environment: 'environmentId', counter: 'counterId', 'bottle-set': 'bottleSetId', effect: 'effectOverride' } as const;
 export function ownsContent(profile: PlayerProfile, id: string): boolean { return profile.ownership.some(grant => grant.contentId === id); }
 export function canEquip(profile: PlayerProfile, item: ContentItem): boolean { return item.visibility === 'public' && Object.hasOwn(contentSlot, item.kind) && ownsContent(profile, item.id); }
@@ -20,7 +20,7 @@ export function equipContent<P extends PlayerProfile>(profile: P, id: string | n
 }
 /** Preserve inactive ownership IDs; only reconcile equipment against current definitions/ownership. */
 export function reconcilePlayerProfile<P extends PlayerProfile>(profile: P, at: number, catalog: ContentCatalog = publicContentCatalog): P {
-  const granted = evaluateProgressionUnlocks(profile, progressionTuning, { ...ownershipPolicy, availablePublicIds: catalog.items.filter(i => i.visibility === 'public').map(i => i.id) }, at).profile;
+  const granted = evaluateProgressionUnlocks(profile, progressionTuning, { ...ownershipPolicy, availablePublicIds: catalog.items.filter(i => i.visibility === 'public' && i.publication!=='unpublished').map(i => i.id) }, at).profile;
   const loadout = { ...granted.equippedLoadout }; let repaired = false;
   for (const [kind, slot] of Object.entries(contentSlot)) {
     const id = loadout[slot]; if (slot === 'effectOverride' && id === null) continue;

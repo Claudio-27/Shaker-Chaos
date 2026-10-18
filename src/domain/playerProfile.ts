@@ -1,3 +1,4 @@
+import type { RecipeProgress } from './recipes.ts';
 /** Local game data. None of these types are inputs to cocktail scoring. */
 export interface PlayerLoadout {
   readonly bartenderId: string; readonly environmentId: string; readonly counterId: string;
@@ -36,7 +37,11 @@ export interface PlayerProfileV2 extends Omit<PlayerProfileV1, 'schemaVersion'> 
   readonly schemaVersion: 2; readonly revision: number; readonly nextPurchaseOrdinal: number;
   readonly purchaseTransactionLedger: readonly PurchaseReceipt[];
 }
-export type PlayerProfile = PlayerProfileV1 | PlayerProfileV2;
+export interface PlayerProfileV3 extends Omit<PlayerProfileV2,'schemaVersion'> {
+  readonly schemaVersion:3;readonly recipeProgress:RecipeProgress;
+}
+export type EconomyPlayerProfile=PlayerProfileV2|PlayerProfileV3;
+export type PlayerProfile = PlayerProfileV1 | EconomyPlayerProfile;
 export interface ProgressionTuningProfile {
   readonly id: string; readonly scoreMaximum: number; readonly legendaryTierId: string;
   readonly xp: { readonly base: number; readonly scoreDivisor: number; readonly failure: number };

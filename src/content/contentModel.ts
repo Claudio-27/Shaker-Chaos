@@ -11,6 +11,7 @@ export interface ContentItem {
   readonly id: string; readonly displayName: string; readonly kind: ContentKind;
   readonly visibility: ContentVisibility; readonly visualDefinitionId: string;
   readonly unlock: readonly UnlockMetadata[]; readonly price?: PriceMetadata;
+  readonly publication?:'published'|'unpublished';readonly ingredientId?:string;
 }
 export interface BundleDefinition {
   readonly id: string; readonly displayName: string; readonly visibility: ContentVisibility;

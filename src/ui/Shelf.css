@@ -1,0 +1,20 @@
+/* Only paginated shelves use the spare fourth slot; all existing geometry/styles stay unchanged. */
+.shelf-navigation { display:flex; gap:5px; align-items:center; justify-content:center; }
+.shelf-navigation button { min-width:44px; min-height:44px; border:1px solid #bf9656; border-radius:5px; color:#fff1cc; background:#4b301d; cursor:pointer; font-size:18px; }
+.shelf-navigation button:disabled { opacity:.5; cursor:default; }.shelf-navigation button:focus-visible { outline:3px solid #f6db8d; outline-offset:2px; }
+.shelf-navigation span { font-size:11px; color:#fff1cc; }.shelf-unavailable { display:block; font-size:8px; }
+@media(min-width:960px) and (min-height:480px) and (orientation:landscape) {
+ .shelf-paged .bottle-copy { gap:0; }
+ .shelf-paged .bottle-copy b, .shelf-paged .shelf-unavailable { line-height:1.05; }
+ .shelf-paged .shelf-unavailable { font-size:7px; }
+ .game-stage .bottle-runtime-frame { position:absolute; inset:auto; left:var(--art-left); top:var(--art-top); width:var(--art-width); height:var(--art-height); max-width:none; object-fit:fill; pointer-events:none; }
+ .shelf-navigation { position:absolute; left:var(--bottle-target-x); top:var(--bottle-target-y); width:var(--bottle-target-w); height:var(--bottle-target-h); flex-direction:column; }
+}
+@media(max-width:959px), (max-height:479px), (orientation:portrait) {
+ .shelf-paged .bottle-list { bottom:52px; }.shelf-navigation { position:absolute; bottom:0; left:0; right:0; min-height:48px; }.shelf-navigation button { min-height:48px; min-width:48px; }
+}
+
+@media(max-width:599px) {
+ .shelf-paged .bottle-hitbox { min-height:128px; padding:2px; gap:2px; }
+ .shelf-paged .bottle-image { width:48px; height:80px; }
+}

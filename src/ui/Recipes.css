@@ -1,0 +1,18 @@
+/* Secondary dialog and content inside the existing result scroll area only. No stage geometry. */
+.recipe-surface { color:#204a40; font-size:14px; line-height:1.5; }
+.recipe-surface .recipe-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:16px; }
+.recipe-surface article { min-width:0; border:1px solid #c9b482; border-radius:10px; padding:14px; background:#fffdf5; overflow-wrap:anywhere; }
+.recipe-surface h3 { font-size:17px; margin:8px 0; }
+.recipe-surface p { margin:10px 0; }
+.recipe-surface button,.recipe-hint button { min-height:48px; border:1px solid #a7b79c; border-radius:8px; padding:8px 12px; background:#204a40; color:#fffdf2; font:inherit; cursor:pointer; }
+.recipe-surface button:disabled { background:#edf1e5; color:#4c6046; cursor:default; }
+.recipe-surface :focus-visible,.recipe-hint button:focus-visible { outline:3px solid #a86e2e; outline-offset:3px; }
+.recipe-goals { padding-left:20px; }.recipe-goals li { margin:12px 0; }
+.recipe-hint,.recipe-outcome { font-size:11px; line-height:1.4; overflow-wrap:anywhere; margin:8px 0; }
+.recipe-hint small { display:block; font-size:inherit; }.recipe-hint button { display:block; font-size:11px; margin-top:6px; }
+.recipe-outcome p { margin:4px 0; }
+@media(max-width:599px) { .recipe-surface .recipe-grid { grid-template-columns:minmax(0,1fr); } }
+
+.collection-dialog .shop-tabs:has(#recipes-tab) button { min-width:0; overflow-wrap:anywhere; }
+
+@media(max-width:399px) { .collection-dialog .shop-tabs:has(#recipes-tab) { flex-wrap:wrap; }.collection-dialog .shop-tabs:has(#recipes-tab) button { flex-basis:calc(50% - 4px); }.collection-dialog .shop-tabs:has(#recipes-tab) button:last-child { flex-basis:100%; } }

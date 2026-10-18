@@ -1,3 +1,4 @@
+import '../src/content/recipeCatalog.ts';
 import { productionStore } from '../src/content/storeCatalog.ts';
 import { validateStore } from '../src/application/store.ts';
 import { allRuntimePaths } from '../src/content/runtimeVariants.ts';

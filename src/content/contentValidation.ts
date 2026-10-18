@@ -5,10 +5,12 @@ export function validatePublicContent(catalog: ContentCatalog, visuals: VisualCa
   const price = (value: { readonly currency: string; readonly amount: number } | undefined) => {
     if (value && (!value.currency || !Number.isSafeInteger(value.amount) || value.amount < 0)) throw new RangeError('Invalid price metadata');
   };
-  const tables = { bartender: visuals.bartenders, environment: visuals.environments, counter: visuals.counters, effect: visuals.effects, 'bottle-set': visuals.bottleSets };
+  const tables = { bartender: visuals.bartenders, environment: visuals.environments, counter: visuals.counters, effect: visuals.effects, 'bottle-set': visuals.bottleSets, ingredient:visuals.ingredients };
   for (const item of catalog.items) {
     if (!item.id || ids.has(item.id) || item.visibility !== 'public') throw new RangeError('Duplicate or non-public item');
     ids.add(item.id); price(item.price);
+    if(item.kind==='ingredient'&&(item.ingredientId!==item.visualDefinitionId||item.id!=='ingredient.'+item.ingredientId))throw new RangeError('Invalid ingredient binding');
+    if(item.publication==='unpublished'){if(item.kind!=='ingredient')throw new RangeError('Unsupported unpublished content');continue;}
     if (!(item.kind in tables) || !Object.hasOwn(tables[item.kind as keyof typeof tables], item.visualDefinitionId)) throw new RangeError('Unresolved public visual definition');
   }
   const bundles = new Set<string>();

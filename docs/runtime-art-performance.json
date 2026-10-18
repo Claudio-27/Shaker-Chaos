@@ -30,7 +30,7 @@
     "pngBytes": 4635481,
     "rgbaBytes": 16824736
   },
-  "publicRuntimeUrls": 64,
+  "publicRuntimeUrls": 70,
   "categories": {
     "bartender.b01": {
       "sourceBytes": 6633068,
@@ -43,9 +43,9 @@
       "runtime2x": 3499996
     },
     "ingredient": {
-      "sourceBytes": 4322668,
-      "runtime1x": 97792,
-      "runtime2x": 316361
+      "sourceBytes": 8850521,
+      "runtime1x": 218119,
+      "runtime2x": 700038
     },
     "gameplay": {
       "sourceBytes": 2955841,

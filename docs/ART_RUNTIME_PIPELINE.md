@@ -1,5 +1,10 @@
 # Runtime artwork pipeline — fase2G
 
+## Stato corrente2N
+
+25 master registrati (21 originali,clean e3 nuove bottiglie),49 PNG runtime e21SVG:70 URL pubblici. Tre output image_gen nativi RGBA1024×1536 copiati byte-identici in art-source; sei varianti derivate con lo stesso Pillow12.3.0,alpha8,padding12,224/448px opachi. I22 asset precedenti rimangono byte-identici. Planner prima pagina15ID/9PNG: nuova pagina solo su richiesta,7shell ecap32 senza nuovi precache. [Provenienza](INGREDIENT_ARTWORK_GENERATION.md). I conteggi nelle sezioni2G sotto sono storici.
+
+
 ## SOURCE / DERIVED / GENERATED
 
 - **SOURCE**:21PNG originali in art-source/art/…; byte identici agli hash storici di docs/artwork-inventory.json. Il vecchio path art/… resta nel documento storico come provenienza, non come URL pubblico attuale. Non modificare gli originali e non accedere alle copie Desktop per build/manutenzione.

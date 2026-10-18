@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-17",
+  "origin": "http://127.0.0.1:5203/",
+  "smokeBuildCache": "f915cd77f09fb107",
+  "screenshots": [
+    {
+      "file": "owned-shelf.jpg",
+      "width": 1536,
+      "height": 730,
+      "bytes": 149541,
+      "sha256": "473edb48a554ada05c8d9faa80e7da86085efe0354038ffb1903a5cdcda3d59f"
+    },
+    {
+      "file": "shop-ingredients.jpg",
+      "width": 1535,
+      "height": 730,
+      "bytes": 74928,
+      "sha256": "416de422869cbb23cb6f9a370f1d434ce2ed9bf0b24b810bae8e2c65be4ecbf2"
+    },
+    {
+      "file": "recipes-mastery.jpg",
+      "width": 1536,
+      "height": 730,
+      "bytes": 124602,
+      "sha256": "576f3e89dd2b10c7cbfb80114d034822824921e54f366595a2ffca6734dd2e4f"
+    },
+    {
+      "file": "mobile-shelf.jpg",
+      "width": 305,
+      "height": 610,
+      "bytes": 33327,
+      "sha256": "3366bd8a745ae0c4864bd26f9684fa870b0f32a4d972f8bc1b9bfbfecd5952eb"
+    }
+  ],
+  "profileSeed": {
+    "source": "ProgressionLab UI only before switching to production",
+    "xp": 700,
+    "coins": 500
+  },
+  "finalProfile": {
+    "lifetimeXp": 1075,
+    "level": 6,
+    "currentXp": 75,
+    "coins": 139,
+    "newRecipesCompleted": 3
+  },
+  "offlinePurchase": "ingredient.blossom",
+  "mobileViewport": {
+    "width": 320,
+    "height": 640
+  }
+}

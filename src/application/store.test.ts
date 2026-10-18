@@ -10,11 +10,11 @@ import { progressionTuning } from '../content/progressionTuning.ts';
 import { reconcilePlayerProfile,equipContent } from '../application/playerContent.ts';
 const buy=(p=fundedProfile(),id='offer.b02')=>purchaseOffer(p,intentFor(p,id),store,catalog,2000);
 
-test('production shop offers only two existing optional public cosmetics and one canonical bundle',()=>{
-  validateStore(store,catalog);assert.equal(store.offers.length,3);
+test('published shop retains the three 2K offers and activates three ingredient purchases',()=>{
+  validateStore(store,catalog);assert.equal(store.offers.filter(o=>o.availability.published).length,6);assert.equal(store.offers.length,6);
   assert.equal(catalog.items.find(i=>i.id==='bartender.b02')!.price!.amount,300);assert.equal(catalog.items.find(i=>i.id==='effect.ice-blue')!.price!.amount,150);
   for(const id of ['bartender.b02','effect.ice-blue']){assert.ok(catalog.items.find(i=>i.id===id)!.unlock.some(u=>u.kind==='currency'));assert.ok(!catalog.items.find(i=>i.id===id)!.unlock.some(u=>u.kind==='progression'));}
-  const owned=fundedProfile().ownership.map(i=>i.contentId);assert.equal(owned.length,5);assert.ok(owned.includes('environment.e01'));
+  const owned=fundedProfile().ownership.map(i=>i.contentId);assert.equal(owned.length,8);assert.ok(owned.includes('environment.e01'));
 });
 test('store rejects negative, fractional, overflowing, private, technical, missing and duplicate configuration',()=>{
   const offer=store.offers[0]!;
@@ -53,7 +53,7 @@ test('same purchase identity returns the receipt; new identity for owned item ca
   assert.equal(purchaseOffer(one.profile,{...intent,offerId:'offer.ice-blue'},store,catalog,3000).status,'PROFILE_CONFLICT');
 });
 test('full and partial bundles charge remaining standalone cost less 15 percent, with exact grants',()=>{
-  const full=buy(fundedProfile(),'offer.new-shift');assert.equal(full.receipt!.coinsSpent,382);assert.deepEqual(full.receipt!.newlyGrantedContentIds,['bartender.b02','effect.ice-blue']);assert.equal(full.profile.ownership.length,7);
+  const full=buy(fundedProfile(),'offer.new-shift');assert.equal(full.receipt!.coinsSpent,382);assert.deepEqual(full.receipt!.newlyGrantedContentIds,['bartender.b02','effect.ice-blue']);assert.equal(full.profile.ownership.length,10);
   for(const [first,price,saving,remaining]of [['offer.b02',127,23,'effect.ice-blue'],['offer.ice-blue',255,45,'bartender.b02']] as const){
     const owned=buy(fundedProfile(),first).profile,q=quoteStoreOffer(owned,store,catalog,'offer.new-shift')!,partial=buy(owned,'offer.new-shift');
     assert.equal(q.priceCoins,price);assert.equal(q.savings,saving);assert.equal(partial.receipt!.coinsSpent,price);assert.deepEqual(partial.receipt!.newlyGrantedContentIds,[remaining]);assert.equal(partial.receipt!.alreadyOwnedIncludedIds.length,1);
@@ -77,7 +77,7 @@ test('changed quote, profile identity, ordinal and overflow fail before spending
 test('purchased ownership is retained and later progression produces no duplicate unlock',()=>{
   const purchased=buy().profile,leveled=reconcilePlayerProfile(gainXp(purchased,100,progressionTuning),2000);
   assert.equal(leveled.ownership.filter(i=>i.contentId==='bartender.b02').length,1);assert.equal(leveled.ownership.find(i=>i.contentId==='bartender.b02')!.source,'currency-purchased');
-  assert.equal(reconcilePlayerProfile(gainXp(fundedProfile(),100,progressionTuning),2000).ownership.length,5);
+  assert.equal(reconcilePlayerProfile(gainXp(fundedProfile(),100,progressionTuning),2000).ownership.length,8);
 });
 test('bounded ledger evicts receipts but watermark prevents old identities from spending again',()=>{
   const items=Array.from({length:PURCHASE_LEDGER_LIMIT+2},(_,n)=>({id:'test-cosmetic-'+n,displayName:'Synthetic '+n,kind:'effect' as const,visibility:'public' as const,visualDefinitionId:'test',unlock:[{kind:'currency' as const,currencyId:'coins'}],price:{currency:'coins',amount:1}}));

@@ -1,5 +1,23 @@
 # Architettura
 
+## Polish giocatore 2P
+
+La guida è presentazione e usa una preferenza locale tipizzata separata (solo ID del profilo che l’ha chiusa). Non modifica PlayerProfileV3, storia canonica, scoring, reward o transazioni. Aiuto e descrizioni dei controlli leggono gli stati esistenti; nessun callback di input cambia. [Esperienza v1](PLAYER_EXPERIENCE_V1.md).
+
+
+## Attivazione2N
+
+Tre master/runtime e flag editoriali attivano il modello2M senza nuovi sistemi. Il bootstrap limita la scena iniziale alla prima pagina; il renderer/prewarm segue la pagina visibile. Lab e aria-label riflettono gli ingredienti reali. Eventi, scorer, ricette, tuning, transazioni e schemaV3 invariati. [Rapporto2N](PHASE_2N_REPORT.md).
+
+
+## Ingredienti2M
+
+BarIngredient centralizza identità, pubblicazione, acquisizione, visual e scoring; publicCatalog filtra i pubblicati, ContentItem/StoreOffer e dipendenze ricette derivano dai dati. transitionPlayerGame applica proprietà senza contaminare replay/scoring. Lo scorer estende il vettore solo con ingredienti nuovi effettivamente presenti;3361confronti RoundResult legacy identici. Shelf a pagine riusa tre slot e la regione congelata, caricando solo la pagina visibile. Stesso controller/repository/coordinatoreV3; cataloghi opzionali iniettati per collaudare la configurazione futura senza pubblicare asset mancanti. [Sistema2M](INGREDIENT_SYSTEM.md).
+
+## Ricette e obiettivi2L
+
+recipes.ts valuta solo la proiezione canonica, senza dipendenze dallo scorer. RecipeResult distinto dal RoundResult congelato. recipeProgression liquida bonus/goal sul round base sotto lo stesso coordinatore; un solo writeV3. recipeCatalog definisce target/gate/bonus/goal; selezione per scheda bloccata all'inizio, mastery persistente. MigrazioneV2→V3 conserva il profilo e semina il watermark al round storico. UI nel dialogo Collezione e contenuto del pannello risultato; palco e stili originali intatti. [Specifica2L](RECIPES_AND_GOALS.md).
+
 ## Politica economica corrente2K
 
 Disponibilità per acquisto separata da proprietà e grant gratuito: currency.availableFromLevel nel ContentItem canonico, PriceMetadata per prezzo, StoreOffer per pubblicazione/gate di offerta. Quote applicativa combina i gate dei contenuti mancanti; il grant puro legge solo progressionTuning.unlocks. Questa configurazione non modifica schemaV2 o dati esistenti. Il simulatore scripts/economy-simulation.mjs riusa i servizi reali, è solo analisi e non è importato dalla produzione. [Decisioni2K](PHASE_2K_REPORT.md). Tutto il palco2I e lo scoring restano bloccati.

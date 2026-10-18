@@ -96,9 +96,9 @@ test('bottle cosmetics change only visual references, preserving ingredient iden
   assert.equal(supplied.id, placeholder.id); assert.deepEqual(supplied.liquid, placeholder.liquid);
   assert.equal(supplied.bottle, 'ingredient.bottle03'); assert.notEqual(supplied.bottle, placeholder.bottle);
 });
-test('all 21 source copies retain their inventoried byte hashes and dimensions', async () => {
+test('all 24 registered source copies retain their inventoried byte hashes and dimensions', async () => {
   const rows: { path: string; sha256: string; width: number; height: number }[] = JSON.parse(await readFile(new URL('../../docs/artwork-inventory.json', import.meta.url), 'utf8'));
-  assert.equal(rows.length, 21);
+  assert.equal(rows.length, 24);
   for (const row of rows) {
     const bytes = await readFile(new URL('../../art-source/' + row.path, import.meta.url));
     assert.equal(createHash('sha256').update(bytes).digest('hex'), row.sha256, row.path);

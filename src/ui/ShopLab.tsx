@@ -1,3 +1,4 @@
+import { IngredientLab } from './IngredientLab.tsx';
 import { createPurchaseIntent } from '../application/store.ts';
 import { useState } from 'react';
 import type { PlayerController, PlayerSnapshot } from '../application/playerController.ts';
@@ -15,5 +16,6 @@ export default function ShopLab({controller,snapshot}:{readonly controller:Playe
       const result=purchaseOffer({...p,wallet:{coins:0,lifetimeCoinsEarned:p.wallet.lifetimeCoinsEarned,lifetimeCoinsSpent:p.wallet.lifetimeCoinsEarned}},
         createPurchaseIntent(p,quote,'dev-simulation'),productionStore,publicContentCatalog,Math.max(Date.now(),p.updatedAt));setSimulation('Simulazione senza scritture: '+result.status);}}>Simula monete insufficienti</button>
     <p role="status">{simulation}</p><pre>{JSON.stringify({offers:quotes,ledger:p.purchaseTransactionLedger,diagnostics:snapshot.diagnostics},null,2)}</pre>
+    <IngredientLab profile={snapshot.profile}/>
   </details>;
 }

@@ -1,4 +1,10 @@
-# Negozio locale — fase 2K
+# Negozio locale — ingredienti2N, profiloV3
+
+Sei offerte pubblicate: due cosmetici, bundle2K e tre ingredienti. Botanical100/L3,ember175/L4,blossom225/L5; prezzi originali2M, proprietà permanente senza equip. Stessi quote/conferma/addebito/ledger/coordinamento/repository, nessun nuovo flusso. Preview runtime on demand e categoria Ingredienti. Testati acquisto Petali offline e aggiornamento di saldo/ownership nell'altra scheda senza reload. [Sistema e pacing](INGREDIENT_SYSTEM.md), [rapporto](PHASE_2N_REPORT.md). Le descrizioni storiche dei soli cosmetici sotto non limitano il catalogo attuale.
+
+## Checkpoint storico2K/2L
+
+Aggiornamento2L: il profilo corrente èV3 per mastery e obiettivi, con migrazione conservativaV2. Il servizio acquisti conserva genericamente tutti i campi del profilo; prezzi/gate/sconti, ledger e coordinamento qui descritti rimangono identici. Le ricette non sono vendute. [Specifica ricette](RECIPES_AND_GOALS.md). Le sezioni di migrazioneV1→V2 sotto descrivono il checkpoint storico del negozio.
 
 Il negozio vende cosmetici pubblici esistenti con monete fittizie guadagnate dai cocktail. Collezione/Negozio restano nel dialogo secondario; palco600×440, artwork e CSS sono bloccati. La2K corregge l'alternativa gratuita che nella2J anticipava qualsiasi acquisto normale.
 
@@ -96,4 +102,4 @@ Usa gli stessi servizi di reward, quote, grant e purchase del gioco, con timesta
 
 ## Profili esistenti
 
-Resta PlayerProfileV2, senza nuovi campi e senza V3. V1→V2 continua invariata. Reconcile conserva tutti gli entitlements: starter, vecchi grant gratuiti, acquisti e bundle; conserva wallet, XP, receipt, watermark e loadout valido. Nessun costo retroattivo e nessuna compensazione inventata. Un livello già raggiunto ma privo di entitlement effettivo non diventa una promessa di grant storico: si applica la disponibilità corrente. Le ricevute di acquisti pre-gate restano valide. Anche un cosmetico posseduto sotto il nuovo gate rimane equipaggiabile.
+La politica economica2K non richiedeva nuovi campi. Il profilo corrente2L è PlayerProfileV3 per mastery/obiettivi, con migrazioneV2→V3 conservativa; V1→V2 continua invariata. Reconcile conserva tutti gli entitlements: starter, vecchi grant gratuiti, acquisti e bundle; conserva wallet, XP, receipt, watermark e loadout valido. Nessun costo retroattivo e nessuna compensazione inventata. Un livello già raggiunto ma privo di entitlement effettivo non diventa una promessa di grant storico: si applica la disponibilità corrente. Le ricevute di acquisti pre-gate restano valide. Anche un cosmetico posseduto sotto il nuovo gate rimane equipaggiabile.

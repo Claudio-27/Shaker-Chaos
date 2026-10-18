@@ -1,3 +1,4 @@
+import { barIngredients,legacyIngredientIds } from './ingredientCatalog.ts';
 import type { ClassicInspiredTuningProfile } from '../domain/classicProfile.ts';
 import { volumeUnits } from '../domain/quantity.ts';
 
@@ -12,6 +13,7 @@ export const classicInspiredTuning: ClassicInspiredTuningProfile = {
   score: {
     maximum: 10000,
     ingredientWeights: { orchard: 8000, citrus: 7200, soda: 4800 },
+    additionalIngredients:Object.fromEntries(barIngredients.filter(i=>!legacyIngredientIds.some(id=>id===i.id)).map(i=>[i.id,{weight:i.scoring.weight,balanceParts:i.scoring.balanceParts}])),
     targetParts: { orchard: 2, citrus: 1, soda: 1 },
     balanceBonus: 1800,
     tiers: [

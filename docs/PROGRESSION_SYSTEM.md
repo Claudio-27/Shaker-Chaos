@@ -1,4 +1,15 @@
-# Progressione locale — stato corrente2K
+# Progressione locale — stato corrente2N
+
+Tre nuovi acquisti2M ora attivi:100/L3,175/L4,225/L5. Nessun grant gratuito aggiunto, stessa V3/curva/reward e proprietà permanente. Sette ricette raggiungibili con ingredienti owned, stessi quattro goal; bonus complessivi205XP/85monete una tantum, premi base separati. [Sistema corrente](INGREDIENT_SYSTEM.md). Le sezioni sotto documentano i checkpoint precedenti.
+
+
+## Checkpoint storico2M
+
+FormatoV3 invariato. Ownership generica accoglie i ContentItem ingredienti; riconciliazione aggiunge i tre starter legacy mancanti conservando ogni dato2L. I tre nuovi sono acquisti gated, non grant:100/L3,175/L4,225/L5, attualmente unpublished. Quattro goal originali invariati; bonus attualmente raggiungibili130XP/55monete, totale configurato futuro205XP/85monete. Nessuna V4 o nuova curva/reward. [Sistema e simulazione](INGREDIENT_SYSTEM.md). La sezione2L seguente descrive il checkpoint originale.
+
+PlayerProfileV3 aggiunge recipeProgress (mastery, goal claim e watermark) con migrazione conservativaV1→V2→V3. XP/monete base, curva e politica shop2K invariati. Bonus ricette/obiettivi separati e una tantum, massimo130XP/55monete nell'intero catalogo; medesimo coordinatore e unico write con reward base. [Specifica corrente](RECIPES_AND_GOALS.md), [rapporto2L](PHASE_2L_REPORT.md).
+
+## Checkpoint storico2K
 
 Il formato resta **PlayerProfileV2**, con migrazioneV1,64ricevute acquisti e128reward settlement. La2K cambia solo la politica di acquisizione: **il livello apre un acquisto; la spesa concede proprietà; un free grant è una regola separata e intenzionale**.
 

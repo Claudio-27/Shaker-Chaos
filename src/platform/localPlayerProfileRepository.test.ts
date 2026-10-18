@@ -9,11 +9,11 @@ test('first creation persists one namespaced save; reload keeps ID, progress and
   assert.equal(loaded.status,'saved');repo.save(gainXp(loaded.profile,120,tuning));
   const restored=testRepository(storage).load();assert.equal(restored.profile.profileId,loaded.profile.profileId);
   assert.equal(restored.profile.progression.level,2);assert.equal(storage.values.get('unrelated.save'),'keep');
-  assert.equal(restored.profile.ownership.length,5);assert.deepEqual(restored.profile.equippedLoadout,loaded.profile.equippedLoadout);
+  assert.equal(restored.profile.ownership.length,8);assert.deepEqual(restored.profile.equippedLoadout,loaded.profile.equippedLoadout);
 });
 test('migration boundary accepts V1 and preserves unsupported older/future formats',()=>{
   assert.equal(migratePlayerProfile(JSON.stringify(newTestProfile()),tuning).kind,'current');
-  for(const [version,kind] of [[0,'older-unsupported'],[3,'future-unsupported']]){
+  for(const [version,kind] of [[0,'older-unsupported'],[4,'future-unsupported']]){
     const raw=JSON.stringify({schemaVersion:version,futureData:'keep'}),storage=memoryProfileStorage({[key]:raw}),repo=testRepository(storage);
     assert.equal(migratePlayerProfile(raw,tuning).kind,kind);assert.equal(repo.load().status,'unsupported');
     repo.save(gainXp(repo.load().profile,5,tuning));assert.equal(storage.values.get(key),raw);

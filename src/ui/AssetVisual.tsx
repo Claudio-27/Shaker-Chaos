@@ -39,7 +39,7 @@ export function AssetImage({ assetId, fallback: suppliedFallback, lastResort, op
   const current = preferred && !failed.includes(preferred) ? preferred :
     fallback && !failed.includes(fallback) ? optionalAsset(catalog, fallback) :
     lastResort && !failed.includes(lastResort) ? optionalAsset(catalog, lastResort) : undefined;
-  if (!current) return optional ? <span hidden data-asset-error={assetId} /> : <span className="asset-error" data-asset-error={assetId} role="img" aria-label="Artwork non disponibile">Artwork non disponibile</span>;
+  if (!current) return optional ? <span hidden data-asset-error={assetId} /> : <span className="asset-error" data-asset-error={assetId} role="img" aria-label="Immagine non disponibile">Immagine non disponibile</span>;
   const asset = resolveAsset(catalog, current);
   if (asset.runtime) {
     const candidates = runtimeCandidates(asset, demand), candidate = candidates.find(item => !failedPaths.includes(item.path));

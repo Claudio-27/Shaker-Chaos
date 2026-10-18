@@ -841,6 +841,126 @@ export const runtimeArtManifest = {
       }
     }
   },
+  "ingredient.bottle04": {
+    "category": "bottle",
+    "source": {
+      "width": 1024,
+      "height": 1536,
+      "sha256": "3a993e2f6fcdbc5618565daa703374349fe2e96414ef3c0af3e7732f3bda57c1",
+      "alpha": {
+        "x": 247,
+        "y": 31,
+        "width": 526,
+        "height": 1469
+      }
+    },
+    "crop": {
+      "x": 235,
+      "y": 19,
+      "width": 550,
+      "height": 1493
+    },
+    "padding": 12,
+    "alphaThreshold": 8,
+    "variants": {
+      "1x": {
+        "path": "art/runtime/ingredients/bottle04-1x-24dafbdb4a85.png",
+        "width": 84,
+        "height": 228,
+        "bytes": 34866,
+        "sha256": "24dafbdb4a859b0add11ef3ee6d8241f3c9284f52669243e4a9954242be880f8",
+        "format": "png"
+      },
+      "2x": {
+        "path": "art/runtime/ingredients/bottle04-2x-4bb944a02d3e.png",
+        "width": 168,
+        "height": 455,
+        "bytes": 113223,
+        "sha256": "4bb944a02d3e0b096f974fc46867d22e657892414d039acaa964ef8a02d90966",
+        "format": "png"
+      }
+    }
+  },
+  "ingredient.bottle05": {
+    "category": "bottle",
+    "source": {
+      "width": 1024,
+      "height": 1536,
+      "sha256": "4e7f050491362b94113d13a9fc77b327336d0f820488aface9e064baf0eebab5",
+      "alpha": {
+        "x": 135,
+        "y": 75,
+        "width": 754,
+        "height": 1407
+      }
+    },
+    "crop": {
+      "x": 123,
+      "y": 63,
+      "width": 778,
+      "height": 1431
+    },
+    "padding": 12,
+    "alphaThreshold": 8,
+    "variants": {
+      "1x": {
+        "path": "art/runtime/ingredients/bottle05-1x-c8b76c904173.png",
+        "width": 124,
+        "height": 228,
+        "bytes": 46725,
+        "sha256": "c8b76c9041739444c034b8470fb62d18a311ee3fd4630776069082f143c580b9",
+        "format": "png"
+      },
+      "2x": {
+        "path": "art/runtime/ingredients/bottle05-2x-d083f81782ff.png",
+        "width": 248,
+        "height": 456,
+        "bytes": 149482,
+        "sha256": "d083f81782ff13707f387c95124b2bf6819b17782cea9d4b5bba3ce6cef817df",
+        "format": "png"
+      }
+    }
+  },
+  "ingredient.bottle06": {
+    "category": "bottle",
+    "source": {
+      "width": 1024,
+      "height": 1536,
+      "sha256": "6d34d033cc92cc494deb9b1ccaeff56af2013afe37ef18f80688deab5ddef927",
+      "alpha": {
+        "x": 170,
+        "y": 43,
+        "width": 684,
+        "height": 1434
+      }
+    },
+    "crop": {
+      "x": 158,
+      "y": 31,
+      "width": 708,
+      "height": 1458
+    },
+    "padding": 12,
+    "alphaThreshold": 8,
+    "variants": {
+      "1x": {
+        "path": "art/runtime/ingredients/bottle06-1x-fe069be4644c.png",
+        "width": 111,
+        "height": 228,
+        "bytes": 38736,
+        "sha256": "fe069be4644c9c26b465f2d27d18bef2b5d4107bcef4b7f7b4cb5584f6963d60",
+        "format": "png"
+      },
+      "2x": {
+        "path": "art/runtime/ingredients/bottle06-2x-cfba38549546.png",
+        "width": 221,
+        "height": 455,
+        "bytes": 120972,
+        "sha256": "cfba3854954609820bb1ba5f109d9f145a7177a5c68e6c55cba4d59b7784bfda",
+        "format": "png"
+      }
+    }
+  },
   "environment.e01.background.clean": {
     "category": "background",
     "source": {

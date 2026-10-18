@@ -418,5 +418,65 @@
       1456
     ],
     "sha256": "49b5f2fd749df2c5e331efbc194a6df3c8eff45c3f9c4df6186ae202e9f6e86d"
+  },
+  {
+    "source": "imagegen built-in, Phase 2N, botanical",
+    "id": "ingredient.bottle04",
+    "path": "art/ingredients/bottle04.png",
+    "confidence": "Original generated Shaker-Chaos bottle, authorized by user; visually reviewed",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1484720,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 946817,
+    "partialAlphaPixels": 626047,
+    "alphaBoundsAbove8": [
+      247,
+      31,
+      773,
+      1500
+    ],
+    "sha256": "3a993e2f6fcdbc5618565daa703374349fe2e96414ef3c0af3e7732f3bda57c1"
+  },
+  {
+    "source": "imagegen built-in, Phase 2N, ember",
+    "id": "ingredient.bottle05",
+    "path": "art/ingredients/bottle05.png",
+    "confidence": "Original generated Shaker-Chaos bottle, authorized by user; visually reviewed",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1555876,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 764798,
+    "partialAlphaPixels": 808066,
+    "alphaBoundsAbove8": [
+      135,
+      75,
+      889,
+      1482
+    ],
+    "sha256": "4e7f050491362b94113d13a9fc77b327336d0f820488aface9e064baf0eebab5"
+  },
+  {
+    "source": "imagegen built-in, Phase 2N, blossom",
+    "id": "ingredient.bottle06",
+    "path": "art/ingredients/bottle06.png",
+    "confidence": "Original generated Shaker-Chaos bottle, authorized by user; visually reviewed",
+    "width": 1024,
+    "height": 1536,
+    "format": "png",
+    "encodedBytes": 1487257,
+    "decodedRgbaBytes": 6291456,
+    "transparentPixels": 984001,
+    "partialAlphaPixels": 588863,
+    "alphaBoundsAbove8": [
+      170,
+      43,
+      854,
+      1477
+    ],
+    "sha256": "6d34d033cc92cc494deb9b1ccaeff56af2013afe37ef18f80688deab5ddef927"
   }
 ]

@@ -25,12 +25,16 @@ export function evaluateClassicHistory(input: Pick<CompatibilityInput, 'history'
   const volume = BigInt(totalVolumeUnits(mix)), capacity = BigInt(profile.capacityUnits);
   let ingredientScore = 0;
   if (volume > 0n) {
-    const targetTotal = Object.values(profile.score.targetParts).reduce((sum, part) => sum + BigInt(part), 0n);
+    // Only extensions actually present add target parts. Zero extension volume preserves the legacy equation exactly.
+    const extensions=Object.entries(profile.score.additionalIngredients??{}).filter(([id])=>(mix.quantities[id]??0)>0);
+    const targets={...profile.score.targetParts,...Object.fromEntries(extensions.map(([id,metadata])=>[id,metadata.balanceParts]))};
+    const weights={...profile.score.ingredientWeights,...Object.fromEntries(extensions.map(([id,metadata])=>[id,metadata.weight]))};
+    const targetTotal = Object.values(targets).reduce((sum, part) => sum + BigInt(part), 0n);
     let weighted = 0n, distance = 0n;
-    for (const [id, weight] of Object.entries(profile.score.ingredientWeights)) {
+    for (const [id, weight] of Object.entries(weights)) {
       const units = BigInt(mix.quantities[id] ?? 0);
       weighted += units * BigInt(weight);
-      const delta = units * targetTotal - BigInt(profile.score.targetParts[id]!) * volume;
+      const delta = units * targetTotal - BigInt(targets[id]!) * volume;
       distance += delta < 0n ? -delta : delta;
     }
     const denominator = 2n * volume * targetTotal;

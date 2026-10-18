@@ -44,3 +44,16 @@ export function createResetGuard() {
     settled() { pending = false; },
   };
 }
+
+/** Reasons describe existing acceptance rules; they never enable a control or dispatch an action. */
+export function controlHelp(state:ClassicGameState,profile:ClassicInspiredTuningProfile,hasIngredient:boolean){
+  const ui=gameplayPresentation(state,profile,hasIngredient),mix=state.view.derived.mix,volume=totalVolumeUnits(mix);
+  const done='Scegli Nuovo drink per preparare un altro mix.';
+  return {
+    pour:ui.terminal?done:!ui.mixing?'Hai già agitato: per cambiare ingredienti ricomincia il mix.':!hasIngredient?'Scegli una bottiglia posseduta, oppure visita il Negozio in Collezione.':volume>=profile.capacityUnits?'Lo shaker è pieno. Rilascia Versa e passa ad Agita.':'Tieni premuto per versare; rilascia per fermarti.',
+    shake:ui.terminal?done:volume===0?'Versa prima un po’ di mix.':ui.pouring?'Rilascia Versa prima di agitare.':'Tieni premuto Agita, poi rilascia per poter servire.',
+    serve:ui.terminal?done:ui.controls.serve?'Il mix è pronto: premi Servi.':'Versa, agita e rilascia Agita prima di servire.',
+    ice:!ui.mixing?'Il ghiaccio si aggiunge prima di Agita.':mix.iceUnits>=profile.ice.maximumActions?'Hai già aggiunto tutto il ghiaccio disponibile.':'Aggiungi ghiaccio prima di agitare, fino a due volte.',
+    garnish:mix.garnishId?'Agrume già aggiunto.':ui.controls.garnish?'Aggiungi l’agrume, poi servi.':'L’agrume si aggiunge dopo aver agitato e rilasciato, prima di Servi.',
+  };
+}

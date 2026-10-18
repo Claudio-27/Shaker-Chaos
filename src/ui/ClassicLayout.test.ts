@@ -7,7 +7,7 @@ import { createServer } from 'vite';
 import { newClassicGame, transitionClassicGame } from '../application/classicGame.ts';
 import { gameDependencies, gamePresentation } from '../application/productionBootstrap.ts';
 
-const server = await createServer({configFile:false,server:{middlewareMode:true,watch:null},appType:'custom'});
+const server = await createServer({configFile:false,server:{middlewareMode:true,watch:null,hmr:false},appType:'custom'});
 const stage = await server.ssrLoadModule('/src/ui/GameStage.tsx') as typeof import('./GameStage.tsx');
 const assets = await server.ssrLoadModule('/src/ui/AssetVisual.tsx') as typeof import('./AssetVisual.tsx');
 test.after(async()=>{await server.close();});

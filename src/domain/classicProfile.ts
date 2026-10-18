@@ -13,6 +13,7 @@ export interface ClassicInspiredTuningProfile {
   readonly score: {
     readonly maximum: number;
     readonly ingredientWeights: Readonly<Record<string, number>>;
+    readonly additionalIngredients?:Readonly<Record<string,{readonly weight:number;readonly balanceParts:number}>>;
     readonly targetParts: Readonly<Record<string, number>>;
     readonly balanceBonus: number;
     readonly tiers: readonly { readonly id: string; readonly minimum: number; readonly title: string }[];
@@ -36,6 +37,11 @@ export function validateClassicProfile(profile: ClassicInspiredTuningProfile): v
   const ids = Object.keys(profile.score.ingredientWeights);
   if (!ids.length || ids.some(id => !id.trim() || !Object.hasOwn(profile.score.targetParts, id) || !profile.score.targetParts[id]) ||
     Object.keys(profile.score.targetParts).some(id => !ids.includes(id))) throw new RangeError('Ingredient weights and target parts must match');
+  for(const [id,ingredient]of Object.entries(profile.score.additionalIngredients??{})){
+    if(!id.trim()||ids.includes(id))throw new RangeError('Duplicate additional ingredient');
+    assertNonNegativeInteger(ingredient.weight,'Additional weight');assertNonNegativeInteger(ingredient.balanceParts,'Additional parts');
+    if(!ingredient.balanceParts)throw new RangeError('Additional ingredient needs balance parts');
+  }
   let previous = -1;
   const tierIds = new Set<string>();
   for (const tier of profile.score.tiers) {

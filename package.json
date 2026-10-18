@@ -36,7 +36,9 @@
     "art:verify": "node scripts/verify-runtime-art.mjs",
     "art:measure": "node scripts/measure-runtime-art.mjs",
     "shop:audit": "node scripts/audit-store.mjs",
-    "economy:simulate": "node scripts/economy-simulation.mjs"
+    "economy:simulate": "node scripts/economy-simulation.mjs",
+    "recipes:simulate": "node scripts/recipes-simulation.mjs",
+    "ingredients:audit": "node scripts/ingredients-audit.mjs"
   },
   "dependencies": {
     "react": "19.3.0",

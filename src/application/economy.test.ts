@@ -1,3 +1,4 @@
+import { migrateV2ToV3 } from '../domain/playerProfileV3.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { fundedProfile, intentFor } from './shopTestFixtures.ts';
@@ -19,7 +20,7 @@ test('production levels open purchase availability without granting a cosmetic o
   const start=fundedProfile(1000,1),level2=reconcilePlayerProfile(gainXp(start,100,tuning),2000),level3=reconcilePlayerProfile(gainXp(start,250,tuning),2000);
   assert.equal(quote(start,'offer.ice-blue').state,'LOCKED');assert.equal(quote(level2,'offer.ice-blue').state,'AVAILABLE');
   assert.equal(quote(level2).state,'LOCKED');assert.equal(quote(level3).state,'AVAILABLE');
-  for(const p of [start,level2,level3]){assert.equal(p.ownership.length,5);assert.equal(p.wallet,start.wallet);assert.equal(p.purchaseTransactionLedger.length,0);}
+  for(const p of [start,level2,level3]){assert.equal(p.ownership.length,8);assert.equal(p.wallet,start.wallet);assert.equal(p.purchaseTransactionLedger.length,0);}
   assert.deepEqual(tuning.unlocks,[]);
 });
 test('a funded purchase is refused before the gate, requires a fresh confirmation after it, then succeeds once',()=>{
@@ -58,17 +59,17 @@ test('bundle level is a real wait-versus-early-ownership choice, including parti
   assert.equal(early.wallet.coins,300);assert.equal(quote(early,'offer.new-shift').state,'LOCKED');assert.equal(buy(early,'offer.new-shift').status,'OFFER_UNAVAILABLE');
   const later=gainXp(early,750,tuning),bundle=buy(later,'offer.new-shift');
   assert.equal(bundle.status,'SUCCESS');assert.equal(bundle.receipt!.coinsSpent,255);assert.deepEqual(bundle.receipt!.newlyGrantedContentIds,['bartender.b02']);
-  assert.deepEqual(bundle.receipt!.alreadyOwnedIncludedIds,['effect.ice-blue']);assert.equal(bundle.profile.ownership.length,7);
+  assert.deepEqual(bundle.receipt!.alreadyOwnedIncludedIds,['effect.ice-blue']);assert.equal(bundle.profile.ownership.length,10);
   assert.equal(bundle.profile.wallet.lifetimeCoinsSpent,405);assert.equal(buy(bundle.profile,'offer.new-shift').status,'ALREADY_OWNED');
 });
-test('old V2 free entitlements and pre-gate purchases reload intact without a schema change or retroactive charge',()=>{
+test('old V2 free entitlements and pre-gate purchases reload intact through the current migration without a retroactive charge',()=>{
   const oldFree=migrateV1ToV2(withFreeGrants(newTestProfile(),250),tuning);
   const oldCatalog={...catalog,items:catalog.items.map(i=>({...i,unlock:i.unlock.map(u=>u.kind==='currency'?{kind:u.kind,currencyId:u.currencyId}:u)}))};
   const old=fundedProfile(1000,1),oldPaid=purchaseOffer(old,intentFor(old,'offer.b02',store,oldCatalog),store,oldCatalog,2000).profile;
   assert.equal(oldPaid.purchaseTransactionLedger.length,1);
   for(const p of [oldFree,oldPaid]){
     validatePlayerProfileV2(p,tuning);const raw=JSON.stringify(p),storage=memoryProfileStorage({[key]:raw}),restored=testRepository(storage).load().profile;
-    assert.equal(restored.schemaVersion,2);assert.deepEqual(restored,p);assert.equal(storage.values.get(key),raw);
+    assert.equal(restored.schemaVersion,3);assert.deepEqual(restored,migrateV2ToV3(p,tuning));assert.equal(JSON.parse(storage.values.get(key)!).schemaVersion,3);
     assert.equal(reconcilePlayerProfile(restored,3000),restored);assert.ok(canEquip(restored,publicContentItem('bartender.b02')));
   }
 });

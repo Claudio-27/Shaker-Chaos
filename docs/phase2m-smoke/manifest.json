@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-16",
+  "screenshots": [
+    {
+      "file": "normal-scene.jpg",
+      "bytes": 145245,
+      "sha256": "124cd04969cf2e1558f52a8cadaf5d5d52726667f55969c8cd18d35ad343ed9c",
+      "width": 1536,
+      "height": 730,
+      "origin": "http://127.0.0.1:5199/"
+    },
+    {
+      "file": "offline-result.jpg",
+      "bytes": 102577,
+      "sha256": "d42e7fe46d42db5d027f080a65bc433379d8332035f9d64c3e7db6bdb1c6c66f",
+      "width": 1536,
+      "height": 730,
+      "origin": "http://127.0.0.1:5199/"
+    },
+    {
+      "file": "ingredient-catalog.jpg",
+      "bytes": 56491,
+      "sha256": "c147ec0153912430457a26a0e4a55c2f3e00d44f772d7b66cbd9b767f39fe052",
+      "width": 1521,
+      "height": 667,
+      "origin": "http://127.0.0.1:5201/?shopLab=1"
+    }
+  ]
+}

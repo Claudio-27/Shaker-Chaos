@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { ReactNode, RefObject } from 'react';
 import type { HoldCallbacks, HoldOwnership } from '../platform/holdController.ts';
 import { releasePointerHold, startPointerHold } from '../platform/pointerHold.ts';
@@ -13,10 +13,12 @@ interface HoldButtonProps extends HoldCallbacks {
   readonly className?: string;
   readonly children: ReactNode;
   readonly label: string;
+  readonly hint?: string;
   readonly buttonRef?: RefObject<HTMLButtonElement | null>;
 }
 /** One owner across both controls, before capture/focus. Rejected touches cannot steal either. */
-export function HoldButton({ clock, ownership, onStart, onAction, onEnd, resetToken, disabled, className = '', children, label, buttonRef }: HoldButtonProps) {
+export function HoldButton({ clock, ownership, onStart, onAction, onEnd, resetToken, disabled, className = '', children, label, hint, buttonRef }: HoldButtonProps) {
+  const hintId=useId();
   const callbacks = useRef({ onStart, onAction, onEnd });
   callbacks.current = { onStart, onAction, onEnd };
   const captured = useRef<OwnedPointerCapture | null>(null);
@@ -35,7 +37,7 @@ export function HoldButton({ clock, ownership, onStart, onAction, onEnd, resetTo
   useEffect(() => { if (disabled) controller.cancel('limit'); }, [disabled, controller]);
   useEffect(() => { controller.cancel('reset'); }, [resetToken, controller]);
   useEffect(() => bindHoldInterruptions(controller, window, document), [controller]);
-  return <button type="button" ref={buttonRef} aria-label={label} aria-describedby="hold-help" aria-pressed={holding} disabled={disabled}
+  return <button type="button" ref={buttonRef} aria-label={label} aria-describedby={hint?'hold-help '+hintId:'hold-help'} title={hint} aria-pressed={holding} disabled={disabled}
     data-hold-state={holding ? 'active' : 'idle'} className={`hold-button ${className} ${holding ? 'is-held' : ''}`}
     onPointerDown={event => {
       const capture = startPointerHold(controller, event, disabled);
@@ -56,5 +58,5 @@ export function HoldButton({ clock, ownership, onStart, onAction, onEnd, resetTo
     onClick={event => {
       if (event.detail === 0 && !disabled) { controller.start({ kind: 'assistive' }); controller.stop({ kind: 'assistive' }); }
     }}
-    onContextMenu={event => event.preventDefault()}>{children}</button>;
+    onContextMenu={event => event.preventDefault()}>{children}{hint&&<span id={hintId} hidden>{hint}</span>}</button>;
 }

@@ -1,3 +1,4 @@
+import { controlHelp } from './gameplayPresentation.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { newClassicGame, transitionClassicGame } from '../application/classicGame.ts';
@@ -76,4 +77,10 @@ test('reset guard rejects a click burst and the clean next attempt remains unava
   g.send({ type: 'Reset', atMs: 1050 }); guard.settled();
   assert.equal(guard.request(g.ui.controls.reset), false); assert.equal(g.ui.phase, 'mix');
   assert.equal(g.ui.risk, 'safe'); assert.equal(g.ui.pourFeedback, 'idle'); assert.equal(g.state.result, null);
+});
+
+test('disabled-action explanations describe the current rules without accepting actions or altering a history',()=>{
+  const before=newClassicGame(gameDependencies),frozen=JSON.stringify(before),hint=controlHelp(before,profile,true);
+  assert.match(hint.shake,/Versa prima/);assert.match(hint.serve,/agita/i);assert.match(hint.garnish,/dopo/);
+  assert.match(controlHelp(before,gameDependencies.profile,false).pour,/posseduta/);assert.equal(JSON.stringify(before),frozen);
 });

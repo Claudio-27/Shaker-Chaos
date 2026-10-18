@@ -1,3 +1,4 @@
+import { publishedIngredientDefinitions } from './ingredientCatalog.ts';
 import { publicContentCatalog } from './publicContentCatalog.ts';
 import type { BartenderDefinition, GarnishDefinition, IngredientDefinition, ReactionDefinition, RecipeDefinition } from '../domain/model.ts';
 
@@ -11,11 +12,7 @@ export interface PublicCatalog {
 
 /** Public demo text; supplied bartender display names come from canonical content metadata. */
 export const publicCatalog: PublicCatalog = {
-  ingredients: [
-    { id: 'orchard', name: 'Infuso del frutteto', shortLabel: 'FRUTTETO', description: 'La base morbida del tuo mix.', color: '#dfaa5b' },
-    { id: 'citrus', name: 'Cordial agli agrumi', shortLabel: 'AGRUMI', description: 'Una nota vivace e luminosa.', color: '#a1c784' },
-    { id: 'soda', name: 'Acqua frizzante', shortLabel: 'BOLLICINE', description: 'Un tocco leggero per completare.', color: '#88bfc5' },
-  ],
+  ingredients: publishedIngredientDefinitions,
   garnishes: [{ id: 'citrus-wheel', name: 'Ruota di agrume' }],
   bartenders: publicContentCatalog.items.filter((item) => item.kind === 'bartender').map((item) => ({
     id: item.id, name: item.displayName, role: 'Compagno del laboratorio',

@@ -1,3 +1,4 @@
+import { barIngredients } from './ingredientCatalog.ts';
 import type { ContentCatalog, ContentItem, ContentKind } from './contentModel.ts';
 import { progressionTuning, starterContentIds } from './progressionTuning.ts';
 const coinPurchases: Readonly<Record<string, { readonly amount: number; readonly availableFromLevel: number }>> = {
@@ -17,6 +18,9 @@ const item = (id: string, displayName: string, kind: ContentKind): ContentItem =
 /** One canonical item per ID; bundles contain references, never copies or visual configurations. */
 export const publicContentCatalog: ContentCatalog = {
   items: [
+    ...barIngredients.map((i):ContentItem=>({id:i.contentId,displayName:i.name,kind:'ingredient',visibility:'public',visualDefinitionId:i.id,ingredientId:i.id,publication:i.published?'published':'unpublished',
+      unlock:i.acquisition.kind==='starter'?[{kind:'default'}]:i.acquisition.kind==='coins'?[{kind:'currency',currencyId:'coins',availableFromLevel:i.acquisition.availableFromLevel}]:[{kind:'progression',requirementId:i.acquisition.requirementId}],
+      ...(i.acquisition.kind==='coins'?{price:{currency:'coins',amount:i.acquisition.price}}:{})})),
     item('milo', 'Milo · segnaposto', 'bartender'),
     item('bartender.b01', 'Bartender 01', 'bartender'),
     item('bartender.b02', 'Bartender 02', 'bartender'),

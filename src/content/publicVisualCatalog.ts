@@ -1,3 +1,4 @@
+import { additionalIngredientAssets,additionalIngredientVisuals } from './additionalIngredientVisuals.ts';
 import { runtimeArtManifest } from './runtimeArtManifest.ts';
 import type { AssetId, RuntimeAssetDefinition, VisualCatalog } from './visualModel.ts';
 
@@ -7,6 +8,7 @@ const clean = (runtimeArtManifest as Partial<Record<AssetId, RuntimeAssetDefinit
 /** Public supplied artwork plus original fallbacks; all image paths live here. */
 export const publicVisualCatalog: VisualCatalog = {
   "assets": {
+    ...additionalIngredientAssets,
     ...(clean ? { [cleanId]: { path: clean.variants['1x'].path, width: clean.source.width, height: clean.source.height, format: 'png' as const, visibility: 'public' as const, runtime: clean } } : {}),
     "bartender.milo.idle": {
       "path": "art/placeholders/milo-idle.svg",
@@ -440,6 +442,7 @@ export const publicVisualCatalog: VisualCatalog = {
     }
   },
   "ingredients": {
+    ...additionalIngredientVisuals,
     "orchard": {
       "id": "orchard",
       "bottle": "ingredient.orchard.bottle",

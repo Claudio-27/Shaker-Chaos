@@ -1,6 +1,8 @@
-# Catalogo modulare
+# Catalogo modulare — stato corrente2N
 
-## Stato corrente2K
+Sei BarIngredient pubblicati con visual finali unici;17 ContentItem,8 starter complessivi, V3 generica. Le tre offerte ingredienti100/L3,175/L4,225/L5 sono attive; tutte sette le ricette pubblicate ma gated per livello e proprietà. Pubblicazione resta distinta da visibilità e ownership. Cosmetici/bundle2K invariati. [Sistema corrente](INGREDIENT_SYSTEM.md), [generazione e provenienza](INGREDIENT_ARTWORK_GENERATION.md). Le sezioni seguenti sono storiche.
+
+## Checkpoint storico2K
 
 Due cosmetici reali opzionali, stessi ID e stessi prezzi2J: bartender.b02=300monete, currency.availableFromLevel=3; effect.ice-blue=150monete, availableFromLevel=2. Nessun metadato progression per questi acquisti. progressionTuning.unlocks contiene solo grant gratuiti intenzionali e ora è vuoto. Cinque starter e quattro segnaposto DEV invariati.
 

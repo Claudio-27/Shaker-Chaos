@@ -30,7 +30,7 @@ export function replayClassicHistory(history: readonly MixEvent[], profile: Clas
     switch (event.type) {
       case 'PourStarted':
         require(phase === 'MIXING' && !activePour && !activeShake && totalVolumeUnits(mix) < profile.capacityUnits, 'pour is unavailable');
-        require(Object.hasOwn(profile.score.ingredientWeights, event.ingredientId), 'unknown ingredient');
+        require((Object.hasOwn(profile.score.ingredientWeights, event.ingredientId)||Object.hasOwn(profile.score.additionalIngredients??{},event.ingredientId)), 'unknown ingredient');
         activePour = { id: event.operationId, ingredientId: event.ingredientId, started: event.atMs, steps: 0 };
         break;
       case 'PourTick': {

@@ -56,13 +56,19 @@ export function simulateEconomy({results,rounds=40,purchasePlan=[]}){
 }
 export function simulationMilestones(simulation){
   return {levels:[2,3,4,5,6].map(level=>({level,round:simulation.rows.find(row=>row.level>=level)?.round??null})),
-    offers:store.offers.map(offer=>({offerId:offer.id,
+    offers:store.offers.filter(offer=>offer.availability.published).map(offer=>({offerId:offer.id,
       availableAt:simulation.rows.find(row=>row.newlyAvailable.includes(offer.id))?.round??null,
       affordableAt:simulation.rows.find(row=>row.possiblePurchases.includes(offer.id)||row.purchases.some(p=>p.offerId===offer.id))?.round??null})),
     purchases:simulation.rows.flatMap(row=>row.purchases.map(p=>({round:row.round,...p}))),coinsAvailable:simulation.profile.wallet.coins};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
-  const args=process.argv.slice(2);if(args.some(a=>!/^--(rounds|strategy)=/.test(a)))throw new Error('Use --rounds=N --strategy=save|effect-first|bartender-first|bundle');
+  const args=process.argv.slice(2);
+  if(args.includes('--journey')){
+    if(args.some(a=>!['--journey','--json'].includes(a)))throw new Error('Use --journey [--json]');
+    const {balanceReport}=await import('./balance-journey.mjs');
+    const report=balanceReport();
+    console.log(JSON.stringify(report,null,args.includes('--json')?0:2));
+  }else{if(args.some(a=>!/^--(rounds|strategy)=/.test(a)))throw new Error('Use --rounds=N --strategy=save|effect-first|bartender-first|bundle');
   const rounds=Number(args.find(a=>a.startsWith('--rounds='))?.split('=')[1]??40);
   const strategy=args.find(a=>a.startsWith('--strategy='))?.split('=')[1]??'save';
   if(!Object.hasOwn(strategies,strategy))throw new Error('Unknown strategy');
@@ -73,5 +79,6 @@ if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
     console.log('\n'+name+'\n| Round | Level | XP total/current | Coins earned | Coins available | Newly available | Possible purchases | Purchases |\n|---|---|---|---|---|---|---|---|');
     for(const r of simulation.rows)console.log('| '+[r.round,r.level,r.xp+'/'+r.currentXp,r.coinsEarned,r.coinsAvailable,r.newlyAvailable.join(', '),r.possiblePurchases.join(', '),r.purchases.map(p=>p.offerId+':'+p.coins).join(', ')].join(' | ')+' |');
     console.log(JSON.stringify(simulationMilestones(simulation)));
+  }
   }
 }

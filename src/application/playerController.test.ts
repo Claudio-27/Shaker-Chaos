@@ -44,7 +44,7 @@ test('renamed labels and changed visual definitions preserve canonical ownership
 });
 test('reconciliation restores missing starters and preserves intentional free grants once',()=>{
   const p=withFreeGrants(newTestProfile(),250),without={...p,ownership:p.ownership.filter(i=>i.contentId!=='effect.sparkles')};
-  const next=reconcilePlayerProfile(without,2000);assert.equal(next.ownership.length,7);assert.equal(reconcilePlayerProfile(next,2000),next);
+  const next=reconcilePlayerProfile(without,2000);assert.equal(next.ownership.length,10);assert.equal(reconcilePlayerProfile(next,2000),next);
 });
 test('same cocktail has exactly the same score at level 1 or 20 regardless of wallet and cosmetics',()=>{
   let game=newClassicGame(gameDependencies);

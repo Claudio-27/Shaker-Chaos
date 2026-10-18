@@ -95,7 +95,7 @@ export function transitionClassicGame(state: ClassicGameState, action: ClassicGa
     case 'PourStarted':
       if (phase !== 'MIXING' || activePour || activeShake || totalVolumeUnits(derived.mix) >= deps.profile.capacityUnits)
         return reject('La miscelazione è chiusa. Agita e poi servi il tuo mix.');
-      if (!Object.hasOwn(deps.profile.score.ingredientWeights, action.ingredientId)) return reject('Scegli una bottiglia del banco.');
+      if (!Object.hasOwn(deps.profile.score.ingredientWeights, action.ingredientId)&&!Object.hasOwn(deps.profile.score.additionalIngredients??{},action.ingredientId)) return reject('Scegli una bottiglia del banco.');
       break;
     case 'ShakeStarted':
       if (!totalVolumeUnits(derived.mix)) return reject('Prima versa un po’ di mix nello shaker.');

@@ -1,5 +1,8 @@
+import { shelfPage,nextShelfPage } from '../application/ingredientAccess.ts';
+import { ingredientBottleStyle } from './ingredientBottleFraming.ts';
+import './Shelf.css';
 import { ingredientVisuals, optionalAsset, selectedEffect } from '../content/visualPlan.ts';
-import { lazy, Suspense, memo, useLayoutEffect, useMemo, useRef } from 'react';
+import { lazy, Suspense, memo, useState, useLayoutEffect, useMemo, useRef } from 'react';
 import type { ReactNode, RefObject } from 'react';
 import type { BartenderDefinition, IngredientDefinition, MixState } from '../domain/model.ts';
 import type { ClassicInspiredTuningProfile } from '../domain/classicProfile.ts';
@@ -41,32 +44,43 @@ function sameLiquid(a: MixState, b: MixState) {
   const ids = Object.keys(a.quantities);
   return ids.length === Object.keys(b.quantities).length && ids.every(id => a.quantities[id] === b.quantities[id]);
 }
-export const BottleShelf = memo(function BottleShelf({ loadout, ingredients, visuals, mix, selectedId, disabled, pourFeedback, onSelect, formatVolume }: {
+export const BottleShelf = memo(function BottleShelf({ loadout, ingredients, visuals, mix, selectedId, disabled, pourFeedback, onSelect, formatVolume, page, onPageChange, availability }: {
   readonly loadout: VisualLoadout; readonly ingredients: readonly IngredientDefinition[]; readonly visuals: VisualCatalog; readonly mix: MixState;
   readonly selectedId: string; readonly disabled: boolean; readonly pourFeedback: PourFeedback; readonly onSelect: (id: string) => void;
   readonly formatVolume: (value: VolumeUnit) => string;
+  readonly page?: number; readonly onPageChange?: (page: number) => void;
+  readonly availability?: Readonly<Record<string, { readonly selectable: boolean; readonly reason: string }>>;
 }) {
-  return <section className="bottle-shelf" data-zone="bottles" aria-labelledby="ingredients-title">
+  const [localPage,setLocalPage]=useState(0),visible=shelfPage(ingredients,page??localPage);
+  const changePage=(next:number)=>{if(disabled)return;setLocalPage(next);onPageChange?.(next);};
+  return <section className={'bottle-shelf'+(visible.pages>1?' shelf-paged':'')} data-zone="bottles" aria-labelledby="ingredients-title">
     <div className="zone-heading"><span>LE BOTTIGLIE DEL BANCO</span><h2 id="ingredients-title">Scegli un ingrediente</h2></div>
-    <div className="bottle-list">{Array.from({ length: Math.ceil(ingredients.length / 4) }, (_, page) => <div className="bottle-page" role="group" aria-label={'Mensola ' + (page + 1)} key={page}>
-      {ingredients.slice(page * 4, page * 4 + 4).map((ingredient, index) => {
+    <div className="bottle-list">{[visible.index].map(currentPage => <div className="bottle-page" role="group" aria-label={'Mensola ' + (currentPage + 1)} key={currentPage}>
+      {visible.items.map((ingredient, index) => {
       const visual = ingredientVisuals(visuals, loadout, ingredient.id);
       if (!visual) throw new Error('Missing ingredient visual: ' + ingredient.id);
-      const selected = ingredient.id === selectedId;
-      return <button type="button" className={`bottle-hitbox ${selected ? 'is-selected' : ''}`} data-hitbox="bottle" style={bottleSlotVariables(page * 4 + index)} data-slot={bottleSlot(page * 4 + index).centerX}
-        aria-label={ingredient.name + ', ' + formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0)) + ' nel mix'}
-        data-pour={selected ? pourFeedback : 'idle'} disabled={disabled} aria-pressed={selected} key={ingredient.id} onClick={() => onSelect(ingredient.id)}>
-        <AssetImage assetId={selected ? optionalAsset(visuals, visual.selectedBottle, visual.bottle)! : visual.bottle} fallback={visual.bottle} className="bottle-image" framing="bottle" />
+      const access=availability?.[ingredient.id],selectable=access?.selectable??true;
+      const selected = selectable && ingredient.id === selectedId;
+      const runtimeFrame=ingredientBottleStyle(visual.bottle,visuals.assets[visual.bottle]);
+      return <button type="button" className={`bottle-hitbox ${selected ? 'is-selected' : ''}`} data-hitbox="bottle" style={bottleSlotVariables(index)} data-slot={bottleSlot(index).centerX}
+        aria-label={ingredient.name + ', ' + formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0)) + ' nel mix'+(!selectable?' · '+access?.reason:'')}
+        data-pour={selected ? pourFeedback : 'idle'} disabled={disabled||!selectable} aria-pressed={selected} key={ingredient.id} onClick={() => onSelect(ingredient.id)}>
+        <AssetImage assetId={selected ? optionalAsset(visuals, visual.selectedBottle, visual.bottle)! : visual.bottle} fallback={visual.bottle} className={'bottle-image'+(runtimeFrame?' bottle-runtime-frame':'')} framing="bottle" style={runtimeFrame??{}} />
         <span className="bottle-copy"><strong>{ingredient.shortLabel}</strong><span>{ingredient.description}</span>
-          <b>{formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0))} nel mix</b></span>
+          <b>{formatVolume(mix.quantities[ingredient.id] ?? volumeUnits(0))} nel mix</b>{!selectable&&<small className="shelf-unavailable">{access?.reason}</small>}</span>
         <span className="bottle-selected" aria-hidden="true">{selected ? '✓' : ''}</span>
       </button>;
     })}</div>)}</div>
+    {visible.pages>1&&<nav tabIndex={0} className="shelf-navigation" style={bottleSlotVariables(3)} aria-label="Pagine della mensola" onKeyDown={event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();changePage(nextShelfPage(visible.index,event.key,visible.pages));}}}>
+      <button type="button" aria-label="Mensola precedente" disabled={disabled||visible.index===0} onClick={()=>changePage(visible.index-1)}>←</button>
+      <span role="status">{visible.index+1}/{visible.pages}</span>
+      <button type="button" aria-label="Mensola successiva" disabled={disabled||visible.index===visible.pages-1} onClick={()=>changePage(visible.index+1)}>→</button>
+    </nav>}
     <p className="shelf-hint">La bottiglia selezionata guida il prossimo versamento.</p>
   </section>;
 }, (a, b) => a.loadout === b.loadout && a.ingredients === b.ingredients && a.visuals === b.visuals &&
   a.selectedId === b.selectedId && a.disabled === b.disabled && a.pourFeedback === b.pourFeedback &&
-  a.onSelect === b.onSelect && a.formatVolume === b.formatVolume && sameLiquid(a.mix, b.mix));
+  a.onSelect === b.onSelect && a.formatVolume === b.formatVolume && a.page===b.page && a.onPageChange===b.onPageChange && a.availability===b.availability && sameLiquid(a.mix, b.mix));
 
 const CalibrationPose = import.meta.env.DEV ? lazy(() => import('./ClassicCalibrationPose.tsx')) : null;
 export const BartenderArea = memo(function BartenderArea({ loadout, bartender, visuals, reactionId, pose, working, attemptKey, reducedMotion, lastResort }: {
@@ -152,10 +166,10 @@ export function RoundProgress({ phase }: { readonly phase: PlayerPhase }) {
   </ol>;
 }
 const scoreLabels = { balance: 'Ingredienti', ice: 'Ghiaccio', shake: 'Agitazione', garnish: 'Guarnizione' } as const;
-export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink, reward, line, children, resetAction, guidanceKey, milestone }: {
+export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredients, profile, titleRef, skipRef, onSkip, onNewDrink, reward, line, children, resetAction, guidanceKey, milestone, guide, guideAction }: {
   readonly result: ClassicScoreResult | null; readonly stage: ResultStage; readonly title: string; readonly ingredients: readonly IngredientDefinition[];
   readonly profile: ClassicInspiredTuningProfile; readonly titleRef: RefObject<HTMLHeadingElement | null>;
-  readonly line: string; readonly children?: ReactNode; readonly resetAction?: ReactNode; readonly guidanceKey?: string; readonly milestone?: ReactNode; readonly reward?: ReactNode; readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
+  readonly guide?: ReactNode; readonly guideAction?:ReactNode; readonly line: string; readonly children?: ReactNode; readonly resetAction?: ReactNode; readonly guidanceKey?: string; readonly milestone?: ReactNode; readonly reward?: ReactNode; readonly skipRef: RefObject<HTMLButtonElement | null>; readonly onSkip: () => void; readonly onNewDrink: () => void;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => { if (scrollRef.current) scrollRef.current.scrollTop = 0; }, [result, stage, guidanceKey]);
@@ -170,6 +184,7 @@ export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredien
       {result && <div className="score-number" aria-live="polite" aria-atomic="true"><strong>{revealScore ? new Intl.NumberFormat('it-IT', { useGrouping: true }).format(result.totalScore) : '—'}</strong><span>{revealScore ? '/ ' + new Intl.NumberFormat('it-IT', { useGrouping: true }).format(result.maximum) : result ? 'si assaggia…' : 'da scoprire'}</span></div>}
     </div>
     <p className="bartender-line" aria-live="polite">“{line}”</p>
+    {guide}
     {result ? <>
       <div className="breakdown" data-revealed={stage === 'breakdown'}>
         {stage === 'breakdown' ? result.breakdown.map(item => <div className="breakdown-row" key={item.component}>
@@ -187,7 +202,7 @@ export const ScoreHUD = memo(function ScoreHUD({ result, stage, title, ingredien
     </details>}
     {!result && <p className="scoring-notice"><strong>Il tuo stile, un mix alla volta.</strong></p>}
     </div>
-      <div className="result-actions">{result ? <>
+      <div className="result-actions">{guideAction}{result ? <>
         {stage !== 'breakdown' && <button type="button" className="skip-result" ref={skipRef} onClick={onSkip}>{playerCopy.skip}</button>}
         <button type="button" className="new-drink-button" onClick={onNewDrink}>{playerCopy.newDrink}<span aria-hidden="true">↻</span></button>
       </> : resetAction}</div>

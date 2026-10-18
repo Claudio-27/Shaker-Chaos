@@ -1,0 +1,125 @@
+[
+  {
+    "tolerance": {
+      "successfulDeviation": 12,
+      "nearDeviation": 30
+    },
+    "rewards": {
+      "completion": {
+        "xp": 15,
+        "coins": 5
+      },
+      "perfect": {
+        "xp": 10,
+        "coins": 5
+      }
+    },
+    "id": "recipe.first-ray",
+    "name": "Primo raggio",
+    "description": "Un inizio morbido, con il frutteto al centro.",
+    "availableFromLevel": 1,
+    "quantities": {
+      "orchard": 120
+    }
+  },
+  {
+    "tolerance": {
+      "successfulDeviation": 12,
+      "nearDeviation": 30
+    },
+    "rewards": {
+      "completion": {
+        "xp": 15,
+        "coins": 5
+      },
+      "perfect": {
+        "xp": 10,
+        "coins": 5
+      }
+    },
+    "id": "recipe.counter-harmony",
+    "name": "Intesa del banco",
+    "description": "Tre note si incontrano in un giro misurato.",
+    "availableFromLevel": 2,
+    "quantities": {
+      "orchard": 120,
+      "citrus": 60,
+      "soda": 60
+    },
+    "shake": {
+      "completed": {
+        "minimum": 1,
+        "maximum": 2
+      },
+      "durationMs": {
+        "minimum": 200,
+        "maximum": 2000
+      }
+    }
+  },
+  {
+    "tolerance": {
+      "successfulDeviation": 12,
+      "nearDeviation": 30
+    },
+    "rewards": {
+      "completion": {
+        "xp": 15,
+        "coins": 5
+      },
+      "perfect": {
+        "xp": 10,
+        "coins": 5
+      }
+    },
+    "id": "recipe.lantern-breeze",
+    "name": "Fresco di lanterna",
+    "description": "Le bollicine guidano un brindisi ben freddo.",
+    "availableFromLevel": 3,
+    "quantities": {
+      "orchard": 60,
+      "citrus": 60,
+      "soda": 120
+    },
+    "ice": {
+      "minimum": 2,
+      "maximum": 2
+    }
+  },
+  {
+    "tolerance": {
+      "successfulDeviation": 12,
+      "nearDeviation": 30
+    },
+    "rewards": {
+      "completion": {
+        "xp": 15,
+        "coins": 5
+      },
+      "perfect": {
+        "xp": 10,
+        "coins": 5
+      }
+    },
+    "id": "recipe.last-flash",
+    "name": "Ultimo lampo",
+    "description": "Agrumi in primo piano e due gesti per il finale.",
+    "availableFromLevel": 4,
+    "quantities": {
+      "orchard": 90,
+      "citrus": 120,
+      "soda": 30
+    },
+    "garnishId": "citrus-wheel",
+    "shake": {
+      "completed": {
+        "minimum": 2,
+        "maximum": 2
+      },
+      "durationMs": {
+        "minimum": 500,
+        "maximum": 2000
+      }
+    }
+  }
+]

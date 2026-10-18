@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-18",
+  "browser": "Chrome",
+  "freshOrigin": "http://127.0.0.1:5219/",
+  "advancedOrigin": "http://127.0.0.1:5217/",
+  "buildCache": "d14b2181971f4c4a",
+  "responsiveSurfaces": 20,
+  "finalProfile": {
+    "level": 6,
+    "currentXp": 109,
+    "coins": 282,
+    "bartender": "bartender.b02",
+    "effect": "effect.ice-blue",
+    "ingredientsOwned": 6,
+    "completedRecipes": 1
+  },
+  "proofs": [
+    {
+      "name": "first-guide.jpg",
+      "bytes": 149805,
+      "sha256": "abc40aa29e1e0ce0fb979e20825e40d9a965bb27c5633e1b09c96fc42f8faf35",
+      "width": 1536,
+      "height": 730
+    },
+    {
+      "name": "help-mobile.jpg",
+      "bytes": 34886,
+      "sha256": "a4033e0b50149ae7779da913312bf30634cb44f6ef3b6a2023f27221a72ddba2",
+      "width": 305,
+      "height": 610
+    },
+    {
+      "name": "offline-equipped.jpg",
+      "bytes": 128083,
+      "sha256": "90d2c7311964849c661e36988d004d5b9c8e0b9d76d8b1ae1071c2e22aeffb33",
+      "width": 1536,
+      "height": 674
+    }
+  ]
+}

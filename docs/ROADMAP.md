@@ -1,6 +1,32 @@
 # Roadmap
 
-## Stato corrente — fase2K
+## Stato corrente — fase 2P
+
+Player polish v1: guida contestuale skippabile, Aiuto, copy, errori, focus e cinque viewport.383test; scoring, balance2O, scena e artwork invariati. [Esperienza](PLAYER_EXPERIENCE_V1.md) · [Rapporto](PHASE_2P_REPORT.md). Stop dopo2P; nessun commit/push. Prima della release candidate resta utile il collaudo su tablet fisico.
+
+## Checkpoint storico — fase 2O
+
+Balance pass v1 completato, 375 test. Tre ritocchi di contenuto, nessun sistema nuovo, scoring/scena/artwork invariati. [Tuning](V1_BALANCE.md) · [Rapporto](PHASE_2O_REPORT.md). Stop dopo 2O; lavoro non committato su main. Playtest su tablet fisico consigliato prima del rilascio.
+
+## Checkpoint storico — fase2N
+
+Tre bottiglie originali generate con image_gen su autorizzazione dell’utente, sei ingredienti e sette ricette pubblicati. Shop/gate/ownershipV3 e mensola attivi; collaudo produzione offline/multi-tab e responsive,371test. [Rapporto](PHASE_2N_REPORT.md).
+
+Stop dopo2N, lavoro locale non committato su main. Passo successivo consigliato: playtest su tablet fisico e bilanciamento basato sul feedback, senza iniziare qui una nuova fase.
+
+## Checkpoint storico — fase2M
+
+Sei ingredienti e sette ricette configurati; tre nuovi ingredienti/offerte/ricette non pubblicati per mancanza di artwork finale distinto. Acquisti/ownershipV3, gate ricette, shelf paginata, scoring data-driven con legacy identico, Lab e simulazione pronti. [Rapporto2M](PHASE_2M_REPORT.md), [brief artistico](ART_REQUEST_NEW_INGREDIENTS.md).
+
+Stop dopo2M. Prossimo passo consigliato: consegna/revisione delle tre bottiglie e successiva attivazione dei dati, poi collaudo reale delle nuove pagine/acquisti offline. Nessuna fase successiva iniziata. Le modifiche restano locali non committate su main.
+
+## Checkpoint storico — fase2L
+
+Quattro ricette originali e quattro obiettivi, risultato distinto dallo scoring, mastery persistenteV3/migrazione e premi una tantum coordinati. Collezione→Ricette, Lab DEV e simulatore deterministico; palco/artwork/scorer/shop2K bloccati.350test e verifiche offline/multi-tab. [Rapporto2L](PHASE_2L_REPORT.md), [specifica](RECIPES_AND_GOALS.md).
+
+Stop dopo2L, modifiche non committate su main. Proposta successiva: playtest su tablet di ricettario, precisione e risultati compatti; nessuna nuova fase avviata.
+
+## Checkpoint storico — fase2K
 
 Economia locale significativa con grant gratuiti separati dalla disponibilità d'acquisto: Scia150/livello2, Bartender02 300/livello3, bundle382/livello6 con prezzo residuo. Reward, curva XP, profiloV2, persistenza/coordinamento e stage2I invariati. Simulatore deterministico DEV e test di policy/legacy. [Rapporto](PHASE_2K_REPORT.md), [shop](SHOP_SYSTEM.md), [progressione](PROGRESSION_SYSTEM.md).
 
