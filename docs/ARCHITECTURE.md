@@ -1,5 +1,9 @@
 # Architettura
 
+## Release hardening2Q
+
+Il binding input interrompe un hold anche al resize, riusando cancel/flush e rimuovendo il listener nel cleanup. Dominio, storia, scoring, transazioni e profiloV3 restano invariati. Versione candidata1.0.0-rc.1; QA, prove e limiti nel [report2Q](PHASE_2Q_REPORT.md).
+
 ## Polish giocatore 2P
 
 La guida è presentazione e usa una preferenza locale tipizzata separata (solo ID del profilo che l’ha chiusa). Non modifica PlayerProfileV3, storia canonica, scoring, reward o transazioni. Aiuto e descrizioni dei controlli leggono gli stati esistenti; nessun callback di input cambia. [Esperienza v1](PLAYER_EXPERIENCE_V1.md).

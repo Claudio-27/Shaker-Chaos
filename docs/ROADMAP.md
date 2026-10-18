@@ -1,6 +1,10 @@
 # Roadmap
 
-## Stato corrente — fase 2P
+## Stato corrente — fase2Q / RC v1
+
+1.0.0-rc.1 preparata,388test e audit PASS; fix hold al resize e metadati PWA. Nessuna feature nuova. [Checklist](V1_RELEASE_CHECKLIST.md) · [Report](PHASE_2Q_REPORT.md) · [Note giocatore](V1_RELEASE_NOTES.md). RC READY per collaudo, con tablet fisico/SR/installazione OS e altri browser ancora NOT TESTED. Commit/push autorizzati dall’utente per questa consegna; nessun deploy. Stop dopo2Q.
+
+## Checkpoint storico — fase 2P
 
 Player polish v1: guida contestuale skippabile, Aiuto, copy, errori, focus e cinque viewport.383test; scoring, balance2O, scena e artwork invariati. [Esperienza](PLAYER_EXPERIENCE_V1.md) · [Rapporto](PHASE_2P_REPORT.md). Stop dopo2P; nessun commit/push. Prima della release candidate resta utile il collaudo su tablet fisico.
 

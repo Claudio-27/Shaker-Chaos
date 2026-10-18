@@ -1,6 +1,6 @@
 {
   "id": "./", "name": "Shaker-Chaos", "short_name": "Shaker-Chaos",
-  "description": "Laboratorio di cocktail originale. Prototipo di fase 0, scoring non verificato.",
+  "description": "Il tuo banco bar: crea cocktail, completa ricette e personalizza il tuo turno.",
   "lang": "it", "start_url": "./", "scope": "./", "display": "standalone",
   "background_color": "#f6f3eb", "theme_color": "#143b37",
   "icons": [

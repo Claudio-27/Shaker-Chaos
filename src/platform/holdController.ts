@@ -53,9 +53,11 @@ export function bindHoldInterruptions(controller: Pick<ReturnType<typeof createH
   const interrupted = () => controller.cancel('cancelled');
   const visibility = () => { if (page.hidden) interrupted(); };
   surface.addEventListener('blur', interrupted);
+  surface.addEventListener('resize', interrupted);
   page.addEventListener('visibilitychange', visibility);
   return () => {
     surface.removeEventListener('blur', interrupted);
+    surface.removeEventListener('resize', interrupted);
     page.removeEventListener('visibilitychange', visibility);
     controller.cancel('cancelled');
   };

@@ -71,3 +71,31 @@ test('a late timer from an interrupted hold cannot advance a new operation', () 
   f.tick(); assert.equal(totalVolumeUnits(f.state.view.derived.mix), 12);
   f.controller.stop(pointer);
 });
+
+
+test('viewport resize interrupts the hold and prevents queued ticks after orientation changes', () => {
+  const f = setup(), surface = new EventTarget(), page = Object.assign(new EventTarget(), { hidden: false });
+  const cleanup = bindHoldInterruptions(f.controller, surface, page);
+  f.controller.start(pointer); f.time(1050); surface.dispatchEvent(new Event('resize'));
+  assert.equal(f.controller.isRunning(), false);
+  assert.equal(f.state.view.derived.pours[0]?.endReason, 'cancelled');
+  const frozen = f.state; f.time(5000); f.lateTick(); assert.equal(f.state, frozen);
+  cleanup();
+});
+
+
+test('100 mount and cleanup cycles leave no interruption listeners or live hold timers', () => {
+  class TrackedTarget extends EventTarget {
+    listeners = 0;
+    override addEventListener(...args: Parameters<EventTarget['addEventListener']>) { this.listeners++; super.addEventListener(...args); }
+    override removeEventListener(...args: Parameters<EventTarget['removeEventListener']>) { this.listeners--; super.removeEventListener(...args); }
+  }
+  const surface = new TrackedTarget(), page = Object.assign(new TrackedTarget(), { hidden: false });
+  for (let cycle = 0; cycle < 100; cycle++) {
+    const f = setup(), cleanup = bindHoldInterruptions(f.controller, surface, page);
+    f.controller.start(pointer); f.time(1050); cleanup();
+    assert.equal(surface.listeners, 0); assert.equal(page.listeners, 0);
+    assert.equal(f.controller.isRunning(), false); assert.equal(f.stops, 1);
+    const before = f.state; f.lateTick(); assert.equal(f.state, before);
+  }
+});

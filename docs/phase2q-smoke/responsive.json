@@ -1,0 +1,302 @@
+[
+  {
+    "dialog": {
+      "bottom": 784,
+      "innerOverflow": 0,
+      "right": 1030,
+      "x": 250,
+      "y": 16
+    },
+    "focus": "collection-tab",
+    "height": 800,
+    "label": "Collezione",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1280
+  },
+  {
+    "dialog": {
+      "bottom": 784,
+      "innerOverflow": 0,
+      "right": 1030,
+      "x": 250,
+      "y": 16
+    },
+    "focus": "shop-tab",
+    "height": 800,
+    "label": "Negozio",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1280
+  },
+  {
+    "dialog": {
+      "bottom": 784,
+      "innerOverflow": 0,
+      "right": 1030,
+      "x": 250,
+      "y": 16
+    },
+    "focus": "recipes-tab",
+    "height": 800,
+    "label": "Ricette",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1280
+  },
+  {
+    "dialog": {
+      "bottom": 723.75,
+      "innerOverflow": 0,
+      "right": 1030,
+      "x": 250,
+      "y": 76.25
+    },
+    "focus": "help-tab",
+    "height": 800,
+    "label": "Aiuto",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1280
+  },
+  {
+    "dialog": {
+      "bottom": 752,
+      "innerOverflow": 0,
+      "right": 902,
+      "x": 122,
+      "y": 16
+    },
+    "focus": "collection-tab",
+    "height": 768,
+    "label": "Collezione",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1024
+  },
+  {
+    "dialog": {
+      "bottom": 752,
+      "innerOverflow": 0,
+      "right": 902,
+      "x": 122,
+      "y": 16
+    },
+    "focus": "shop-tab",
+    "height": 768,
+    "label": "Negozio",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1024
+  },
+  {
+    "dialog": {
+      "bottom": 752,
+      "innerOverflow": 0,
+      "right": 902,
+      "x": 122,
+      "y": 16
+    },
+    "focus": "recipes-tab",
+    "height": 768,
+    "label": "Ricette",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1024
+  },
+  {
+    "dialog": {
+      "bottom": 707.75,
+      "innerOverflow": 0,
+      "right": 902,
+      "x": 122,
+      "y": 60.25
+    },
+    "focus": "help-tab",
+    "height": 768,
+    "label": "Aiuto",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 1024
+  },
+  {
+    "dialog": {
+      "bottom": 1008,
+      "innerOverflow": 0,
+      "right": 733.7999877929688,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "collection-tab",
+    "height": 1024,
+    "label": "Collezione",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 768
+  },
+  {
+    "dialog": {
+      "bottom": 1008,
+      "innerOverflow": 0,
+      "right": 733.7999877929688,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "shop-tab",
+    "height": 1024,
+    "label": "Negozio",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 768
+  },
+  {
+    "dialog": {
+      "bottom": 1008,
+      "innerOverflow": 0,
+      "right": 733.7999877929688,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "recipes-tab",
+    "height": 1024,
+    "label": "Ricette",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 768
+  },
+  {
+    "dialog": {
+      "bottom": 846.25,
+      "innerOverflow": 0,
+      "right": 733.7999877929688,
+      "x": 19,
+      "y": 177.75
+    },
+    "focus": "help-tab",
+    "height": 1024,
+    "label": "Aiuto",
+    "minTarget": 44,
+    "overflow": 0,
+    "width": 768
+  },
+  {
+    "dialog": {
+      "bottom": 828,
+      "innerOverflow": 0,
+      "right": 356.20001220703125,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "collection-tab",
+    "height": 844,
+    "label": "Collezione",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 390
+  },
+  {
+    "dialog": {
+      "bottom": 828,
+      "innerOverflow": 0,
+      "right": 356.20001220703125,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "shop-tab",
+    "height": 844,
+    "label": "Negozio",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 390
+  },
+  {
+    "dialog": {
+      "bottom": 828,
+      "innerOverflow": 0,
+      "right": 356.20001220703125,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "recipes-tab",
+    "height": 844,
+    "label": "Ricette",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 390
+  },
+  {
+    "dialog": {
+      "bottom": 828,
+      "innerOverflow": 0,
+      "right": 356.20001220703125,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "help-tab",
+    "height": 844,
+    "label": "Aiuto",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 390
+  },
+  {
+    "dialog": {
+      "bottom": 624,
+      "innerOverflow": 0,
+      "right": 285.8000183105469,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "collection-tab",
+    "height": 640,
+    "label": "Collezione",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 320
+  },
+  {
+    "dialog": {
+      "bottom": 624,
+      "innerOverflow": 0,
+      "right": 285.8000183105469,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "shop-tab",
+    "height": 640,
+    "label": "Negozio",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 320
+  },
+  {
+    "dialog": {
+      "bottom": 624,
+      "innerOverflow": 0,
+      "right": 285.8000183105469,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "recipes-tab",
+    "height": 640,
+    "label": "Ricette",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 320
+  },
+  {
+    "dialog": {
+      "bottom": 624,
+      "innerOverflow": 0,
+      "right": 285.8000183105469,
+      "x": 19,
+      "y": 16
+    },
+    "focus": "help-tab",
+    "height": 640,
+    "label": "Aiuto",
+    "minTarget": 48,
+    "overflow": 0,
+    "width": 320
+  }
+]

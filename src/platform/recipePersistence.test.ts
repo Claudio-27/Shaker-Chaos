@@ -1,3 +1,4 @@
+import type { PlayerProfileV1 } from '../domain/playerProfile.ts';
 import test from 'node:test';import assert from 'node:assert/strict';
 import { recipeProfile,settleRecipeExample } from '../application/recipeTestFixtures.ts';
 import { fundedProfile,intentFor,fakeWebLocks } from '../application/shopTestFixtures.ts';
@@ -7,7 +8,7 @@ import { progressionTuning as tuning } from '../content/progressionTuning.ts';
 import { currentPlayerProfile,validatePlayerProfileV3 } from '../domain/playerProfileV3.ts';
 import { issueRoundIdentity,settleRoundReward } from '../domain/progression.ts';
 import { settleRecipeRound } from '../domain/recipeProgression.ts';
-import { ownershipPolicy } from '../application/playerContent.ts';
+import { ownershipPolicy, equipContent } from '../application/playerContent.ts';
 import { purchaseOffer } from '../application/store.ts';
 import { productionStore } from '../content/storeCatalog.ts';import { publicContentCatalog } from '../content/publicContentCatalog.ts';
 import { memoryProfileStorage,newTestProfile,testRepository } from './profileTestFixtures.ts';
@@ -59,4 +60,24 @@ test('a locked recipe cannot earn a bonus, migration blocks retroactive claims, 
   const locks=fakeWebLocks(),queued=createPlayerController(testRepository(memoryProfileStorage({[key]:JSON.stringify(recipeProfile())})),'late-recipe',()=>2000,createProfileWriteCoordinator({requestLock:locks.request,listen:()=>()=>{},broadcast(){}}));
   queued.bindAttempt(0,recipeCatalog.recipes[0]!.id);const pending=queued.settle(recipeExample(recipeCatalog.recipes[0]!).state.result!,0,recipeExample(recipeCatalog.recipes[0]!).state.session);queued.clearAttempt();await pending;
   assert.equal(queued.snapshot().recipeReward,null);assert.equal(queued.snapshot().reward,null);assert.equal(queued.snapshot().profile.recipeProgress.mastery.length,1);
+});
+
+
+for (const version of [1, 2, 3] as const) test('RC migration and reload matrix: V' + version + ' to V3 retains every existing field', () => {
+  const paid = equipContent(purchaseOffer(fundedProfile(), intentFor(fundedProfile()), productionStore, publicContentCatalog, 2000).profile, 'bartender.b02', 2000);
+  const mastered = equipContent(settleRecipeExample().profile, null, 2000);
+  const v1Fields = Object.fromEntries(Object.entries(mastered).filter(([name]) => !['revision', 'nextPurchaseOrdinal', 'purchaseTransactionLedger', 'recipeProgress'].includes(name)));
+  const historicalV1 = { ...v1Fields, schemaVersion: 1 } as unknown as PlayerProfileV1;
+  const original = version === 1 ? historicalV1 : version === 2 ? paid : mastered;
+  const input = JSON.stringify(original), storage = memoryProfileStorage({ [key]: input, 'unrelated.save': 'keep' });
+  const loaded = testRepository(storage).load();
+  assert.equal(loaded.profile.schemaVersion, 3);
+  for (const field of Object.keys(original) as (keyof typeof original)[]) {
+    if (field !== 'schemaVersion') assert.deepEqual(loaded.profile[field], original[field], field);
+  }
+  const persisted = storage.values.get(key);
+  assert.deepEqual(testRepository(storage).load().profile, loaded.profile);
+  assert.equal(storage.values.get(key), persisted);
+  assert.equal(storage.values.get('unrelated.save'), 'keep');
+  assert.equal(JSON.stringify(original), input);
 });

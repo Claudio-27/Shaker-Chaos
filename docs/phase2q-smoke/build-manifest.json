@@ -1,0 +1,402 @@
+{
+  "version": "1.0.0-rc.1",
+  "cache": "e2c6aca9b2803142",
+  "archive": {
+    "path": "work/phase2q/Shaker-Chaos-1.0.0-rc.1.zip",
+    "bytes": 18996671,
+    "sha256": "a9f81fd7ae2670b3c3641418d8436aae3f116fcaa9738771b9507d32d468d8ea"
+  },
+  "files": [
+    {
+      "path": "art/placeholders/citrus-bottle.svg",
+      "bytes": 520,
+      "sha256": "f6051e903acd78ebdea38ac79fd2e0e800b2bcf53643a2861c025cf8af59adf4"
+    },
+    {
+      "path": "art/placeholders/garnish.svg",
+      "bytes": 232,
+      "sha256": "6ddad91dde029ac60b7f251bc833dd56f8359d23ffb59e31ff652a5c68c6ed02"
+    },
+    {
+      "path": "art/placeholders/glass.svg",
+      "bytes": 317,
+      "sha256": "cc97e7c27e9a3780a831caf1928f62b603441d7612b21f46a69cacbf2dc0da97"
+    },
+    {
+      "path": "art/placeholders/ice.svg",
+      "bytes": 266,
+      "sha256": "71a27fc59aeb8bde5a6aaadf574a4d250ae71fa5e571d41b29eaebe19a3d7e33"
+    },
+    {
+      "path": "art/placeholders/milo-balanced.svg",
+      "bytes": 1140,
+      "sha256": "525ea317ccec3f58ee9e3dc786a2443f00bcb0cc43c06fa3d33c387498cfb2c8"
+    },
+    {
+      "path": "art/placeholders/milo-excellent.svg",
+      "bytes": 1109,
+      "sha256": "0185d1a1fc81a3329855440aa772a56be6f123acda52a67f2f99579a6ef149be"
+    },
+    {
+      "path": "art/placeholders/milo-idle.svg",
+      "bytes": 1140,
+      "sha256": "525ea317ccec3f58ee9e3dc786a2443f00bcb0cc43c06fa3d33c387498cfb2c8"
+    },
+    {
+      "path": "art/placeholders/milo-portrait.svg",
+      "bytes": 580,
+      "sha256": "595d54f4785bf3342a5e7c5f6c3e9701ce99f4e8a915541b56cf4135b13155ea"
+    },
+    {
+      "path": "art/placeholders/milo-rough.svg",
+      "bytes": 1122,
+      "sha256": "e22c188d1de196ca77971024f1553c1ba98352e00a352570742badc84914743a"
+    },
+    {
+      "path": "art/placeholders/milo-tasting.svg",
+      "bytes": 1176,
+      "sha256": "c5cd8b43c0acec29e443689f75560df52f8c39b750e4c5bb86356393814df8b2"
+    },
+    {
+      "path": "art/placeholders/orchard-bottle.svg",
+      "bytes": 522,
+      "sha256": "18b2b372d9350f99fbcae83d4305d09e9a30133b0a95d97931eb241ebc90c7b7"
+    },
+    {
+      "path": "art/placeholders/pour.svg",
+      "bytes": 214,
+      "sha256": "8a01cf101762cc30663508d0d346c57439ad20b3de1ae3e3306fe4f419af4dd6"
+    },
+    {
+      "path": "art/placeholders/reset.svg",
+      "bytes": 212,
+      "sha256": "dfcb3e37fbc562ce4880f77e67a27d9be6b81c7cf57d2156f1288643ae330dd1"
+    },
+    {
+      "path": "art/placeholders/serve.svg",
+      "bytes": 208,
+      "sha256": "7c4f0f18529429e0aa8040c6c957fab43c13780ba9530239cfa49178300fcea4"
+    },
+    {
+      "path": "art/placeholders/shake.svg",
+      "bytes": 217,
+      "sha256": "4ce2da3592bf3eaa6d067139a575054e1f998eafa8adb67973aa6252fd86d9a5"
+    },
+    {
+      "path": "art/placeholders/shaker.svg",
+      "bytes": 537,
+      "sha256": "1e36fe1aee480d859db7aed16c4c66ae264ceb8020172e88cd52b21f7e6b2443"
+    },
+    {
+      "path": "art/placeholders/soda-bottle.svg",
+      "bytes": 523,
+      "sha256": "182184690d09ad01ddb5736097f9e6564da1ba73ca3b1de0b9a3581bb94a9fa0"
+    },
+    {
+      "path": "art/placeholders/sparkles.svg",
+      "bytes": 254,
+      "sha256": "721490ccac73be2ffbe47059a935c8e1d6f3aa10e08b55da74340ac371be6b3e"
+    },
+    {
+      "path": "art/placeholders/studio-back-bar.svg",
+      "bytes": 275,
+      "sha256": "ebfb52040f8ae87bd8e5d703b8e6cbbfe857d7e37176363ced556fe5fa025fac"
+    },
+    {
+      "path": "art/placeholders/studio-background.svg",
+      "bytes": 378,
+      "sha256": "04dbb10af844e7a99e8023bcc6b01dd7c2ab46b18eb07f544f78e2ccbebd1239"
+    },
+    {
+      "path": "art/placeholders/studio-counter.svg",
+      "bytes": 239,
+      "sha256": "21de52fe68490efc0b80fb43c6ca73a7d1e1580286d41507db9c4361649bace3"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/balanced-1x-79a667ab5226.png",
+      "bytes": 193117,
+      "sha256": "79a667ab52262802deae359619800756d11ba6f4587e57192f31e1a4d99d3a00"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/balanced-2x-21f9f02fbc4f.png",
+      "bytes": 628708,
+      "sha256": "21f9f02fbc4f4eda324f57d14183949e8e687b70c2f5c9a6e3d5ced00db63fd8"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/excellent-1x-6ff7e4751751.png",
+      "bytes": 221111,
+      "sha256": "6ff7e4751751ac5839589c80f074634b46b350811b9061d420d60c8b148da281"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/excellent-2x-9640a5de8c6a.png",
+      "bytes": 730796,
+      "sha256": "9640a5de8c6ad5a5a8f433ebc1fb49443059245bfc4360bd5b907cb86621555a"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/idle-1x-d560804943d0.png",
+      "bytes": 187291,
+      "sha256": "d560804943d0ea89adb87aeb08896c533d2aa2b60c460435aab9c99fc4f8a3ed"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/idle-2x-58e040e86827.png",
+      "bytes": 618609,
+      "sha256": "58e040e8682772bb1e80890e663b66e2505e9d8f9494a6aef59d72599f467ee9"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/portrait-1x-e811ada9c566.png",
+      "bytes": 26202,
+      "sha256": "e811ada9c566270a2de3ebb2bf948b41ce101ee9d9cf2f08860829e29f5e9ad2"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/portrait-2x-a6aa8bab684f.png",
+      "bytes": 85351,
+      "sha256": "a6aa8bab684f9f8e4a6ad38ff5169e72f9613f4297f08d8707e0107a77f2d523"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/rough-1x-799ab3cf9764.png",
+      "bytes": 207514,
+      "sha256": "799ab3cf9764b8883bde04ac8a0f66320822a6a9646e7ebb06d9e3f4e845eaa1"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/rough-2x-8d1e194a5419.png",
+      "bytes": 680428,
+      "sha256": "8d1e194a541957febf555568a5ddb06e2aa68f4287b0cc55e0cdab4e8a8f8b6c"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/tasting-1x-b594f09ae45c.png",
+      "bytes": 200316,
+      "sha256": "b594f09ae45cd7ec047bb53fb9514c75112eb22f21e9f4cc75e593f7b1c70b9f"
+    },
+    {
+      "path": "art/runtime/bartenders/b01/tasting-2x-3bf456a637c3.png",
+      "bytes": 653382,
+      "sha256": "3bf456a637c31906690774af0f8c0df67f9990a5bd08a29507e84e167368f05f"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/balanced-1x-82c2beda67a0.png",
+      "bytes": 209668,
+      "sha256": "82c2beda67a0b19f9be5eac7d4afaa1018e6e2eb3dbe55177bb966d1c477c181"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/balanced-2x-488eb2176fc6.png",
+      "bytes": 675798,
+      "sha256": "488eb2176fc68fc2587f118bcad39c34fa81bd51a39027939d25f3058f200c47"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/excellent-1x-0e9b739c27e5.png",
+      "bytes": 220220,
+      "sha256": "0e9b739c27e59c429e04910f2be7f67df2daf78bd55711e48762580fcef54bb4"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/excellent-2x-18681d5bae66.png",
+      "bytes": 714235,
+      "sha256": "18681d5bae661a7f77d0bec06c07f04644985e3c4257e851e51e217147f076ad"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/idle-1x-b3e78335890c.png",
+      "bytes": 205228,
+      "sha256": "b3e78335890c50d0e173e6084c39ec5d9230506a778ac5851d6e5961f6dd4330"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/idle-2x-e46819391d3e.png",
+      "bytes": 661332,
+      "sha256": "e46819391d3e10b75e86176b85121b9c2f86d960b00e53562ca6957a8517be70"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/portrait-1x-9fbabc7d182f.png",
+      "bytes": 27725,
+      "sha256": "9fbabc7d182ff91796a95aff0cacef932534a80e012bb83ef5a187661bc370b0"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/portrait-2x-891c35eacb76.png",
+      "bytes": 87053,
+      "sha256": "891c35eacb76d3253951df14eec9a7527186998038fe83603701b4d00200026c"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/rough-1x-0fe2133debdc.png",
+      "bytes": 212494,
+      "sha256": "0fe2133debdcb78436f16240996944826ada02d77232d9c651aa9af646a91351"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/rough-2x-3074d8fd31c1.png",
+      "bytes": 692670,
+      "sha256": "3074d8fd31c1d34bdc37ab34d9a05d9c274bbf9214c1f958eb2dcc2b6a3b2669"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/tasting-1x-0f3a21f28a35.png",
+      "bytes": 206795,
+      "sha256": "0f3a21f28a355fa397a08929688d729acf457f5a9372f7d3fcd983a1ce69fc56"
+    },
+    {
+      "path": "art/runtime/bartenders/b02/tasting-2x-7c0c5157ad34.png",
+      "bytes": 668908,
+      "sha256": "7c0c5157ad34818d0195c19722de594b21db7c241aaef8dd3d7f92d9fb421bb7"
+    },
+    {
+      "path": "art/runtime/counters/c01/surface-1x-58aeb7e78623.png",
+      "bytes": 405630,
+      "sha256": "58aeb7e786239aa7a8ca0c12cd433e8c7f750c9adfc6701ad8119b0dc7492bec"
+    },
+    {
+      "path": "art/runtime/counters/c01/surface-2x-e75df4f32442.png",
+      "bytes": 1471285,
+      "sha256": "e75df4f3244272c1c43aed1c661a98e2d059d8f21db011261a520663d70bfc6d"
+    },
+    {
+      "path": "art/runtime/effects/ice-blue-1x-ee2da6407642.png",
+      "bytes": 130464,
+      "sha256": "ee2da64076423ef86963d3e4fdcd7b2d215e833cfbc38c4f86f78fb5b27dda07"
+    },
+    {
+      "path": "art/runtime/effects/ice-blue-2x-4f4706c9f1ea.png",
+      "bytes": 432267,
+      "sha256": "4f4706c9f1ea98f0ddd2c8db4b14ffd0184b1ebf4d37b1e1f2479b03ad7513f9"
+    },
+    {
+      "path": "art/runtime/effects/sparkles-1x-03b50e83d650.png",
+      "bytes": 126195,
+      "sha256": "03b50e83d6506702eb235e5a99385ab643e41708cf7e77cd81b2e6c835c531d3"
+    },
+    {
+      "path": "art/runtime/effects/sparkles-2x-bfb399307658.png",
+      "bytes": 448819,
+      "sha256": "bfb399307658957438cf26799d0249d6d9d7c59a50e5a62ad2ea3785cf80c0bf"
+    },
+    {
+      "path": "art/runtime/environments/e01/background-1x-2100cdf7b45f.png",
+      "bytes": 2046022,
+      "sha256": "2100cdf7b45f054677684dc7b3be3702f8d53b66479f0710a3a238b8d80539ca"
+    },
+    {
+      "path": "art/runtime/environments/e01/background-clean-1x-58561551ef61.png",
+      "bytes": 1632039,
+      "sha256": "58561551ef6176a3774506712f617a6143afe1d3c177e53caae9908343aa4e86"
+    },
+    {
+      "path": "art/runtime/environments/e01/background-clean-2x-7b87d6443b34.png",
+      "bytes": 1921815,
+      "sha256": "7b87d6443b34ada71489b5468789ffe2f2018e8d781469279735db253783b29b"
+    },
+    {
+      "path": "art/runtime/gameplay/chrome-shaker-1x-66926b5cab3f.png",
+      "bytes": 35904,
+      "sha256": "66926b5cab3f696da549ee07a79af03cef686ee2505adbf7f091654d9686a415"
+    },
+    {
+      "path": "art/runtime/gameplay/chrome-shaker-2x-c4280aa05870.png",
+      "bytes": 113819,
+      "sha256": "c4280aa0587062dd65275fab0c1522f151721ce1198a0f07494b0ccb712b3bb5"
+    },
+    {
+      "path": "art/runtime/gameplay/martini-glass-1x-bc32ad56c93c.png",
+      "bytes": 33378,
+      "sha256": "bc32ad56c93c0dcfe1e7a0563e3fe99a496c4f7efdde56b7dcae44b4be8971ef"
+    },
+    {
+      "path": "art/runtime/gameplay/martini-glass-2x-e7ad2fc9c4fb.png",
+      "bytes": 108241,
+      "sha256": "e7ad2fc9c4fb3fd0e4cb061bcc95888a0dd63a46ace2cd96cf15c2403cabd652"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle01-1x-07e407e5e61b.png",
+      "bytes": 25076,
+      "sha256": "07e407e5e61bbf415c7aa3a0556eb899fb4723499414806598fbd89f46fc1043"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle01-2x-16cd678e27c8.png",
+      "bytes": 80893,
+      "sha256": "16cd678e27c8b48a8b78350ac5c88f56e854e1a2c438cebeadff2a658db7cf6a"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle02-1x-901895bdbab1.png",
+      "bytes": 33969,
+      "sha256": "901895bdbab1186909cbfdc4befaf343e38c2a039510a4472275e1f14c2f9633"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle02-2x-7c4f91bfbb17.png",
+      "bytes": 109768,
+      "sha256": "7c4f91bfbb1797e302a9bf7a84916b97298577786da080d804ba43ff6dd09b53"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle03-1x-df4179092798.png",
+      "bytes": 38747,
+      "sha256": "df4179092798e80ab0c26d6a38e4d4ffc154576219f5d4525958092d0992d50f"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle03-2x-9f5e9afbaef4.png",
+      "bytes": 125700,
+      "sha256": "9f5e9afbaef4d7ea3e5351cfc2ff1eb9eeed6ae27946d01568608fc85674111e"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle04-1x-24dafbdb4a85.png",
+      "bytes": 34866,
+      "sha256": "24dafbdb4a859b0add11ef3ee6d8241f3c9284f52669243e4a9954242be880f8"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle04-2x-4bb944a02d3e.png",
+      "bytes": 113223,
+      "sha256": "4bb944a02d3e0b096f974fc46867d22e657892414d039acaa964ef8a02d90966"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle05-1x-c8b76c904173.png",
+      "bytes": 46725,
+      "sha256": "c8b76c9041739444c034b8470fb62d18a311ee3fd4630776069082f143c580b9"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle05-2x-d083f81782ff.png",
+      "bytes": 149482,
+      "sha256": "d083f81782ff13707f387c95124b2bf6819b17782cea9d4b5bba3ce6cef817df"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle06-1x-fe069be4644c.png",
+      "bytes": 38736,
+      "sha256": "fe069be4644c9c26b465f2d27d18bef2b5d4107bcef4b7f7b4cb5584f6963d60"
+    },
+    {
+      "path": "art/runtime/ingredients/bottle06-2x-cfba38549546.png",
+      "bytes": 120972,
+      "sha256": "cfba3854954609820bb1ba5f109d9f145a7177a5c68e6c55cba4d59b7784bfda"
+    },
+    {
+      "path": "assets/index-3DHsI2SL.css",
+      "bytes": 68477,
+      "sha256": "5a2d68b5898b740a1ccc8d15b37d6a9a750db3c5abaa05914269418e4b263df4"
+    },
+    {
+      "path": "assets/index-DqLhSz0r.js",
+      "bytes": 379929,
+      "sha256": "739ee7a22a97016fef793363de260d4f2782a1e2695c715a6c177bc985abc5d4"
+    },
+    {
+      "path": "icon-192.png",
+      "bytes": 3101,
+      "sha256": "2713b82c41c300b4b63a2c8720e9dcba14788a52b6c0761e31a325f682a4d913"
+    },
+    {
+      "path": "icon-512.png",
+      "bytes": 8446,
+      "sha256": "2717864321b850cabfcb9d9b6b76046df664400c24bd2031aebfe21fb56fa187"
+    },
+    {
+      "path": "icon.svg",
+      "bytes": 478,
+      "sha256": "e15d46615c5b3964fa9e001e3d79d61a669c8e355b843f4fe670a322431d6314"
+    },
+    {
+      "path": "index.html",
+      "bytes": 731,
+      "sha256": "3efc02c99e0dd033ac1de61ef2c21434769dbe0db5788da9cb8b910f81aba7b6"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "bytes": 514,
+      "sha256": "2a2bcf0ae34ca25c67497fc350853d27f79cec226b0ccbc8197f7a6d0dd4bca9"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 8110,
+      "sha256": "346112edd6bb662f5862207d399954a607127bc926c8100174db4e57653a1318"
+    }
+  ],
+  "totalBytes": 19319953
+}
